@@ -22,18 +22,18 @@ ______________________________________________
 ## About me:
 
 - I am a doctoral student in the Education department studying quantitative methods at the University of California, Santa Barbara 
-- I study the development and communication of mixture modeling methods in-line with my advisor, Dr. Karen Nylund-Gibson's, work.
+- I study the development and communication of mixture modeling methods in-line with my advisor Dr. Karen Nylund-Gibson's work.
 - The materials used in this workshop have been adapted from content I developed as a teaching assistant for courses in `Factor Analysis`, `Structural Equation Modeling`, & `Applied Mixture Modeling`. 
 
 ## How/why did I learn `MplusAutomation`?
 
-- I taught myself this strategy in response to spending much of my time as a data analyst using Mplus sifting through messy research projects searching for and identifying files. 
-- The motivation for using this method are to increase reproducibility, organization, and trasparency. 
+- I taught myself this strategy in response to spending much of my time as a data analyst using Mplus sifting through messy research projects. 
+- The motivation for using this method is to increase reproducibility, organization, and transparency. 
 
-## Goals (estabishing a routine):
+## Goals (estabishing a `routine`):
 
 - The goal of this method is to have an entire project in a single location following coherent naming and organization conventions. 
-- The code today will be very repetitive by design. Creating a routine is key!
+- The code presented will be very repetitive by design. Creating a routine is key!
 
 ______________________________________________
 
@@ -47,21 +47,6 @@ ______________________________________________
 - Due to differences in operating systems and R environments, code that I have tested may not work on your computer.
 - It may not be possible to address all of these issues during the workshop. 
 - Please reach out after the workshop and I will do my best to help (`agarber at ucsb.edu`)
-
-______________________________________________
-
-## Large repository preparations: 
-
-- Typically a project will have a single script containing all of the code (e.g., `.R` or `.Rmd`)
-- Due to the number of scripts in this repository we will change the starting file-path at the beginning of each exercise to the folder associated with that script.
-- To make this work each course participant must manually copy the file-path of their project folder location into the file named `rep_functions.R`. 
-
-```{r, eval=FALSE}
-project_location <- "/your/unique/file-path-stem/NTNU-workshop" # NOTE manual change required
-```
-
-- This can easily be done by loading the `here` package, running `here()`, and copying the path. 
-- This procedure is unique to this large repository structure & will generally not be a necessary step.
 
 ______________________________________________
 
@@ -80,28 +65,6 @@ ______________________________________________
 e.g., if/your/filepath/has/many/nested/folders/it/will/be/longer/than/the/90character/limit/data.dat 
 
 ______________________________________________
-
-## Tools we will use in lab 
-
-```{r, eval=TRUE, echo=FALSE}
-
-lab_tools <- tribble(
-  ~"Tool/Package", ~"Purpose/Utility",  ~"Advantages",
- #---------------|-------------------|----------------|,
- "{MplusAutomation}" ,  "Current capabilities supporting full SEM modeling" , "Flexibility (approaching infinite) ",
- "RProject" ,  "Unbreakable file paths & neatness" , "Reproducibility (kindness to your future self)",
- "{tidyverse}" ,  "Intuitive/descriptive function names" , "Accessibility to new users",
- "{here}" , "Unbreakable/consistent file paths across OS" , "Reproducibility (for Science's sake!)",
- "{haven}" ,  "View-able metadata in R from SPSS datafiles" , "Getting to know your measures",
- "{ggplot2}" ,  "Beautiful, customizable, reproducible figures" , "Publication quality data visualizations",
- "pipe operator (%>%)", "Ease of reading/writing scripts", "e.g., first() %>% and_then() %>% and_finally()"
-)
-
-lab_tools %>% gt()
-```
-
-______________________________________________
-
 
 ## Resources: 
 
@@ -134,6 +97,25 @@ ______________________________________________
 - I use the naming convention called *lower snake case* (e.g., `this_is_lower_snake_case`)
 - Annotate code generously
 - Let your code breath: use return often to spread code chunks out vertically 
+
+______________________________________________
+
+# Preparation
+
+______________________________________________
+
+## Large repository procedure: 
+
+- Typically a project will have a single script containing all of the code (e.g., `.R` or `.Rmd`)
+- Due to the number of scripts in this repository we will change the starting file-path at the beginning of each exercise to the folder associated with that script.
+- To make this work each course participant must manually copy the file-path of their project folder location into the file named `rep_functions.R`. 
+
+```{r, eval=FALSE}
+project_location <- "/your/unique/file-path-stem/NTNU-start" # NOTE manual change required
+```
+
+- This can easily be done by loading the `here` package, running `here()`, and copying the path. 
+- This procedure is unique to this large repository structure & will generally not be a necessary step.
 
 ______________________________________________
 
