@@ -1,0 +1,21 @@
+TITLE:
+m3 model interact
+DATA:
+FILE = "/Users/agarber/github/NTNU-workshop/13-comp-models/mplus_files/CA_schls.dat";
+ 
+VARIABLE:
+NAMES = str expnstu compstu elpct mealpct readscr mathscr testscr; 
+ MISSING=.;
+ usevar =
+    compstu           ! covariate-moderator
+    mealpct           ! covariate-moderator
+    mathscr           ! outcome
+    int_ab;           ! interaction term 
+DEFINE:
+int_ab = compstu*mealpct;  ! create interaction term
+ANALYSIS:
+estimator = MLR
+MODEL:
+mathscr on compstu mealpct int_ab; 
+OUTPUT:
+sampstat standardized modindices (ALL)

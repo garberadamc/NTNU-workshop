@@ -1,0 +1,1075 @@
+Mplus VERSION 8.6 (Mac)
+MUTHEN & MUTHEN
+05/29/2021  12:19 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  Class 5
+  DATA:
+  FILE = "/Users/agarber/github/NTNU-workshop/21-response-patterns/enum_mplus/lsay.dat";
+
+  VARIABLE:
+  NAMES = Enjoy Useful Logical Job Adult;
+   MISSING=.;
+   categorical = Enjoy-Adult;
+  usevar = Enjoy-Adult;
+  classes = c(5);
+  ANALYSIS:
+  estimator = mlr;
+      type = mixture;
+      starts = 200 50;
+      processors = 10;
+  OUTPUT:
+  sampstat residual tech11 tech14;
+  PLOT:
+  type = plot3;
+       series = Enjoy-Adult(*);
+
+
+
+*** WARNING in OUTPUT command
+  SAMPSTAT option is not available when all outcomes are censored, ordered
+  categorical, unordered categorical (nominal), count or continuous-time
+  survival variables.  Request for SAMPSTAT is ignored.
+   1 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+Class 5
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        3061
+
+Number of dependent variables                                    5
+Number of independent variables                                  0
+Number of continuous latent variables                            0
+Number of categorical latent variables                           1
+
+Observed dependent variables
+
+  Binary and ordered categorical (ordinal)
+   ENJOY       USEFUL      LOGICAL     JOB         ADULT
+
+Categorical latent variables
+   C
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-06
+    Relative loglikelihood change                        0.100D-06
+    Derivative                                           0.100D-05
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+Random Starts Specifications
+  Number of initial stage random starts                        200
+  Number of final stage optimizations                           50
+  Number of initial stage iterations                            10
+  Initial stage convergence criterion                    0.100D+01
+  Random starts scale                                    0.500D+01
+  Random seed for generating random starts                       0
+Link                                                         LOGIT
+
+Input data file(s)
+  /Users/agarber/github/NTNU-workshop/21-response-patterns/enum_mplus/lsay.dat
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns            21
+     Number of y missing data patterns           0
+     Number of u missing data patterns          21
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT FOR U
+
+
+           Covariance Coverage
+              ENJOY         USEFUL        LOGICAL       JOB           ADULT
+              ________      ________      ________      ________      ________
+ ENJOY          0.994
+ USEFUL         0.972         0.976
+ LOGICAL        0.972         0.960         0.977
+ JOB            0.979         0.965         0.966         0.984
+ ADULT          0.989         0.973         0.975         0.982         0.994
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    ENJOY
+      Category 1    0.387         1177.000
+      Category 2    0.613         1865.000
+    USEFUL
+      Category 1    0.596         1782.000
+      Category 2    0.404         1206.000
+    LOGICAL
+      Category 1    0.508         1519.000
+      Category 2    0.492         1473.000
+    JOB
+      Category 1    0.596         1796.000
+      Category 2    0.404         1216.000
+    ADULT
+      Category 1    0.539         1639.000
+      Category 2    0.461         1404.000
+
+
+RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
+
+Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
+
+           -8662.386  100874           108
+           -8662.386  152496           123
+           -8662.397  569131           26
+           -8662.398  471398           74
+           -8662.435  292884           103
+           -8662.435  570782           193
+           -8662.435  432148           30
+           -8662.435  626891           32
+           -8662.435  950604           172
+           -8662.435  569833           85
+           -8662.463  903420           5
+           -8662.463  417035           149
+           -8662.477  436460           89
+           -8662.477  609185           181
+           -8662.477  127215           9
+           -8662.530  967902           52
+           -8662.544  784664           75
+           -8662.545  136842           58
+           -8662.545  468036           131
+           -8662.545  856536           144
+           -8662.545  399671           13
+           -8662.927  948615           140
+           -8662.935  576220           115
+           -8662.943  783165           170
+           -8663.170  726035           191
+           -8663.212  369602           146
+           -8663.212  544048           87
+
+23 perturbed starting value run(s) did not converge or were rejected in the third stage.
+
+
+
+THE BEST LOGLIKELIHOOD VALUE HAS BEEN REPLICATED.  RERUN WITH AT LEAST TWICE THE
+RANDOM STARTS TO CHECK THAT THE BEST LOGLIKELIHOOD IS STILL OBTAINED AND REPLICATED.
+
+     IN THE OPTIMIZATION, ONE OR MORE LOGIT THRESHOLDS APPROACHED EXTREME VALUES
+     OF -15.000 AND 15.000 AND WERE FIXED TO STABILIZE MODEL ESTIMATION.  THESE
+     VALUES IMPLY PROBABILITIES OF 0 AND 1.  IN THE MODEL RESULTS SECTION, THESE
+     PARAMETERS HAVE 0 STANDARD ERRORS AND 999 IN THE Z-SCORE AND P-VALUE COLUMNS.
+
+
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       29
+
+Loglikelihood
+
+          H0 Value                       -8662.386
+          H0 Scaling Correction Factor      0.9793
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                   17382.771
+          Bayesian (BIC)                 17557.540
+          Sample-Size Adjusted BIC       17465.395
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit for the Binary and Ordered Categorical
+(Ordinal) Outcomes
+
+          Pearson Chi-Square
+
+          Value                              1.009
+          Degrees of Freedom                     2
+          P-Value                           0.6038
+
+          Likelihood Ratio Chi-Square
+
+          Value                              1.689
+          Degrees of Freedom                     2
+          P-Value                           0.4297
+
+Chi-Square Test for MCAR under the Unrestricted Latent Class Indicator Model
+
+          Pearson Chi-Square
+
+          Value                            161.488
+          Degrees of Freedom                   148
+          P-Value                           0.2119
+
+          Likelihood Ratio Chi-Square
+
+          Value                            128.456
+          Degrees of Freedom                   148
+          P-Value                           0.8751
+
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THE ESTIMATED MODEL
+
+    Latent
+   Classes
+
+       1        896.20153          0.29278
+       2        324.64761          0.10606
+       3        380.33809          0.12425
+       4        581.52283          0.18998
+       5        878.28994          0.28693
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+    Latent
+   Classes
+
+       1        896.20153          0.29278
+       2        324.64761          0.10606
+       3        380.33809          0.12425
+       4        581.52283          0.18998
+       5        878.28994          0.28693
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THEIR MOST LIKELY LATENT CLASS MEMBERSHIP
+
+Class Counts and Proportions
+
+    Latent
+   Classes
+
+       1              983          0.32114
+       2              347          0.11336
+       3              391          0.12774
+       4              445          0.14538
+       5              895          0.29239
+
+
+CLASSIFICATION QUALITY
+
+     Entropy                         0.742
+
+
+Average Latent Class Probabilities for Most Likely Latent Class Membership (Row)
+by Latent Class (Column)
+
+           1        2        3        4        5
+
+    1   0.854    0.001    0.098    0.047    0.000
+    2   0.004    0.764    0.102    0.109    0.022
+    3   0.135    0.137    0.580    0.090    0.057
+    4   0.002    0.000    0.008    0.951    0.038
+    5   0.001    0.006    0.021    0.044    0.929
+
+
+Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+           1        2        3        4        5
+
+    1   0.937    0.001    0.059    0.001    0.001
+    2   0.002    0.816    0.165    0.000    0.017
+    3   0.252    0.093    0.596    0.009    0.048
+    4   0.080    0.065    0.060    0.728    0.067
+    5   0.000    0.008    0.025    0.019    0.946
+
+
+Logits for the Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+              1        2        3        4        5
+
+    1      6.827    0.373    4.063    0.146    0.000
+    2     -2.275    3.885    2.288   -9.727    0.000
+    3      1.649    0.656    2.510   -1.635    0.000
+    4      0.167   -0.036   -0.106    2.381    0.000
+    5     -7.804   -4.713   -3.618   -3.884    0.000
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Latent Class 1
+
+ Thresholds
+    ENJOY$1            0.752      0.198      3.795      0.000
+    USEFUL$1           3.791      1.457      2.602      0.009
+    LOGICAL$1         15.000      0.000    999.000    999.000
+    JOB$1              2.657      0.386      6.877      0.000
+    ADULT$1            3.838      1.604      2.393      0.017
+
+Latent Class 2
+
+ Thresholds
+    ENJOY$1           -0.919      0.390     -2.356      0.018
+    USEFUL$1          15.000      0.000    999.000    999.000
+    LOGICAL$1         -0.480      0.837     -0.573      0.566
+    JOB$1             -0.276      0.581     -0.475      0.635
+    ADULT$1          -15.000      0.000    999.000    999.000
+
+Latent Class 3
+
+ Thresholds
+    ENJOY$1           -0.581      0.422     -1.377      0.169
+    USEFUL$1           0.439      0.665      0.659      0.510
+    LOGICAL$1          5.135     23.237      0.221      0.825
+    JOB$1              0.791      0.798      0.992      0.321
+    ADULT$1            0.048      2.109      0.023      0.982
+
+Latent Class 4
+
+ Thresholds
+    ENJOY$1           -0.387      0.104     -3.734      0.000
+    USEFUL$1           0.668      0.123      5.416      0.000
+    LOGICAL$1         -1.859      7.904     -0.235      0.814
+    JOB$1              1.346      0.167      8.074      0.000
+    ADULT$1            2.069      1.013      2.043      0.041
+
+Latent Class 5
+
+ Thresholds
+    ENJOY$1           -1.930      0.122    -15.764      0.000
+    USEFUL$1          -4.691     11.587     -0.405      0.686
+    LOGICAL$1         -2.356      0.313     -7.520      0.000
+    JOB$1             -1.810      0.166    -10.907      0.000
+    ADULT$1           -2.610      0.225    -11.599      0.000
+
+Categorical Latent Variables
+
+ Means
+    C#1                0.020      0.194      0.104      0.917
+    C#2               -0.995      0.298     -3.337      0.001
+    C#3               -0.837      1.252     -0.668      0.504
+    C#4               -0.412      1.169     -0.353      0.724
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.112E-07
+       (ratio of smallest to largest eigenvalue)
+
+
+RESULTS IN PROBABILITY SCALE
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Latent Class 1
+
+ ENJOY
+    Category 1         0.680      0.043     15.751      0.000
+    Category 2         0.320      0.043      7.426      0.000
+ USEFUL
+    Category 1         0.978      0.031     31.080      0.000
+    Category 2         0.022      0.031      0.702      0.483
+ LOGICAL
+    Category 1         1.000      0.000      0.000      1.000
+    Category 2         0.000      0.000      0.000      1.000
+ JOB
+    Category 1         0.934      0.024     39.485      0.000
+    Category 2         0.066      0.024      2.769      0.006
+ ADULT
+    Category 1         0.979      0.033     29.586      0.000
+    Category 2         0.021      0.033      0.637      0.524
+
+Latent Class 2
+
+ ENJOY
+    Category 1         0.285      0.080      3.585      0.000
+    Category 2         0.715      0.080      8.989      0.000
+ USEFUL
+    Category 1         1.000      0.000      0.000      1.000
+    Category 2         0.000      0.000      0.000      1.000
+ LOGICAL
+    Category 1         0.382      0.198      1.934      0.053
+    Category 2         0.618      0.198      3.125      0.002
+ JOB
+    Category 1         0.432      0.142      3.029      0.002
+    Category 2         0.568      0.142      3.991      0.000
+ ADULT
+    Category 1         0.000      0.000      0.000      1.000
+    Category 2         1.000      0.000      0.000      1.000
+
+Latent Class 3
+
+ ENJOY
+    Category 1         0.359      0.097      3.694      0.000
+    Category 2         0.641      0.097      6.605      0.000
+ USEFUL
+    Category 1         0.608      0.159      3.833      0.000
+    Category 2         0.392      0.159      2.472      0.013
+ LOGICAL
+    Category 1         0.994      0.135      7.350      0.000
+    Category 2         0.006      0.135      0.043      0.965
+ JOB
+    Category 1         0.688      0.171      4.020      0.000
+    Category 2         0.312      0.171      1.822      0.068
+ ADULT
+    Category 1         0.512      0.527      0.972      0.331
+    Category 2         0.488      0.527      0.926      0.355
+
+Latent Class 4
+
+ ENJOY
+    Category 1         0.404      0.025     16.191      0.000
+    Category 2         0.596      0.025     23.848      0.000
+ USEFUL
+    Category 1         0.661      0.028     23.916      0.000
+    Category 2         0.339      0.028     12.260      0.000
+ LOGICAL
+    Category 1         0.135      0.922      0.146      0.884
+    Category 2         0.865      0.922      0.938      0.348
+ JOB
+    Category 1         0.793      0.027     29.043      0.000
+    Category 2         0.207      0.027      7.563      0.000
+ ADULT
+    Category 1         0.888      0.101      8.808      0.000
+    Category 2         0.112      0.101      1.112      0.266
+
+Latent Class 5
+
+ ENJOY
+    Category 1         0.127      0.014      9.355      0.000
+    Category 2         0.873      0.014     64.434      0.000
+ USEFUL
+    Category 1         0.009      0.104      0.087      0.931
+    Category 2         0.991      0.104      9.492      0.000
+ LOGICAL
+    Category 1         0.087      0.025      3.495      0.000
+    Category 2         0.913      0.025     36.861      0.000
+ JOB
+    Category 1         0.141      0.020      7.013      0.000
+    Category 2         0.859      0.020     42.844      0.000
+ ADULT
+    Category 1         0.069      0.014      4.771      0.000
+    Category 2         0.931      0.014     64.874      0.000
+
+
+LATENT CLASS INDICATOR ODDS RATIOS FOR THE LATENT CLASSES
+
+                                                95% C.I.
+                    Estimate       S.E.  Lower 2.5% Upper 2.5%
+
+Latent Class 1 Compared to Latent Class 2
+
+ ENJOY
+    Category > 1       0.188      0.096      0.069      0.511
+ USEFUL
+    Category > 1   73824.500      0.000  73824.500  73824.500
+ LOGICAL
+    Category > 1       0.000      0.000      0.000      0.000
+ JOB
+    Category > 1       0.053      0.045      0.010      0.277
+ ADULT
+    Category > 1       0.000      0.000      0.000      0.000
+
+Latent Class 1 Compared to Latent Class 3
+
+ ENJOY
+    Category > 1       0.264      0.129      0.101      0.688
+ USEFUL
+    Category > 1       0.035      0.051      0.002      0.592
+ LOGICAL
+    Category > 1       0.000      0.000      0.000      0.000
+ JOB
+    Category > 1       0.155      0.146      0.024      0.987
+ ADULT
+    Category > 1       0.023      0.047      0.000      1.320
+
+Latent Class 1 Compared to Latent Class 4
+
+ ENJOY
+    Category > 1       0.320      0.069      0.210      0.489
+ USEFUL
+    Category > 1       0.044      0.065      0.002      0.781
+ LOGICAL
+    Category > 1       0.000      0.000      0.000      0.000
+ JOB
+    Category > 1       0.269      0.126      0.108      0.672
+ ADULT
+    Category > 1       0.171      0.324      0.004      7.052
+
+Latent Class 1 Compared to Latent Class 5
+
+ ENJOY
+    Category > 1       0.068      0.017      0.042      0.110
+ USEFUL
+    Category > 1       0.000      0.002      0.000  *********
+ LOGICAL
+    Category > 1       0.000      0.000      0.000      0.000
+ JOB
+    Category > 1       0.011      0.005      0.005      0.027
+ ADULT
+    Category > 1       0.002      0.003      0.000      0.037
+
+Latent Class 2 Compared to Latent Class 3
+
+ ENJOY
+    Category > 1       1.403      0.864      0.419      4.691
+ USEFUL
+    Category > 1       0.000      0.000      0.000      0.000
+ LOGICAL
+    Category > 1     274.407   6533.502      0.000  *********
+ JOB
+    Category > 1       2.907      2.886      0.415     20.357
+ ADULT
+    Category > 1   *********      0.000  *********  *********
+
+Latent Class 2 Compared to Latent Class 4
+
+ ENJOY
+    Category > 1       1.702      0.677      0.781      3.710
+ USEFUL
+    Category > 1       0.000      0.000      0.000      0.000
+ LOGICAL
+    Category > 1       0.252      2.104      0.000  *********
+ JOB
+    Category > 1       5.059      2.724      1.761     14.535
+ ADULT
+    Category > 1   *********      0.000  *********  *********
+
+Latent Class 2 Compared to Latent Class 5
+
+ ENJOY
+    Category > 1       0.364      0.142      0.169      0.784
+ USEFUL
+    Category > 1       0.000      0.000      0.000      0.000
+ LOGICAL
+    Category > 1       0.153      0.123      0.032      0.743
+ JOB
+    Category > 1       0.216      0.117      0.075      0.623
+ ADULT
+    Category > 1   *********      0.000  *********  *********
+
+Latent Class 3 Compared to Latent Class 4
+
+ ENJOY
+    Category > 1       1.214      0.547      0.501      2.938
+ USEFUL
+    Category > 1       1.258      0.857      0.331      4.781
+ LOGICAL
+    Category > 1       0.001      0.020      0.000  *********
+ JOB
+    Category > 1       1.740      1.354      0.379      7.998
+ ADULT
+    Category > 1       7.548     16.886      0.094    605.573
+
+Latent Class 3 Compared to Latent Class 5
+
+ ENJOY
+    Category > 1       0.260      0.115      0.109      0.618
+ USEFUL
+    Category > 1       0.006      0.071      0.000  *********
+ LOGICAL
+    Category > 1       0.001      0.013      0.000  *********
+ JOB
+    Category > 1       0.074      0.061      0.015      0.369
+ ADULT
+    Category > 1       0.070      0.149      0.001      4.533
+
+Latent Class 4 Compared to Latent Class 5
+
+ ENJOY
+    Category > 1       0.214      0.034      0.156      0.293
+ USEFUL
+    Category > 1       0.005      0.055      0.000  *********
+ LOGICAL
+    Category > 1       0.608      4.929      0.000  *********
+ JOB
+    Category > 1       0.043      0.010      0.027      0.066
+ ADULT
+    Category > 1       0.009      0.010      0.001      0.071
+
+
+RESIDUAL OUTPUT
+
+
+     UNIVARIATE DISTRIBUTION FIT FOR CLASS 1
+
+     Variable          Observed      Estimated      Residual (Obs.-Est.)    Stand. Residual
+     ENJOY
+       Category 1        0.680          0.680                  0.000                0.000
+       Category 2        0.320          0.320                  0.000                0.000
+     USEFUL
+       Category 1        0.978          0.978                  0.000                0.000
+       Category 2        0.022          0.022                  0.000                0.000
+     LOGICAL
+       Category 1        1.000          1.000                  0.000               -0.009
+       Category 2        0.000          0.000                  0.000                0.009
+     JOB
+       Category 1        0.934          0.934                  0.000                0.000
+       Category 2        0.066          0.066                  0.000                0.000
+     ADULT
+       Category 1        0.979          0.979                  0.000                0.000
+       Category 2        0.021          0.021                  0.000                0.000
+
+
+     BIVARIATE DISTRIBUTIONS FIT FOR CLASS 1
+
+     Variable       Variable          Observed     Estimated    Residual (Obs.-Est.)  Stand. Residual
+     ENJOY          USEFUL
+       Category 1     Category 1        0.665       0.665             0.000            0.020
+       Category 1     Category 2        0.015       0.015             0.000           -0.043
+       Category 2     Category 1        0.313       0.313             0.000            0.001
+       Category 2     Category 2        0.007       0.007             0.000           -0.053
+     ENJOY          LOGICAL
+       Category 1     Category 1        0.680       0.680             0.000            0.004
+       Category 1     Category 2        0.000       0.000             0.000            0.006
+       Category 2     Category 1        0.320       0.320             0.000           -0.004
+       Category 2     Category 2        0.000       0.000             0.000            0.003
+     ENJOY          JOB
+       Category 1     Category 1        0.635       0.635             0.000            0.000
+       Category 1     Category 2        0.045       0.045             0.000            0.065
+       Category 2     Category 1        0.299       0.299             0.000           -0.032
+       Category 2     Category 2        0.021       0.021             0.000            0.006
+     ENJOY          ADULT
+       Category 1     Category 1        0.666       0.665             0.001            0.037
+       Category 1     Category 2        0.014       0.014             0.000            0.020
+       Category 2     Category 1        0.313       0.314            -0.001           -0.042
+       Category 2     Category 2        0.007       0.007             0.000           -0.007
+     USEFUL         LOGICAL
+       Category 1     Category 1        0.979       0.978             0.001            0.119
+       Category 1     Category 2        0.000       0.000             0.000            0.009
+       Category 2     Category 1        0.021       0.022            -0.001           -0.119
+       Category 2     Category 2        0.000       0.000             0.000            0.000
+     USEFUL         JOB
+       Category 1     Category 1        0.914       0.914             0.001            0.065
+       Category 1     Category 2        0.063       0.064            -0.001           -0.088
+       Category 2     Category 1        0.021       0.021             0.000            0.005
+       Category 2     Category 2        0.002       0.001             0.000            0.067
+     USEFUL         ADULT
+       Category 1     Category 1        0.957       0.957             0.000            0.024
+       Category 1     Category 2        0.020       0.021             0.000           -0.026
+       Category 2     Category 1        0.022       0.022             0.000           -0.004
+       Category 2     Category 2        0.000       0.000             0.000           -0.023
+     LOGICAL        JOB
+       Category 1     Category 1        0.934       0.934             0.000           -0.028
+       Category 1     Category 2        0.066       0.066             0.000            0.028
+       Category 2     Category 1        0.000       0.000             0.000            0.009
+       Category 2     Category 2        0.000       0.000             0.000            0.001
+     LOGICAL        ADULT
+       Category 1     Category 1        0.979       0.979             0.000           -0.022
+       Category 1     Category 2        0.021       0.021             0.000            0.022
+       Category 2     Category 1        0.000       0.000             0.000            0.009
+       Category 2     Category 2        0.000       0.000             0.000            0.000
+     JOB            ADULT
+       Category 1     Category 1        0.915       0.915             0.000            0.027
+       Category 1     Category 2        0.019       0.020             0.000           -0.071
+       Category 2     Category 1        0.064       0.064             0.000            0.006
+       Category 2     Category 2        0.001       0.001             0.000            0.019
+
+
+     UNIVARIATE DISTRIBUTION FIT FOR CLASS 2
+
+     Variable          Observed      Estimated      Residual (Obs.-Est.)    Stand. Residual
+     ENJOY
+       Category 1        0.285          0.285                  0.000                0.000
+       Category 2        0.715          0.715                  0.000                0.000
+     USEFUL
+       Category 1        1.000          1.000                  0.000               -0.006
+       Category 2        0.000          0.000                  0.000                0.006
+     LOGICAL
+       Category 1        0.382          0.382                  0.000                0.000
+       Category 2        0.618          0.618                  0.000                0.000
+     JOB
+       Category 1        0.432          0.432                  0.000                0.000
+       Category 2        0.568          0.568                  0.000                0.000
+     ADULT
+       Category 1        0.000          0.000                  0.000                0.005
+       Category 2        1.000          1.000                  0.000               -0.005
+
+
+     BIVARIATE DISTRIBUTIONS FIT FOR CLASS 2
+
+     Variable       Variable          Observed     Estimated    Residual (Obs.-Est.)  Stand. Residual
+     ENJOY          USEFUL
+       Category 1     Category 1        0.287       0.285             0.002            0.075
+       Category 1     Category 2        0.000       0.000             0.000            0.002
+       Category 2     Category 1        0.713       0.715            -0.002           -0.076
+       Category 2     Category 2        0.000       0.000             0.000            0.004
+     ENJOY          LOGICAL
+       Category 1     Category 1        0.113       0.109             0.004            0.244
+       Category 1     Category 2        0.174       0.176            -0.002           -0.111
+       Category 2     Category 1        0.269       0.273            -0.004           -0.167
+       Category 2     Category 2        0.444       0.442             0.002            0.082
+     ENJOY          JOB
+       Category 1     Category 1        0.122       0.123            -0.001           -0.058
+       Category 1     Category 2        0.163       0.162             0.001            0.049
+       Category 2     Category 1        0.309       0.308             0.001            0.024
+       Category 2     Category 2        0.406       0.406            -0.001           -0.020
+     ENJOY          ADULT
+       Category 1     Category 1        0.000       0.000             0.000            0.002
+       Category 1     Category 2        0.286       0.285             0.000            0.016
+       Category 2     Category 1        0.000       0.000             0.000            0.004
+       Category 2     Category 2        0.714       0.715             0.000           -0.016
+     USEFUL         LOGICAL
+       Category 1     Category 1        0.380       0.382            -0.002           -0.066
+       Category 1     Category 2        0.620       0.618             0.002            0.066
+       Category 2     Category 1        0.000       0.000             0.000            0.002
+       Category 2     Category 2        0.000       0.000             0.000            0.003
+     USEFUL         JOB
+       Category 1     Category 1        0.431       0.432            -0.001           -0.025
+       Category 1     Category 2        0.569       0.568             0.001            0.025
+       Category 2     Category 1        0.000       0.000             0.000            0.002
+       Category 2     Category 2        0.000       0.000             0.000            0.003
+     USEFUL         ADULT
+       Category 1     Category 1        0.000       0.000             0.000            0.005
+       Category 1     Category 2        1.000       1.000             0.000           -0.011
+       Category 2     Category 1        0.000       0.000             0.000            0.000
+       Category 2     Category 2        0.000       0.000             0.000            0.005
+     LOGICAL        JOB
+       Category 1     Category 1        0.164       0.165            -0.001           -0.057
+       Category 1     Category 2        0.219       0.217             0.002            0.079
+       Category 2     Category 1        0.265       0.267            -0.001           -0.059
+       Category 2     Category 2        0.352       0.351             0.001            0.031
+     LOGICAL        ADULT
+       Category 1     Category 1        0.000       0.000             0.000            0.002
+       Category 1     Category 2        0.381       0.382            -0.001           -0.040
+       Category 2     Category 1        0.000       0.000             0.000            0.003
+       Category 2     Category 2        0.619       0.618             0.001            0.040
+     JOB            ADULT
+       Category 1     Category 1        0.000       0.000             0.000            0.002
+       Category 1     Category 2        0.432       0.432             0.000            0.001
+       Category 2     Category 1        0.000       0.000             0.000            0.003
+       Category 2     Category 2        0.568       0.568             0.000           -0.001
+
+
+     UNIVARIATE DISTRIBUTION FIT FOR CLASS 3
+
+     Variable          Observed      Estimated      Residual (Obs.-Est.)    Stand. Residual
+     ENJOY
+       Category 1        0.359          0.359                  0.000                0.000
+       Category 2        0.641          0.641                  0.000                0.000
+     USEFUL
+       Category 1        0.608          0.608                  0.000                0.000
+       Category 2        0.392          0.392                  0.000                0.000
+     LOGICAL
+       Category 1        0.994          0.994                  0.000                0.000
+       Category 2        0.006          0.006                  0.000                0.000
+     JOB
+       Category 1        0.688          0.688                  0.000                0.000
+       Category 2        0.312          0.312                  0.000                0.000
+     ADULT
+       Category 1        0.512          0.512                  0.000                0.000
+       Category 2        0.488          0.488                  0.000                0.000
+
+
+     BIVARIATE DISTRIBUTIONS FIT FOR CLASS 3
+
+     Variable       Variable          Observed     Estimated    Residual (Obs.-Est.)  Stand. Residual
+     ENJOY          USEFUL
+       Category 1     Category 1        0.221       0.218             0.003            0.160
+       Category 1     Category 2        0.139       0.141            -0.002           -0.100
+       Category 2     Category 1        0.388       0.390            -0.002           -0.066
+       Category 2     Category 2        0.251       0.251             0.000            0.002
+     ENJOY          LOGICAL
+       Category 1     Category 1        0.356       0.357             0.000           -0.008
+       Category 1     Category 2        0.002       0.002             0.000            0.005
+       Category 2     Category 1        0.638       0.638             0.000            0.007
+       Category 2     Category 2        0.004       0.004             0.000            0.002
+     ENJOY          JOB
+       Category 1     Category 1        0.243       0.247            -0.004           -0.189
+       Category 1     Category 2        0.115       0.112             0.003            0.202
+       Category 2     Category 1        0.444       0.441             0.003            0.112
+       Category 2     Category 2        0.198       0.200            -0.002           -0.095
+     ENJOY          ADULT
+       Category 1     Category 1        0.186       0.184             0.002            0.121
+       Category 1     Category 2        0.173       0.175            -0.002           -0.081
+       Category 2     Category 1        0.325       0.328            -0.004           -0.147
+       Category 2     Category 2        0.316       0.313             0.003            0.115
+     USEFUL         LOGICAL
+       Category 1     Category 1        0.608       0.604             0.003            0.133
+       Category 1     Category 2        0.004       0.004             0.000            0.005
+       Category 2     Category 1        0.386       0.390            -0.003           -0.133
+       Category 2     Category 2        0.002       0.002             0.000           -0.003
+     USEFUL         JOB
+       Category 1     Category 1        0.420       0.418             0.001            0.048
+       Category 1     Category 2        0.188       0.190            -0.001           -0.062
+       Category 2     Category 1        0.271       0.270             0.002            0.067
+       Category 2     Category 2        0.121       0.122            -0.002           -0.090
+     USEFUL         ADULT
+       Category 1     Category 1        0.312       0.311             0.000            0.012
+       Category 1     Category 2        0.297       0.297             0.000            0.003
+       Category 2     Category 1        0.201       0.201             0.000            0.011
+       Category 2     Category 2        0.191       0.191            -0.001           -0.029
+     LOGICAL        JOB
+       Category 1     Category 1        0.682       0.684            -0.002           -0.085
+       Category 1     Category 2        0.312       0.310             0.002            0.086
+       Category 2     Category 1        0.004       0.004             0.000           -0.007
+       Category 2     Category 2        0.002       0.002             0.000            0.000
+     LOGICAL        ADULT
+       Category 1     Category 1        0.507       0.509            -0.002           -0.062
+       Category 1     Category 2        0.487       0.485             0.002            0.062
+       Category 2     Category 1        0.003       0.003             0.000           -0.001
+       Category 2     Category 2        0.003       0.003             0.000            0.006
+     JOB            ADULT
+       Category 1     Category 1        0.353       0.352             0.001            0.037
+       Category 1     Category 2        0.335       0.336            -0.001           -0.043
+       Category 2     Category 1        0.161       0.160             0.001            0.065
+       Category 2     Category 2        0.151       0.152            -0.001           -0.058
+
+
+     UNIVARIATE DISTRIBUTION FIT FOR CLASS 4
+
+     Variable          Observed      Estimated      Residual (Obs.-Est.)    Stand. Residual
+     ENJOY
+       Category 1        0.404          0.404                  0.000                0.000
+       Category 2        0.596          0.596                  0.000                0.000
+     USEFUL
+       Category 1        0.661          0.661                  0.000                0.000
+       Category 2        0.339          0.339                  0.000                0.000
+     LOGICAL
+       Category 1        0.135          0.135                  0.000                0.000
+       Category 2        0.865          0.865                  0.000                0.000
+     JOB
+       Category 1        0.793          0.793                  0.000                0.000
+       Category 2        0.207          0.207                  0.000                0.000
+     ADULT
+       Category 1        0.888          0.888                  0.000                0.000
+       Category 2        0.112          0.112                  0.000                0.000
+
+
+     BIVARIATE DISTRIBUTIONS FIT FOR CLASS 4
+
+     Variable       Variable          Observed     Estimated    Residual (Obs.-Est.)  Stand. Residual
+     ENJOY          USEFUL
+       Category 1     Category 1        0.265       0.267            -0.002           -0.110
+       Category 1     Category 2        0.138       0.137             0.001            0.059
+       Category 2     Category 1        0.396       0.394             0.002            0.099
+       Category 2     Category 2        0.201       0.202            -0.001           -0.049
+     ENJOY          LOGICAL
+       Category 1     Category 1        0.054       0.055             0.000           -0.004
+       Category 1     Category 2        0.350       0.350             0.000           -0.018
+       Category 2     Category 1        0.080       0.080            -0.001           -0.050
+       Category 2     Category 2        0.516       0.515             0.001            0.046
+     ENJOY          JOB
+       Category 1     Category 1        0.316       0.321            -0.005           -0.271
+       Category 1     Category 2        0.089       0.084             0.006            0.481
+       Category 2     Category 1        0.477       0.473             0.005            0.224
+       Category 2     Category 2        0.118       0.123            -0.005           -0.360
+     ENJOY          ADULT
+       Category 1     Category 1        0.360       0.359             0.000            0.024
+       Category 1     Category 2        0.045       0.045             0.000           -0.020
+       Category 2     Category 1        0.528       0.529            -0.001           -0.029
+       Category 2     Category 2        0.067       0.067             0.000            0.029
+     USEFUL         LOGICAL
+       Category 1     Category 1        0.090       0.089             0.001            0.071
+       Category 1     Category 2        0.575       0.572             0.003            0.167
+       Category 2     Category 1        0.045       0.046             0.000           -0.047
+       Category 2     Category 2        0.289       0.293            -0.004           -0.205
+     USEFUL         JOB
+       Category 1     Category 1        0.530       0.525             0.005            0.259
+       Category 1     Category 2        0.132       0.137            -0.005           -0.356
+       Category 2     Category 1        0.266       0.269            -0.003           -0.172
+       Category 2     Category 2        0.073       0.070             0.003            0.269
+     USEFUL         ADULT
+       Category 1     Category 1        0.588       0.587             0.001            0.047
+       Category 1     Category 2        0.074       0.074             0.000            0.033
+       Category 2     Category 1        0.299       0.301            -0.001           -0.074
+       Category 2     Category 2        0.038       0.038             0.000            0.014
+     LOGICAL        JOB
+       Category 1     Category 1        0.108       0.107             0.001            0.044
+       Category 1     Category 2        0.028       0.028             0.001            0.086
+       Category 2     Category 1        0.684       0.686            -0.002           -0.116
+       Category 2     Category 2        0.180       0.179             0.001            0.068
+     LOGICAL        ADULT
+       Category 1     Category 1        0.119       0.120             0.000           -0.025
+       Category 1     Category 2        0.015       0.015             0.000            0.008
+       Category 2     Category 1        0.768       0.768             0.000           -0.017
+       Category 2     Category 2        0.098       0.097             0.001            0.048
+     JOB            ADULT
+       Category 1     Category 1        0.704       0.704            -0.001           -0.037
+       Category 1     Category 2        0.089       0.089             0.001            0.045
+       Category 2     Category 1        0.184       0.183             0.000            0.009
+       Category 2     Category 2        0.023       0.023             0.000            0.007
+
+
+     UNIVARIATE DISTRIBUTION FIT FOR CLASS 5
+
+     Variable          Observed      Estimated      Residual (Obs.-Est.)    Stand. Residual
+     ENJOY
+       Category 1        0.127          0.127                  0.000                0.000
+       Category 2        0.873          0.873                  0.000                0.000
+     USEFUL
+       Category 1        0.009          0.009                  0.000                0.000
+       Category 2        0.991          0.991                  0.000                0.000
+     LOGICAL
+       Category 1        0.087          0.087                  0.000                0.000
+       Category 2        0.913          0.913                  0.000                0.000
+     JOB
+       Category 1        0.141          0.141                  0.000                0.000
+       Category 2        0.859          0.859                  0.000                0.000
+     ADULT
+       Category 1        0.069          0.069                  0.000                0.000
+       Category 2        0.931          0.931                  0.000                0.000
+
+
+     BIVARIATE DISTRIBUTIONS FIT FOR CLASS 5
+
+     Variable       Variable          Observed     Estimated    Residual (Obs.-Est.)  Stand. Residual
+     ENJOY          USEFUL
+       Category 1     Category 1        0.001       0.001             0.000           -0.004
+       Category 1     Category 2        0.127       0.126             0.001            0.094
+       Category 2     Category 1        0.008       0.008             0.000            0.014
+       Category 2     Category 2        0.864       0.865            -0.001           -0.094
+     ENJOY          LOGICAL
+       Category 1     Category 1        0.010       0.011            -0.001           -0.201
+       Category 1     Category 2        0.116       0.116             0.000           -0.001
+       Category 2     Category 1        0.076       0.076             0.000            0.033
+       Category 2     Category 2        0.798       0.798             0.000            0.031
+     ENJOY          JOB
+       Category 1     Category 1        0.018       0.018             0.000            0.077
+       Category 1     Category 2        0.109       0.109             0.000            0.045
+       Category 2     Category 1        0.123       0.123             0.000           -0.003
+       Category 2     Category 2        0.750       0.750            -0.001           -0.053
+     ENJOY          ADULT
+       Category 1     Category 1        0.010       0.009             0.001            0.433
+       Category 1     Category 2        0.117       0.118            -0.001           -0.136
+       Category 2     Category 1        0.059       0.060            -0.001           -0.137
+       Category 2     Category 2        0.815       0.813             0.001            0.093
+     USEFUL         LOGICAL
+       Category 1     Category 1        0.001       0.001             0.000           -0.006
+       Category 1     Category 2        0.008       0.008             0.000            0.032
+       Category 2     Category 1        0.085       0.086            -0.001           -0.078
+       Category 2     Category 2        0.906       0.905             0.001            0.066
+     USEFUL         JOB
+       Category 1     Category 1        0.001       0.001             0.000           -0.002
+       Category 1     Category 2        0.008       0.008             0.000           -0.008
+       Category 2     Category 1        0.139       0.139            -0.001           -0.044
+       Category 2     Category 2        0.852       0.852             0.001            0.045
+     USEFUL         ADULT
+       Category 1     Category 1        0.001       0.001             0.000           -0.043
+       Category 1     Category 2        0.009       0.008             0.000            0.021
+       Category 2     Category 1        0.067       0.068            -0.001           -0.144
+       Category 2     Category 2        0.924       0.923             0.001            0.132
+     LOGICAL        JOB
+       Category 1     Category 1        0.012       0.012             0.000            0.059
+       Category 1     Category 2        0.073       0.074            -0.001           -0.125
+       Category 2     Category 1        0.128       0.128             0.000           -0.036
+       Category 2     Category 2        0.786       0.785             0.001            0.093
+     LOGICAL        ADULT
+       Category 1     Category 1        0.006       0.006             0.000           -0.062
+       Category 1     Category 2        0.081       0.081             0.000            0.006
+       Category 2     Category 1        0.063       0.063             0.000            0.000
+       Category 2     Category 2        0.851       0.851             0.000            0.009
+     JOB            ADULT
+       Category 1     Category 1        0.010       0.010             0.000           -0.027
+       Category 1     Category 2        0.131       0.131             0.000           -0.043
+       Category 2     Category 1        0.059       0.059             0.000            0.018
+       Category 2     Category 2        0.801       0.800             0.000            0.032
+
+
+TECHNICAL 11 OUTPUT
+
+     Random Starts Specifications for the k-1 Class Analysis Model
+        Number of initial stage random starts                 200
+        Number of final stage optimizations                    50
+
+
+
+     VUONG-LO-MENDELL-RUBIN LIKELIHOOD RATIO TEST FOR 4 (H0) VERSUS 5 CLASSES
+
+          H0 Loglikelihood Value                        -8664.090
+          2 Times the Loglikelihood Difference              3.409
+          Difference in the Number of Parameters                6
+          Mean                                              5.737
+          Standard Deviation                                4.494
+          P-Value                                          0.6736
+
+     LO-MENDELL-RUBIN ADJUSTED LRT TEST
+
+          Value                                             3.340
+          P-Value                                          0.6812
+
+
+TECHNICAL 14 OUTPUT
+
+     Random Starts Specifications for the k-1 Class Analysis Model
+        Number of initial stage random starts                 200
+        Number of final stage optimizations                    50
+
+     Random Starts Specification for the k-1 Class Model for Generated Data
+        Number of initial stage random starts                   0
+        Number of final stage optimizations for the
+           initial stage random starts                          0
+     Random Starts Specification for the k Class Model for Generated Data
+        Number of initial stage random starts                  40
+        Number of final stage optimizations                     8
+     Number of bootstrap draws requested                   Varies
+
+
+     PARAMETRIC BOOTSTRAPPED LIKELIHOOD RATIO TEST FOR 4 (H0) VERSUS 5 CLASSES
+
+          H0 Loglikelihood Value                        -8664.090
+          2 Times the Loglikelihood Difference              3.409
+          Difference in the Number of Parameters                6
+          Approximate P-Value                              1.0000
+          Successful Bootstrap Draws                            2
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Histograms (sample values)
+  Scatterplots (sample values)
+  Sample proportions and estimated probabilities
+
+     Beginning Time:  12:19:08
+        Ending Time:  12:19:09
+       Elapsed Time:  00:00:01
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen

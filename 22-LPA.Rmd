@@ -1,0 +1,242 @@
+---
+title: "Introduction to Latent Profile Analysis"
+author: "Norwegian University of Science and Technology - A Course in `MplusAutomation`"
+subtitle: '*Adam Garber*'
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE)
+library(here);library(glue);library(linguisticsdown)
+```
+
+______________________________________________
+
+```{r, echo=FALSE, eval=TRUE, out.width = "60%", out.height= "60%", fig.pos="h"}
+
+include_graphics2("https://garberadamc.github.io/project-site/figures/lpa_mix_density.png")
+```
+
+*Figure*. Gaussian mixture models. Data simulated from a 2-class model. 
+
+______________________________________________
+
+## Lab preparation
+
+______________________________________________
+
+## Change starting location to folder `22-LPA`
+```{r}
+
+source("rep_functions.R")
+
+change_here(glue("{project_location}/22-LPA"))
+
+here()
+
+```
+
+______________________________________________
+
+## Data source:
+
+1. The first example closely follows the vignette used to demonstrate the `tidyLPA` package (Rosenberg, 2019): [$\color{blue}{\text{See detailed documentation of this model here}}$](https://data-edu.github.io/tidyLPA/articles/Introduction_to_tidyLPA.html)
+
+This model utilizes the `PISA` data collected in the U.S. in 2015. To learn more about this data [$\color{blue}{\text{see here}}$](http://www.oecd.org/pisa/data/). 
+
+To access the 2015 US `PISA` data in R use the following code:
+`devtools::install_github("jrosen48/pisaUSA15")`
+`library(pisaUSA15)`
+`open_codebook()`
+
+2. The second examples utilizes 4 test score measures from the public-use dataset, *The Longitudinal Survey of American Youth* (**LSAY**):  [$\color{blue}{\text{See documentation here}}$](https://www.lsay.org/)
+
+______________________________________________
+
+Load packages
+```{r, eval=TRUE}
+
+library(naniar)
+library(tidyverse)
+library(haven)
+library(glue)
+library(MplusAutomation)
+library(here)
+library(janitor)
+library(gt)
+library(tidyLPA)
+
+```
+
+Load data
+```{r, eval=TRUE}
+pisa <- pisaUSA15
+```
+
+___________________________________
+
+## Latent Profile Analysis 
+
+___________________________________
+
+```{r, echo=FALSE, eval=TRUE, out.width = "60%", out.height= "60%", fig.pos="h"}
+
+include_graphics2("https://garberadamc.github.io/project-site/figures/var_covar_matrix.png")
+
+```
+
+*Figure*. Picture adapted from tutorial (Rosenberg, 2019).
+
+- `model 1` Class-invariant / Diagonal: Equal variances, and covariances fixed to 0
+- `model 2` Class-varying / Diagonal: Free variances and covariances fixed to 0
+- `model 3` Class-invariant / Non-Diagonal: Equal variances and equal covariances
+- `model 4` Free variances, and equal covariances
+- `model 5` Equal variances, and free covariances 
+- `model 6` Class Varying / Non-Diagonal: Free variances and free covariances
+
+___________________________________
+
+Example 1: PISA dataset from the `tidyLPA` package
+
+___________________________________
+
+Enumerate using `estimate_profiles()`:
+
+- Estimate models with classes $K = 1:3$
+- Model has 4 continuous indicators
+- Default variance-covariance specifications (model 1)
+- Add line `scale() %>%` to center indicator means
+
+```{r,eval=FALSE}
+lpa_models <- pisa[1:500,] %>%
+    select(broad_interest, enjoyment, instrumental_mot, self_efficacy) %>%
+    estimate_profiles(1:3,
+                      package = "MplusAutomation",
+                      ANALYSIS = "starts = 100, 20;",
+                      variances = c("equal", "varying"),
+                      covariances = c("zero", "varying"))
+
+get_fit(lpa_models)
+```
+
+___________________________________
+
+Plot 3-class model
+
+**Note:** single imputation is used in this example as `plot_profiles()` requires complete cases
+```{r, eval=TRUE}
+pisa[1:200,] %>%
+    select(broad_interest, enjoyment, instrumental_mot, self_efficacy) %>%
+    single_imputation() %>%
+    estimate_profiles(3, package = "MplusAutomation") %>% 
+    plot_profiles(sd=FALSE)
+```
+
+___________________________________
+
+Plot densities for classes `k = 1:4`
+```{r, eval=TRUE}
+
+pisa[1:500, c("broad_interest","enjoyment")] %>%
+  single_imputation() %>%
+  estimate_profiles(1:4, package = "MplusAutomation") %>%
+  plot_density()
+
+```
+
+___________________________________
+
+## Example 2: Math, Science, Physics, and Biology measures (LSAY).
+
+___________________________________
+
+
+Read in data 
+```{r, eval=TRUE}
+
+lsay_data <- read_csv("https://garberadamc.github.io/project-site/data/lsay_lab10.2_lpa.csv")
+
+```
+
+___________________________________
+
+Run a quick enumeration 
+```{r, eval=FALSE}
+
+lpa_k14  <- lapply(1:4, function(k) {
+  lpa_enum  <- mplusObject(
+      
+    TITLE = glue("Class {k}"), 
+  
+    VARIABLE = glue(
+    "usevar = mth_scor-bio_scor;
+     classes = c({k}); "),
+  
+  ANALYSIS = 
+   "estimator = mlr; 
+    type = mixture;
+    starts = 200 50; 
+    processors = 10;",
+  
+  OUTPUT = "sampstat residual tech11 tech14;",
+  
+  PLOT = 
+    "type = plot3; 
+     series = mth_scor-bio_scor(*);",
+  
+  usevariables = colnames(lsay_data),
+  rdata = lsay_data)
+
+lpa_enum_fit <- mplusModeler(lpa_enum, 
+                dataout=glue(here("enum_lpa", "lpa_lsay.dat")),
+                modelout=glue(here("enum_lpa", "c{k}_lpa_lsay.inp")) ,
+                check=TRUE, run = TRUE, hashfilename = FALSE)
+})
+
+```
+
+___________________________________
+
+Plot 3-class profile
+```{r, eval=TRUE}
+lsay_data[1:500,5:8] %>%
+    single_imputation() %>%
+    estimate_profiles(1:4, package = "MplusAutomation") %>% 
+    plot_profiles(sd=FALSE)
+```
+
+*Figure.* Here we see ordered solutions.
+
+___________________________________
+
+Compare model fit.
+```{r}
+all_output <- readModels(here("enum_lpa"), quiet = TRUE)
+
+enum_extract <- LatexSummaryTable(all_output,                         
+                keepCols=c("Title","Parameters", "LL", "BIC",         
+                           "aBIC", "BLRT_PValue", "T11_VLMR_PValue"), 
+                sortBy = "Title")                                     
+
+enum_extract %>% gt()
+```
+
+
+## References
+
+Hallquist, M. N., & Wiley, J. F. (2018). MplusAutomation: An R Package for Facilitating Large-Scale Latent Variable Analyses in Mplus. Structural equation modeling: a multidisciplinary journal, 25(4), 621-638.
+
+Miller, J. D., Hoffer, T., Suchner, R., Brown, K., & Nelson, C. (1992). LSAY codebook. Northern Illinois University.
+
+Muthén, B. O., Muthén, L. K., & Asparouhov, T. (2017). Regression and mediation analysis using Mplus. Los Angeles, CA: Muthén & Muthén.
+
+Muthén, L.K. and Muthén, B.O. (1998-2017).  Mplus User’s Guide.  Eighth Edition. Los Angeles, CA: Muthén & Muthén
+
+Rosenberg, J. M., van Lissa, C. J., Beymer, P. N., Anderson, D. J., Schell, M. J. & Schmidt, J. A. (2019). tidyLPA: Easily carry out Latent Profile Analysis (LPA) using open-source or commercial software [R package]. https://data-edu.github.io/tidyLPA/
+
+R Core Team (2017). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL http://www.R-project.org/
+
+Wickham et al., (2019). Welcome to the tidyverse. Journal of Open Source Software, 4(43), 1686, https://doi.org/10.21105/joss.01686

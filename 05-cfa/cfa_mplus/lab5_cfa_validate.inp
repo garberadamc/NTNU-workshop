@@ -1,0 +1,20 @@
+TITLE:
+CFA Validate
+DATA:
+FILE = "/Users/agarber/github/NTNU-workshop/05-cfa/cfa_mplus/lab5_cfa_validate.dat";
+ 
+VARIABLE:
+NAMES = BYS22A BYS22C BYS22D BYS22E BYS22F BYS22G BYS22H BYS24A BYS24B BYS24C BYS24D
+     BYS24E BYS24F BYS22B; 
+ MISSING=.;
+ usevar = BYS22A-BYS22B;
+ANALYSIS:
+estimator = mlr;
+MODEL:
+FACTOR_1 by BYS22A BYS22C BYS22D BYS22E BYS22F BYS22G BYS22H;
+  
+     FACTOR_2 BY BYS24A BYS24B BYS24C BYS24D BYS24E BYS24F BYS22B;
+OUTPUT:
+sampstat standardized residual modindices (3.84);
+PLOT:
+type = plot3;

@@ -1,0 +1,26 @@
+TITLE:
+m1 mediate framing
+DATA:
+FILE = "/Users/agarber/github/NTNU-workshop/15-mediation/mplus_files/framing.dat";
+ 
+VARIABLE:
+NAMES = cond anx age educ gender income emo p_harm tone eth treat english immigr
+     anti_info cong_mesg; 
+ MISSING=.;
+ usevar =
+    cong_mesg emo treat age
+    educ gender income;
+  
+    categorical = cong_mesg; ! outcome is binary
+ANALYSIS:
+bootstrap = 500; ! set number of bootstrap samples (500 for example purposes)
+MODEL:
+emo on treat age educ gender income;            ! mediator linear regression 
+    cong_mesg on emo treat age educ gender income;  ! outcome GLM regression
+    
+    Model indirect:
+    cong_mesg ind treat;
+OUTPUT:
+sampstat standardized cinterval (bcbootstrap); ! bias-corrected bootstrap
+PLOT:
+type=plot2;

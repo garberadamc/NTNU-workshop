@@ -1,0 +1,900 @@
+Mplus VERSION 8.6 (Mac)
+MUTHEN & MUTHEN
+05/31/2021   2:51 PM
+
+INPUT INSTRUCTIONS
+
+
+    TITLE: C5_PYDI_LCA
+
+    DATA: file is PYDI.dat;
+
+    VARIABLE:
+      names are hispanic Grade Q3 Q4 Gender BS_SE1A BS_SE2A BS_SE3A
+      BS_PER1A BS_PER2A BS_PER3A BS_SA1A BS_SA2A BS_SA3A BO_FC1A BO_FC2A
+      BO_FC3A BO_SS1A BO_SS2A BO_SS3A BO_PS1A BO_PS2A BO_PS3A EC_ER1A
+      EC_ER2A EC_ER3A EC_EM1A EC_EM2A EC_EM3A EC_SC1A EC_SC2A EC_SC3A
+      EL_GR1A EL_GR2A EL_GR3A EL_ZE1A EL_ZE2A EL_ZE3A EL_OP1A EL_OP2A
+      EL_OP3A LifeSat1 LifeSat2 LifeSat3 LifeSat4 LifeSatA Q49 PANAS1
+      PANAS2 PANAS3 PANAS4 PANAS5 PANAS6 Q56 SEDS1 SEDS2 SEDS3 SEDS4
+      SEDS5 SEDS6 SEDS7 SEDS8 SEDSCRT SEDS9 SEDS10 SEDSA Big51 Big52
+      Big53 Big54 Big55 Big56 Big57 Big58 Big59 Big60 MHCEWB1 MHCEWB2
+      MHCEWB3 MHCSWB1 MHCSWB2 MHCSWB3 MHCSWB4 MHCSWB5 MHCPWB1 MHCPWB2
+      MHCPWB3 MHCPWB4 MHCPWB5 MHCPWB6 PYDI1A PYDI2A PYDI3A PYDI4A PYDI5A
+      PYDI6A PYDI7A Q100 MAAS1 MAAS2 MAAS3 MAAS4 MAAS5 MAAS6 MAAS7
+      MAAS8 MAAS9 MAAS10 MAAS11 MAAS12 MAAS13 MAAS14 MAAS15 Q116 Q117
+      filter Flr_Emo Fld_Emo Fld_Soc Flr_Soc Flr_EGs Flr_SG
+      KeyesC Covi School MAAS1b MAAS2b MAAS3b MAAS4b
+      MAAS5b MAAS6b MAAS7b MAAS8b MAAS9b MAAS10b MAAS11b MAAS12b MAAS13b
+      MAAS14b MAAS15b PYDI1Ab PYDI2Ab PYDI3Ab PYDI4Ab PYDI5Ab PYDI6Ab PYDI7Ab;
+
+       MISSING ARE ALL (9999);
+
+       usevar = PYDI1Ab PYDI2Ab PYDI3Ab PYDI4Ab PYDI5Ab PYDI6Ab PYDI7Ab;
+
+       categorical = PYDI1Ab PYDI2Ab PYDI3Ab PYDI4Ab PYDI5Ab PYDI6Ab PYDI7Ab;
+
+       classes = c(5);
+
+       ANalysis:
+       ESTIMATOR IS MLR;
+       type  = mixture;
+       starts= 50 10;
+       processors=12;
+
+    Output:  sampstat;
+    !output options relevant to mixtures: tech1 tech11 tech14 residual
+
+    plot: type = plot3;
+      series = PYDI1Ab-PYDI7Ab (*);
+
+
+
+*** WARNING in OUTPUT command
+  SAMPSTAT option is not available when all outcomes are censored, ordered
+  categorical, unordered categorical (nominal), count or continuous-time
+  survival variables.  Request for SAMPSTAT is ignored.
+*** WARNING
+  Data set contains cases with missing on all variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on all variables:  9
+   2 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+C5_PYDI_LCA
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        1629
+
+Number of dependent variables                                    7
+Number of independent variables                                  0
+Number of continuous latent variables                            0
+Number of categorical latent variables                           1
+
+Observed dependent variables
+
+  Binary and ordered categorical (ordinal)
+   PYDI1AB     PYDI2AB     PYDI3AB     PYDI4AB     PYDI5AB     PYDI6AB
+   PYDI7AB
+
+Categorical latent variables
+   C
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-06
+    Relative loglikelihood change                        0.100D-06
+    Derivative                                           0.100D-05
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+Random Starts Specifications
+  Number of initial stage random starts                         50
+  Number of final stage optimizations                           10
+  Number of initial stage iterations                            10
+  Initial stage convergence criterion                    0.100D+01
+  Random starts scale                                    0.500D+01
+  Random seed for generating random starts                       0
+Link                                                         LOGIT
+
+Input data file(s)
+  PYDI.dat
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             1
+     Number of y missing data patterns           0
+     Number of u missing data patterns           1
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    PYDI1AB
+      Category 1    0.357          581.000
+      Category 2    0.643         1048.000
+    PYDI2AB
+      Category 1    0.071          116.000
+      Category 2    0.929         1513.000
+    PYDI3AB
+      Category 1    0.130          212.000
+      Category 2    0.870         1417.000
+    PYDI4AB
+      Category 1    0.067          109.000
+      Category 2    0.933         1520.000
+    PYDI5AB
+      Category 1    0.134          219.000
+      Category 2    0.866         1410.000
+    PYDI6AB
+      Category 1    0.050           82.000
+      Category 2    0.950         1547.000
+    PYDI7AB
+      Category 1    0.074          120.000
+      Category 2    0.926         1509.000
+
+
+RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
+
+Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
+
+           -3370.534  246261           38
+           -3370.866  887676           22
+           -3374.447  533738           11
+           -3374.941  848163           47
+           -3375.105  851945           18
+           -3376.422  366706           29
+           -3376.989  462953           7
+           -3378.261  352277           42
+           -3378.516  749453           33
+           -3379.586  903420           5
+
+
+
+     WARNING:  THE BEST LOGLIKELIHOOD VALUE WAS NOT REPLICATED.  THE
+     SOLUTION MAY NOT BE TRUSTWORTHY DUE TO LOCAL MAXIMA.  INCREASE THE
+     NUMBER OF RANDOM STARTS.
+
+     IN THE OPTIMIZATION, ONE OR MORE LOGIT THRESHOLDS APPROACHED EXTREME VALUES
+     OF -15.000 AND 15.000 AND WERE FIXED TO STABILIZE MODEL ESTIMATION.  THESE
+     VALUES IMPLY PROBABILITIES OF 0 AND 1.  IN THE MODEL RESULTS SECTION, THESE
+     PARAMETERS HAVE 0 STANDARD ERRORS AND 999 IN THE Z-SCORE AND P-VALUE COLUMNS.
+
+     THE STANDARD ERRORS OF THE MODEL PARAMETER ESTIMATES MAY NOT BE
+     TRUSTWORTHY FOR SOME PARAMETERS DUE TO A NON-POSITIVE DEFINITE
+     FIRST-ORDER DERIVATIVE PRODUCT MATRIX.  THIS MAY BE DUE TO THE STARTING
+     VALUES BUT MAY ALSO BE AN INDICATION OF MODEL NONIDENTIFICATION.  THE
+     CONDITION NUMBER IS       0.290D-11.  PROBLEM INVOLVING THE FOLLOWING PARAMETER:
+     Parameter 12, %C#2%: [ PYDI5AB$1 ]
+
+
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       39
+
+Loglikelihood
+
+          H0 Value                       -3370.534
+          H0 Scaling Correction Factor      1.0541
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                    6819.068
+          Bayesian (BIC)                  7029.501
+          Sample-Size Adjusted BIC        6905.604
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit for the Binary and Ordered Categorical
+(Ordinal) Outcomes
+
+          Pearson Chi-Square
+
+          Value                             91.833
+          Degrees of Freedom                    88
+          P-Value                           0.3688
+
+          Likelihood Ratio Chi-Square
+
+          Value                             91.758
+          Degrees of Freedom                    88
+          P-Value                           0.3709
+
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THE ESTIMATED MODEL
+
+    Latent
+   Classes
+
+       1       1078.11403          0.66183
+       2        330.91870          0.20314
+       3         62.31101          0.03825
+       4        122.73646          0.07534
+       5         34.91981          0.02144
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+    Latent
+   Classes
+
+       1       1078.11403          0.66183
+       2        330.91870          0.20314
+       3         62.31101          0.03825
+       4        122.73646          0.07534
+       5         34.91981          0.02144
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THEIR MOST LIKELY LATENT CLASS MEMBERSHIP
+
+Class Counts and Proportions
+
+    Latent
+   Classes
+
+       1             1190          0.73051
+       2              234          0.14365
+       3               54          0.03315
+       4              119          0.07305
+       5               32          0.01964
+
+
+CLASSIFICATION QUALITY
+
+     Entropy                         0.782
+
+
+Average Latent Class Probabilities for Most Likely Latent Class Membership (Row)
+by Latent Class (Column)
+
+           1        2        3        4        5
+
+    1   0.874    0.117    0.001    0.008    0.000
+    2   0.146    0.818    0.033    0.000    0.003
+    3   0.004    0.015    0.758    0.137    0.085
+    4   0.027    0.000    0.081    0.873    0.019
+    5   0.000    0.002    0.072    0.070    0.857
+
+
+Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+           1        2        3        4        5
+
+    1   0.965    0.032    0.000    0.003    0.000
+    2   0.419    0.578    0.002    0.000    0.000
+    3   0.027    0.124    0.657    0.155    0.037
+    4   0.075    0.000    0.060    0.847    0.018
+    5   0.000    0.018    0.132    0.066    0.785
+
+
+Logits for the Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+              1        2        3        4        5
+
+    1     13.780   10.367    5.334    7.983    0.000
+    2      7.967    8.289    2.826   -3.841    0.000
+    3     -0.322    1.205    2.871    1.425    0.000
+    4      1.418   -9.805    1.205    3.844    0.000
+    5     -8.746   -3.800   -1.784   -2.483    0.000
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Latent Class 1
+
+ Thresholds
+    PYDI1AB$1         -1.519      0.159     -9.581      0.000
+    PYDI2AB$1         -4.949      0.893     -5.545      0.000
+    PYDI3AB$1         -3.889      0.697     -5.580      0.000
+    PYDI4AB$1        -15.000      0.000    999.000    999.000
+    PYDI5AB$1         -4.166      0.482     -8.643      0.000
+    PYDI6AB$1         -5.129      0.608     -8.436      0.000
+    PYDI7AB$1         -5.486      1.048     -5.232      0.000
+
+Latent Class 2
+
+ Thresholds
+    PYDI1AB$1          0.572      0.253      2.260      0.024
+    PYDI2AB$1         -1.623      0.245     -6.617      0.000
+    PYDI3AB$1         -0.571      0.231     -2.473      0.013
+    PYDI4AB$1         -1.911      0.291     -6.557      0.000
+    PYDI5AB$1        -12.400      8.049     -1.541      0.123
+    PYDI6AB$1         -3.155      0.442     -7.131      0.000
+    PYDI7AB$1         -2.545      0.354     -7.196      0.000
+
+Latent Class 3
+
+ Thresholds
+    PYDI1AB$1          0.688      0.765      0.898      0.369
+    PYDI2AB$1         -0.863      0.923     -0.935      0.350
+    PYDI3AB$1         -0.506      0.639     -0.791      0.429
+    PYDI4AB$1        -15.000      0.000    999.000    999.000
+    PYDI5AB$1          1.099      0.698      1.574      0.116
+    PYDI6AB$1          0.058      1.137      0.051      0.959
+    PYDI7AB$1          1.291      0.956      1.350      0.177
+
+Latent Class 4
+
+ Thresholds
+    PYDI1AB$1          1.455      0.405      3.594      0.000
+    PYDI2AB$1         -1.929      0.322     -6.000      0.000
+    PYDI3AB$1         -1.340      0.355     -3.778      0.000
+    PYDI4AB$1         -0.733      0.346     -2.121      0.034
+    PYDI5AB$1         15.000      0.000    999.000    999.000
+    PYDI6AB$1         -3.445      0.955     -3.607      0.000
+    PYDI7AB$1         -1.881      1.077     -1.747      0.081
+
+Latent Class 5
+
+ Thresholds
+    PYDI1AB$1         15.000      0.000    999.000    999.000
+    PYDI2AB$1          0.271      0.453      0.598      0.550
+    PYDI3AB$1          0.537      0.475      1.130      0.258
+    PYDI4AB$1          1.151      2.543      0.452      0.651
+    PYDI5AB$1          2.870      1.118      2.568      0.010
+    PYDI6AB$1          1.109      0.696      1.594      0.111
+    PYDI7AB$1          1.126      0.825      1.364      0.172
+
+Categorical Latent Variables
+
+ Means
+    C#1                3.430      0.644      5.328      0.000
+    C#2                2.249      0.714      3.152      0.002
+    C#3                0.579      0.766      0.756      0.450
+    C#4                1.257      0.791      1.589      0.112
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.290E-11
+       (ratio of smallest to largest eigenvalue)
+
+
+RESULTS IN PROBABILITY SCALE
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Latent Class 1
+
+ PYDI1AB
+    Category 1         0.180      0.023      7.686      0.000
+    Category 2         0.820      0.023     35.120      0.000
+ PYDI2AB
+    Category 1         0.007      0.006      1.128      0.259
+    Category 2         0.993      0.006    159.211      0.000
+ PYDI3AB
+    Category 1         0.020      0.014      1.464      0.143
+    Category 2         0.980      0.014     71.564      0.000
+ PYDI4AB
+    Category 1         0.000      0.000      0.000      1.000
+    Category 2         1.000      0.000      0.000      1.000
+ PYDI5AB
+    Category 1         0.015      0.007      2.107      0.035
+    Category 2         0.985      0.007    135.768      0.000
+ PYDI6AB
+    Category 1         0.006      0.004      1.655      0.098
+    Category 2         0.994      0.004    279.283      0.000
+ PYDI7AB
+    Category 1         0.004      0.004      0.958      0.338
+    Category 2         0.996      0.004    231.028      0.000
+
+Latent Class 2
+
+ PYDI1AB
+    Category 1         0.639      0.058     10.954      0.000
+    Category 2         0.361      0.058      6.185      0.000
+ PYDI2AB
+    Category 1         0.165      0.034      4.882      0.000
+    Category 2         0.835      0.034     24.739      0.000
+ PYDI3AB
+    Category 1         0.361      0.053      6.774      0.000
+    Category 2         0.639      0.053     11.994      0.000
+ PYDI4AB
+    Category 1         0.129      0.033      3.939      0.000
+    Category 2         0.871      0.033     26.626      0.000
+ PYDI5AB
+    Category 1         0.000      0.000      0.124      0.901
+    Category 2         1.000      0.000  30177.926      0.000
+ PYDI6AB
+    Category 1         0.041      0.017      2.357      0.018
+    Category 2         0.959      0.017     55.250      0.000
+ PYDI7AB
+    Category 1         0.073      0.024      3.049      0.002
+    Category 2         0.927      0.024     38.864      0.000
+
+Latent Class 3
+
+ PYDI1AB
+    Category 1         0.665      0.170      3.905      0.000
+    Category 2         0.335      0.170      1.963      0.050
+ PYDI2AB
+    Category 1         0.297      0.193      1.541      0.123
+    Category 2         0.703      0.193      3.651      0.000
+ PYDI3AB
+    Category 1         0.376      0.150      2.508      0.012
+    Category 2         0.624      0.150      4.158      0.000
+ PYDI4AB
+    Category 1         0.000      0.000      0.000      1.000
+    Category 2         1.000      0.000      0.000      1.000
+ PYDI5AB
+    Category 1         0.750      0.131      5.730      0.000
+    Category 2         0.250      0.131      1.909      0.056
+ PYDI6AB
+    Category 1         0.514      0.284      1.811      0.070
+    Category 2         0.486      0.284      1.709      0.087
+ PYDI7AB
+    Category 1         0.784      0.162      4.848      0.000
+    Category 2         0.216      0.162      1.333      0.182
+
+Latent Class 4
+
+ PYDI1AB
+    Category 1         0.811      0.062     13.054      0.000
+    Category 2         0.189      0.062      3.045      0.002
+ PYDI2AB
+    Category 1         0.127      0.036      3.562      0.000
+    Category 2         0.873      0.036     24.521      0.000
+ PYDI3AB
+    Category 1         0.208      0.058      3.557      0.000
+    Category 2         0.792      0.058     13.585      0.000
+ PYDI4AB
+    Category 1         0.324      0.076      4.282      0.000
+    Category 2         0.676      0.076      8.916      0.000
+ PYDI5AB
+    Category 1         1.000      0.000      0.000      1.000
+    Category 2         0.000      0.000      0.000      1.000
+ PYDI6AB
+    Category 1         0.031      0.029      1.080      0.280
+    Category 2         0.969      0.029     33.854      0.000
+ PYDI7AB
+    Category 1         0.132      0.124      1.070      0.284
+    Category 2         0.868      0.124      7.019      0.000
+
+Latent Class 5
+
+ PYDI1AB
+    Category 1         1.000      0.000      0.000      1.000
+    Category 2         0.000      0.000      0.000      1.000
+ PYDI2AB
+    Category 1         0.567      0.111      5.099      0.000
+    Category 2         0.433      0.111      3.889      0.000
+ PYDI3AB
+    Category 1         0.631      0.111      5.709      0.000
+    Category 2         0.369      0.111      3.339      0.001
+ PYDI4AB
+    Category 1         0.760      0.464      1.636      0.102
+    Category 2         0.240      0.464      0.518      0.605
+ PYDI5AB
+    Category 1         0.946      0.057     16.669      0.000
+    Category 2         0.054      0.057      0.946      0.344
+ PYDI6AB
+    Category 1         0.752      0.130      5.795      0.000
+    Category 2         0.248      0.130      1.911      0.056
+ PYDI7AB
+    Category 1         0.755      0.153      4.947      0.000
+    Category 2         0.245      0.153      1.605      0.108
+
+
+LATENT CLASS INDICATOR ODDS RATIOS FOR THE LATENT CLASSES
+
+                                                95% C.I.
+                    Estimate       S.E.  Lower 2.5% Upper 2.5%
+
+Latent Class 1 Compared to Latent Class 2
+
+ PYDI1AB
+    Category > 1       8.092      2.266      4.674     14.011
+ PYDI2AB
+    Category > 1      27.846     25.832      4.520    171.560
+ PYDI3AB
+    Category > 1      27.604     19.533      6.897    110.487
+ PYDI4AB
+    Category > 1   *********      0.000  *********  *********
+ PYDI5AB
+    Category > 1       0.000      0.002      0.000   2192.347
+ PYDI6AB
+    Category > 1       7.200      6.215      1.326     39.096
+ PYDI7AB
+    Category > 1      18.924     22.107      1.917    186.813
+
+Latent Class 1 Compared to Latent Class 3
+
+ PYDI1AB
+    Category > 1       9.089      7.095      1.968     41.977
+ PYDI2AB
+    Category > 1      59.554     77.904      4.586    773.404
+ PYDI3AB
+    Category > 1      29.480     29.017      4.282    202.942
+ PYDI4AB
+    Category > 1       1.000      0.000      1.000      1.000
+ PYDI5AB
+    Category > 1     193.428    168.769     34.980   1069.600
+ PYDI6AB
+    Category > 1     178.829    219.334     16.159   1979.053
+ PYDI7AB
+    Category > 1     877.085   1139.173     68.781  11184.528
+
+Latent Class 1 Compared to Latent Class 4
+
+ PYDI1AB
+    Category > 1      19.585      8.489      8.375     45.802
+ PYDI2AB
+    Category > 1      20.496     19.472      3.184    131.932
+ PYDI3AB
+    Category > 1      12.799     10.430      2.591     63.215
+ PYDI4AB
+    Category > 1   *********      0.000  *********  *********
+ PYDI5AB
+    Category > 1   *********      0.000  *********  *********
+ PYDI6AB
+    Category > 1       5.387      6.068      0.592     48.999
+ PYDI7AB
+    Category > 1      36.782     54.232      2.044    661.749
+
+Latent Class 1 Compared to Latent Class 5
+
+ PYDI1AB
+    Category > 1   *********      0.000  *********  *********
+ PYDI2AB
+    Category > 1     185.009    185.593     25.899   1321.598
+ PYDI3AB
+    Category > 1      83.581     68.294     16.849    414.610
+ PYDI4AB
+    Category > 1   *********      0.000  *********  *********
+ PYDI5AB
+    Category > 1    1135.898   1410.287     99.655  12947.259
+ PYDI6AB
+    Category > 1     511.856    455.411     89.495   2927.493
+ PYDI7AB
+    Category > 1     743.373   1063.208     45.056  12264.780
+
+Latent Class 2 Compared to Latent Class 3
+
+ PYDI1AB
+    Category > 1       1.123      0.930      0.222      5.691
+ PYDI2AB
+    Category > 1       2.139      2.151      0.298     15.361
+ PYDI3AB
+    Category > 1       1.068      0.748      0.271      4.211
+ PYDI4AB
+    Category > 1       0.000      0.000      0.000      0.000
+ PYDI5AB
+    Category > 1   *********  *********      0.125  *********
+ PYDI6AB
+    Category > 1      24.837     31.756      2.026    304.416
+ PYDI7AB
+    Category > 1      46.347     42.926      7.545    284.713
+
+Latent Class 2 Compared to Latent Class 4
+
+ PYDI1AB
+    Category > 1       2.420      1.122      0.976      6.002
+ PYDI2AB
+    Category > 1       0.736      0.289      0.341      1.590
+ PYDI3AB
+    Category > 1       0.464      0.201      0.198      1.085
+ PYDI4AB
+    Category > 1       3.246      1.326      1.458      7.229
+ PYDI5AB
+    Category > 1   *********      0.000  *********  *********
+ PYDI6AB
+    Category > 1       0.748      0.757      0.103      5.437
+ PYDI7AB
+    Category > 1       1.944      1.926      0.279     13.549
+
+Latent Class 2 Compared to Latent Class 5
+
+ PYDI1AB
+    Category > 1   *********      0.000  *********  *********
+ PYDI2AB
+    Category > 1       6.644      3.509      2.360     18.707
+ PYDI3AB
+    Category > 1       3.028      1.570      1.096      8.363
+ PYDI4AB
+    Category > 1      21.358     55.426      0.132   3456.188
+ PYDI5AB
+    Category > 1   *********  *********      0.426  *********
+ PYDI6AB
+    Category > 1      71.089     60.435     13.433    376.225
+ PYDI7AB
+    Category > 1      39.281     38.866      5.649    273.154
+
+Latent Class 3 Compared to Latent Class 4
+
+ PYDI1AB
+    Category > 1       2.155      2.175      0.298     15.577
+ PYDI2AB
+    Category > 1       0.344      0.356      0.045      2.607
+ PYDI3AB
+    Category > 1       0.434      0.297      0.113      1.663
+ PYDI4AB
+    Category > 1   *********      0.000  *********  *********
+ PYDI5AB
+    Category > 1   *********      0.000  *********  *********
+ PYDI6AB
+    Category > 1       0.030      0.043      0.002      0.508
+ PYDI7AB
+    Category > 1       0.042      0.053      0.004      0.491
+
+Latent Class 3 Compared to Latent Class 5
+
+ PYDI1AB
+    Category > 1   *********      0.000  *********  *********
+ PYDI2AB
+    Category > 1       3.107      2.938      0.487     19.836
+ PYDI3AB
+    Category > 1       2.835      2.704      0.437     18.382
+ PYDI4AB
+    Category > 1   *********      0.000  *********  *********
+ PYDI5AB
+    Category > 1       5.872      6.994      0.569     60.627
+ PYDI6AB
+    Category > 1       2.862      2.947      0.380     21.537
+ PYDI7AB
+    Category > 1       0.848      1.352      0.037     19.339
+
+Latent Class 4 Compared to Latent Class 5
+
+ PYDI1AB
+    Category > 1   *********      0.000  *********  *********
+ PYDI2AB
+    Category > 1       9.027      5.205      2.916     27.946
+ PYDI3AB
+    Category > 1       6.531      4.250      1.824     23.382
+ PYDI4AB
+    Category > 1       6.579     17.818      0.033   1329.220
+ PYDI5AB
+    Category > 1       0.000      0.000      0.000      0.000
+ PYDI6AB
+    Category > 1      95.022    117.209      8.470   1066.078
+ PYDI7AB
+    Category > 1      20.210     31.890      0.917    445.356
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS 3
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS 4
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS 5
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS INDICATOR MODEL PART
+
+
+           TAU(U) FOR LATENT CLASS 1
+              PYDI1AB$      PYDI2AB$      PYDI3AB$      PYDI4AB$      PYDI5AB$
+              ________      ________      ________      ________      ________
+                    1             2             3             4             5
+
+
+           TAU(U) FOR LATENT CLASS 1
+              PYDI6AB$      PYDI7AB$
+              ________      ________
+                    6             7
+
+
+           TAU(U) FOR LATENT CLASS 2
+              PYDI1AB$      PYDI2AB$      PYDI3AB$      PYDI4AB$      PYDI5AB$
+              ________      ________      ________      ________      ________
+                    8             9            10            11            12
+
+
+           TAU(U) FOR LATENT CLASS 2
+              PYDI6AB$      PYDI7AB$
+              ________      ________
+                   13            14
+
+
+           TAU(U) FOR LATENT CLASS 3
+              PYDI1AB$      PYDI2AB$      PYDI3AB$      PYDI4AB$      PYDI5AB$
+              ________      ________      ________      ________      ________
+                   15            16            17            18            19
+
+
+           TAU(U) FOR LATENT CLASS 3
+              PYDI6AB$      PYDI7AB$
+              ________      ________
+                   20            21
+
+
+           TAU(U) FOR LATENT CLASS 4
+              PYDI1AB$      PYDI2AB$      PYDI3AB$      PYDI4AB$      PYDI5AB$
+              ________      ________      ________      ________      ________
+                   22            23            24            25            26
+
+
+           TAU(U) FOR LATENT CLASS 4
+              PYDI6AB$      PYDI7AB$
+              ________      ________
+                   27            28
+
+
+           TAU(U) FOR LATENT CLASS 5
+              PYDI1AB$      PYDI2AB$      PYDI3AB$      PYDI4AB$      PYDI5AB$
+              ________      ________      ________      ________      ________
+                   29            30            31            32            33
+
+
+           TAU(U) FOR LATENT CLASS 5
+              PYDI6AB$      PYDI7AB$
+              ________      ________
+                   34            35
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              C#1           C#2           C#3           C#4           C#5
+              ________      ________      ________      ________      ________
+                   36            37            38            39             0
+
+
+     STARTING VALUES FOR LATENT CLASS 1
+
+
+     STARTING VALUES FOR LATENT CLASS 2
+
+
+     STARTING VALUES FOR LATENT CLASS 3
+
+
+     STARTING VALUES FOR LATENT CLASS 4
+
+
+     STARTING VALUES FOR LATENT CLASS 5
+
+
+     STARTING VALUES FOR LATENT CLASS INDICATOR MODEL PART
+
+
+           TAU(U) FOR LATENT CLASS 1
+              PYDI1AB$      PYDI2AB$      PYDI3AB$      PYDI4AB$      PYDI5AB$
+              ________      ________      ________      ________      ________
+               -2.590        -4.568        -3.900        -4.635        -3.862
+
+
+           TAU(U) FOR LATENT CLASS 1
+              PYDI6AB$      PYDI7AB$
+              ________      ________
+               -4.937        -4.532
+
+
+           TAU(U) FOR LATENT CLASS 2
+              PYDI1AB$      PYDI2AB$      PYDI3AB$      PYDI4AB$      PYDI5AB$
+              ________      ________      ________      ________      ________
+               -1.590        -3.568        -2.900        -3.635        -2.862
+
+
+           TAU(U) FOR LATENT CLASS 2
+              PYDI6AB$      PYDI7AB$
+              ________      ________
+               -3.937        -3.532
+
+
+           TAU(U) FOR LATENT CLASS 3
+              PYDI1AB$      PYDI2AB$      PYDI3AB$      PYDI4AB$      PYDI5AB$
+              ________      ________      ________      ________      ________
+               -0.590        -2.568        -1.900        -2.635        -1.862
+
+
+           TAU(U) FOR LATENT CLASS 3
+              PYDI6AB$      PYDI7AB$
+              ________      ________
+               -2.937        -2.532
+
+
+           TAU(U) FOR LATENT CLASS 4
+              PYDI1AB$      PYDI2AB$      PYDI3AB$      PYDI4AB$      PYDI5AB$
+              ________      ________      ________      ________      ________
+                0.410        -1.568        -0.900        -1.635        -0.862
+
+
+           TAU(U) FOR LATENT CLASS 4
+              PYDI6AB$      PYDI7AB$
+              ________      ________
+               -1.937        -1.532
+
+
+           TAU(U) FOR LATENT CLASS 5
+              PYDI1AB$      PYDI2AB$      PYDI3AB$      PYDI4AB$      PYDI5AB$
+              ________      ________      ________      ________      ________
+                1.410        -0.568         0.100        -0.635         0.138
+
+
+           TAU(U) FOR LATENT CLASS 5
+              PYDI6AB$      PYDI7AB$
+              ________      ________
+               -0.937        -0.532
+
+
+     STARTING VALUES FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              C#1           C#2           C#3           C#4           C#5
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Histograms (sample values)
+  Scatterplots (sample values)
+  Sample proportions and estimated probabilities
+
+     Beginning Time:  14:51:18
+        Ending Time:  14:51:19
+       Elapsed Time:  00:00:01
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen

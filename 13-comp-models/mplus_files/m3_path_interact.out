@@ -1,0 +1,313 @@
+Mplus VERSION 8.6 (Mac)
+MUTHEN & MUTHEN
+05/27/2021   5:29 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  m3 model interact
+  DATA:
+  FILE = "/Users/agarber/github/NTNU-workshop/13-comp-models/mplus_files/CA_schls.dat";
+
+  VARIABLE:
+  NAMES = str expnstu compstu elpct mealpct readscr mathscr testscr;
+   MISSING=.;
+   usevar =
+      compstu           ! covariate-moderator
+      mealpct           ! covariate-moderator
+      mathscr           ! outcome
+      int_ab;           ! interaction term
+  DEFINE:
+  int_ab = compstu*mealpct;  ! create interaction term
+  ANALYSIS:
+  estimator = MLR
+  MODEL:
+  mathscr on compstu mealpct int_ab;
+  OUTPUT:
+  sampstat standardized modindices (ALL)
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+
+m3 model interact
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         420
+
+Number of dependent variables                                    1
+Number of independent variables                                  3
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   MATHSCR
+
+Observed independent variables
+   COMPSTU     MEALPCT     INT_AB
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+
+Input data file(s)
+  /Users/agarber/github/NTNU-workshop/13-comp-models/mplus_files/CA_schls.dat
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             1
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              MATHSCR       COMPSTU       MEALPCT       INT_AB
+              ________      ________      ________      ________
+ MATHSCR        1.000
+ COMPSTU        1.000         1.000
+ MEALPCT        1.000         1.000         1.000
+ INT_AB         1.000         1.000         1.000         1.000
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           Means
+              MATHSCR       COMPSTU       MEALPCT       INT_AB
+              ________      ________      ________      ________
+              653.343         0.136        44.705         5.718
+
+
+           Covariances
+              MATHSCR       COMPSTU       MEALPCT       INT_AB
+              ________      ________      ________      ________
+ MATHSCR      350.883
+ COMPSTU        0.302         0.004
+ MEALPCT     -417.652        -0.358       733.926
+ INT_AB       -44.409         0.132        83.749        20.043
+
+
+           Correlations
+              MATHSCR       COMPSTU       MEALPCT       INT_AB
+              ________      ________      ________      ________
+ MATHSCR        1.000
+ COMPSTU        0.249         1.000
+ MEALPCT       -0.823        -0.204         1.000
+ INT_AB        -0.530         0.454         0.691         1.000
+
+
+     MAXIMUM LOG-LIKELIHOOD VALUE FOR THE UNRESTRICTED (H1) MODEL IS -3835.951
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     MATHSCR             653.343       0.255     605.400    0.24%     636.600    647.700    652.450
+             420.000     350.883      -0.160     709.500    0.24%     657.700    669.300
+     COMPSTU               0.136       0.922       0.000    1.90%       0.086      0.113      0.125
+             420.000       0.004       1.431       0.421    0.24%       0.137      0.188
+     MEALPCT              44.705       0.184       0.000    2.14%      19.091     32.864     41.751
+             420.000     733.926      -1.000     100.000    1.19%      51.852     71.024
+     INT_AB                5.718       1.205       0.000    4.05%       1.945      3.576      4.722
+             420.000      20.043       1.853      26.951    0.24%       5.887      8.841
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                        5
+
+Loglikelihood
+
+          H0 Value                       -1584.062
+          H0 Scaling Correction Factor      1.1228
+            for MLR
+          H1 Value                       -1584.062
+          H1 Scaling Correction Factor      1.1228
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                    3178.125
+          Bayesian (BIC)                  3198.326
+          Sample-Size Adjusted BIC        3182.460
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                              0.000*
+          Degrees of Freedom                     0
+          P-Value                           0.0000
+          Scaling Correction Factor         1.0000
+            for MLR
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.000
+          90 Percent C.I.                    0.000  0.000
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                1.000
+          TLI                                1.000
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                            394.034
+          Degrees of Freedom                     3
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.000
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ MATHSCR  ON
+    COMPSTU           37.614     17.205      2.186      0.029
+    MEALPCT           -0.515      0.044    -11.740      0.000
+    INT_AB            -0.310      0.311     -0.996      0.319
+
+ Intercepts
+    MATHSCR          673.040      2.633    255.651      0.000
+
+ Residual Variances
+    MATHSCR          110.529      8.304     13.311      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.330E-05
+       (ratio of smallest to largest eigenvalue)
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ MATHSCR  ON
+    COMPSTU            0.130      0.059      2.193      0.028
+    MEALPCT           -0.745      0.062    -11.984      0.000
+    INT_AB            -0.074      0.074     -0.998      0.318
+
+ Intercepts
+    MATHSCR           35.930      1.110     32.369      0.000
+
+ Residual Variances
+    MATHSCR            0.315      0.025     12.568      0.000
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ MATHSCR  ON
+    COMPSTU            2.008      0.912      2.203      0.028
+    MEALPCT           -0.028      0.002    -11.784      0.000
+    INT_AB            -0.017      0.017     -0.999      0.318
+
+ Intercepts
+    MATHSCR           35.930      1.110     32.369      0.000
+
+ Residual Variances
+    MATHSCR            0.315      0.025     12.568      0.000
+
+
+STD Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ MATHSCR  ON
+    COMPSTU           37.614     17.205      2.186      0.029
+    MEALPCT           -0.515      0.044    -11.740      0.000
+    INT_AB            -0.310      0.311     -0.996      0.319
+
+ Intercepts
+    MATHSCR          673.040      2.633    255.651      0.000
+
+ Residual Variances
+    MATHSCR          110.529      8.304     13.311      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    MATHSCR            0.685      0.025     27.329      0.000
+
+
+MODEL MODIFICATION INDICES
+
+Minimum M.I. value for printing the modification index    10.000
+
+                                   M.I.     E.P.C.  Std E.P.C.  StdYX E.P.C.
+
+No modification indices above the minimum value.
+
+
+
+     Beginning Time:  17:29:53
+        Ending Time:  17:29:53
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen

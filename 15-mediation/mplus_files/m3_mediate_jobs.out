@@ -1,0 +1,386 @@
+Mplus VERSION 8.6 (Mac)
+MUTHEN & MUTHEN
+05/28/2021  11:15 AM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  m3 MX jobs mediate
+  DATA:
+  FILE = "/Users/agarber/github/NTNU-workshop/15-mediation/mplus_files/jobs.dat";
+
+  VARIABLE:
+  NAMES = treat econ_hard depress1 sex age occp marital nonwhite educ income job_seek
+       depress2 work1 comply control job_dich job_disc;
+   MISSING=.;
+   usevar =
+      treat sex age marital nonwhite
+      educ income depress2 job_dich mx;
+  DEFINE:
+  mx = job_dich*treat;
+  ANALYSIS:
+  bootstrap = 500;
+  MODEL:
+  job_dich on treat sex age marital nonwhite educ income;
+      depress2 on job_dich treat mx sex age marital nonwhite educ income;
+
+      Model indirect:
+      depress2 MOD job_dich mx treat;
+  OUTPUT:
+  sampstat cinterval(bootstrap);
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+
+m3 MX jobs mediate
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         899
+
+Number of dependent variables                                    2
+Number of independent variables                                  8
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   DEPRESS2    JOB_DICH
+
+Observed independent variables
+   TREAT       SEX         AGE         MARITAL     NONWHITE    EDUC
+   INCOME      MX
+
+
+Estimator                                                       ML
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Number of bootstrap draws
+    Requested                                                  500
+    Completed                                                  500
+
+Input data file(s)
+  /Users/agarber/github/NTNU-workshop/15-mediation/mplus_files/jobs.dat
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             1
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              DEPRESS2      JOB_DICH      TREAT         SEX           AGE
+              ________      ________      ________      ________      ________
+ DEPRESS2       1.000
+ JOB_DICH       1.000         1.000
+ TREAT          1.000         1.000         1.000
+ SEX            1.000         1.000         1.000         1.000
+ AGE            1.000         1.000         1.000         1.000         1.000
+ MARITAL        1.000         1.000         1.000         1.000         1.000
+ NONWHITE       1.000         1.000         1.000         1.000         1.000
+ EDUC           1.000         1.000         1.000         1.000         1.000
+ INCOME         1.000         1.000         1.000         1.000         1.000
+ MX             1.000         1.000         1.000         1.000         1.000
+
+
+           Covariance Coverage
+              MARITAL       NONWHITE      EDUC          INCOME        MX
+              ________      ________      ________      ________      ________
+ MARITAL        1.000
+ NONWHITE       1.000         1.000
+ EDUC           1.000         1.000         1.000
+ INCOME         1.000         1.000         1.000         1.000
+ MX             1.000         1.000         1.000         1.000         1.000
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           Means
+              DEPRESS2      JOB_DICH      TREAT         SEX           AGE
+              ________      ________      ________      ________      ________
+                1.741         0.617         0.667         0.536        37.565
+
+
+           Means
+              MARITAL       NONWHITE      EDUC          INCOME        MX
+              ________      ________      ________      ________      ________
+                2.149         1.169         2.998         2.976         0.429
+
+
+           Covariances
+              DEPRESS2      JOB_DICH      TREAT         SEX           AGE
+              ________      ________      ________      ________      ________
+ DEPRESS2       0.424
+ JOB_DICH      -0.073         0.236
+ TREAT         -0.014         0.017         0.222
+ SEX            0.024         0.000        -0.013         0.249
+ AGE           -0.038         0.184         0.082         0.145       109.111
+ MARITAL        0.021         0.038        -0.019         0.088         4.732
+ NONWHITE      -0.013         0.002        -0.002         0.009        -0.501
+ EDUC          -0.007         0.055         0.000        -0.032         0.405
+ INCOME        -0.103         0.043        -0.003        -0.018         3.249
+ MX            -0.059         0.164         0.143        -0.010         0.128
+
+
+           Covariances
+              MARITAL       NONWHITE      EDUC          INCOME        MX
+              ________      ________      ________      ________      ________
+ MARITAL        1.237
+ NONWHITE      -0.033         0.140
+ EDUC          -0.045         0.019         1.186
+ INCOME        -0.041        -0.073         0.331         1.975
+ MX             0.012         0.001         0.045         0.052         0.245
+
+
+           Correlations
+              DEPRESS2      JOB_DICH      TREAT         SEX           AGE
+              ________      ________      ________      ________      ________
+ DEPRESS2       1.000
+ JOB_DICH      -0.230         1.000
+ TREAT         -0.046         0.076         1.000
+ SEX            0.073         0.002        -0.055         1.000
+ AGE           -0.006         0.036         0.017         0.028         1.000
+ MARITAL        0.029         0.071        -0.037         0.159         0.407
+ NONWHITE      -0.055         0.013        -0.009         0.051        -0.128
+ EDUC          -0.010         0.103         0.001        -0.059         0.036
+ INCOME        -0.112         0.063        -0.004        -0.026         0.221
+ MX            -0.184         0.683         0.612        -0.040         0.025
+
+
+           Correlations
+              MARITAL       NONWHITE      EDUC          INCOME        MX
+              ________      ________      ________      ________      ________
+ MARITAL        1.000
+ NONWHITE      -0.079         1.000
+ EDUC          -0.037         0.047         1.000
+ INCOME        -0.026        -0.138         0.217         1.000
+ MX             0.021         0.004         0.084         0.074         1.000
+
+
+     MAXIMUM LOG-LIKELIHOOD VALUE FOR THE UNRESTRICTED (H1) MODEL IS -10588.349
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     DEPRESS2              1.741       1.135       1.000   11.23%       1.182      1.455      1.600
+             899.000       0.424       1.240       4.909    0.11%       1.727      2.273
+     JOB_DICH              0.617      -0.483       0.000   38.26%       0.000      1.000      1.000
+             899.000       0.236      -1.767       1.000   61.74%       1.000      1.000
+     TREAT                 0.667      -0.711       0.000   33.26%       0.000      1.000      1.000
+             899.000       0.222      -1.495       1.000   66.74%       1.000      1.000
+     SEX                   0.536      -0.145       0.000   46.38%       0.000      0.000      1.000
+             899.000       0.249      -1.979       1.000   53.62%       1.000      1.000
+     AGE                  37.565       0.441      17.488    0.11%      27.677     33.879     36.636
+             899.000     109.111      -0.350      72.479    0.11%      39.666     46.323
+     MARITAL               2.149       0.863       1.000   31.03%       1.000      2.000      2.000
+             899.000       1.237      -0.331       5.000    2.11%       2.000      4.000
+     NONWHITE              1.169       1.766       1.000   83.09%       1.000      1.000      1.000
+             899.000       0.140       1.118       2.000   16.91%       1.000      1.000
+     EDUC                  2.998       0.325       1.000    5.56%       2.000      3.000      3.000
+             899.000       1.186      -0.616       5.000   12.46%       3.000      4.000
+     INCOME                2.976       0.132       1.000   18.24%       2.000      2.000      3.000
+             899.000       1.975      -1.237       5.000   22.36%       3.000      5.000
+     MX                    0.429       0.285       0.000   57.06%       0.000      0.000      0.000
+             899.000       0.245      -1.919       1.000   42.94%       1.000      1.000
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       20
+
+Loglikelihood
+
+          H0 Value                       -1470.450
+          H1 Value                       -1002.314
+
+Information Criteria
+
+          Akaike (AIC)                    2980.899
+          Bayesian (BIC)                  3076.925
+          Sample-Size Adjusted BIC        3013.408
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                            936.271
+          Degrees of Freedom                     1
+          P-Value                           0.0000
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           1.020
+          90 Percent C.I.                    0.966  1.075
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                0.077
+          TLI                                0.000
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                           1029.887
+          Degrees of Freedom                    17
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.138
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ JOB_DICH ON
+    TREAT              0.082      0.033      2.471      0.013
+    SEX               -0.001      0.031     -0.029      0.977
+    AGE               -0.001      0.002     -0.298      0.766
+    MARITAL            0.037      0.015      2.454      0.014
+    NONWHITE           0.028      0.045      0.624      0.532
+    EDUC               0.042      0.015      2.851      0.004
+    INCOME             0.017      0.012      1.411      0.158
+
+ DEPRESS2 ON
+    JOB_DICH          -0.277      0.078     -3.546      0.000
+    TREAT             -0.010      0.073     -0.137      0.891
+    MX                -0.042      0.093     -0.445      0.656
+    SEX                0.093      0.044      2.143      0.032
+    AGE                0.000      0.002      0.187      0.851
+    MARITAL            0.013      0.022      0.607      0.544
+    NONWHITE          -0.124      0.062     -2.007      0.045
+    EDUC               0.028      0.020      1.382      0.167
+    INCOME            -0.054      0.015     -3.531      0.000
+
+ Intercepts
+    DEPRESS2           2.064      0.138     15.000      0.000
+    JOB_DICH           0.292      0.097      2.997      0.003
+
+ Residual Variances
+    DEPRESS2           0.392      0.024     16.332      0.000
+    JOB_DICH           0.230      0.004     51.985      0.000
+
+
+
+TOTAL, INDIRECT, AND DIRECT EFFECTS BASED ON COUNTERFACTUALS (CAUSALLY-DEFINED EFFECTS)
+
+
+Effects from TREAT to DEPRESS2
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+  Tot natural IE      -0.026      0.011     -2.357      0.018
+  Pure natural DE     -0.022      0.055     -0.401      0.688
+  Total effect        -0.048      0.055     -0.878      0.380
+
+ Other effects
+
+  Pure natural IE     -0.023      0.012     -1.938      0.053
+  Tot natural DE      -0.026      0.052     -0.494      0.621
+  Total effect        -0.048      0.055     -0.878      0.380
+
+
+CONFIDENCE INTERVALS OF MODEL RESULTS
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ JOB_DICH ON
+    TREAT           -0.003       0.017       0.028       0.082       0.133       0.148       0.168
+    SEX             -0.088      -0.062      -0.051      -0.001       0.049       0.062       0.075
+    AGE             -0.005      -0.004      -0.003      -0.001       0.002       0.003       0.005
+    MARITAL         -0.009       0.006       0.011       0.037       0.062       0.066       0.072
+    NONWHITE        -0.102      -0.056      -0.045       0.028       0.099       0.116       0.135
+    EDUC             0.007       0.012       0.019       0.042       0.067       0.074       0.080
+    INCOME          -0.012      -0.006      -0.002       0.017       0.038       0.044       0.053
+
+ DEPRESS2 ON
+    JOB_DICH        -0.483      -0.428      -0.416      -0.277      -0.160      -0.134      -0.066
+    TREAT           -0.200      -0.166      -0.138      -0.010       0.111       0.125       0.158
+    MX              -0.287      -0.207      -0.184      -0.042       0.111       0.140       0.248
+    SEX             -0.002       0.013       0.021       0.093       0.161       0.179       0.220
+    AGE             -0.006      -0.004      -0.003       0.000       0.004       0.005       0.006
+    MARITAL         -0.044      -0.029      -0.025       0.013       0.047       0.053       0.068
+    NONWHITE        -0.305      -0.252      -0.238      -0.124      -0.032      -0.011       0.018
+    EDUC            -0.022      -0.013      -0.006       0.028       0.063       0.067       0.077
+    INCOME          -0.089      -0.083      -0.077      -0.054      -0.029      -0.022      -0.009
+
+ Intercepts
+    DEPRESS2         1.705       1.803       1.841       2.064       2.288       2.362       2.476
+    JOB_DICH         0.073       0.111       0.131       0.292       0.466       0.489       0.544
+
+ Residual Variances
+    DEPRESS2         0.326       0.338       0.348       0.392       0.426       0.432       0.457
+    JOB_DICH         0.217       0.219       0.220       0.230       0.235       0.236       0.239
+
+
+
+CONFIDENCE INTERVALS OF TOTAL, INDIRECT, AND DIRECT EFFECTS BASED ON COUNTERFACTUALS (CAUSALLY-DEFINED EFFECTS)
+
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+Effects from TREAT to DEPRESS2
+
+  Tot natural IE    -0.056      -0.050      -0.045      -0.026      -0.008      -0.005       0.001
+  Pure natural DE   -0.156      -0.142      -0.123      -0.022       0.064       0.080       0.121
+  Total effect      -0.184      -0.165      -0.144      -0.048       0.042       0.063       0.096
+
+ Other effects
+
+  Pure natural IE   -0.065      -0.049      -0.045      -0.023      -0.006      -0.004       0.000
+  Tot natural DE    -0.158      -0.135      -0.119      -0.026       0.058       0.073       0.104
+  Total effect      -0.184      -0.165      -0.144      -0.048       0.042       0.063       0.096
+
+
+     Beginning Time:  11:15:10
+        Ending Time:  11:15:11
+       Elapsed Time:  00:00:01
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen

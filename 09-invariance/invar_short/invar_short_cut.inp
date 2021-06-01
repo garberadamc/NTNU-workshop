@@ -1,0 +1,23 @@
+TITLE:
+INVARIANCE SHORT_CUT - DEMO
+DATA:
+FILE = "/Users/agarber/github/NTNU-workshop/09-invariance/invar_short/invar_short_cut.dat";
+ 
+VARIABLE:
+NAMES = bystlang freelnch byincome stolen t_hurt p_fight hit damaged bullied unsafe
+     disrupt gangs rac_fght late skipped mth_read mth_test rd_test; 
+ MISSING=.;
+ usevar = stolen-rac_fght;
+    
+     grouping = freelnch (0=freelnch_0 1=freelnch_1); 
+ANALYSIS:
+Estimator = MLR;
+   MODEL = CONFIG METRIC SCALAR;
+MODEL:
+VICTIM by stolen* t_hurt p_fight hit damaged bullied;
+     VICTIM@1; 
+     
+     NEG_CLIM by unsafe* disrupt gangs rac_fght;
+     NEG_CLIM@1;
+OUTPUT:
+sampstat residual;

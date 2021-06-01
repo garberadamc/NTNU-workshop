@@ -1,0 +1,23 @@
+TITLE:
+m2 model indirect
+DATA:
+FILE = "/Users/agarber/github/NTNU-workshop/13-comp-models/mplus_files/CA_schls.dat";
+ 
+VARIABLE:
+NAMES = str expnstu compstu elpct mealpct readscr mathscr testscr; 
+ MISSING=.;
+ usevar =
+    mealpct           ! covariate
+    compstu           ! mediator 
+    mathscr;          ! outcome
+ANALYSIS:
+estimator = MLR
+MODEL:
+mathscr on compstu;         ! direct path (c')
+    mathscr on mealpct;         ! b path
+    mealpct on compstu;         ! a path
+    
+    Model indirect:
+    mathscr ind compstu;
+OUTPUT:
+sampstat standardized modindices (ALL)

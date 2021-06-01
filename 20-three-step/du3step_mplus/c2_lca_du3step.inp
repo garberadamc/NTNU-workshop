@@ -1,0 +1,22 @@
+TITLE:
+DU3STEP add distal GPA
+DATA:
+FILE = "/Users/agarber/github/NTNU-workshop/20-three-step/du3step_mplus/lca_du3step.dat";
+ 
+VARIABLE:
+NAMES = lieexam liepaper fraud copyexam gpa; 
+ MISSING=.;
+ categorical = lieexam-copyexam; 
+    usevar = lieexam-copyexam;
+    auxiliary = gpa (du3step);
+    classes = c(2);
+ANALYSIS:
+estimator = mlr; 
+    type = mixture;
+    starts = 500 100; 
+    processors = 10;
+OUTPUT:
+sampstat patterns tech11 tech14;
+PLOT:
+type = plot3; 
+     series = lieexam-copyexam(*);

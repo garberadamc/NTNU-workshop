@@ -1,0 +1,547 @@
+Mplus VERSION 8.6 (Mac)
+MUTHEN & MUTHEN
+05/29/2021   9:57 AM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  m3 growth model with covariate and freely estimated time scores
+  DATA:
+  FILE = "/Users/agarber/github/NTNU-workshop/17-growth-models/mplus_files/lsay.dat";
+
+  VARIABLE:
+  NAMES = rural gender fathed mothed math_07 math_08 math_09 math_10 math_11 math_12
+       sci_07 sci_08 sci_09 sci_10 sci_11 sci_12;
+   MISSING=.;
+   usevar =
+      math_07-math_12 fathed;
+  DEFINE:
+  center fathed (grandmean);
+  ANALYSIS:
+  estimator = ML
+  MODEL:
+  i s | math_07@0 math_08@1 math_09* math_10* math_11* math_12*;
+      i s on fathed;
+  OUTPUT:
+  sampstat standardized;
+  PLOT:
+  type=plot3;
+            series = math_07-math_12(*)
+
+
+
+*** WARNING
+  Data set contains cases with missing on all variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on all variables:  12
+*** WARNING
+  Data set contains cases with missing on x-variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on x-variables:  448
+*** WARNING
+  Data set contains cases with missing on all variables except
+  x-variables.  These cases were not included in the analysis.
+  Number of cases with missing on all variables except x-variables:  75
+   3 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+m3 growth model with covariate and freely estimated time scores
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        5410
+
+Number of dependent variables                                    6
+Number of independent variables                                  1
+Number of continuous latent variables                            2
+
+Observed dependent variables
+
+  Continuous
+   MATH_07     MATH_08     MATH_09     MATH_10     MATH_11     MATH_12
+
+Observed independent variables
+   FATHED
+
+Continuous latent variables
+   I           S
+
+Variables with special functions
+
+  Centering (GRANDMEAN)
+   FATHED
+
+
+Estimator                                                       ML
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+
+Input data file(s)
+  /Users/agarber/github/NTNU-workshop/17-growth-models/mplus_files/lsay.dat
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns            25
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              MATH_07       MATH_08       MATH_09       MATH_10       MATH_11
+              ________      ________      ________      ________      ________
+ MATH_07        0.521
+ MATH_08        0.472         0.473
+ MATH_09        0.464         0.465         0.465
+ MATH_10        0.454         0.445         0.445         0.926
+ MATH_11        0.382         0.376         0.376         0.756         0.763
+ MATH_12        0.332         0.326         0.326         0.688         0.686
+ FATHED         0.521         0.473         0.465         0.926         0.763
+
+
+           Covariance Coverage
+              MATH_12       FATHED
+              ________      ________
+ MATH_12        0.693
+ FATHED         0.693         1.000
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           Means
+              MATH_07       MATH_08       MATH_09       MATH_10       MATH_11
+              ________      ________      ________      ________      ________
+               50.379        53.781        57.914        61.976        65.512
+
+
+           Means
+              MATH_12       FATHED
+              ________      ________
+               66.688         0.000
+
+
+           Covariances
+              MATH_07       MATH_08       MATH_09       MATH_10       MATH_11
+              ________      ________      ________      ________      ________
+ MATH_07      100.174
+ MATH_08       90.145       117.456
+ MATH_09       99.334       117.515       149.713
+ MATH_10      103.681       120.059       146.953       171.962
+ MATH_11      100.334       115.651       140.793       156.687       175.699
+ MATH_12      103.686       118.625       143.666       159.576       170.907
+ FATHED         3.581         3.756         4.383         4.681         4.648
+
+
+           Covariances
+              MATH_12       FATHED
+              ________      ________
+ MATH_12      187.291
+ FATHED         4.838         1.502
+
+
+           Correlations
+              MATH_07       MATH_08       MATH_09       MATH_10       MATH_11
+              ________      ________      ________      ________      ________
+ MATH_07        1.000
+ MATH_08        0.831         1.000
+ MATH_09        0.811         0.886         1.000
+ MATH_10        0.790         0.845         0.916         1.000
+ MATH_11        0.756         0.805         0.868         0.901         1.000
+ MATH_12        0.757         0.800         0.858         0.889         0.942
+ FATHED         0.292         0.283         0.292         0.291         0.286
+
+
+           Correlations
+              MATH_12       FATHED
+              ________      ________
+ MATH_12        1.000
+ FATHED         0.289         1.000
+
+
+     MAXIMUM LOG-LIKELIHOOD VALUE FOR THE UNRESTRICTED (H1) MODEL IS -76675.147
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     MATH_07              50.669       0.177      27.360    0.04%      41.150     47.180     50.390
+            2817.000     104.842      -0.595      85.070    0.04%      53.430     60.020
+     MATH_08              54.132       0.038      24.560    0.04%      43.890     51.660     54.560
+            2557.000     122.483      -0.415      88.840    0.04%      57.470     63.320
+     MATH_09              58.541      -0.037      26.600    0.04%      46.850     55.350     58.740
+            2517.000     155.972      -0.550      94.270    0.04%      62.590     69.700
+     MATH_10              62.235      -0.194      26.500    0.02%      50.860     59.860     63.350
+            5010.000     169.274      -0.411      95.320    0.02%      66.500     73.290
+     MATH_11              66.395      -0.259      28.260    0.02%      55.810     63.730     66.760
+            4127.000     172.033      -0.304      99.300    0.02%      70.040     78.110
+     MATH_12              68.100      -0.248      27.010    0.03%      56.810     65.140     68.670
+            3747.000     180.841      -0.343     100.160    0.05%      72.080     79.820
+     FATHED                0.000       0.692      -1.603   14.31%      -0.603     -0.603     -0.603
+            5410.000       1.502      -0.645       2.397   11.29%      -0.603      1.397
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       17
+
+Loglikelihood
+
+          H0 Value                      -68179.868
+          H1 Value                      -67899.190
+
+Information Criteria
+
+          Akaike (AIC)                  136393.735
+          Bayesian (BIC)                136505.868
+          Sample-Size Adjusted BIC      136451.847
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                            561.355
+          Degrees of Freedom                    16
+          P-Value                           0.0000
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.079
+          90 Percent C.I.                    0.074  0.085
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                0.980
+          TLI                                0.974
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                          27697.380
+          Degrees of Freedom                    21
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.068
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ I        |
+    MATH_07            1.000      0.000    999.000    999.000
+    MATH_08            1.000      0.000    999.000    999.000
+    MATH_09            1.000      0.000    999.000    999.000
+    MATH_10            1.000      0.000    999.000    999.000
+    MATH_11            1.000      0.000    999.000    999.000
+    MATH_12            1.000      0.000    999.000    999.000
+
+ S        |
+    MATH_07            0.000      0.000    999.000    999.000
+    MATH_08            1.000      0.000    999.000    999.000
+    MATH_09            2.302      0.063     36.295      0.000
+    MATH_10            3.422      0.098     34.957      0.000
+    MATH_11            4.450      0.130     34.173      0.000
+    MATH_12            4.782      0.141     33.845      0.000
+
+ I        ON
+    FATHED             2.428      0.121     19.995      0.000
+
+ S        ON
+    FATHED             0.170      0.027      6.398      0.000
+
+ S        WITH
+    I                  3.065      0.322      9.516      0.000
+
+ Intercepts
+    MATH_07            0.000      0.000    999.000    999.000
+    MATH_08            0.000      0.000    999.000    999.000
+    MATH_09            0.000      0.000    999.000    999.000
+    MATH_10            0.000      0.000    999.000    999.000
+    MATH_11            0.000      0.000    999.000    999.000
+    MATH_12            0.000      0.000    999.000    999.000
+    I                 50.443      0.160    315.377      0.000
+    S                  3.374      0.113     29.810      0.000
+
+ Residual Variances
+    MATH_07           18.486      0.849     21.768      0.000
+    MATH_08           15.885      0.640     24.820      0.000
+    MATH_09           16.360      0.571     28.671      0.000
+    MATH_10           21.168      0.569     37.186      0.000
+    MATH_11            9.715      0.413     23.538      0.000
+    MATH_12           12.541      0.489     25.631      0.000
+    I                 81.675      2.209     36.970      0.000
+    S                  2.365      0.175     13.489      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.658E-03
+       (ratio of smallest to largest eigenvalue)
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ I        |
+    MATH_07            0.911      0.004    224.800      0.000
+    MATH_08            0.883      0.005    169.954      0.000
+    MATH_09            0.814      0.007    116.111      0.000
+    MATH_10            0.740      0.008     92.281      0.000
+    MATH_11            0.708      0.009     80.887      0.000
+    MATH_12            0.684      0.009     78.069      0.000
+
+ S        |
+    MATH_07            0.000      0.000    999.000    999.000
+    MATH_08            0.144      0.005     26.438      0.000
+    MATH_09            0.306      0.007     42.661      0.000
+    MATH_10            0.413      0.008     50.637      0.000
+    MATH_11            0.514      0.009     56.015      0.000
+    MATH_12            0.534      0.009     57.857      0.000
+
+ I        ON
+    FATHED             0.313      0.015     21.066      0.000
+
+ S        ON
+    FATHED             0.134      0.020      6.597      0.000
+
+ S        WITH
+    I                  0.221      0.024      9.021      0.000
+
+ Intercepts
+    MATH_07            0.000      0.000    999.000    999.000
+    MATH_08            0.000      0.000    999.000    999.000
+    MATH_09            0.000      0.000    999.000    999.000
+    MATH_10            0.000      0.000    999.000    999.000
+    MATH_11            0.000      0.000    999.000    999.000
+    MATH_12            0.000      0.000    999.000    999.000
+    I                  5.302      0.072     73.650      0.000
+    S                  2.174      0.045     48.651      0.000
+
+ Residual Variances
+    MATH_07            0.170      0.007     22.953      0.000
+    MATH_08            0.137      0.006     24.575      0.000
+    MATH_09            0.120      0.004     27.566      0.000
+    MATH_10            0.128      0.004     33.360      0.000
+    MATH_11            0.054      0.002     22.204      0.000
+    MATH_12            0.065      0.003     23.963      0.000
+    I                  0.902      0.009     97.213      0.000
+    S                  0.982      0.005    180.477      0.000
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ I        |
+    MATH_07            0.911      0.004    224.800      0.000
+    MATH_08            0.883      0.005    169.954      0.000
+    MATH_09            0.814      0.007    116.111      0.000
+    MATH_10            0.740      0.008     92.281      0.000
+    MATH_11            0.708      0.009     80.887      0.000
+    MATH_12            0.684      0.009     78.069      0.000
+
+ S        |
+    MATH_07            0.000      0.000    999.000    999.000
+    MATH_08            0.144      0.005     26.438      0.000
+    MATH_09            0.306      0.007     42.661      0.000
+    MATH_10            0.413      0.008     50.637      0.000
+    MATH_11            0.514      0.009     56.015      0.000
+    MATH_12            0.534      0.009     57.857      0.000
+
+ I        ON
+    FATHED             0.255      0.012     21.423      0.000
+
+ S        ON
+    FATHED             0.109      0.017      6.610      0.000
+
+ S        WITH
+    I                  0.221      0.024      9.021      0.000
+
+ Intercepts
+    MATH_07            0.000      0.000    999.000    999.000
+    MATH_08            0.000      0.000    999.000    999.000
+    MATH_09            0.000      0.000    999.000    999.000
+    MATH_10            0.000      0.000    999.000    999.000
+    MATH_11            0.000      0.000    999.000    999.000
+    MATH_12            0.000      0.000    999.000    999.000
+    I                  5.302      0.072     73.650      0.000
+    S                  2.174      0.045     48.651      0.000
+
+ Residual Variances
+    MATH_07            0.170      0.007     22.953      0.000
+    MATH_08            0.137      0.006     24.575      0.000
+    MATH_09            0.120      0.004     27.566      0.000
+    MATH_10            0.128      0.004     33.360      0.000
+    MATH_11            0.054      0.002     22.204      0.000
+    MATH_12            0.065      0.003     23.963      0.000
+    I                  0.902      0.009     97.213      0.000
+    S                  0.982      0.005    180.477      0.000
+
+
+STD Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ I        |
+    MATH_07            9.514      0.126     75.715      0.000
+    MATH_08            9.514      0.126     75.715      0.000
+    MATH_09            9.514      0.126     75.715      0.000
+    MATH_10            9.514      0.126     75.715      0.000
+    MATH_11            9.514      0.126     75.715      0.000
+    MATH_12            9.514      0.126     75.715      0.000
+
+ S        |
+    MATH_07            0.000      0.000    999.000    999.000
+    MATH_08            1.552      0.057     27.021      0.000
+    MATH_09            3.572      0.081     43.955      0.000
+    MATH_10            5.310      0.106     50.301      0.000
+    MATH_11            6.906      0.130     53.212      0.000
+    MATH_12            7.422      0.138     53.671      0.000
+
+ I        ON
+    FATHED             0.255      0.012     21.423      0.000
+
+ S        ON
+    FATHED             0.109      0.017      6.610      0.000
+
+ S        WITH
+    I                  0.221      0.024      9.021      0.000
+
+ Intercepts
+    MATH_07            0.000      0.000    999.000    999.000
+    MATH_08            0.000      0.000    999.000    999.000
+    MATH_09            0.000      0.000    999.000    999.000
+    MATH_10            0.000      0.000    999.000    999.000
+    MATH_11            0.000      0.000    999.000    999.000
+    MATH_12            0.000      0.000    999.000    999.000
+    I                  5.302      0.072     73.650      0.000
+    S                  2.174      0.045     48.651      0.000
+
+ Residual Variances
+    MATH_07           18.486      0.849     21.768      0.000
+    MATH_08           15.885      0.640     24.820      0.000
+    MATH_09           16.360      0.571     28.671      0.000
+    MATH_10           21.168      0.569     37.186      0.000
+    MATH_11            9.715      0.413     23.538      0.000
+    MATH_12           12.541      0.489     25.631      0.000
+    I                  0.902      0.009     97.213      0.000
+    S                  0.982      0.005    180.477      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    MATH_07            0.830      0.007    112.400      0.000
+    MATH_08            0.863      0.006    155.168      0.000
+    MATH_09            0.880      0.004    202.600      0.000
+    MATH_10            0.872      0.004    226.821      0.000
+    MATH_11            0.946      0.002    390.826      0.000
+    MATH_12            0.935      0.003    345.546      0.000
+
+     Latent                                         Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    I                  0.098      0.009     10.533      0.000
+    S                  0.018      0.005      3.299      0.001
+
+
+SAMPLE STATISTICS FOR ESTIMATED FACTOR SCORES
+
+
+     SAMPLE STATISTICS
+
+
+           Means
+              I             I_SE          S             S_SE
+              ________      ________      ________      ________
+               50.443         3.723         3.374         0.984
+
+
+           Covariances
+              I             I_SE          S             S_SE
+              ________      ________      ________      ________
+ I             75.411
+ I_SE          -0.353         1.250
+ S              6.541         0.026         1.395
+ S_SE          -0.249         0.167        -0.013         0.046
+
+
+           Correlations
+              I             I_SE          S             S_SE
+              ________      ________      ________      ________
+ I              1.000
+ I_SE          -0.036         1.000
+ S              0.638         0.020         1.000
+ S_SE          -0.133         0.694        -0.052         1.000
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Histograms (sample values, estimated factor scores, estimated values, residuals)
+  Scatterplots (sample values, estimated factor scores, estimated values, residuals)
+  Sample means
+  Estimated means
+  Sample and estimated means
+  Adjusted estimated means
+  Latent variable distribution plots
+  Observed individual values
+  Estimated individual values
+
+     Beginning Time:  09:57:09
+        Ending Time:  09:57:09
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen

@@ -1,0 +1,16 @@
+TITLE:
+School Trouble EFA - LAB 4 DEMO
+DATA:
+FILE = "/Users/agarber/github/NTNU-workshop/04-splits-iterators/efa_mplus2/efa_trouble.dat";
+ 
+VARIABLE:
+NAMES = BYS22A BYS22B BYS22C BYS22D BYS22E BYS22F BYS22G BYS22H BYS24A BYS24B BYS24C
+     BYS24D BYS24E BYS24F BYS24G; 
+ MISSING=.;
+ usevar = BYS22A-BYS24G;
+ANALYSIS:
+type=efa 1 1
+OUTPUT:
+sampstat;
+PLOT:
+type = plot3;

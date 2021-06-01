@@ -1,0 +1,1006 @@
+Mplus VERSION 8.6 (Mac)
+MUTHEN & MUTHEN
+05/26/2021   3:13 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  Geomin Oblique EFA - LAB 5 DEMO
+  DATA:
+  FILE = "/Users/agarber/github/NTNU-workshop/05-cfa/efa_mplus/efa_geomin_oblique.dat";
+
+  VARIABLE:
+  NAMES = BYS22A BYS22C BYS22D BYS22E BYS22F BYS22G BYS22H BYS24A BYS24B BYS24C BYS24D
+       BYS24E BYS24F BYS22B;
+   MISSING=.;
+   ! removed BYS24G (due to low loading < .2)
+      usevar = BYS22A-BYS22B;
+  ANALYSIS:
+  type = efa 1 3;
+      estimator = mlr;
+      rotation = geomin; ! this is the default (added to be explicit)
+      parallel=50; ! run parallel analysis
+  OUTPUT:
+  sampstat;
+  PLOT:
+  type = plot3;
+
+
+
+*** WARNING
+  Data set contains cases with missing on all variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on all variables:  31
+   1 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+Geomin Oblique EFA - LAB 5 DEMO
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         366
+
+Number of dependent variables                                   14
+Number of independent variables                                  0
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   BYS22A      BYS22C      BYS22D      BYS22E      BYS22F      BYS22G
+   BYS22H      BYS24A      BYS24B      BYS24C      BYS24D      BYS24E
+   BYS24F      BYS22B
+
+
+Estimator                                                      MLR
+Rotation                                                    GEOMIN
+Row standardization                                    CORRELATION
+Type of rotation                                           OBLIQUE
+Epsilon value                                               Varies
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization Specifications for the Exploratory Factor Analysis
+Rotation Algorithm
+  Number of random starts                                       30
+  Maximum number of iterations                               10000
+  Derivative convergence criterion                       0.100D-04
+
+Input data file(s)
+  /Users/agarber/github/NTNU-workshop/05-cfa/efa_mplus/efa_geomin_oblique.dat
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns            17
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              BYS22A        BYS22C        BYS22D        BYS22E        BYS22F
+              ________      ________      ________      ________      ________
+ BYS22A         0.992
+ BYS22C         0.986         0.989
+ BYS22D         0.981         0.981         0.984
+ BYS22E         0.984         0.981         0.978         0.986
+ BYS22F         0.986         0.986         0.978         0.981         0.989
+ BYS22G         0.989         0.986         0.984         0.986         0.986
+ BYS22H         0.986         0.986         0.984         0.984         0.984
+ BYS24A         0.992         0.989         0.984         0.986         0.989
+ BYS24B         0.989         0.986         0.981         0.984         0.986
+ BYS24C         0.973         0.973         0.967         0.967         0.970
+ BYS24D         0.984         0.981         0.975         0.981         0.981
+ BYS24E         0.992         0.989         0.984         0.986         0.989
+ BYS24F         0.984         0.984         0.975         0.978         0.984
+ BYS22B         0.984         0.984         0.978         0.978         0.981
+
+
+           Covariance Coverage
+              BYS22G        BYS22H        BYS24A        BYS24B        BYS24C
+              ________      ________      ________      ________      ________
+ BYS22G         0.992
+ BYS22H         0.989         0.989
+ BYS24A         0.992         0.989         0.997
+ BYS24B         0.989         0.986         0.995         0.997
+ BYS24C         0.973         0.973         0.978         0.978         0.978
+ BYS24D         0.984         0.981         0.989         0.986         0.973
+ BYS24E         0.992         0.989         0.997         0.995         0.978
+ BYS24F         0.984         0.981         0.989         0.986         0.970
+ BYS22B         0.984         0.984         0.989         0.986         0.973
+
+
+           Covariance Coverage
+              BYS24D        BYS24E        BYS24F        BYS22B
+              ________      ________      ________      ________
+ BYS24D         0.989
+ BYS24E         0.989         0.997
+ BYS24F         0.981         0.989         0.989
+ BYS22B         0.981         0.989         0.981         0.989
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           Means
+              BYS22A        BYS22C        BYS22D        BYS22E        BYS22F
+              ________      ________      ________      ________      ________
+                1.515         1.231         1.157         1.245         1.039
+
+
+           Means
+              BYS22G        BYS22H        BYS24A        BYS24B        BYS24C
+              ________      ________      ________      ________      ________
+                1.189         1.269         2.386         1.485         2.597
+
+
+           Means
+              BYS24D        BYS24E        BYS24F        BYS22B
+              ________      ________      ________      ________
+                1.686         1.161         1.092         1.366
+
+
+           Covariances
+              BYS22A        BYS22C        BYS22D        BYS22E        BYS22F
+              ________      ________      ________      ________      ________
+ BYS22A         0.415
+ BYS22C         0.109         0.299
+ BYS22D         0.091         0.107         0.198
+ BYS22E         0.110         0.133         0.114         0.290
+ BYS22F         0.030         0.016         0.024         0.029         0.048
+ BYS22G         0.124         0.110         0.073         0.102         0.031
+ BYS22H         0.069         0.141         0.035         0.102         0.025
+ BYS24A         0.118         0.039         0.009         0.045        -0.026
+ BYS24B         0.122         0.060         0.078         0.032        -0.002
+ BYS24C         0.051         0.049        -0.003         0.015        -0.029
+ BYS24D         0.137         0.145         0.129         0.119        -0.005
+ BYS24E         0.045         0.064         0.082         0.056        -0.006
+ BYS24F         0.042         0.017         0.044         0.027        -0.004
+ BYS22B         0.108         0.069         0.086         0.063         0.005
+
+
+           Covariances
+              BYS22G        BYS22H        BYS24A        BYS24B        BYS24C
+              ________      ________      ________      ________      ________
+ BYS22G         0.198
+ BYS22H         0.084         0.330
+ BYS24A         0.044        -0.031         1.387
+ BYS24B         0.042        -0.008         0.456         0.907
+ BYS24C         0.005         0.011         0.451         0.337         1.179
+ BYS24D         0.103         0.037         0.321         0.330         0.251
+ BYS24E         0.043        -0.022         0.118         0.189         0.125
+ BYS24F         0.024        -0.002         0.060         0.079         0.070
+ BYS22B         0.065         0.038         0.128         0.206         0.146
+
+
+           Covariances
+              BYS24D        BYS24E        BYS24F        BYS22B
+              ________      ________      ________      ________
+ BYS24D         0.851
+ BYS24E         0.286         0.333
+ BYS24F         0.105         0.070         0.105
+ BYS22B         0.237         0.109         0.051         0.441
+
+
+           Correlations
+              BYS22A        BYS22C        BYS22D        BYS22E        BYS22F
+              ________      ________      ________      ________      ________
+ BYS22A         1.000
+ BYS22C         0.308         1.000
+ BYS22D         0.318         0.438         1.000
+ BYS22E         0.317         0.451         0.474         1.000
+ BYS22F         0.209         0.131         0.247         0.245         1.000
+ BYS22G         0.434         0.452         0.368         0.425         0.319
+ BYS22H         0.187         0.450         0.135         0.328         0.201
+ BYS24A         0.155         0.061         0.018         0.070        -0.102
+ BYS24B         0.198         0.116         0.184         0.062        -0.011
+ BYS24C         0.073         0.082        -0.005         0.026        -0.120
+ BYS24D         0.231         0.287         0.315         0.239        -0.023
+ BYS24E         0.122         0.203         0.321         0.181        -0.049
+ BYS24F         0.200         0.097         0.306         0.154        -0.050
+ BYS22B         0.252         0.190         0.291         0.176         0.034
+
+
+           Correlations
+              BYS22G        BYS22H        BYS24A        BYS24B        BYS24C
+              ________      ________      ________      ________      ________
+ BYS22G         1.000
+ BYS22H         0.327         1.000
+ BYS24A         0.085        -0.046         1.000
+ BYS24B         0.099        -0.014         0.407         1.000
+ BYS24C         0.010         0.018         0.353         0.325         1.000
+ BYS24D         0.251         0.070         0.296         0.376         0.251
+ BYS24E         0.169        -0.066         0.174         0.345         0.200
+ BYS24F         0.169        -0.009         0.156         0.255         0.199
+ BYS22B         0.219         0.100         0.163         0.326         0.202
+
+
+           Correlations
+              BYS24D        BYS24E        BYS24F        BYS22B
+              ________      ________      ________      ________
+ BYS24D         1.000
+ BYS24E         0.538         1.000
+ BYS24F         0.351         0.375         1.000
+ BYS22B         0.386         0.284         0.239         1.000
+
+
+     MAXIMUM LOG-LIKELIHOOD VALUE FOR THE UNRESTRICTED (H1) MODEL IS -3925.689
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     BYS22A                1.515       0.871       1.000   56.75%       1.000      1.000      1.000
+             363.000       0.415      -0.324       3.000    8.26%       2.000      2.000
+     BYS22C                1.232       2.288       1.000   82.87%       1.000      1.000      1.000
+             362.000       0.300       4.063       3.000    6.08%       1.000      1.000
+     BYS22D                1.156       2.943       1.000   87.78%       1.000      1.000      1.000
+             360.000       0.198       8.004       3.000    3.33%       1.000      1.000
+     BYS22E                1.247       2.115       1.000   80.61%       1.000      1.000      1.000
+             361.000       0.291       3.447       3.000    5.26%       1.000      1.000
+     BYS22F                1.039       6.248       1.000   96.69%       1.000      1.000      1.000
+             362.000       0.048      42.294       3.000    0.55%       1.000      1.000
+     BYS22G                1.190       2.298       1.000   83.20%       1.000      1.000      1.000
+             363.000       0.198       4.660       3.000    2.20%       1.000      1.000
+     BYS22H                1.271       2.008       1.000   79.56%       1.000      1.000      1.000
+             362.000       0.330       2.841       3.000    6.63%       1.000      2.000
+     BYS24A                2.386       0.766       1.000   24.11%       1.000      2.000      2.000
+             365.000       1.388      -0.142       5.000    8.77%       2.000      3.000
+     BYS24B                1.485       2.211       1.000   72.60%       1.000      1.000      1.000
+             365.000       0.907       4.403       5.000    3.01%       1.000      2.000
+     BYS24C                2.587       0.611       1.000   13.69%       2.000      2.000      2.000
+             358.000       1.170      -0.074       5.000    8.10%       3.000      3.000
+     BYS24D                1.685       1.613       1.000   53.59%       1.000      1.000      1.000
+             362.000       0.851       2.776       5.000    2.76%       2.000      2.000
+     BYS24E                1.162       4.347       1.000   90.41%       1.000      1.000      1.000
+             365.000       0.333      20.721       5.000    0.82%       1.000      1.000
+     BYS24F                1.091       3.765       1.000   91.99%       1.000      1.000      1.000
+             362.000       0.105      14.602       3.000    1.10%       1.000      1.000
+     BYS22B                1.365       1.577       1.000   74.03%       1.000      1.000      1.000
+             362.000       0.442       1.046       3.000   10.50%       1.000      2.000
+
+
+SUMMARY OF MODEL FIT INFORMATION
+
+
+                   Number of                   Degrees of
+     Model        Parameters      Chi-Square    Freedom     P-Value
+
+     1-factor          42            434.460        77       0.0000
+     2-factor          55            139.711        64       0.0000
+     3-factor          67             96.853        52       0.0002
+
+                                               Degrees of
+     Models Compared              Chi-Square    Freedom     P-Value
+
+     1-factor against 2-factor       825.714        13       0.0000
+     2-factor against 3-factor        35.139        12       0.0004
+
+
+
+RESULTS FOR EXPLORATORY FACTOR ANALYSIS
+
+
+           EIGENVALUES FOR SAMPLE CORRELATION MATRIX
+                  1             2             3             4             5
+              ________      ________      ________      ________      ________
+                3.823         2.202         1.160         0.968         0.788
+
+
+           EIGENVALUES FOR SAMPLE CORRELATION MATRIX
+                  6             7             8             9            10
+              ________      ________      ________      ________      ________
+                0.760         0.722         0.655         0.609         0.579
+
+
+           EIGENVALUES FOR SAMPLE CORRELATION MATRIX
+                 11            12            13            14
+              ________      ________      ________      ________
+                0.506         0.466         0.406         0.357
+
+
+           AVERAGE EIGENVALUES FROM PARALLEL ANALYSIS
+                  1             2             3             4             5
+              ________      ________      ________      ________      ________
+                1.336         1.256         1.200         1.149         1.100
+
+
+           AVERAGE EIGENVALUES FROM PARALLEL ANALYSIS
+                  6             7             8             9            10
+              ________      ________      ________      ________      ________
+                1.055         1.018         0.972         0.929         0.886
+
+
+           AVERAGE EIGENVALUES FROM PARALLEL ANALYSIS
+                 11            12            13            14
+              ________      ________      ________      ________
+                0.843         0.802         0.756         0.698
+
+
+           95 PERCENTILE EIGENVALUES FROM PARALLEL ANALYSIS
+                  1             2             3             4             5
+              ________      ________      ________      ________      ________
+                1.418         1.307         1.246         1.192         1.126
+
+
+           95 PERCENTILE EIGENVALUES FROM PARALLEL ANALYSIS
+                  6             7             8             9            10
+              ________      ________      ________      ________      ________
+                1.083         1.046         1.013         0.962         0.931
+
+
+           95 PERCENTILE EIGENVALUES FROM PARALLEL ANALYSIS
+                 11            12            13            14
+              ________      ________      ________      ________
+                0.888         0.843         0.800         0.752
+
+
+EXPLORATORY FACTOR ANALYSIS WITH 1 FACTOR(S):
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       42
+
+Loglikelihood
+
+          H0 Value                       -4187.218
+          H0 Scaling Correction Factor      2.9647
+            for MLR
+          H1 Value                       -3925.689
+          H1 Scaling Correction Factor      1.8254
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                    8458.436
+          Bayesian (BIC)                  8622.347
+          Sample-Size Adjusted BIC        8489.097
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                            434.460*
+          Degrees of Freedom                    77
+          P-Value                           0.0000
+          Scaling Correction Factor         1.2039
+            for MLR
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.113
+          90 Percent C.I.                    0.102  0.123
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                0.520
+          TLI                                0.433
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                            835.594
+          Degrees of Freedom                    91
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.106
+
+
+
+MINIMUM ROTATION FUNCTION VALUE       3.09706
+
+
+
+           GEOMIN ROTATED LOADINGS (* significant at 5% level)
+                  1
+              ________
+ BYS22A         0.518*
+ BYS22C         0.605*
+ BYS22D         0.642*
+ BYS22E         0.586*
+ BYS22F         0.233
+ BYS22G         0.597*
+ BYS22H         0.328*
+ BYS24A         0.248*
+ BYS24B         0.380*
+ BYS24C         0.208
+ BYS24D         0.576*
+ BYS24E         0.476*
+ BYS24F         0.404*
+ BYS22B         0.465*
+
+
+           GEOMIN FACTOR CORRELATIONS (* significant at 5% level)
+                  1
+              ________
+      1         1.000
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              BYS22A        BYS22C        BYS22D        BYS22E        BYS22F
+              ________      ________      ________      ________      ________
+                0.731         0.634         0.588         0.656         0.946
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              BYS22G        BYS22H        BYS24A        BYS24B        BYS24C
+              ________      ________      ________      ________      ________
+                0.644         0.892         0.939         0.856         0.957
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              BYS24D        BYS24E        BYS24F        BYS22B
+              ________      ________      ________      ________
+                0.668         0.774         0.836         0.783
+
+
+           S.E. GEOMIN ROTATED LOADINGS
+                  1
+              ________
+ BYS22A         0.067
+ BYS22C         0.104
+ BYS22D         0.078
+ BYS22E         0.118
+ BYS22F         0.160
+ BYS22G         0.110
+ BYS22H         0.140
+ BYS24A         0.116
+ BYS24B         0.146
+ BYS24C         0.119
+ BYS24D         0.145
+ BYS24E         0.167
+ BYS24F         0.127
+ BYS22B         0.091
+
+
+           S.E. GEOMIN FACTOR CORRELATIONS
+                  1
+              ________
+      1         0.000
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              BYS22A        BYS22C        BYS22D        BYS22E        BYS22F
+              ________      ________      ________      ________      ________
+                0.070         0.126         0.100         0.139         0.075
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              BYS22G        BYS22H        BYS24A        BYS24B        BYS24C
+              ________      ________      ________      ________      ________
+                0.132         0.092         0.057         0.111         0.050
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              BYS24D        BYS24E        BYS24F        BYS22B
+              ________      ________      ________      ________
+                0.167         0.159         0.102         0.085
+
+
+           Est./S.E. GEOMIN ROTATED LOADINGS
+                  1
+              ________
+ BYS22A         7.694
+ BYS22C         5.809
+ BYS22D         8.252
+ BYS22E         4.953
+ BYS22F         1.459
+ BYS22G         5.415
+ BYS22H         2.345
+ BYS24A         2.144
+ BYS24B         2.601
+ BYS24C         1.744
+ BYS24D         3.982
+ BYS24E         2.852
+ BYS24F         3.195
+ BYS22B         5.107
+
+
+           Est./S.E. GEOMIN FACTOR CORRELATIONS
+                  1
+              ________
+      1         0.000
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              BYS22A        BYS22C        BYS22D        BYS22E        BYS22F
+              ________      ________      ________      ________      ________
+               10.464         5.041         5.895         4.730        12.673
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              BYS22G        BYS22H        BYS24A        BYS24B        BYS24C
+              ________      ________      ________      ________      ________
+                4.888         9.714        16.401         7.725        19.301
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              BYS24D        BYS24E        BYS24F        BYS22B
+              ________      ________      ________      ________
+                4.003         4.876         8.172         9.233
+
+
+EXPLORATORY FACTOR ANALYSIS WITH 2 FACTOR(S):
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       55
+
+Loglikelihood
+
+          H0 Value                       -4021.166
+          H0 Scaling Correction Factor      2.3590
+            for MLR
+          H1 Value                       -3925.689
+          H1 Scaling Correction Factor      1.8254
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                    8152.331
+          Bayesian (BIC)                  8366.976
+          Sample-Size Adjusted BIC        8192.483
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                            139.711*
+          Degrees of Freedom                    64
+          P-Value                           0.0000
+          Scaling Correction Factor         1.3668
+            for MLR
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.057
+          90 Percent C.I.                    0.044  0.070
+          Probability RMSEA <= .05           0.181
+
+CFI/TLI
+
+          CFI                                0.898
+          TLI                                0.855
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                            835.594
+          Degrees of Freedom                    91
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.046
+
+
+
+MINIMUM ROTATION FUNCTION VALUE       0.80146
+
+
+
+           GEOMIN ROTATED LOADINGS (* significant at 5% level)
+                  1             2
+              ________      ________
+ BYS22A         0.459*        0.130*
+ BYS22C         0.661*        0.035
+ BYS22D         0.545*        0.189*
+ BYS22E         0.670*       -0.005
+ BYS22F         0.466*       -0.244*
+ BYS22G         0.678*        0.003
+ BYS22H         0.561*       -0.212*
+ BYS24A        -0.133         0.495*
+ BYS24B        -0.093         0.627*
+ BYS24C        -0.156         0.472*
+ BYS24D         0.106         0.681*
+ BYS24E         0.013         0.640*
+ BYS24F         0.043         0.484*
+ BYS22B         0.144         0.442*
+
+
+           GEOMIN FACTOR CORRELATIONS (* significant at 5% level)
+                  1             2
+              ________      ________
+      1         1.000
+      2         0.384*        1.000
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              BYS22A        BYS22C        BYS22D        BYS22E        BYS22F
+              ________      ________      ________      ________      ________
+                0.727         0.544         0.588         0.553         0.810
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              BYS22G        BYS22H        BYS24A        BYS24B        BYS24C
+              ________      ________      ________      ________      ________
+                0.538         0.732         0.788         0.643         0.810
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              BYS24D        BYS24E        BYS24F        BYS22B
+              ________      ________      ________      ________
+                0.470         0.583         0.748         0.734
+
+
+           S.E. GEOMIN ROTATED LOADINGS
+                  1             2
+              ________      ________
+ BYS22A         0.068         0.064
+ BYS22C         0.067         0.074
+ BYS22D         0.098         0.091
+ BYS22E         0.055         0.059
+ BYS22F         0.137         0.072
+ BYS22G         0.067         0.047
+ BYS22H         0.072         0.075
+ BYS24A         0.090         0.073
+ BYS24B         0.095         0.078
+ BYS24C         0.090         0.075
+ BYS24D         0.079         0.069
+ BYS24E         0.036         0.079
+ BYS24F         0.082         0.094
+ BYS22B         0.097         0.072
+
+
+           S.E. GEOMIN FACTOR CORRELATIONS
+                  1             2
+              ________      ________
+      1         0.000
+      2         0.112         0.000
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              BYS22A        BYS22C        BYS22D        BYS22E        BYS22F
+              ________      ________      ________      ________      ________
+                0.055         0.077         0.092         0.073         0.114
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              BYS22G        BYS22H        BYS24A        BYS24B        BYS24C
+              ________      ________      ________      ________      ________
+                0.089         0.069         0.059         0.081         0.061
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              BYS24D        BYS24E        BYS24F        BYS22B
+              ________      ________      ________      ________
+                0.075         0.097         0.083         0.050
+
+
+           Est./S.E. GEOMIN ROTATED LOADINGS
+                  1             2
+              ________      ________
+ BYS22A         6.743         2.038
+ BYS22C         9.850         0.473
+ BYS22D         5.594         2.084
+ BYS22E        12.158        -0.082
+ BYS22F         3.414        -3.383
+ BYS22G        10.192         0.058
+ BYS22H         7.815        -2.813
+ BYS24A        -1.486         6.778
+ BYS24B        -0.983         8.076
+ BYS24C        -1.736         6.252
+ BYS24D         1.332         9.903
+ BYS24E         0.359         8.099
+ BYS24F         0.534         5.164
+ BYS22B         1.489         6.170
+
+
+           Est./S.E. GEOMIN FACTOR CORRELATIONS
+                  1             2
+              ________      ________
+      1         0.000
+      2         3.434         0.000
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              BYS22A        BYS22C        BYS22D        BYS22E        BYS22F
+              ________      ________      ________      ________      ________
+               13.158         7.025         6.362         7.548         7.097
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              BYS22G        BYS22H        BYS24A        BYS24B        BYS24C
+              ________      ________      ________      ________      ________
+                6.029        10.586        13.439         7.947        13.206
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              BYS24D        BYS24E        BYS24F        BYS22B
+              ________      ________      ________      ________
+                6.241         6.033         8.976        14.789
+
+
+           FACTOR STRUCTURE
+                  1             2
+              ________      ________
+ BYS22A         0.509         0.306
+ BYS22C         0.674         0.289
+ BYS22D         0.618         0.398
+ BYS22E         0.668         0.252
+ BYS22F         0.373        -0.065
+ BYS22G         0.679         0.263
+ BYS22H         0.479         0.003
+ BYS24A         0.057         0.444
+ BYS24B         0.148         0.592
+ BYS24C         0.025         0.412
+ BYS24D         0.367         0.722
+ BYS24E         0.259         0.645
+ BYS24F         0.229         0.501
+ BYS22B         0.314         0.498
+
+
+EXPLORATORY FACTOR ANALYSIS WITH 3 FACTOR(S):
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       67
+
+Loglikelihood
+
+          H0 Value                       -3982.659
+          H0 Scaling Correction Factor      2.3290
+            for MLR
+          H1 Value                       -3925.689
+          H1 Scaling Correction Factor      1.8254
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                    8099.318
+          Bayesian (BIC)                  8360.795
+          Sample-Size Adjusted BIC        8148.230
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                             96.853*
+          Degrees of Freedom                    52
+          P-Value                           0.0002
+          Scaling Correction Factor         1.1764
+            for MLR
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.049
+          90 Percent C.I.                    0.033  0.063
+          Probability RMSEA <= .05           0.543
+
+CFI/TLI
+
+          CFI                                0.940
+          TLI                                0.895
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                            835.594
+          Degrees of Freedom                    91
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.032
+
+
+
+MINIMUM ROTATION FUNCTION VALUE       0.42986
+
+
+
+           GEOMIN ROTATED LOADINGS (* significant at 5% level)
+                  1             2             3
+              ________      ________      ________
+ BYS22A         0.485*        0.207*       -0.039
+ BYS22C         0.653*        0.092         0.029
+ BYS22D         0.478*       -0.009         0.409*
+ BYS22E         0.627*        0.006         0.111
+ BYS22F         0.420*       -0.181        -0.017
+ BYS22G         0.663*        0.079         0.007
+ BYS22H         0.588*       -0.012        -0.236
+ BYS24A         0.001         0.689*       -0.251*
+ BYS24B         0.007         0.634*        0.015
+ BYS24C        -0.042         0.587*       -0.164
+ BYS24D         0.132         0.482*        0.336
+ BYS24E        -0.033         0.326         0.566
+ BYS24F         0.037         0.273         0.347*
+ BYS22B         0.182*        0.353*        0.155
+
+
+           GEOMIN FACTOR CORRELATIONS (* significant at 5% level)
+                  1             2             3
+              ________      ________      ________
+      1         1.000
+      2         0.144         1.000
+      3         0.263         0.360*        1.000
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              BYS22A        BYS22C        BYS22D        BYS22E        BYS22F
+              ________      ________      ________      ________      ________
+                0.707         0.535         0.505         0.556         0.814
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              BYS22G        BYS22H        BYS24A        BYS24B        BYS24C
+              ________      ________      ________      ________      ________
+                0.537         0.671         0.586         0.590         0.699
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              BYS24D        BYS24E        BYS24F        BYS22B
+              ________      ________      ________      ________
+                0.479         0.452         0.726         0.745
+
+
+           S.E. GEOMIN ROTATED LOADINGS
+                  1             2             3
+              ________      ________      ________
+ BYS22A         0.074         0.103         0.099
+ BYS22C         0.102         0.089         0.251
+ BYS22D         0.115         0.023         0.157
+ BYS22E         0.068         0.039         0.144
+ BYS22F         0.132         0.131         0.141
+ BYS22G         0.068         0.074         0.047
+ BYS22H         0.139         0.031         0.253
+ BYS24A         0.019         0.154         0.119
+ BYS24B         0.060         0.057         0.086
+ BYS24C         0.086         0.094         0.235
+ BYS24D         0.089         0.206         0.286
+ BYS24E         0.053         0.272         0.306
+ BYS24F         0.091         0.145         0.144
+ BYS22B         0.090         0.107         0.123
+
+
+           S.E. GEOMIN FACTOR CORRELATIONS
+                  1             2             3
+              ________      ________      ________
+      1         0.000
+      2         0.112         0.000
+      3         0.173         0.173         0.000
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              BYS22A        BYS22C        BYS22D        BYS22E        BYS22F
+              ________      ________      ________      ________      ________
+                0.076         0.084         0.134         0.073         0.113
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              BYS22G        BYS22H        BYS24A        BYS24B        BYS24C
+              ________      ________      ________      ________      ________
+                0.091         0.148         0.150         0.063         0.087
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              BYS24D        BYS24E        BYS24F        BYS22B
+              ________      ________      ________      ________
+                0.082         0.189         0.112         0.052
+
+
+           Est./S.E. GEOMIN ROTATED LOADINGS
+                  1             2             3
+              ________      ________      ________
+ BYS22A         6.546         2.015        -0.394
+ BYS22C         6.421         1.037         0.117
+ BYS22D         4.171        -0.386         2.613
+ BYS22E         9.218         0.147         0.771
+ BYS22F         3.185        -1.382        -0.118
+ BYS22G         9.686         1.061         0.143
+ BYS22H         4.238        -0.386        -0.935
+ BYS24A         0.027         4.477        -2.112
+ BYS24B         0.114        11.173         0.174
+ BYS24C        -0.490         6.246        -0.695
+ BYS24D         1.495         2.340         1.174
+ BYS24E        -0.626         1.200         1.851
+ BYS24F         0.410         1.877         2.400
+ BYS22B         2.037         3.317         1.255
+
+
+           Est./S.E. GEOMIN FACTOR CORRELATIONS
+                  1             2             3
+              ________      ________      ________
+      1         0.000
+      2         1.295         0.000
+      3         1.522         2.080         0.000
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              BYS22A        BYS22C        BYS22D        BYS22E        BYS22F
+              ________      ________      ________      ________      ________
+                9.357         6.379         3.761         7.579         7.196
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              BYS22G        BYS22H        BYS24A        BYS24B        BYS24C
+              ________      ________      ________      ________      ________
+                5.925         4.537         3.904         9.335         8.015
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              BYS24D        BYS24E        BYS24F        BYS22B
+              ________      ________      ________      ________
+                5.847         2.391         6.455        14.372
+
+
+           FACTOR STRUCTURE
+                  1             2             3
+              ________      ________      ________
+ BYS22A         0.505         0.263         0.163
+ BYS22C         0.674         0.197         0.234
+ BYS22D         0.584         0.207         0.532
+ BYS22E         0.657         0.136         0.278
+ BYS22F         0.390        -0.126         0.029
+ BYS22G         0.676         0.177         0.209
+ BYS22H         0.524        -0.012        -0.086
+ BYS24A         0.034         0.599        -0.003
+ BYS24B         0.102         0.640         0.245
+ BYS24C         0.000         0.522         0.037
+ BYS24D         0.291         0.622         0.544
+ BYS24E         0.163         0.525         0.675
+ BYS24F         0.168         0.403         0.455
+ BYS22B         0.274         0.435         0.330
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Histograms (sample values)
+  Scatterplots (sample values)
+  Eigenvalues for exploratory factor analysis
+
+     Beginning Time:  15:13:18
+        Ending Time:  15:13:18
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen

@@ -1,0 +1,657 @@
+Mplus VERSION 8.6 (Mac)
+MUTHEN & MUTHEN
+05/28/2021  11:13 AM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  m1 mediate framing
+  DATA:
+  FILE = "/Users/agarber/github/NTNU-workshop/15-mediation/mplus_files/framing.dat";
+
+  VARIABLE:
+  NAMES = cond anx age educ gender income emo p_harm tone eth treat english immigr
+       anti_info cong_mesg;
+   MISSING=.;
+   usevar =
+      cong_mesg emo treat age
+      educ gender income;
+
+      categorical = cong_mesg; ! outcome is binary
+  ANALYSIS:
+  bootstrap = 500; ! set number of bootstrap samples (500 for example purposes)
+  MODEL:
+  emo on treat age educ gender income;            ! mediator linear regression
+      cong_mesg on emo treat age educ gender income;  ! outcome GLM regression
+
+      Model indirect:
+      cong_mesg ind treat;
+  OUTPUT:
+  sampstat standardized cinterval (bcbootstrap); ! bias-corrected bootstrap
+  PLOT:
+  type=plot2;
+
+
+
+*** WARNING in VARIABLE command
+  Note that only the first 8 characters of variable names are used in the output.
+  Shorten variable names to avoid any confusion.
+*** WARNING in PLOT command
+  Note that only the first 8 characters of variable names are used in plots.
+  If variable names are not unique within the first 8 characters, problems
+  may occur.
+   2 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+m1 mediate framing
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         265
+
+Number of dependent variables                                    2
+Number of independent variables                                  5
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   EMO
+
+  Binary and ordered categorical (ordinal)
+   CONG_MES
+
+Observed independent variables
+   TREAT       AGE         EDUC        GENDER      INCOME
+
+
+Estimator                                                    WLSMV
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Number of bootstrap draws
+    Requested                                                  500
+    Completed                                                  500
+Parameterization                                             DELTA
+Link                                                        PROBIT
+
+Input data file(s)
+  /Users/agarber/github/NTNU-workshop/15-mediation/mplus_files/framing.dat
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             1
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              CONG_MES      EMO
+              ________      ________
+ CONG_MES       1.000
+ EMO            1.000         1.000
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    CONG_MES
+      Category 1    0.668          177.000
+      Category 2    0.332           88.000
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           MEANS/INTERCEPTS/THRESHOLDS
+              CONG_MES      EMO
+              ________      ________
+                0.140         7.655
+
+
+           SLOPES
+              TREAT         AGE           EDUC          GENDER        INCOME
+              ________      ________      ________      ________      ________
+ CONG_MES       0.267         0.006        -0.277        -0.346         0.060
+ EMO            1.363         0.001        -0.998         0.060        -0.035
+
+
+           CORRELATION MATRIX (WITH VARIANCES ON THE DIAGONAL)
+              CONG_MES      EMO
+              ________      ________
+ CONG_MES
+ EMO            0.451         6.226
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     EMO                   4.974       0.260       1.000   13.21%       2.000      4.000      5.000
+             265.000       7.671      -0.996      10.000    8.30%       5.000      8.000
+     TREAT                 0.257       1.115       0.000   74.34%       0.000      0.000      0.000
+             265.000       0.191      -0.758       1.000   25.66%       0.000      1.000
+     AGE                  47.766       0.183      18.000    0.75%      31.000     43.000     47.000
+             265.000     254.021      -0.837      85.000    0.75%      53.000     62.000
+     EDUC                  2.815      -0.130       1.000    7.55%       2.000      2.000      3.000
+             265.000       0.928      -1.154       4.000   31.32%       3.000      4.000
+     GENDER                1.525      -0.098       1.000   47.55%       1.000      1.000      2.000
+             265.000       0.249      -1.990       2.000   52.45%       2.000      2.000
+     INCOME               10.796      -0.431       1.000    2.26%       7.000     10.000     11.000
+             265.000      15.317      -0.125      19.000    1.13%      12.000     14.000
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       14
+
+Chi-Square Test of Model Fit
+
+          Value                              0.000*
+          Degrees of Freedom                     0
+          P-Value                           0.0000
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.000
+          90 Percent C.I.                    0.000  0.000
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                1.000
+          TLI                                1.000
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                            103.077
+          Degrees of Freedom                    11
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.000
+
+Optimum Function Value for Weighted Least-Squares Estimator
+
+          Value                     0.12171520D-11
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ EMO      ON
+    TREAT              1.363      0.361      3.776      0.000
+    AGE                0.001      0.009      0.155      0.877
+    EDUC              -0.998      0.160     -6.253      0.000
+    GENDER             0.060      0.317      0.189      0.850
+    INCOME            -0.035      0.045     -0.786      0.432
+
+ CONG_MES ON
+    EMO                0.181      0.026      7.058      0.000
+    TREAT              0.021      0.178      0.116      0.908
+    AGE                0.005      0.005      1.060      0.289
+    EDUC              -0.097      0.089     -1.081      0.280
+    GENDER            -0.357      0.161     -2.216      0.027
+    INCOME             0.066      0.022      3.048      0.002
+
+ Intercepts
+    EMO                7.655      0.873      8.765      0.000
+
+ Thresholds
+    CONG_MES$1         1.525      0.514      2.968      0.003
+
+ Residual Variances
+    EMO                6.226      0.459     13.579      0.000
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ EMO      ON
+    TREAT              0.215      0.057      3.794      0.000
+    AGE                0.008      0.053      0.156      0.876
+    EDUC              -0.348      0.055     -6.313      0.000
+    GENDER             0.011      0.057      0.189      0.850
+    INCOME            -0.050      0.063     -0.797      0.425
+
+ CONG_MES ON
+    EMO                0.468      0.066      7.057      0.000
+    TREAT              0.008      0.071      0.119      0.905
+    AGE                0.079      0.072      1.094      0.274
+    EDUC              -0.087      0.077     -1.127      0.260
+    GENDER            -0.167      0.071     -2.334      0.020
+    INCOME             0.243      0.075      3.239      0.001
+
+ Intercepts
+    EMO                2.763      0.313      8.814      0.000
+
+ Thresholds
+    CONG_MES$1         1.425      0.477      2.986      0.003
+
+ Residual Variances
+    EMO                0.811      0.037     21.900      0.000
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ EMO      ON
+    TREAT              0.492      0.129      3.800      0.000
+    AGE                0.001      0.003      0.155      0.877
+    EDUC              -0.360      0.056     -6.480      0.000
+    GENDER             0.022      0.114      0.189      0.850
+    INCOME            -0.013      0.016     -0.784      0.433
+
+ CONG_MES ON
+    EMO                0.468      0.066      7.057      0.000
+    TREAT              0.019      0.162      0.119      0.905
+    AGE                0.005      0.005      1.089      0.276
+    EDUC              -0.090      0.080     -1.128      0.259
+    GENDER            -0.333      0.143     -2.330      0.020
+    INCOME             0.062      0.019      3.280      0.001
+
+ Intercepts
+    EMO                2.763      0.313      8.814      0.000
+
+ Thresholds
+    CONG_MES$1         1.425      0.477      2.986      0.003
+
+ Residual Variances
+    EMO                0.811      0.037     21.900      0.000
+
+
+STD Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ EMO      ON
+    TREAT              1.363      0.361      3.776      0.000
+    AGE                0.001      0.009      0.155      0.877
+    EDUC              -0.998      0.160     -6.253      0.000
+    GENDER             0.060      0.317      0.189      0.850
+    INCOME            -0.035      0.045     -0.786      0.432
+
+ CONG_MES ON
+    EMO                0.181      0.026      7.058      0.000
+    TREAT              0.021      0.178      0.116      0.908
+    AGE                0.005      0.005      1.060      0.289
+    EDUC              -0.097      0.089     -1.081      0.280
+    GENDER            -0.357      0.161     -2.216      0.027
+    INCOME             0.066      0.022      3.048      0.002
+
+ Intercepts
+    EMO                7.655      0.873      8.765      0.000
+
+ Thresholds
+    CONG_MES$1         1.525      0.514      2.968      0.003
+
+ Residual Variances
+    EMO                6.226      0.459     13.579      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed   Residual
+    Variable        Estimate       S.E.  Est./S.E.    P-Value    Variance
+
+    CONG_MES           0.305      0.062      4.898      0.000      0.796
+    EMO                0.189      0.037      5.101      0.000
+
+
+TOTAL, TOTAL INDIRECT, SPECIFIC INDIRECT, AND DIRECT EFFECTS
+
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Effects from TREAT to CONG_MES
+
+  Total                0.267      0.190      1.404      0.160
+  Total indirect       0.246      0.077      3.195      0.001
+
+  Specific indirect 1
+    CONG_MES
+    EMO
+    TREAT              0.246      0.077      3.195      0.001
+
+  Direct
+    CONG_MES
+    TREAT              0.021      0.178      0.116      0.908
+
+
+
+STANDARDIZED TOTAL, TOTAL INDIRECT, SPECIFIC INDIRECT, AND DIRECT EFFECTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Effects from TREAT to CONG_MES
+
+  Total                0.109      0.075      1.453      0.146
+  Total indirect       0.101      0.031      3.253      0.001
+
+  Specific indirect 1
+    CONG_MES
+    EMO
+    TREAT              0.101      0.031      3.253      0.001
+
+  Direct
+    CONG_MES
+    TREAT              0.008      0.071      0.119      0.905
+
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Effects from TREAT to CONG_MES
+
+  Total                0.250      0.172      1.455      0.146
+  Total indirect       0.230      0.071      3.260      0.001
+
+  Specific indirect 1
+    CONG_MES
+    EMO
+    TREAT              0.230      0.071      3.260      0.001
+
+  Direct
+    CONG_MES
+    TREAT              0.019      0.162      0.119      0.905
+
+
+
+STD Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Effects from TREAT to CONG_MES
+
+  Total                0.267      0.190      1.404      0.160
+  Total indirect       0.246      0.077      3.195      0.001
+
+  Specific indirect 1
+    CONG_MES
+    EMO
+    TREAT              0.246      0.077      3.195      0.001
+
+  Direct
+    CONG_MES
+    TREAT              0.021      0.178      0.116      0.908
+
+
+
+
+CONFIDENCE INTERVALS OF MODEL RESULTS
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ EMO      ON
+    TREAT            0.375       0.591       0.755       1.363       1.950       2.088       2.360
+    AGE             -0.023      -0.017      -0.015       0.001       0.016       0.019       0.024
+    EDUC            -1.401      -1.310      -1.262      -0.998      -0.707      -0.660      -0.591
+    GENDER          -0.684      -0.563      -0.423       0.060       0.636       0.713       0.921
+    INCOME          -0.153      -0.124      -0.111      -0.035       0.034       0.048       0.077
+
+ CONG_MES ON
+    EMO              0.106       0.119       0.130       0.181       0.219       0.224       0.237
+    TREAT           -0.426      -0.313      -0.270       0.021       0.315       0.375       0.489
+    AGE             -0.008      -0.004      -0.003       0.005       0.014       0.015       0.019
+    EDUC            -0.352      -0.266      -0.249      -0.097       0.048       0.071       0.148
+    GENDER          -0.828      -0.670      -0.606      -0.357      -0.088      -0.063       0.039
+    INCOME           0.004       0.021       0.030       0.066       0.103       0.110       0.124
+
+ Intercepts
+    EMO              5.681       5.990       6.237       7.655       9.170       9.362       9.846
+
+ Thresholds
+    CONG_MES         0.153       0.615       0.758       1.525       2.394       2.505       2.909
+
+ Residual Variances
+    EMO              5.250       5.469       5.612       6.226       7.114       7.322       7.605
+
+
+CONFIDENCE INTERVALS OF STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ EMO      ON
+    TREAT            0.041       0.088       0.119       0.215       0.301       0.325       0.346
+    AGE             -0.133      -0.095      -0.084       0.008       0.091       0.104       0.134
+    EDUC            -0.475      -0.459      -0.436      -0.348      -0.253      -0.228      -0.207
+    GENDER          -0.123      -0.102      -0.076       0.011       0.113       0.133       0.160
+    INCOME          -0.203      -0.175      -0.156      -0.050       0.048       0.065       0.107
+
+ CONG_MES ON
+    EMO              0.275       0.325       0.348       0.468       0.574       0.589       0.614
+    TREAT           -0.176      -0.121      -0.108       0.008       0.124       0.150       0.190
+    AGE             -0.105      -0.063      -0.039       0.079       0.197       0.212       0.259
+    EDUC            -0.301      -0.234      -0.214      -0.087       0.041       0.061       0.115
+    GENDER          -0.354      -0.303      -0.284      -0.167      -0.047      -0.031       0.018
+    INCOME           0.016       0.093       0.114       0.243       0.365       0.377       0.403
+
+ Intercepts
+    EMO              2.048       2.219       2.287       2.763       3.327       3.376       3.544
+
+ Thresholds
+    CONG_MES         0.270       0.644       0.707       1.425       2.233       2.392       2.774
+
+ Residual Variances
+    EMO              0.727       0.751       0.764       0.811       0.878       0.889       0.901
+
+
+STDY Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ EMO      ON
+    TREAT            0.136       0.219       0.275       0.492       0.704       0.748       0.827
+    AGE             -0.008      -0.006      -0.005       0.001       0.006       0.007       0.008
+    EDUC            -0.497      -0.472      -0.453      -0.360      -0.264      -0.244      -0.218
+    GENDER          -0.245      -0.204      -0.154       0.022       0.227       0.266       0.322
+    INCOME          -0.056      -0.045      -0.040      -0.013       0.013       0.018       0.028
+
+ CONG_MES ON
+    EMO              0.275       0.325       0.348       0.468       0.574       0.589       0.614
+    TREAT           -0.391      -0.289      -0.249       0.019       0.278       0.341       0.425
+    AGE             -0.007      -0.004      -0.003       0.005       0.013       0.013       0.016
+    EDUC            -0.308      -0.239      -0.221      -0.090       0.044       0.064       0.119
+    GENDER          -0.707      -0.612      -0.567      -0.333      -0.093      -0.062       0.037
+    INCOME           0.004       0.019       0.029       0.062       0.092       0.096       0.106
+
+ Intercepts
+    EMO              2.048       2.219       2.287       2.763       3.327       3.376       3.544
+
+ Thresholds
+    CONG_MES         0.270       0.644       0.707       1.425       2.233       2.392       2.774
+
+ Residual Variances
+    EMO              0.727       0.751       0.764       0.811       0.878       0.889       0.901
+
+
+STD Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ EMO      ON
+    TREAT            0.375       0.591       0.755       1.363       1.950       2.088       2.360
+    AGE             -0.023      -0.017      -0.015       0.001       0.016       0.019       0.024
+    EDUC            -1.401      -1.310      -1.262      -0.998      -0.707      -0.660      -0.591
+    GENDER          -0.684      -0.563      -0.423       0.060       0.636       0.713       0.921
+    INCOME          -0.153      -0.124      -0.111      -0.035       0.034       0.048       0.077
+
+ CONG_MES ON
+    EMO              0.106       0.119       0.130       0.181       0.219       0.224       0.237
+    TREAT           -0.426      -0.313      -0.270       0.021       0.315       0.375       0.489
+    AGE             -0.008      -0.004      -0.003       0.005       0.014       0.015       0.019
+    EDUC            -0.352      -0.266      -0.249      -0.097       0.048       0.071       0.148
+    GENDER          -0.828      -0.670      -0.606      -0.357      -0.088      -0.063       0.039
+    INCOME           0.004       0.021       0.030       0.066       0.103       0.110       0.124
+
+ Intercepts
+    EMO              5.681       5.990       6.237       7.655       9.170       9.362       9.846
+
+ Thresholds
+    CONG_MES         0.153       0.615       0.758       1.525       2.394       2.505       2.909
+
+ Residual Variances
+    EMO              5.250       5.469       5.612       6.226       7.114       7.322       7.605
+
+
+CONFIDENCE INTERVALS OF TOTAL, TOTAL INDIRECT, SPECIFIC INDIRECT, AND DIRECT EFFECTS
+
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+Effects from TREAT to CONG_MES
+
+  Total             -0.358      -0.145      -0.011       0.267       0.561       0.630       0.783
+  Total indirect     0.044       0.102       0.130       0.246       0.373       0.410       0.470
+
+  Specific indirect 1
+    CONG_MES
+    EMO
+    TREAT            0.044       0.102       0.130       0.246       0.373       0.410       0.470
+
+  Direct
+    CONG_MES
+    TREAT           -0.426      -0.313      -0.270       0.021       0.315       0.375       0.489
+
+
+
+CONFIDENCE INTERVALS OF STANDARDIZED TOTAL, TOTAL INDIRECT, SPECIFIC INDIRECT, AND DIRECT EFFECTS
+
+
+STDYX Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+Effects from TREAT to CONG_MES
+
+  Total             -0.119      -0.056      -0.002       0.109       0.225       0.255       0.296
+  Total indirect     0.025       0.047       0.057       0.101       0.158       0.178       0.191
+
+  Specific indirect 1
+    CONG_MES
+    EMO
+    TREAT            0.025       0.047       0.057       0.101       0.158       0.178       0.191
+
+  Direct
+    CONG_MES
+    TREAT           -0.176      -0.121      -0.108       0.008       0.124       0.150       0.190
+
+
+
+STDY Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+Effects from TREAT to CONG_MES
+
+  Total             -0.271      -0.124      -0.004       0.250       0.521       0.581       0.722
+  Total indirect     0.059       0.103       0.129       0.230       0.367       0.401       0.429
+
+  Specific indirect 1
+    CONG_MES
+    EMO
+    TREAT            0.059       0.103       0.129       0.230       0.367       0.401       0.429
+
+  Direct
+    CONG_MES
+    TREAT           -0.391      -0.289      -0.249       0.019       0.278       0.341       0.425
+
+
+
+STD Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+Effects from TREAT to CONG_MES
+
+  Total             -0.358      -0.145      -0.011       0.267       0.561       0.630       0.783
+  Total indirect     0.044       0.102       0.130       0.246       0.373       0.410       0.470
+
+  Specific indirect 1
+    CONG_MES
+    EMO
+    TREAT            0.044       0.102       0.130       0.246       0.373       0.410       0.470
+
+  Direct
+    CONG_MES
+    TREAT           -0.426      -0.313      -0.270       0.021       0.315       0.375       0.489
+
+
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Sample proportions and estimated probabilities
+  Bootstrap distributions
+
+     Beginning Time:  11:13:57
+        Ending Time:  11:13:58
+       Elapsed Time:  00:00:01
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen

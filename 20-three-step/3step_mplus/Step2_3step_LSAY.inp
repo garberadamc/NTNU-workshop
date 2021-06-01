@@ -1,0 +1,36 @@
+TITLE:
+Step2 - 3step LSAY - Lab9
+DATA:
+FILE = "/Users/agarber/github/NTNU-workshop/20-three-step/3step_mplus/Step2_3step_LSAY.dat";
+ 
+VARIABLE:
+NAMES = ENJOY USEFUL LOGICAL JOB ADULT FEMALE MATHG12 CPROB1 CPROB2 CPROB3 CPROB4 N; 
+ MISSING=.;
+ nominal=N;
+  USEVAR = n;
+  missing are all (999); 
+  classes = c(4); 
+ANALYSIS:
+estimator = mlr; 
+  type = mixture; 
+  starts = 0;
+MODEL:
+%C#1%
+[n#1@7.784];
+[n#2@4.199];
+[n#3@5.312];
+
+%C#2%
+[n#1@-2.228];
+[n#2@1.087];
+[n#3@-6.772];
+
+%C#3%
+[n#1@4.387];
+[n#2@-0.53];
+[n#3@6.07];
+ 
+%C#4%
+[n#1@-7];
+[n#2@-3.236];
+[n#3@-3.631];

@@ -1,0 +1,21 @@
+TITLE:
+Class 2
+DATA:
+FILE = "/Users/agarber/github/NTNU-workshop/19-intro-mixtures/enum_lsay/lca_lsay.dat";
+ 
+VARIABLE:
+NAMES = Enjoy Useful Logical Job Adult female mathg12; 
+ MISSING=.;
+ categorical = Enjoy-Adult; 
+usevar = Enjoy-Adult;
+classes = c(2); 
+ANALYSIS:
+estimator = mlr; 
+    type = mixture;
+    starts = 200 100; 
+    processors = 10;
+OUTPUT:
+sampstat residual tech11 tech14;
+PLOT:
+type = plot3; 
+    series = Enjoy-Adult(*);

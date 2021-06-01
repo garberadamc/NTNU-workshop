@@ -1,0 +1,42 @@
+TITLE:
+m2 model indirect - Lab 3
+DATA:
+FILE = "/Users/agarber/github/NTNU-workshop/14-moderation/mplus_files/caschools.dat";
+ 
+VARIABLE:
+NAMES = totexpk classk tmathssk treadssk; 
+ MISSING=.;
+ usevar =
+    totexpk classk        
+    tmathssk, treadssk
+    tchXclas;   
+DEFINE:
+center totexpk (grandmean);
+     tchXclas = totexpk*classk;  ! create interaction term
+ANALYSIS:
+estimator = mlr; 
+MODEL:
+treadssk on classk totexpk tchXclas;
+    
+    [tmathssk](b0);
+    
+    tmathssk on
+    classk (b1)
+    totexpk (b2)
+    tchXclas (b3); 
+MODEL CONSTRAINT:
+LOOP(x,-1,1,0.01);
+   PLOT(small regular);
+   new(hi_small lo_small hi_regular lo_regular diff_hi); 
+     small = b0 + b2*x;
+   regular = b0 + b1 + (b2+b3)*x;
+   
+     hi_small = b0 + b2*(9.3);
+     lo_small = b0 + b2*(-9.3);
+   hi_regular = b0 + b1 + (b2 + b3)*(9.3);
+   lo_regular = b0 + b1 + (b2 + b3)*(-9.3);
+      diff_hi = hi_small - hi_regular; 
+OUTPUT:
+sampstat standardized modindices (3.84)
+PLOT:
+type=plot3;

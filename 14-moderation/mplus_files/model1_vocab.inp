@@ -1,0 +1,40 @@
+TITLE:
+m1 model moderation
+DATA:
+FILE = "/Users/agarber/github/NTNU-workshop/14-moderation/mplus_files/vocab.dat";
+ 
+VARIABLE:
+NAMES = year sex education vocabulary; 
+ MISSING=.;
+ usevar =
+    year              ! covariate/moderator
+    education         ! covariate
+    vocabulary        ! outcome
+    int_yred;         ! interaction of year and education
+DEFINE:
+center education (grandmean);
+     int_yred = year*education;  ! create interaction term 
+ANALYSIS:
+estimator = MLR
+MODEL:
+[vocabulary](b0);
+    vocabulary on
+    year(b1)
+    education(b2)
+    int_yred(b3); 
+MODEL CONSTRAINT:
+LOOP(x,-1,1,0.01);
+   PLOT(y1974 y2016);
+   new(hi_y1974 lo_y1974 hi_y2016 lo_y2016 diff_hi); 
+   y1974 = b0 + b2*x;
+   y2016 = b0 + b1 + (b2+b3)*x;
+   
+   hi_y1974 = b0 + b2*(6.28);
+   lo_y1974 = b0 + b2*(-6.28);
+   hi_y2016 = b0 + b1 + (b2 + b3)*(6.28);
+   lo_y2016 = b0 + b1 + (b2 + b3)*(-6.28);
+    diff_hi = hi_y2016 - hi_y1974; 
+OUTPUT:
+sampstat standardized modindices (3.84)
+PLOT:
+type=plot3;

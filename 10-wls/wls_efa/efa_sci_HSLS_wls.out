@@ -1,0 +1,3129 @@
+Mplus VERSION 8.6 (Mac)
+MUTHEN & MUTHEN
+05/27/2021   2:19 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+   WSL FACTOR ANALYSIS EFA - HSLS SCIENCE DEMO
+  DATA:
+  FILE = "/Users/agarber/github/NTNU-workshop/10-wls/wls_efa/efa_sci_HSLS_wls.dat";
+
+  VARIABLE:
+  NAMES = STU_ID X1STDOB X1SES X1SEX X1RACE X1PAR1ED X1PAR2ED X1TXMTSC X2TXMTSC
+       X3TGPA9T X3TGPAAC X1STUEDE X1PAREDE S1MPERS1 S1MPERS2 S1MUSELI S1MUSECL
+       S1MUSEJO S1MTESTS S1MTEXTB S1MSKILL S1MASSEX S1MENJNG S1MWASTE S1MBORIN
+       S1MENJYS S1SPERS1 S1SPERS2 S1SUSELI S1SUSECL S1SUSEJO S1STESTS S1STEXTB
+       S1SSKILL S1SASSEX S1SENJNG S1SWASTE S1SBORIN S1SENJYS S1SAFE S1PROUD S1TALKPR
+       S1SCHWAS S1GOODGR S1NOHWDN S1NOPAPE S1NOBOOK S1LATE;
+   MISSING=.;
+   usevar =
+   S1SPERS1 S1SPERS2 S1SUSELI S1SUSECL
+   S1SUSEJO S1STESTS S1STEXTB S1SSKILL
+   S1SASSEX S1SENJNG S1SWASTE S1SBORIN;
+
+   categorical =
+   S1SPERS1 S1SPERS2 S1SUSELI S1SUSECL
+   S1SUSEJO S1STESTS S1STEXTB S1SSKILL
+   S1SASSEX S1SENJNG S1SWASTE S1SBORIN;
+  ANALYSIS:
+  type = efa 1 7;
+    estimator=wlsmv;
+    parameterization=theta;
+  OUTPUT:
+  sampstat standardized residual modindices (3.84);
+  PLOT:
+  type = plot3;
+
+
+
+*** WARNING in ANALYSIS command
+  Settings for PARAMETERIZATION are only used for MIXTURE analysis or
+  GENERAL analysis with at least one dependent categorical variable.
+  Setting is ignored.
+*** WARNING in OUTPUT command
+  STANDARDIZED (STD, STDY, STDYX) options are not available for TYPE=EFA.
+  Request for STANDARDIZED options will be ignored.  Note that STANDARDIZED options
+  are available with the use of EFA factors (ESEM) declared in the MODEL command.
+*** WARNING
+  Data set contains cases with missing on all variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on all variables:  257
+   3 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+WSL FACTOR ANALYSIS EFA - HSLS SCIENCE DEMO
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        2743
+
+Number of dependent variables                                   12
+Number of independent variables                                  0
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Binary and ordered categorical (ordinal)
+   S1SPERS1    S1SPERS2    S1SUSELI    S1SUSECL    S1SUSEJO    S1STESTS
+   S1STEXTB    S1SSKILL    S1SASSEX    S1SENJNG    S1SWASTE    S1SBORIN
+
+
+Estimator                                                    WLSMV
+Rotation                                                    GEOMIN
+Row standardization                                    CORRELATION
+Type of rotation                                           OBLIQUE
+Epsilon value                                               Varies
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization Specifications for the Exploratory Factor Analysis
+Rotation Algorithm
+  Number of random starts                                       30
+  Maximum number of iterations                               10000
+  Derivative convergence criterion                       0.100D-04
+Link                                                        PROBIT
+
+Input data file(s)
+  /Users/agarber/github/NTNU-workshop/10-wls/wls_efa/efa_sci_HSLS_wls.dat
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns            36
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.996
+ S1SPERS2       0.984         0.986
+ S1SUSELI       0.808         0.802         0.811
+ S1SUSECL       0.808         0.801         0.809         0.810
+ S1SUSEJO       0.805         0.799         0.807         0.806         0.808
+ S1STESTS       0.817         0.808         0.808         0.808         0.806
+ S1STEXTB       0.815         0.808         0.807         0.806         0.804
+ S1SSKILL       0.814         0.807         0.806         0.806         0.803
+ S1SASSEX       0.813         0.806         0.806         0.805         0.803
+ S1SENJNG       0.816         0.808         0.809         0.809         0.806
+ S1SWASTE       0.816         0.808         0.809         0.808         0.806
+ S1SBORIN       0.814         0.807         0.807         0.806         0.805
+
+
+           Covariance Coverage
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       0.819
+ S1STEXTB       0.815         0.817
+ S1SSKILL       0.814         0.813         0.816
+ S1SASSEX       0.814         0.812         0.812         0.816
+ S1SENJNG       0.816         0.814         0.814         0.813         0.819
+ S1SWASTE       0.816         0.814         0.813         0.813         0.816
+ S1SBORIN       0.814         0.813         0.812         0.812         0.815
+
+
+           Covariance Coverage
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       0.818
+ S1SBORIN       0.816         0.816
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    S1SPERS1
+      Category 1    0.198          540.000
+      Category 2    0.372         1017.000
+      Category 3    0.327          894.000
+      Category 4    0.103          282.000
+    S1SPERS2
+      Category 1    0.203          550.000
+      Category 2    0.419         1133.000
+      Category 3    0.311          841.000
+      Category 4    0.067          180.000
+    S1SUSELI
+      Category 1    0.061          136.000
+      Category 2    0.355          790.000
+      Category 3    0.465         1035.000
+      Category 4    0.118          263.000
+    S1SUSECL
+      Category 1    0.024           54.000
+      Category 2    0.071          157.000
+      Category 3    0.580         1289.000
+      Category 4    0.325          723.000
+    S1SUSEJO
+      Category 1    0.060          132.000
+      Category 2    0.228          506.000
+      Category 3    0.479         1061.000
+      Category 4    0.233          517.000
+    S1STESTS
+      Category 1    0.033           73.000
+      Category 2    0.248          558.000
+      Category 3    0.548         1230.000
+      Category 4    0.171          385.000
+    S1STEXTB
+      Category 1    0.067          151.000
+      Category 2    0.340          763.000
+      Category 3    0.471         1055.000
+      Category 4    0.121          272.000
+    S1SSKILL
+      Category 1    0.030           68.000
+      Category 2    0.244          546.000
+      Category 3    0.561         1257.000
+      Category 4    0.164          368.000
+    S1SASSEX
+      Category 1    0.023           51.000
+      Category 2    0.167          374.000
+      Category 3    0.599         1340.000
+      Category 4    0.211          472.000
+    S1SENJNG
+      Category 1    0.077          173.000
+      Category 2    0.251          564.000
+      Category 3    0.489         1098.000
+      Category 4    0.183          411.000
+    S1SWASTE
+      Category 1    0.050          112.000
+      Category 2    0.129          289.000
+      Category 3    0.505         1134.000
+      Category 4    0.316          710.000
+    S1SBORIN
+      Category 1    0.114          256.000
+      Category 2    0.271          607.000
+      Category 3    0.415          930.000
+      Category 4    0.199          446.000
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           MEANS/INTERCEPTS/THRESHOLDS
+              S1SPERS1      S1SPERS1      S1SPERS1      S1SPERS2      S1SPERS2
+              ________      ________      ________      ________      ________
+               -0.850         0.176         1.264        -0.830         0.312
+
+
+           MEANS/INTERCEPTS/THRESHOLDS
+              S1SPERS2      S1SUSELI      S1SUSELI      S1SUSELI      S1SUSECL
+              ________      ________      ________      ________      ________
+                1.502        -1.545        -0.211         1.184        -1.972
+
+
+           MEANS/INTERCEPTS/THRESHOLDS
+              S1SUSECL      S1SUSECL      S1SUSEJO      S1SUSEJO      S1SUSEJO
+              ________      ________      ________      ________      ________
+               -1.311         0.453        -1.558        -0.560         0.728
+
+
+           MEANS/INTERCEPTS/THRESHOLDS
+              S1STESTS      S1STESTS      S1STESTS      S1STEXTB      S1STEXTB
+              ________      ________      ________      ________      ________
+               -1.845        -0.580         0.949        -1.496        -0.233
+
+
+           MEANS/INTERCEPTS/THRESHOLDS
+              S1STEXTB      S1SSKILL      S1SSKILL      S1SSKILL      S1SASSEX
+              ________      ________      ________      ________      ________
+                1.168        -1.875        -0.600         0.977        -1.999
+
+
+           MEANS/INTERCEPTS/THRESHOLDS
+              S1SASSEX      S1SASSEX      S1SENJNG      S1SENJNG      S1SENJNG
+              ________      ________      ________      ________      ________
+               -0.878         0.803        -1.425        -0.445         0.904
+
+
+           MEANS/INTERCEPTS/THRESHOLDS
+              S1SWASTE      S1SWASTE      S1SWASTE      S1SBORIN      S1SBORIN
+              ________      ________      ________      ________      ________
+               -1.646        -0.921         0.478        -1.204        -0.291
+
+
+           MEANS/INTERCEPTS/THRESHOLDS
+              S1SBORIN
+              ________
+                0.844
+
+
+           CORRELATION MATRIX (WITH VARIANCES ON THE DIAGONAL)
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1
+ S1SPERS2       0.801
+ S1SUSELI       0.315         0.269
+ S1SUSECL       0.339         0.296         0.542
+ S1SUSEJO       0.407         0.357         0.566         0.660
+ S1STESTS       0.491         0.416         0.303         0.341         0.294
+ S1STEXTB       0.490         0.441         0.299         0.316         0.304
+ S1SSKILL       0.513         0.449         0.325         0.385         0.343
+ S1SASSEX       0.481         0.427         0.298         0.370         0.319
+ S1SENJNG       0.497         0.422         0.442         0.439         0.405
+ S1SWASTE       0.362         0.324         0.418         0.458         0.431
+ S1SBORIN       0.359         0.309         0.344         0.305         0.360
+
+
+           CORRELATION MATRIX (WITH VARIANCES ON THE DIAGONAL)
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STEXTB       0.737
+ S1SSKILL       0.755         0.752
+ S1SASSEX       0.797         0.689         0.807
+ S1SENJNG       0.535         0.471         0.493         0.504
+ S1SWASTE       0.399         0.317         0.399         0.387         0.656
+ S1SBORIN       0.368         0.300         0.353         0.337         0.676
+
+
+           CORRELATION MATRIX (WITH VARIANCES ON THE DIAGONAL)
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SBORIN       0.725
+
+
+     NO CONVERGENCE.  NUMBER OF ITERATIONS EXCEEDED.
+     PROBLEM OCCURRED IN EXPLORATORY FACTOR ANALYSIS WITH 6 FACTOR(S).
+
+
+     WARNING:  IN EXPLORATORY FACTOR ANALYSIS WITH 7 FACTOR(S)
+     THE CONDITION NUMBER OF THE ROTATED SOLUTION IS 0.140D-08.
+     THE OPTIMAL ROTATION MAY BE POORLY IDENTIFIED.
+     CHANGING THE ROTATION METHOD MAY RESOLVE THIS PROBLEM.
+
+
+
+
+SUMMARY OF MODEL FIT INFORMATION
+
+
+                   Number of                   Degrees of
+     Model        Parameters      Chi-Square    Freedom     P-Value
+
+     1-factor          12           6472.498        54       0.0000
+     2-factor          23           3984.821        43       0.0000
+     3-factor          33           1898.611        33       0.0000
+     4-factor          42            216.042        24       0.0000
+     5-factor          50             74.934        16       0.0000
+     6-factor         N/A
+     7-factor          63              5.591         3       0.1333
+
+                                               Degrees of
+     Models Compared              Chi-Square    Freedom     P-Value
+
+     1-factor against 2-factor      2161.823        11       0.0000
+     2-factor against 3-factor      1675.933        10       0.0000
+     3-factor against 4-factor      1028.832         9       0.0000
+     4-factor against 5-factor       124.232         8       0.0000
+
+
+
+RESULTS FOR EXPLORATORY FACTOR ANALYSIS
+
+
+           EIGENVALUES FOR SAMPLE CORRELATION MATRIX
+                  1             2             3             4             5
+              ________      ________      ________      ________      ________
+                5.966         1.627         1.091         1.017         0.490
+
+
+           EIGENVALUES FOR SAMPLE CORRELATION MATRIX
+                  6             7             8             9            10
+              ________      ________      ________      ________      ________
+                0.360         0.330         0.299         0.240         0.228
+
+
+           EIGENVALUES FOR SAMPLE CORRELATION MATRIX
+                 11            12
+              ________      ________
+                0.194         0.158
+
+
+EXPLORATORY FACTOR ANALYSIS WITH 1 FACTOR(S):
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       12
+
+Chi-Square Test of Model Fit
+
+          Value                           6472.498*
+          Degrees of Freedom                    54
+          P-Value                           0.0000
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.208
+          90 Percent C.I.                    0.204  0.212
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                0.825
+          TLI                                0.786
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                          36727.312
+          Degrees of Freedom                    66
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.151
+
+
+
+MINIMUM ROTATION FUNCTION VALUE       6.28408
+
+
+
+           GEOMIN ROTATED LOADINGS (* significant at 5% level)
+                  1
+              ________
+ S1SPERS1       0.792*
+ S1SPERS2       0.749*
+ S1SUSELI       0.527*
+ S1SUSECL       0.593*
+ S1SUSEJO       0.591*
+ S1STESTS       0.828*
+ S1STEXTB       0.752*
+ S1SSKILL       0.836*
+ S1SASSEX       0.845*
+ S1SENJNG       0.733*
+ S1SWASTE       0.689*
+ S1SBORIN       0.665*
+
+
+           GEOMIN FACTOR CORRELATIONS (* significant at 5% level)
+                  1
+              ________
+      1         1.000
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+                0.373         0.439         0.722         0.648         0.651
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+                0.315         0.434         0.301         0.286         0.463
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              S1SWASTE      S1SBORIN
+              ________      ________
+                0.526         0.558
+
+
+           S.E. GEOMIN ROTATED LOADINGS
+                  1
+              ________
+ S1SPERS1       0.009
+ S1SPERS2       0.010
+ S1SUSELI       0.015
+ S1SUSECL       0.015
+ S1SUSEJO       0.014
+ S1STESTS       0.007
+ S1STEXTB       0.009
+ S1SSKILL       0.007
+ S1SASSEX       0.008
+ S1SENJNG       0.010
+ S1SWASTE       0.012
+ S1SBORIN       0.012
+
+
+           S.E. GEOMIN FACTOR CORRELATIONS
+                  1
+              ________
+      1         0.000
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+                0.014         0.015         0.016         0.017         0.016
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+                0.012         0.013         0.012         0.013         0.015
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              S1SWASTE      S1SBORIN
+              ________      ________
+                0.016         0.016
+
+
+           Est./S.E. GEOMIN ROTATED LOADINGS
+                  1
+              ________
+ S1SPERS1      91.760
+ S1SPERS2      77.292
+ S1SUSELI      35.094
+ S1SUSECL      40.754
+ S1SUSEJO      43.501
+ S1STESTS     116.002
+ S1STEXTB      87.324
+ S1SSKILL     118.449
+ S1SASSEX     108.865
+ S1SENJNG      70.818
+ S1SWASTE      58.406
+ S1SBORIN      56.255
+
+
+           Est./S.E. GEOMIN FACTOR CORRELATIONS
+                  1
+              ________
+      1         0.000
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+               27.266        30.259        45.535        37.544        40.580
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+               26.694        33.492        25.553        21.795        30.577
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              S1SWASTE      S1SBORIN
+              ________      ________
+               32.374        35.567
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED)
+
+
+           Model Estimated Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       1.000
+ S1SPERS2       0.593         1.000
+ S1SUSELI       0.418         0.395         1.000
+ S1SUSECL       0.470         0.444         0.313         1.000
+ S1SUSEJO       0.468         0.442         0.312         0.350         1.000
+ S1STESTS       0.655         0.620         0.436         0.491         0.489
+ S1STEXTB       0.596         0.563         0.397         0.446         0.444
+ S1SSKILL       0.662         0.626         0.441         0.496         0.494
+ S1SASSEX       0.669         0.633         0.446         0.501         0.499
+ S1SENJNG       0.580         0.549         0.386         0.434         0.433
+ S1SWASTE       0.545         0.516         0.363         0.408         0.407
+ S1SBORIN       0.526         0.498         0.350         0.394         0.393
+
+
+           Model Estimated Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       1.000
+ S1STEXTB       0.623         1.000
+ S1SSKILL       0.692         0.629         1.000
+ S1SASSEX       0.699         0.636         0.706         1.000
+ S1SENJNG       0.606         0.551         0.612         0.619         1.000
+ S1SWASTE       0.570         0.518         0.576         0.582         0.504
+ S1SBORIN       0.550         0.500         0.555         0.562         0.487
+
+
+           Model Estimated Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       1.000
+ S1SBORIN       0.458         1.000
+
+
+           Residuals for Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.000
+ S1SPERS2       0.208         0.000
+ S1SUSELI      -0.103        -0.126         0.000
+ S1SUSECL      -0.131        -0.149         0.229         0.000
+ S1SUSEJO      -0.060        -0.085         0.254         0.310         0.000
+ S1STESTS      -0.165        -0.204        -0.134        -0.150        -0.195
+ S1STEXTB      -0.106        -0.122        -0.098        -0.130        -0.140
+ S1SSKILL      -0.149        -0.177        -0.116        -0.111        -0.151
+ S1SASSEX      -0.188        -0.206        -0.148        -0.131        -0.180
+ S1SENJNG      -0.083        -0.127         0.056         0.005        -0.028
+ S1SWASTE      -0.183        -0.192         0.055         0.050         0.024
+ S1SBORIN      -0.167        -0.189        -0.007        -0.089        -0.033
+
+
+           Residuals for Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       0.000
+ S1STEXTB       0.115         0.000
+ S1SSKILL       0.064         0.123         0.000
+ S1SASSEX       0.097         0.053         0.101         0.000
+ S1SENJNG      -0.071        -0.080        -0.119        -0.115         0.000
+ S1SWASTE      -0.171        -0.201        -0.176        -0.195         0.152
+ S1SBORIN      -0.182        -0.200        -0.203        -0.224         0.189
+
+
+           Residuals for Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       0.000
+ S1SBORIN       0.267         0.000
+
+
+EXPLORATORY FACTOR ANALYSIS WITH 2 FACTOR(S):
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       23
+
+Chi-Square Test of Model Fit
+
+          Value                           3984.821*
+          Degrees of Freedom                    43
+          P-Value                           0.0000
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.183
+          90 Percent C.I.                    0.178  0.188
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                0.892
+          TLI                                0.835
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                          36727.312
+          Degrees of Freedom                    66
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.103
+
+
+
+MINIMUM ROTATION FUNCTION VALUE       0.40484
+
+
+
+           GEOMIN ROTATED LOADINGS (* significant at 5% level)
+                  1             2
+              ________      ________
+ S1SPERS1       0.769*        0.090*
+ S1SPERS2       0.747*        0.052
+ S1SUSELI       0.011         0.623*
+ S1SUSECL       0.022         0.688*
+ S1SUSEJO       0.008         0.697*
+ S1STESTS       0.856*        0.004
+ S1STEXTB       0.808*       -0.024
+ S1SSKILL       0.868*        0.001
+ S1SASSEX       0.890*       -0.025
+ S1SENJNG       0.210*        0.664*
+ S1SWASTE      -0.028         0.828*
+ S1SBORIN      -0.040         0.803*
+
+
+           GEOMIN FACTOR CORRELATIONS (* significant at 5% level)
+                  1             2
+              ________      ________
+      1         1.000
+      2         0.553*        1.000
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+                0.323         0.395         0.604         0.510         0.507
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+                0.264         0.368         0.246         0.233         0.360
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              S1SWASTE      S1SBORIN
+              ________      ________
+                0.339         0.389
+
+
+           S.E. GEOMIN ROTATED LOADINGS
+                  1             2
+              ________      ________
+ S1SPERS1       0.016         0.024
+ S1SPERS2       0.019         0.027
+ S1SUSELI       0.017         0.017
+ S1SUSECL       0.021         0.019
+ S1SUSEJO       0.010         0.015
+ S1STESTS       0.009         0.011
+ S1STEXTB       0.013         0.017
+ S1SSKILL       0.008         0.009
+ S1SASSEX       0.011         0.015
+ S1SENJNG       0.022         0.017
+ S1SWASTE       0.025         0.016
+ S1SBORIN       0.026         0.018
+
+
+           S.E. GEOMIN FACTOR CORRELATIONS
+                  1             2
+              ________      ________
+      1         0.000
+      2         0.021         0.000
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+                0.014         0.015         0.017         0.019         0.018
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+                0.012         0.013         0.011         0.012         0.015
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              S1SWASTE      S1SBORIN
+              ________      ________
+                0.015         0.016
+
+
+           Est./S.E. GEOMIN ROTATED LOADINGS
+                  1             2
+              ________      ________
+ S1SPERS1      47.812         3.812
+ S1SPERS2      39.779         1.950
+ S1SUSELI       0.661        36.735
+ S1SUSECL       1.084        35.909
+ S1SUSEJO       0.832        47.530
+ S1STESTS      94.136         0.376
+ S1STEXTB      62.342        -1.397
+ S1SSKILL     107.632         0.150
+ S1SASSEX      82.135        -1.629
+ S1SENJNG       9.717        39.228
+ S1SWASTE      -1.123        50.287
+ S1SBORIN      -1.512        43.955
+
+
+           Est./S.E. GEOMIN FACTOR CORRELATIONS
+                  1             2
+              ________      ________
+      1         0.000
+      2        26.114         0.000
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+               23.293        26.254        35.334        27.243        28.612
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+               22.869        28.454        21.602        18.948        23.540
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              S1SWASTE      S1SBORIN
+              ________      ________
+               22.430        24.283
+
+
+           FACTOR STRUCTURE
+                  1             2
+              ________      ________
+ S1SPERS1       0.819         0.516
+ S1SPERS2       0.776         0.465
+ S1SUSELI       0.356         0.629
+ S1SUSECL       0.402         0.700
+ S1SUSEJO       0.394         0.702
+ S1STESTS       0.858         0.477
+ S1STEXTB       0.795         0.423
+ S1SSKILL       0.868         0.481
+ S1SASSEX       0.876         0.467
+ S1SENJNG       0.577         0.780
+ S1SWASTE       0.430         0.813
+ S1SBORIN       0.404         0.781
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED)
+
+
+           Model Estimated Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       1.000
+ S1SPERS2       0.639         1.000
+ S1SUSELI       0.330         0.299         1.000
+ S1SUSECL       0.373         0.337         0.441         1.000
+ S1SUSEJO       0.366         0.331         0.442         0.491         1.000
+ S1STESTS       0.703         0.666         0.307         0.347         0.340
+ S1STEXTB       0.650         0.616         0.272         0.308         0.301
+ S1SSKILL       0.712         0.674         0.309         0.350         0.342
+ S1SASSEX       0.716         0.679         0.301         0.340         0.332
+ S1SENJNG       0.515         0.472         0.493         0.549         0.549
+ S1SWASTE       0.404         0.364         0.511         0.569         0.570
+ S1SBORIN       0.381         0.343         0.491         0.546         0.548
+
+
+           Model Estimated Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       1.000
+ S1STEXTB       0.682         1.000
+ S1SSKILL       0.745         0.690         1.000
+ S1SASSEX       0.751         0.696         0.760         1.000
+ S1SENJNG       0.497         0.448         0.502         0.494         1.000
+ S1SWASTE       0.371         0.328         0.374         0.362         0.630
+ S1SBORIN       0.349         0.308         0.352         0.340         0.604
+
+
+           Model Estimated Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       1.000
+ S1SBORIN       0.636         1.000
+
+
+           Residuals for Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.000
+ S1SPERS2       0.162         0.000
+ S1SUSELI      -0.015        -0.029         0.000
+ S1SUSECL      -0.034        -0.042         0.102         0.000
+ S1SUSEJO       0.041         0.027         0.124         0.169         0.000
+ S1STESTS      -0.213        -0.250        -0.004        -0.006        -0.045
+ S1STEXTB      -0.160        -0.175         0.027         0.008         0.003
+ S1SSKILL      -0.199        -0.225         0.016         0.035         0.001
+ S1SASSEX      -0.235        -0.252        -0.002         0.030        -0.014
+ S1SENJNG      -0.017        -0.050        -0.050        -0.110        -0.144
+ S1SWASTE      -0.042        -0.040        -0.093        -0.110        -0.139
+ S1SBORIN      -0.022        -0.034        -0.147        -0.241        -0.188
+
+
+           Residuals for Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       0.000
+ S1STEXTB       0.056         0.000
+ S1SSKILL       0.010         0.062         0.000
+ S1SASSEX       0.045        -0.007         0.047         0.000
+ S1SENJNG       0.038         0.024        -0.008         0.010         0.000
+ S1SWASTE       0.028        -0.011         0.025         0.025         0.026
+ S1SBORIN       0.019        -0.008         0.001        -0.003         0.072
+
+
+           Residuals for Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       0.000
+ S1SBORIN       0.089         0.000
+
+
+EXPLORATORY FACTOR ANALYSIS WITH 3 FACTOR(S):
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       33
+
+Chi-Square Test of Model Fit
+
+          Value                           1898.611*
+          Degrees of Freedom                    33
+          P-Value                           0.0000
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.144
+          90 Percent C.I.                    0.138  0.149
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                0.949
+          TLI                                0.898
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                          36727.312
+          Degrees of Freedom                    66
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.065
+
+
+
+MINIMUM ROTATION FUNCTION VALUE       0.35145
+
+
+
+           GEOMIN ROTATED LOADINGS (* significant at 5% level)
+                  1             2             3
+              ________      ________      ________
+ S1SPERS1       0.669*        0.547*        0.026
+ S1SPERS2       0.685*        0.506*       -0.025*
+ S1SUSELI       0.214*        0.004         0.562*
+ S1SUSECL       0.279*        0.018         0.601*
+ S1SUSEJO       0.355*       -0.032         0.615*
+ S1STESTS      -0.052*        0.871*        0.024
+ S1STEXTB       0.037*        0.837*       -0.037*
+ S1SSKILL       0.006         0.887*        0.004
+ S1SASSEX      -0.040*        0.893*        0.000
+ S1SENJNG       0.007*        0.245*        0.649*
+ S1SWASTE      -0.101*        0.007         0.844*
+ S1SBORIN      -0.133*        0.003         0.819*
+
+
+           GEOMIN FACTOR CORRELATIONS (* significant at 5% level)
+                  1             2             3
+              ________      ________      ________
+      1         1.000
+      2         0.064         1.000
+      3         0.179*        0.541*        1.000
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+                0.184         0.250         0.592         0.489         0.440
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+                0.221         0.327         0.209         0.206         0.345
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              S1SWASTE      S1SBORIN
+              ________      ________
+                0.301         0.348
+
+
+           S.E. GEOMIN ROTATED LOADINGS
+                  1             2             3
+              ________      ________      ________
+ S1SPERS1       0.023         0.047         0.014
+ S1SPERS2       0.022         0.047         0.009
+ S1SUSELI       0.024         0.015         0.021
+ S1SUSECL       0.025         0.015         0.024
+ S1SUSEJO       0.026         0.019         0.022
+ S1STESTS       0.018         0.011         0.014
+ S1STEXTB       0.016         0.014         0.018
+ S1SSKILL       0.007         0.009         0.012
+ S1SASSEX       0.016         0.009         0.008
+ S1SENJNG       0.002         0.017         0.015
+ S1SWASTE       0.027         0.013         0.014
+ S1SBORIN       0.025         0.010         0.015
+
+
+           S.E. GEOMIN FACTOR CORRELATIONS
+                  1             2             3
+              ________      ________      ________
+      1         0.000
+      2         0.060         0.000
+      3         0.049         0.018         0.000
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+                0.023         0.025         0.017         0.019         0.018
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+                0.012         0.013         0.012         0.012         0.016
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              S1SWASTE      S1SBORIN
+              ________      ________
+                0.015         0.017
+
+
+           Est./S.E. GEOMIN ROTATED LOADINGS
+                  1             2             3
+              ________      ________      ________
+ S1SPERS1      29.282        11.732         1.947
+ S1SPERS2      30.692        10.801        -2.690
+ S1SUSELI       8.953         0.287        26.364
+ S1SUSECL      11.111         1.153        25.421
+ S1SUSEJO      13.876        -1.686        27.353
+ S1STESTS      -2.839        78.058         1.698
+ S1STEXTB       2.232        58.789        -2.050
+ S1SSKILL       0.782        94.918         0.364
+ S1SASSEX      -2.455       103.326        -0.037
+ S1SENJNG       3.990        14.064        42.952
+ S1SWASTE      -3.793         0.567        61.173
+ S1SBORIN      -5.275         0.294        52.925
+
+
+           Est./S.E. GEOMIN FACTOR CORRELATIONS
+                  1             2             3
+              ________      ________      ________
+      1         0.000
+      2         1.054         0.000
+      3         3.686        29.357         0.000
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+                7.954        10.075        34.195        25.689        24.659
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+               18.975        24.451        17.933        16.546        22.134
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              S1SWASTE      S1SBORIN
+              ________      ________
+               19.827        21.106
+
+
+           FACTOR STRUCTURE
+                  1             2             3
+              ________      ________      ________
+ S1SPERS1       0.709         0.604         0.442
+ S1SPERS2       0.713         0.536         0.372
+ S1SUSELI       0.315         0.322         0.603
+ S1SUSECL       0.388         0.360         0.660
+ S1SUSEJO       0.463         0.323         0.661
+ S1STESTS       0.008         0.881         0.486
+ S1STEXTB       0.083         0.819         0.422
+ S1SSKILL       0.063         0.889         0.485
+ S1SASSEX       0.017         0.890         0.476
+ S1SENJNG       0.139         0.596         0.783
+ S1SWASTE       0.051         0.457         0.830
+ S1SBORIN       0.014         0.437         0.797
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED)
+
+
+           Model Estimated Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       1.000
+ S1SPERS2       0.780         1.000
+ S1SUSELI       0.403         0.364         1.000
+ S1SUSECL       0.474         0.431         0.456         1.000
+ S1SUSEJO       0.504         0.464         0.472         0.532         1.000
+ S1STESTS       0.499         0.439         0.279         0.310         0.273
+ S1STEXTB       0.515         0.461         0.259         0.291         0.263
+ S1SSKILL       0.541         0.481         0.290         0.324         0.292
+ S1SASSEX       0.510         0.450         0.275         0.306         0.270
+ S1SENJNG       0.440         0.378         0.473         0.519         0.512
+ S1SWASTE       0.306         0.245         0.479         0.521         0.514
+ S1SBORIN       0.270         0.211         0.453         0.490         0.481
+
+
+           Model Estimated Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       1.000
+ S1STEXTB       0.719         1.000
+ S1SSKILL       0.783         0.728         1.000
+ S1SASSEX       0.786         0.728         0.792         1.000
+ S1SENJNG       0.531         0.475         0.533         0.527         1.000
+ S1SWASTE       0.416         0.354         0.409         0.406         0.651
+ S1SBORIN       0.400         0.337         0.391         0.390         0.624
+
+
+           Model Estimated Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       1.000
+ S1SBORIN       0.674         1.000
+
+
+           Residuals for Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.000
+ S1SPERS2       0.021         0.000
+ S1SUSELI      -0.088        -0.095         0.000
+ S1SUSECL      -0.135        -0.136         0.087         0.000
+ S1SUSEJO      -0.096        -0.107         0.093         0.129         0.000
+ S1STESTS      -0.009        -0.023         0.024         0.032         0.021
+ S1STEXTB      -0.025        -0.019         0.041         0.025         0.042
+ S1SSKILL      -0.028        -0.032         0.035         0.061         0.051
+ S1SASSEX      -0.030        -0.023         0.023         0.064         0.049
+ S1SENJNG       0.058         0.044        -0.030        -0.080        -0.107
+ S1SWASTE       0.056         0.078        -0.062        -0.062        -0.083
+ S1SBORIN       0.090         0.098        -0.109        -0.185        -0.121
+
+
+           Residuals for Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       0.000
+ S1STEXTB       0.018         0.000
+ S1SSKILL      -0.028         0.024         0.000
+ S1SASSEX       0.010        -0.039         0.015         0.000
+ S1SENJNG       0.004        -0.004        -0.040        -0.023         0.000
+ S1SWASTE      -0.017        -0.037        -0.010        -0.020         0.005
+ S1SBORIN      -0.032        -0.037        -0.038        -0.053         0.052
+
+
+           Residuals for Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       0.000
+ S1SBORIN       0.051         0.000
+
+
+EXPLORATORY FACTOR ANALYSIS WITH 4 FACTOR(S):
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       42
+
+Chi-Square Test of Model Fit
+
+          Value                            216.042*
+          Degrees of Freedom                    24
+          P-Value                           0.0000
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.054
+          90 Percent C.I.                    0.048  0.061
+          Probability RMSEA <= .05           0.151
+
+CFI/TLI
+
+          CFI                                0.995
+          TLI                                0.986
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                          36727.312
+          Degrees of Freedom                    66
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.012
+
+
+
+MINIMUM ROTATION FUNCTION VALUE       0.41467
+
+
+
+           GEOMIN ROTATED LOADINGS (* significant at 5% level)
+                  1             2             3             4
+              ________      ________      ________      ________
+ S1SPERS1       0.925*        0.022         0.009         0.016
+ S1SPERS2       0.835*        0.008         0.003         0.008
+ S1SUSELI      -0.002         0.029         0.607*        0.114*
+ S1SUSECL      -0.034*        0.077*        0.783*        0.004
+ S1SUSEJO       0.112*       -0.061*        0.806*       -0.004
+ S1STESTS      -0.010         0.868*       -0.049*        0.084*
+ S1STEXTB       0.080*        0.788*        0.005        -0.032*
+ S1SSKILL       0.024         0.865*        0.050*       -0.015
+ S1SASSEX      -0.027*        0.897*        0.011         0.013
+ S1SENJNG       0.096*        0.192*        0.063*        0.615*
+ S1SWASTE      -0.037*        0.022         0.136*        0.761*
+ S1SBORIN       0.008        -0.038*       -0.092*        0.949*
+
+
+           GEOMIN FACTOR CORRELATIONS (* significant at 5% level)
+                  1             2             3             4
+              ________      ________      ________      ________
+      1         1.000
+      2         0.561*        1.000
+      3         0.422*        0.431*        1.000
+      4         0.436*        0.471*        0.529*        1.000
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+                0.100         0.287         0.527         0.350         0.312
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+                0.218         0.323         0.201         0.201         0.332
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              S1SWASTE      S1SBORIN
+              ________      ________
+                0.302         0.207
+
+
+           S.E. GEOMIN ROTATED LOADINGS
+                  1             2             3             4
+              ________      ________      ________      ________
+ S1SPERS1       0.059         0.026         0.015         0.014
+ S1SPERS2       0.056         0.026         0.017         0.015
+ S1SUSELI       0.018         0.018         0.024         0.026
+ S1SUSECL       0.015         0.022         0.023         0.018
+ S1SUSEJO       0.027         0.015         0.025         0.015
+ S1STESTS       0.013         0.013         0.015         0.017
+ S1STEXTB       0.019         0.016         0.015         0.015
+ S1SSKILL       0.014         0.012         0.015         0.012
+ S1SASSEX       0.014         0.012         0.015         0.013
+ S1SENJNG       0.020         0.021         0.017         0.019
+ S1SWASTE       0.015         0.013         0.026         0.021
+ S1SBORIN       0.009         0.012         0.020         0.017
+
+
+           S.E. GEOMIN FACTOR CORRELATIONS
+                  1             2             3             4
+              ________      ________      ________      ________
+      1         0.000
+      2         0.017         0.000
+      3         0.025         0.023         0.000
+      4         0.020         0.019         0.021         0.000
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+                0.068         0.056         0.019         0.024         0.025
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+                0.012         0.014         0.011         0.013         0.015
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              S1SWASTE      S1SBORIN
+              ________      ________
+                0.016         0.021
+
+
+           Est./S.E. GEOMIN ROTATED LOADINGS
+                  1             2             3             4
+              ________      ________      ________      ________
+ S1SPERS1      15.750         0.827         0.617         1.145
+ S1SPERS2      15.019         0.301         0.179         0.532
+ S1SUSELI      -0.132         1.628        25.809         4.477
+ S1SUSECL      -2.201         3.561        34.675         0.217
+ S1SUSEJO       4.202        -4.128        32.495        -0.267
+ S1STESTS      -0.768        68.691        -3.150         4.993
+ S1STEXTB       4.240        49.540         0.337        -2.085
+ S1SSKILL       1.694        72.274         3.211        -1.316
+ S1SASSEX      -1.972        75.671         0.783         1.024
+ S1SENJNG       4.815         9.057         3.729        32.587
+ S1SWASTE      -2.482         1.741         5.212        35.470
+ S1SBORIN       0.855        -3.138        -4.626        56.425
+
+
+           Est./S.E. GEOMIN FACTOR CORRELATIONS
+                  1             2             3             4
+              ________      ________      ________      ________
+      1         0.000
+      2        32.323         0.000
+      3        16.818        18.813         0.000
+      4        21.666        24.428        24.877         0.000
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+                1.481         5.090        28.094        14.748        12.663
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+               18.663        23.790        17.811        15.989        21.475
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              S1SWASTE      S1SBORIN
+              ________      ________
+               19.155         9.956
+
+
+           FACTOR STRUCTURE
+                  1             2             3             4
+              ________      ________      ________      ________
+ S1SPERS1       0.948         0.552         0.417         0.434
+ S1SPERS2       0.844         0.481         0.363         0.377
+ S1SUSELI       0.320         0.343         0.679         0.448
+ S1SUSECL       0.341         0.398         0.804         0.440
+ S1SUSEJO       0.416         0.347         0.825         0.442
+ S1STESTS       0.493         0.881         0.366         0.463
+ S1STEXTB       0.510         0.820         0.362         0.377
+ S1SSKILL       0.523         0.892         0.425         0.429
+ S1SASSEX       0.487         0.894         0.394         0.430
+ S1SENJNG       0.499         0.563         0.512         0.781
+ S1SWASTE       0.365         0.419         0.533         0.828
+ S1SBORIN       0.361         0.374         0.397         0.886
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED)
+
+
+           Model Estimated Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       1.000
+ S1SPERS2       0.801         1.000
+ S1SUSELI       0.317         0.275         1.000
+ S1SUSECL       0.339         0.294         0.549         1.000
+ S1SUSEJO       0.407         0.356         0.560         0.660         1.000
+ S1STESTS       0.486         0.424         0.299         0.340         0.294
+ S1STEXTB       0.499         0.437         0.285         0.331         0.297
+ S1SSKILL       0.514         0.449         0.331         0.385         0.344
+ S1SASSEX       0.480         0.418         0.313         0.363         0.316
+ S1SENJNG       0.491         0.429         0.415         0.430         0.431
+ S1SWASTE       0.365         0.316         0.429         0.440         0.441
+ S1SBORIN       0.360         0.313         0.353         0.331         0.334
+
+
+           Model Estimated Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       1.000
+ S1STEXTB       0.721         1.000
+ S1SSKILL       0.785         0.734         1.000
+ S1SASSEX       0.788         0.732         0.797         1.000
+ S1SENJNG       0.525         0.461         0.512         0.508         1.000
+ S1SWASTE       0.404         0.336         0.385         0.383         0.658
+ S1SBORIN       0.376         0.297         0.338         0.342         0.676
+
+
+           Model Estimated Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       1.000
+ S1SBORIN       0.724         1.000
+
+
+           Residuals for Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.000
+ S1SPERS2       0.000         0.000
+ S1SUSELI      -0.001        -0.006         0.000
+ S1SUSECL       0.000         0.001        -0.007         0.000
+ S1SUSEJO       0.001         0.001         0.005         0.000         0.000
+ S1STESTS       0.005        -0.008         0.003         0.002         0.000
+ S1STEXTB      -0.010         0.004         0.014        -0.015         0.007
+ S1SSKILL      -0.001         0.000        -0.006         0.000        -0.001
+ S1SASSEX       0.000         0.009        -0.015         0.008         0.003
+ S1SENJNG       0.007        -0.007         0.027         0.009        -0.026
+ S1SWASTE      -0.002         0.008        -0.011         0.018        -0.010
+ S1SBORIN      -0.001        -0.004        -0.009        -0.026         0.025
+
+
+           Residuals for Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       0.000
+ S1STEXTB       0.016         0.000
+ S1SSKILL      -0.030         0.018         0.000
+ S1SASSEX       0.008        -0.043         0.010         0.000
+ S1SENJNG       0.011         0.010        -0.019        -0.004         0.000
+ S1SWASTE      -0.004        -0.019         0.015         0.004        -0.002
+ S1SBORIN      -0.008         0.003         0.015        -0.005        -0.001
+
+
+           Residuals for Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       0.000
+ S1SBORIN       0.001         0.000
+
+
+EXPLORATORY FACTOR ANALYSIS WITH 5 FACTOR(S):
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       50
+
+Chi-Square Test of Model Fit
+
+          Value                             74.934*
+          Degrees of Freedom                    16
+          P-Value                           0.0000
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.037
+          90 Percent C.I.                    0.029  0.045
+          Probability RMSEA <= .05           0.995
+
+CFI/TLI
+
+          CFI                                0.998
+          TLI                                0.993
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                          36727.312
+          Degrees of Freedom                    66
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.008
+
+
+
+MINIMUM ROTATION FUNCTION VALUE       0.34627
+
+
+
+           GEOMIN ROTATED LOADINGS (* significant at 5% level)
+                  1             2             3             4             5
+              ________      ________      ________      ________      ________
+ S1SPERS1       1.014*       -0.007         0.006         0.002        -0.018
+ S1SPERS2       0.753*        0.022         0.019         0.016         0.036
+ S1SUSELI      -0.003         0.600*       -0.013         0.121*        0.067
+ S1SUSECL      -0.025         0.771*        0.137*       -0.003        -0.029
+ S1SUSEJO       0.109*        0.791*       -0.040        -0.001         0.016
+ S1STESTS       0.011        -0.037*        0.646*        0.092*        0.229
+ S1STEXTB       0.000         0.011*        0.027*       -0.005         0.983*
+ S1SSKILL       0.040*        0.047*        0.647*        0.005         0.233
+ S1SASSEX      -0.006         0.004         0.971*       -0.022*       -0.020
+ S1SENJNG       0.095*        0.071*        0.112*        0.623*        0.075
+ S1SWASTE      -0.031*        0.139*        0.052*        0.764*       -0.051*
+ S1SBORIN       0.006        -0.081*       -0.076*        0.960*        0.006
+
+
+           GEOMIN FACTOR CORRELATIONS (* significant at 5% level)
+                  1             2             3             4             5
+              ________      ________      ________      ________      ________
+      1         1.000
+      2         0.400*        1.000
+      3         0.526*        0.389*        1.000
+      4         0.441*        0.515*        0.490*        1.000
+      5         0.491*        0.319*        0.725*        0.382*        1.000
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+               -0.013         0.362         0.525         0.345         0.314
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+                0.249        -0.009         0.232         0.108         0.333
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              S1SWASTE      S1SBORIN
+              ________      ________
+                0.300         0.206
+
+
+           S.E. GEOMIN ROTATED LOADINGS
+                  1             2             3             4             5
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.065         0.012         0.017         0.013         0.012
+ S1SPERS2       0.068         0.022         0.029         0.020         0.031
+ S1SUSELI       0.018         0.024         0.025         0.026         0.035
+ S1SUSECL       0.014         0.023         0.037         0.016         0.017
+ S1SUSEJO       0.027         0.026         0.024         0.016         0.016
+ S1STESTS       0.013         0.014         0.130         0.018         0.141
+ S1STEXTB       0.005         0.005         0.009         0.011         0.102
+ S1SSKILL       0.015         0.015         0.130         0.012         0.143
+ S1SASSEX       0.015         0.010         0.025         0.010         0.044
+ S1SENJNG       0.020         0.020         0.051         0.021         0.048
+ S1SWASTE       0.015         0.027         0.015         0.022         0.022
+ S1SBORIN       0.009         0.017         0.023         0.015         0.010
+
+
+           S.E. GEOMIN FACTOR CORRELATIONS
+                  1             2             3             4             5
+              ________      ________      ________      ________      ________
+      1         0.000
+      2         0.027         0.000
+      3         0.029         0.036         0.000
+      4         0.021         0.023         0.020         0.000
+      5         0.055         0.040         0.042         0.051         0.000
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+                0.099         0.056         0.019         0.024         0.025
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+                0.012         0.202         0.012         0.032         0.015
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              S1SWASTE      S1SBORIN
+              ________      ________
+                0.016         0.021
+
+
+           Est./S.E. GEOMIN ROTATED LOADINGS
+                  1             2             3             4             5
+              ________      ________      ________      ________      ________
+ S1SPERS1      15.502        -0.556         0.332         0.176        -1.435
+ S1SPERS2      11.055         0.998         0.650         0.803         1.172
+ S1SUSELI      -0.172        25.007        -0.518         4.624         1.945
+ S1SUSECL      -1.727        33.980         3.682        -0.203        -1.644
+ S1SUSEJO       4.031        30.368        -1.684        -0.054         0.962
+ S1STESTS       0.822        -2.547         4.956         5.024         1.615
+ S1STEXTB       0.050         2.095         3.176        -0.470         9.629
+ S1SSKILL       2.642         3.152         4.973         0.395         1.630
+ S1SASSEX      -0.440         0.424        39.435        -2.181        -0.466
+ S1SENJNG       4.670         3.512         2.219        29.421         1.568
+ S1SWASTE      -2.115         5.152         3.586        34.554        -2.365
+ S1SBORIN       0.612        -4.664        -3.261        65.128         0.586
+
+
+           Est./S.E. GEOMIN FACTOR CORRELATIONS
+                  1             2             3             4             5
+              ________      ________      ________      ________      ________
+      1         0.000
+      2        14.890         0.000
+      3        17.850        10.917         0.000
+      4        21.432        22.570        24.471         0.000
+      5         8.970         8.053        17.411         7.426         0.000
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+               -0.133         6.518        27.685        14.473        12.762
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+               20.447        -0.045        19.039         3.421        21.525
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              S1SWASTE      S1SBORIN
+              ________      ________
+               18.894         9.865
+
+
+           FACTOR STRUCTURE
+                  1             2             3             4             5
+              ________      ________      ________      ________      ________
+ S1SPERS1       1.006         0.397         0.524         0.442         0.483
+ S1SPERS2       0.796         0.350         0.457         0.382         0.432
+ S1SUSELI       0.317         0.677         0.327         0.448         0.294
+ S1SUSECL       0.340         0.803         0.401         0.438         0.303
+ S1SUSEJO       0.411         0.823         0.335         0.440         0.292
+ S1STESTS       0.489         0.339         0.848         0.482         0.726
+ S1STEXTB       0.499         0.332         0.741         0.390         1.004
+ S1SSKILL       0.515         0.391         0.858         0.453         0.738
+ S1SASSEX       0.486         0.361         0.944         0.445         0.673
+ S1SENJNG       0.494         0.497         0.549         0.785         0.464
+ S1SWASTE       0.364         0.524         0.427         0.828         0.308
+ S1SBORIN       0.360         0.388         0.369         0.886         0.295
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED)
+
+
+           Model Estimated Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       1.000
+ S1SPERS2       0.801         1.000
+ S1SUSELI       0.314         0.277         1.000
+ S1SUSECL       0.337         0.299         0.549         1.000
+ S1SUSEJO       0.409         0.351         0.561         0.660         1.000
+ S1STESTS       0.486         0.425         0.298         0.343         0.298
+ S1STEXTB       0.491         0.439         0.303         0.315         0.303
+ S1SSKILL       0.513         0.446         0.327         0.384         0.342
+ S1SASSEX       0.485         0.423         0.302         0.375         0.311
+ S1SENJNG       0.494         0.422         0.416         0.430         0.431
+ S1SWASTE       0.365         0.318         0.428         0.441         0.440
+ S1SBORIN       0.361         0.311         0.354         0.329         0.335
+
+
+           Model Estimated Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       1.000
+ S1STEXTB       0.738         1.000
+ S1SSKILL       0.756         0.751         1.000
+ S1SASSEX       0.797         0.689         0.806         1.000
+ S1SENJNG       0.520         0.472         0.510         0.505         1.000
+ S1SWASTE       0.407         0.315         0.391         0.390         0.658
+ S1SBORIN       0.377         0.299         0.345         0.333         0.677
+
+
+           Model Estimated Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       1.000
+ S1SBORIN       0.723         1.000
+
+
+           Residuals for Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.000
+ S1SPERS2       0.000         0.000
+ S1SUSELI       0.001        -0.008         0.000
+ S1SUSECL       0.002        -0.003        -0.007         0.000
+ S1SUSEJO      -0.002         0.006         0.005         0.000         0.000
+ S1STESTS       0.004        -0.009         0.005        -0.001        -0.004
+ S1STEXTB      -0.001         0.002        -0.004         0.001         0.002
+ S1SSKILL       0.000         0.003        -0.001         0.002         0.001
+ S1SASSEX      -0.004         0.004        -0.004        -0.004         0.008
+ S1SENJNG       0.003        -0.001         0.027         0.010        -0.026
+ S1SWASTE      -0.002         0.006        -0.010         0.017        -0.009
+ S1SBORIN      -0.002        -0.002        -0.010        -0.024         0.025
+
+
+           Residuals for Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       0.000
+ S1STEXTB      -0.001         0.000
+ S1SSKILL      -0.001         0.001         0.000
+ S1SASSEX       0.000         0.000         0.001         0.000
+ S1SENJNG       0.015        -0.001        -0.017        -0.002         0.000
+ S1SWASTE      -0.008         0.001         0.009        -0.003        -0.002
+ S1SBORIN      -0.009         0.001         0.008         0.005        -0.001
+
+
+           Residuals for Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       0.000
+ S1SBORIN       0.002         0.000
+
+
+EXPLORATORY FACTOR ANALYSIS WITH 7 FACTOR(S):
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       63
+
+Chi-Square Test of Model Fit
+
+          Value                              5.591*
+          Degrees of Freedom                     3
+          P-Value                           0.1333
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.018
+          90 Percent C.I.                    0.000  0.040
+          Probability RMSEA <= .05           0.993
+
+CFI/TLI
+
+          CFI                                1.000
+          TLI                                0.998
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                          36727.312
+          Degrees of Freedom                    66
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.002
+
+
+
+MINIMUM ROTATION FUNCTION VALUE       0.26010
+
+
+
+           GEOMIN ROTATED LOADINGS (* significant at 5% level)
+                  1             2             3             4             5
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.911*       -0.002         0.000         0.011         0.013
+ S1SPERS2       0.858*       -0.003         0.008        -0.003         0.001
+ S1SUSELI      -0.023        -0.028         0.004         0.784        -0.010
+ S1SUSECL      -0.001         1.663         0.001         0.002        -0.001
+ S1SUSEJO       0.168*        0.082         0.003         0.602         0.021
+ S1STESTS      -0.002         0.003         0.024        -0.034         0.789*
+ S1STEXTB       0.000         0.001         1.934         0.001         0.002
+ S1SSKILL       0.052*       -0.003         0.029         0.047         0.839*
+ S1SASSEX      -0.017         0.003        -0.032         0.001         0.952*
+ S1SENJNG       0.068         0.031         0.010         0.025         0.054
+ S1SWASTE      -0.027         0.020        -0.010         0.091         0.035
+ S1SBORIN      -0.003        -0.036         0.006        -0.049        -0.061
+
+
+           GEOMIN ROTATED LOADINGS (* significant at 5% level)
+                  6             7
+              ________      ________
+ S1SPERS1       0.006         0.043
+ S1SPERS2       0.004        -0.018
+ S1SUSELI      -0.007         0.208
+ S1SUSECL       0.001         0.003
+ S1SUSEJO       0.041        -0.044
+ S1STESTS       0.058         0.120*
+ S1STEXTB       0.000         0.001
+ S1SSKILL      -0.005        -0.040
+ S1SASSEX      -0.018         0.003
+ S1SENJNG       0.626*        0.314
+ S1SWASTE       0.790*       -0.032
+ S1SBORIN       0.936*        0.009
+
+
+           GEOMIN FACTOR CORRELATIONS (* significant at 5% level)
+                  1             2             3             4             5
+              ________      ________      ________      ________      ________
+      1         1.000
+      2         0.212         1.000
+      3         0.259         0.096         1.000
+      4         0.366*        0.441         0.156         1.000
+      5         0.555*        0.242         0.413         0.353*        1.000
+      6         0.453*        0.272         0.196         0.530*        0.498*
+      7         0.324         0.073         0.200         0.143         0.419
+
+
+           GEOMIN FACTOR CORRELATIONS (* significant at 5% level)
+                  6             7
+              ________      ________
+      6         1.000
+      7         0.257         1.000
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+                0.117         0.270         0.342        -1.768         0.440
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+                0.237        -2.745         0.225         0.148         0.255
+
+
+           ESTIMATED RESIDUAL VARIANCES
+              S1SWASTE      S1SBORIN
+              ________      ________
+                0.288         0.232
+
+
+           S.E. GEOMIN ROTATED LOADINGS
+                  1             2             3             4             5
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.082         0.008         0.013         0.017         0.032
+ S1SPERS2       0.068         0.009         0.043         0.018         0.032
+ S1SUSELI       0.018         0.034         0.018         0.462         0.029
+ S1SUSECL       0.014         6.358         0.012         0.023         0.007
+ S1SUSEJO       0.072         0.756         0.021         0.673         0.027
+ S1STESTS       0.013         0.023         0.151         0.050         0.105
+ S1STEXTB       0.005         0.008         8.820         0.012         0.029
+ S1SSKILL       0.021         0.015         0.189         0.034         0.135
+ S1SASSEX       0.021         0.022         0.212         0.020         0.152
+ S1SENJNG       0.063         0.119         0.047         0.035         0.052
+ S1SWASTE       0.019         0.161         0.062         0.191         0.035
+ S1SBORIN       0.022         0.240         0.036         0.087         0.055
+
+
+           S.E. GEOMIN ROTATED LOADINGS
+                  6             7
+              ________      ________
+ S1SPERS1       0.014         0.025
+ S1SPERS2       0.025         0.027
+ S1SUSELI       0.037         0.139
+ S1SUSECL       0.004         0.045
+ S1SUSEJO       0.088         0.166
+ S1STESTS       0.068         0.044
+ S1STEXTB       0.004         0.011
+ S1SSKILL       0.031         0.040
+ S1SASSEX       0.016         0.017
+ S1SENJNG       0.207         0.220
+ S1SWASTE       0.054         0.069
+ S1SBORIN       0.089         0.050
+
+
+           S.E. GEOMIN FACTOR CORRELATIONS
+                  1             2             3             4             5
+              ________      ________      ________      ________      ________
+      1         0.000
+      2         0.800         0.000
+      3         1.169         0.566         0.000
+      4         0.049         1.384         0.695         0.000
+      5         0.026         0.914         1.863         0.054         0.000
+      6         0.053         1.057         0.884         0.051         0.042
+      7         0.451         0.209         0.909         0.562         0.380
+
+
+           S.E. GEOMIN FACTOR CORRELATIONS
+                  6             7
+              ________      ________
+      6         0.000
+      7         0.701         0.000
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+                0.081         0.073         0.413        21.110         0.125
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+                0.017        34.036         0.016         0.036         0.071
+
+
+           S.E. ESTIMATED RESIDUAL VARIANCES
+              S1SWASTE      S1SBORIN
+              ________      ________
+                0.042         0.060
+
+
+           Est./S.E. GEOMIN ROTATED LOADINGS
+                  1             2             3             4             5
+              ________      ________      ________      ________      ________
+ S1SPERS1      11.081        -0.307        -0.025         0.646         0.408
+ S1SPERS2      12.710        -0.340         0.175        -0.173         0.018
+ S1SUSELI      -1.284        -0.811         0.213         1.699        -0.349
+ S1SUSECL      -0.076         0.261         0.080         0.097        -0.122
+ S1SUSEJO       2.330         0.108         0.144         0.895         0.793
+ S1STESTS      -0.187         0.112         0.160        -0.688         7.501
+ S1STEXTB       0.096         0.081         0.219         0.085         0.086
+ S1SSKILL       2.526        -0.172         0.154         1.384         6.220
+ S1SASSEX      -0.850         0.143        -0.149         0.045         6.272
+ S1SENJNG       1.086         0.257         0.204         0.707         1.038
+ S1SWASTE      -1.435         0.126        -0.155         0.475         1.002
+ S1SBORIN      -0.150        -0.152         0.157        -0.560        -1.097
+
+
+           Est./S.E. GEOMIN ROTATED LOADINGS
+                  6             7
+              ________      ________
+ S1SPERS1       0.405         1.710
+ S1SPERS2       0.141        -0.673
+ S1SUSELI      -0.182         1.493
+ S1SUSECL       0.153         0.068
+ S1SUSEJO       0.466        -0.267
+ S1STESTS       0.849         2.735
+ S1STEXTB       0.108         0.081
+ S1SSKILL      -0.162        -0.988
+ S1SASSEX      -1.106         0.197
+ S1SENJNG       3.023         1.428
+ S1SWASTE      14.740        -0.470
+ S1SBORIN      10.484         0.172
+
+
+           Est./S.E. GEOMIN FACTOR CORRELATIONS
+                  1             2             3             4             5
+              ________      ________      ________      ________      ________
+      1         0.000
+      2         0.265         0.000
+      3         0.222         0.170         0.000
+      4         7.534         0.319         0.224         0.000
+      5        21.356         0.264         0.222         6.578         0.000
+      6         8.552         0.257         0.222        10.483        11.816
+      7         0.717         0.347         0.220         0.255         1.102
+
+
+           Est./S.E. GEOMIN FACTOR CORRELATIONS
+                  6             7
+              ________      ________
+      6         0.000
+      7         0.367         0.000
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+                1.445         3.713         0.826        -0.084         3.510
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+               13.654        -0.081        13.957         4.051         3.598
+
+
+           Est./S.E. ESTIMATED RESIDUAL VARIANCES
+              S1SWASTE      S1SBORIN
+              ________      ________
+                6.876         3.853
+
+
+           FACTOR STRUCTURE
+                  1             2             3             4             5
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.938         0.203         0.252         0.357         0.543
+ S1SPERS2       0.854         0.178         0.226         0.310         0.472
+ S1SUSELI       0.318         0.325         0.153         0.787         0.333
+ S1SUSECL       0.353         1.664         0.162         0.736         0.403
+ S1SUSEJO       0.423         0.396         0.156         0.723         0.350
+ S1STESTS       0.494         0.204         0.379         0.296         0.865
+ S1STEXTB       0.504         0.188         1.935         0.303         0.802
+ S1SSKILL       0.527         0.231         0.387         0.358         0.877
+ S1SASSEX       0.496         0.222         0.354         0.318         0.922
+ S1SENJNG       0.502         0.263         0.242         0.461         0.555
+ S1SWASTE       0.375         0.275         0.163         0.515         0.433
+ S1SBORIN       0.366         0.182         0.154         0.411         0.383
+
+
+           FACTOR STRUCTURE
+                  6             7
+              ________      ________
+ S1SPERS1       0.441         0.347
+ S1SPERS2       0.387         0.262
+ S1SUSELI       0.440         0.306
+ S1SUSECL       0.454         0.124
+ S1SUSEJO       0.459         0.122
+ S1STESTS       0.467         0.465
+ S1STEXTB       0.382         0.389
+ S1SSKILL       0.456         0.340
+ S1SASSEX       0.444         0.386
+ S1SENJNG       0.788         0.528
+ S1SWASTE       0.839         0.190
+ S1SBORIN       0.872         0.215
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED)
+
+
+           Model Estimated Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       1.000
+ S1SPERS2       0.801         1.000
+ S1SUSELI       0.318         0.267         1.000
+ S1SUSECL       0.339         0.296         0.542         1.000
+ S1SUSEJO       0.405         0.360         0.566         0.660         1.000
+ S1STESTS       0.487         0.419         0.301         0.341         0.296
+ S1STEXTB       0.491         0.440         0.299         0.316         0.304
+ S1SSKILL       0.512         0.449         0.322         0.385         0.346
+ S1SASSEX       0.486         0.422         0.301         0.371         0.315
+ S1SENJNG       0.496         0.423         0.442         0.440         0.405
+ S1SWASTE       0.365         0.320         0.418         0.458         0.431
+ S1SBORIN       0.356         0.312         0.344         0.305         0.359
+
+
+           Model Estimated Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       1.000
+ S1STEXTB       0.737         1.000
+ S1SSKILL       0.755         0.752         1.000
+ S1SASSEX       0.797         0.689         0.807         1.000
+ S1SENJNG       0.536         0.471         0.495         0.501         1.000
+ S1SWASTE       0.399         0.317         0.399         0.387         0.656
+ S1SBORIN       0.367         0.300         0.351         0.339         0.676
+
+
+           Model Estimated Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       1.000
+ S1SBORIN       0.725         1.000
+
+
+           Residuals for Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.000
+ S1SPERS2       0.000         0.000
+ S1SUSELI      -0.003         0.002         0.000
+ S1SUSECL       0.000         0.000         0.000         0.000
+ S1SUSEJO       0.003        -0.003         0.000         0.000         0.000
+ S1STESTS       0.003        -0.004         0.001         0.000        -0.002
+ S1STEXTB      -0.001         0.001         0.000         0.000         0.000
+ S1SSKILL       0.001         0.000         0.003         0.000        -0.003
+ S1SASSEX      -0.006         0.005        -0.003         0.000         0.004
+ S1SENJNG       0.001        -0.002         0.000         0.000         0.000
+ S1SWASTE      -0.003         0.004         0.000         0.000         0.000
+ S1SBORIN       0.003        -0.004        -0.001         0.000         0.001
+
+
+           Residuals for Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       0.000
+ S1STEXTB       0.000         0.000
+ S1SSKILL       0.000         0.000         0.000
+ S1SASSEX       0.000         0.000         0.000         0.000
+ S1SENJNG      -0.001         0.000        -0.002         0.003         0.000
+ S1SWASTE       0.001         0.000         0.000        -0.001         0.000
+ S1SBORIN       0.001         0.000         0.002        -0.002         0.000
+
+
+           Residuals for Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       0.000
+ S1SBORIN       0.000         0.000
+
+
+RESIDUAL OUTPUT
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED)
+
+
+           Model Estimated Covariances/Correlations/Residual Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1
+ S1SPERS2       0.000
+ S1SUSELI       0.000         0.000
+ S1SUSECL       0.000         0.000         0.000
+ S1SUSEJO       0.000         0.000         0.000         0.000
+ S1STESTS       0.000         0.000         0.000         0.000         0.000
+ S1STEXTB       0.000         0.000         0.000         0.000         0.000
+ S1SSKILL       0.000         0.000         0.000         0.000         0.000
+ S1SASSEX       0.000         0.000         0.000         0.000         0.000
+ S1SENJNG       0.000         0.000         0.000         0.000         0.000
+ S1SWASTE       0.000         0.000         0.000         0.000         0.000
+ S1SBORIN       0.000         0.000         0.000         0.000         0.000
+
+
+           Model Estimated Covariances/Correlations/Residual Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STEXTB       0.000
+ S1SSKILL       0.000         0.000
+ S1SASSEX       0.000         0.000         0.000
+ S1SENJNG       0.000         0.000         0.000         0.000
+ S1SWASTE       0.000         0.000         0.000         0.000         0.000
+ S1SBORIN       0.000         0.000         0.000         0.000         0.000
+
+
+           Model Estimated Covariances/Correlations/Residual Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SBORIN       0.000
+
+
+           Residuals for Covariances/Correlations/Residual Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1
+ S1SPERS2       0.801
+ S1SUSELI       0.315         0.269
+ S1SUSECL       0.339         0.296         0.542
+ S1SUSEJO       0.407         0.357         0.566         0.660
+ S1STESTS       0.491         0.416         0.303         0.341         0.294
+ S1STEXTB       0.490         0.441         0.299         0.316         0.304
+ S1SSKILL       0.513         0.449         0.325         0.385         0.343
+ S1SASSEX       0.481         0.427         0.298         0.370         0.319
+ S1SENJNG       0.497         0.422         0.442         0.439         0.405
+ S1SWASTE       0.362         0.324         0.418         0.458         0.431
+ S1SBORIN       0.359         0.309         0.344         0.305         0.360
+
+
+           Residuals for Covariances/Correlations/Residual Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STEXTB       0.737
+ S1SSKILL       0.755         0.752
+ S1SASSEX       0.797         0.689         0.807
+ S1SENJNG       0.535         0.471         0.493         0.504
+ S1SWASTE       0.399         0.317         0.399         0.387         0.656
+ S1SBORIN       0.368         0.300         0.353         0.337         0.676
+
+
+           Residuals for Covariances/Correlations/Residual Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SBORIN       0.725
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED)
+
+
+           Model Estimated Covariances/Correlations/Residual Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1
+ S1SPERS2       0.801
+ S1SUSELI       0.318         0.267
+ S1SUSECL       0.339         0.296         0.542
+ S1SUSEJO       0.405         0.360         0.566         0.660
+ S1STESTS       0.487         0.419         0.301         0.341         0.296
+ S1STEXTB       0.491         0.440         0.299         0.316         0.304
+ S1SSKILL       0.512         0.449         0.322         0.385         0.346
+ S1SASSEX       0.486         0.422         0.301         0.371         0.315
+ S1SENJNG       0.496         0.423         0.442         0.440         0.405
+ S1SWASTE       0.365         0.320         0.418         0.458         0.431
+ S1SBORIN       0.356         0.312         0.344         0.305         0.359
+
+
+           Model Estimated Covariances/Correlations/Residual Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STEXTB       0.737
+ S1SSKILL       0.755         0.752
+ S1SASSEX       0.797         0.689         0.807
+ S1SENJNG       0.536         0.471         0.495         0.501
+ S1SWASTE       0.399         0.317         0.399         0.387         0.656
+ S1SBORIN       0.367         0.300         0.351         0.339         0.676
+
+
+           Model Estimated Covariances/Correlations/Residual Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SBORIN       0.725
+
+
+           Residuals for Covariances/Correlations/Residual Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1
+ S1SPERS2       0.000
+ S1SUSELI      -0.003         0.002
+ S1SUSECL       0.000         0.000         0.000
+ S1SUSEJO       0.003        -0.003         0.000         0.000
+ S1STESTS       0.003        -0.004         0.001         0.000        -0.002
+ S1STEXTB      -0.001         0.001         0.000         0.000         0.000
+ S1SSKILL       0.001         0.000         0.003         0.000        -0.003
+ S1SASSEX      -0.006         0.005        -0.003         0.000         0.004
+ S1SENJNG       0.001        -0.002         0.000         0.000         0.000
+ S1SWASTE      -0.003         0.004         0.000         0.000         0.000
+ S1SBORIN       0.003        -0.004        -0.001         0.000         0.001
+
+
+           Residuals for Covariances/Correlations/Residual Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STEXTB       0.000
+ S1SSKILL       0.000         0.000
+ S1SASSEX       0.000         0.000         0.000
+ S1SENJNG      -0.001         0.000        -0.002         0.003
+ S1SWASTE       0.001         0.000         0.000        -0.001         0.000
+ S1SBORIN       0.001         0.000         0.002        -0.002         0.000
+
+
+           Residuals for Covariances/Correlations/Residual Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SBORIN       0.000
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED)
+
+
+           Model Estimated Covariances/Correlations/Residual Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1
+ S1SPERS2       0.801
+ S1SUSELI       0.314         0.272
+ S1SUSECL       0.339         0.295         0.544
+ S1SUSEJO       0.408         0.357         0.564         0.661
+ S1STESTS       0.486         0.422         0.296         0.345         0.295
+ S1STEXTB       0.489         0.442         0.299         0.316         0.304
+ S1SSKILL       0.514         0.447         0.323         0.385         0.346
+ S1SASSEX       0.485         0.422         0.306         0.367         0.315
+ S1SENJNG       0.495         0.425         0.441         0.443         0.402
+ S1SWASTE       0.367         0.316         0.420         0.451         0.437
+ S1SBORIN       0.359         0.309         0.344         0.305         0.360
+
+
+           Model Estimated Covariances/Correlations/Residual Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STEXTB       0.737
+ S1SSKILL       0.755         0.752
+ S1SASSEX       0.797         0.689         0.807
+ S1SENJNG       0.535         0.471         0.496         0.501
+ S1SWASTE       0.402         0.317         0.394         0.391         0.656
+ S1SBORIN       0.368         0.300         0.353         0.337         0.676
+
+
+           Model Estimated Covariances/Correlations/Residual Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SBORIN       0.725
+
+
+           Residuals for Covariances/Correlations/Residual Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1
+ S1SPERS2       0.000
+ S1SUSELI       0.002        -0.003
+ S1SUSECL       0.000         0.000        -0.002
+ S1SUSEJO      -0.001         0.001         0.002         0.000
+ S1STESTS       0.005        -0.006         0.007        -0.004        -0.001
+ S1STEXTB       0.000        -0.001         0.000         0.000         0.000
+ S1SSKILL      -0.001         0.002         0.002         0.000        -0.003
+ S1SASSEX      -0.005         0.005        -0.008         0.003         0.004
+ S1SENJNG       0.002        -0.003         0.001        -0.003         0.002
+ S1SWASTE      -0.005         0.008        -0.002         0.007        -0.005
+ S1SBORIN       0.001        -0.001         0.000         0.000         0.000
+
+
+           Residuals for Covariances/Correlations/Residual Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STEXTB       0.000
+ S1SSKILL       0.000         0.000
+ S1SASSEX       0.000         0.000         0.000
+ S1SENJNG       0.000         0.000        -0.003         0.002
+ S1SWASTE      -0.002         0.000         0.006        -0.004         0.000
+ S1SBORIN       0.000         0.000         0.000         0.000         0.000
+
+
+           Residuals for Covariances/Correlations/Residual Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SBORIN       0.000
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED)
+
+
+           Model Estimated Covariances/Correlations/Residual Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1
+ S1SPERS2       0.801
+ S1SUSELI       0.314         0.277
+ S1SUSECL       0.337         0.299         0.549
+ S1SUSEJO       0.409         0.351         0.561         0.660
+ S1STESTS       0.486         0.425         0.298         0.343         0.298
+ S1STEXTB       0.491         0.439         0.303         0.315         0.303
+ S1SSKILL       0.513         0.446         0.327         0.384         0.342
+ S1SASSEX       0.485         0.423         0.302         0.375         0.311
+ S1SENJNG       0.494         0.422         0.416         0.430         0.431
+ S1SWASTE       0.365         0.318         0.428         0.441         0.440
+ S1SBORIN       0.361         0.311         0.354         0.329         0.335
+
+
+           Model Estimated Covariances/Correlations/Residual Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STEXTB       0.738
+ S1SSKILL       0.756         0.751
+ S1SASSEX       0.797         0.689         0.806
+ S1SENJNG       0.520         0.472         0.510         0.505
+ S1SWASTE       0.407         0.315         0.391         0.390         0.658
+ S1SBORIN       0.377         0.299         0.345         0.333         0.677
+
+
+           Model Estimated Covariances/Correlations/Residual Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SBORIN       0.723
+
+
+           Residuals for Covariances/Correlations/Residual Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1
+ S1SPERS2       0.000
+ S1SUSELI       0.001        -0.008
+ S1SUSECL       0.002        -0.003        -0.007
+ S1SUSEJO      -0.002         0.006         0.005         0.000
+ S1STESTS       0.004        -0.009         0.005        -0.001        -0.004
+ S1STEXTB      -0.001         0.002        -0.004         0.001         0.002
+ S1SSKILL       0.000         0.003        -0.001         0.002         0.001
+ S1SASSEX      -0.004         0.004        -0.004        -0.004         0.008
+ S1SENJNG       0.003        -0.001         0.027         0.010        -0.026
+ S1SWASTE      -0.002         0.006        -0.010         0.017        -0.009
+ S1SBORIN      -0.002        -0.002        -0.010        -0.024         0.025
+
+
+           Residuals for Covariances/Correlations/Residual Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STEXTB      -0.001
+ S1SSKILL      -0.001         0.001
+ S1SASSEX       0.000         0.000         0.001
+ S1SENJNG       0.015        -0.001        -0.017        -0.002
+ S1SWASTE      -0.008         0.001         0.009        -0.003        -0.002
+ S1SBORIN      -0.009         0.001         0.008         0.005        -0.001
+
+
+           Residuals for Covariances/Correlations/Residual Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SBORIN       0.002
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED)
+
+
+           Model Estimated Covariances/Correlations/Residual Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1
+ S1SPERS2       0.801
+ S1SUSELI       0.317         0.275
+ S1SUSECL       0.339         0.294         0.549
+ S1SUSEJO       0.407         0.356         0.560         0.660
+ S1STESTS       0.486         0.424         0.299         0.340         0.294
+ S1STEXTB       0.499         0.437         0.285         0.331         0.297
+ S1SSKILL       0.514         0.449         0.331         0.385         0.344
+ S1SASSEX       0.480         0.418         0.313         0.363         0.316
+ S1SENJNG       0.491         0.429         0.415         0.430         0.431
+ S1SWASTE       0.365         0.316         0.429         0.440         0.441
+ S1SBORIN       0.360         0.313         0.353         0.331         0.334
+
+
+           Model Estimated Covariances/Correlations/Residual Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STEXTB       0.721
+ S1SSKILL       0.785         0.734
+ S1SASSEX       0.788         0.732         0.797
+ S1SENJNG       0.525         0.461         0.512         0.508
+ S1SWASTE       0.404         0.336         0.385         0.383         0.658
+ S1SBORIN       0.376         0.297         0.338         0.342         0.676
+
+
+           Model Estimated Covariances/Correlations/Residual Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SBORIN       0.724
+
+
+           Residuals for Covariances/Correlations/Residual Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1
+ S1SPERS2       0.000
+ S1SUSELI      -0.001        -0.006
+ S1SUSECL       0.000         0.001        -0.007
+ S1SUSEJO       0.001         0.001         0.005         0.000
+ S1STESTS       0.005        -0.008         0.003         0.002         0.000
+ S1STEXTB      -0.010         0.004         0.014        -0.015         0.007
+ S1SSKILL      -0.001         0.000        -0.006         0.000        -0.001
+ S1SASSEX       0.000         0.009        -0.015         0.008         0.003
+ S1SENJNG       0.007        -0.007         0.027         0.009        -0.026
+ S1SWASTE      -0.002         0.008        -0.011         0.018        -0.010
+ S1SBORIN      -0.001        -0.004        -0.009        -0.026         0.025
+
+
+           Residuals for Covariances/Correlations/Residual Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STEXTB       0.016
+ S1SSKILL      -0.030         0.018
+ S1SASSEX       0.008        -0.043         0.010
+ S1SENJNG       0.011         0.010        -0.019        -0.004
+ S1SWASTE      -0.004        -0.019         0.015         0.004        -0.002
+ S1SBORIN      -0.008         0.003         0.015        -0.005        -0.001
+
+
+           Residuals for Covariances/Correlations/Residual Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SBORIN       0.001
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED)
+
+
+           Model Estimated Covariances/Correlations/Residual Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1
+ S1SPERS2       0.780
+ S1SUSELI       0.403         0.364
+ S1SUSECL       0.474         0.431         0.456
+ S1SUSEJO       0.504         0.464         0.472         0.532
+ S1STESTS       0.499         0.439         0.279         0.310         0.273
+ S1STEXTB       0.515         0.461         0.259         0.291         0.263
+ S1SSKILL       0.541         0.481         0.290         0.324         0.292
+ S1SASSEX       0.510         0.450         0.275         0.306         0.270
+ S1SENJNG       0.440         0.378         0.473         0.519         0.512
+ S1SWASTE       0.306         0.245         0.479         0.521         0.514
+ S1SBORIN       0.270         0.211         0.453         0.490         0.481
+
+
+           Model Estimated Covariances/Correlations/Residual Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STEXTB       0.719
+ S1SSKILL       0.783         0.728
+ S1SASSEX       0.786         0.728         0.792
+ S1SENJNG       0.531         0.475         0.533         0.527
+ S1SWASTE       0.416         0.354         0.409         0.406         0.651
+ S1SBORIN       0.400         0.337         0.391         0.390         0.624
+
+
+           Model Estimated Covariances/Correlations/Residual Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SBORIN       0.674
+
+
+           Residuals for Covariances/Correlations/Residual Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1
+ S1SPERS2       0.021
+ S1SUSELI      -0.088        -0.095
+ S1SUSECL      -0.135        -0.136         0.087
+ S1SUSEJO      -0.096        -0.107         0.093         0.129
+ S1STESTS      -0.009        -0.023         0.024         0.032         0.021
+ S1STEXTB      -0.025        -0.019         0.041         0.025         0.042
+ S1SSKILL      -0.028        -0.032         0.035         0.061         0.051
+ S1SASSEX      -0.030        -0.023         0.023         0.064         0.049
+ S1SENJNG       0.058         0.044        -0.030        -0.080        -0.107
+ S1SWASTE       0.056         0.078        -0.062        -0.062        -0.083
+ S1SBORIN       0.090         0.098        -0.109        -0.185        -0.121
+
+
+           Residuals for Covariances/Correlations/Residual Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STEXTB       0.018
+ S1SSKILL      -0.028         0.024
+ S1SASSEX       0.010        -0.039         0.015
+ S1SENJNG       0.004        -0.004        -0.040        -0.023
+ S1SWASTE      -0.017        -0.037        -0.010        -0.020         0.005
+ S1SBORIN      -0.032        -0.037        -0.038        -0.053         0.052
+
+
+           Residuals for Covariances/Correlations/Residual Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SBORIN       0.051
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED)
+
+
+           Model Estimated Covariances/Correlations/Residual Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1
+ S1SPERS2       0.639
+ S1SUSELI       0.330         0.299
+ S1SUSECL       0.373         0.337         0.441
+ S1SUSEJO       0.366         0.331         0.442         0.491
+ S1STESTS       0.703         0.666         0.307         0.347         0.340
+ S1STEXTB       0.650         0.616         0.272         0.308         0.301
+ S1SSKILL       0.712         0.674         0.309         0.350         0.342
+ S1SASSEX       0.716         0.679         0.301         0.340         0.332
+ S1SENJNG       0.515         0.472         0.493         0.549         0.549
+ S1SWASTE       0.404         0.364         0.511         0.569         0.570
+ S1SBORIN       0.381         0.343         0.491         0.546         0.548
+
+
+           Model Estimated Covariances/Correlations/Residual Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STEXTB       0.682
+ S1SSKILL       0.745         0.690
+ S1SASSEX       0.751         0.696         0.760
+ S1SENJNG       0.497         0.448         0.502         0.494
+ S1SWASTE       0.371         0.328         0.374         0.362         0.630
+ S1SBORIN       0.349         0.308         0.352         0.340         0.604
+
+
+           Model Estimated Covariances/Correlations/Residual Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SBORIN       0.636
+
+
+           Residuals for Covariances/Correlations/Residual Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1
+ S1SPERS2       0.162
+ S1SUSELI      -0.015        -0.029
+ S1SUSECL      -0.034        -0.042         0.102
+ S1SUSEJO       0.041         0.027         0.124         0.169
+ S1STESTS      -0.213        -0.250        -0.004        -0.006        -0.045
+ S1STEXTB      -0.160        -0.175         0.027         0.008         0.003
+ S1SSKILL      -0.199        -0.225         0.016         0.035         0.001
+ S1SASSEX      -0.235        -0.252        -0.002         0.030        -0.014
+ S1SENJNG      -0.017        -0.050        -0.050        -0.110        -0.144
+ S1SWASTE      -0.042        -0.040        -0.093        -0.110        -0.139
+ S1SBORIN      -0.022        -0.034        -0.147        -0.241        -0.188
+
+
+           Residuals for Covariances/Correlations/Residual Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STEXTB       0.056
+ S1SSKILL       0.010         0.062
+ S1SASSEX       0.045        -0.007         0.047
+ S1SENJNG       0.038         0.024        -0.008         0.010
+ S1SWASTE       0.028        -0.011         0.025         0.025         0.026
+ S1SBORIN       0.019        -0.008         0.001        -0.003         0.072
+
+
+           Residuals for Covariances/Correlations/Residual Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SBORIN       0.089
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED)
+
+
+           Model Estimated Covariances/Correlations/Residual Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1
+ S1SPERS2       0.593
+ S1SUSELI       0.418         0.395
+ S1SUSECL       0.470         0.444         0.313
+ S1SUSEJO       0.468         0.442         0.312         0.350
+ S1STESTS       0.655         0.620         0.436         0.491         0.489
+ S1STEXTB       0.596         0.563         0.397         0.446         0.444
+ S1SSKILL       0.662         0.626         0.441         0.496         0.494
+ S1SASSEX       0.669         0.633         0.446         0.501         0.499
+ S1SENJNG       0.580         0.549         0.386         0.434         0.433
+ S1SWASTE       0.545         0.516         0.363         0.408         0.407
+ S1SBORIN       0.526         0.498         0.350         0.394         0.393
+
+
+           Model Estimated Covariances/Correlations/Residual Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STEXTB       0.623
+ S1SSKILL       0.692         0.629
+ S1SASSEX       0.699         0.636         0.706
+ S1SENJNG       0.606         0.551         0.612         0.619
+ S1SWASTE       0.570         0.518         0.576         0.582         0.504
+ S1SBORIN       0.550         0.500         0.555         0.562         0.487
+
+
+           Model Estimated Covariances/Correlations/Residual Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SBORIN       0.458
+
+
+           Residuals for Covariances/Correlations/Residual Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1
+ S1SPERS2       0.208
+ S1SUSELI      -0.103        -0.126
+ S1SUSECL      -0.131        -0.149         0.229
+ S1SUSEJO      -0.060        -0.085         0.254         0.310
+ S1STESTS      -0.165        -0.204        -0.134        -0.150        -0.195
+ S1STEXTB      -0.106        -0.122        -0.098        -0.130        -0.140
+ S1SSKILL      -0.149        -0.177        -0.116        -0.111        -0.151
+ S1SASSEX      -0.188        -0.206        -0.148        -0.131        -0.180
+ S1SENJNG      -0.083        -0.127         0.056         0.005        -0.028
+ S1SWASTE      -0.183        -0.192         0.055         0.050         0.024
+ S1SBORIN      -0.167        -0.189        -0.007        -0.089        -0.033
+
+
+           Residuals for Covariances/Correlations/Residual Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STEXTB       0.115
+ S1SSKILL       0.064         0.123
+ S1SASSEX       0.097         0.053         0.101
+ S1SENJNG      -0.071        -0.080        -0.119        -0.115
+ S1SWASTE      -0.171        -0.201        -0.176        -0.195         0.152
+ S1SBORIN      -0.182        -0.200        -0.203        -0.224         0.189
+
+
+           Residuals for Covariances/Correlations/Residual Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SBORIN       0.267
+
+
+MODIFICATION INDICES
+
+
+     MODIFICATION INDICES FOR ANALYSIS WITH 1 FACTOR(S)
+
+
+
+     MODIFICATION INDICES
+
+
+           THETA
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.000
+ S1SPERS2    2188.413         0.000
+ S1SUSELI      30.308        40.959         0.000
+ S1SUSECL      45.671        52.731       231.706         0.000
+ S1SUSEJO      12.260        21.013       349.943       741.240         0.000
+ S1STESTS     110.729       143.327        49.198        61.891       100.229
+ S1STEXTB      46.759        57.290        26.591        46.763        55.819
+ S1SSKILL      96.760       119.807        39.138        36.380        66.311
+ S1SASSEX     132.164       145.655        59.471        49.890        92.122
+ S1SENJNG      35.831        58.938        10.606         0.081         2.671
+ S1SWASTE     109.704        99.597         9.813         8.791         2.043
+ S1SBORIN      89.321       104.555         0.145        20.331         3.473
+
+
+           THETA
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       0.000
+ S1STEXTB     166.302         0.000
+ S1SSKILL      59.474       212.185         0.000
+ S1SASSEX     321.769        26.601       287.019         0.000
+ S1SENJNG      27.189        26.834        65.778        61.077         0.000
+ S1SWASTE     100.132       115.099       104.629       122.368       210.266
+ S1SBORIN     107.282       111.712       131.831       154.524       445.803
+
+
+           THETA
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       0.000
+ S1SBORIN     882.399         0.000
+
+
+     EXPECTED PARAMETER CHANGE
+
+
+           THETA
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.000
+ S1SPERS2       0.547         0.000
+ S1SUSELI      -0.117        -0.141         0.000
+ S1SUSECL      -0.150        -0.167         0.267         0.000
+ S1SUSEJO      -0.071        -0.097         0.303         0.402         0.000
+ S1STESTS      -0.200        -0.240        -0.153        -0.172        -0.222
+ S1STEXTB      -0.128        -0.144        -0.110        -0.148        -0.159
+ S1SSKILL      -0.183        -0.212        -0.133        -0.129        -0.174
+ S1SASSEX      -0.226        -0.242        -0.169        -0.152        -0.208
+ S1SENJNG      -0.104        -0.150         0.064         0.006        -0.032
+ S1SWASTE      -0.215        -0.218         0.062         0.058         0.028
+ S1SBORIN      -0.194        -0.215        -0.008        -0.100        -0.037
+
+
+           THETA
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       0.000
+ S1STEXTB       0.175         0.000
+ S1SSKILL       0.106         0.194         0.000
+ S1SASSEX       0.216         0.076         0.210         0.000
+ S1SENJNG      -0.089        -0.095        -0.146        -0.141         0.000
+ S1SWASTE      -0.200        -0.228        -0.207        -0.228         0.212
+ S1SBORIN      -0.211        -0.225        -0.235        -0.259         0.283
+
+
+           THETA
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       0.000
+ S1SBORIN       0.398         0.000
+
+
+     MODIFICATION INDICES FOR ANALYSIS WITH 2 FACTOR(S)
+
+
+
+     MODIFICATION INDICES
+
+
+           THETA
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.000
+ S1SPERS2    2540.275         0.000
+ S1SUSELI       1.101         3.690         0.000
+ S1SUSECL       5.036         6.861        86.074         0.000
+ S1SUSEJO       9.741         3.518       166.041       496.578         0.000
+ S1STESTS     289.231       335.306         0.076         0.161         9.391
+ S1STEXTB     167.530       184.385         3.395         0.289         0.042
+ S1SSKILL     272.554       304.933         1.258         6.472         0.002
+ S1SASSEX     325.655       343.400         0.028         4.676         0.929
+ S1SENJNG       2.668        15.487        14.309        66.208       120.878
+ S1SWASTE      10.559         7.800        53.828        85.196       132.811
+ S1SBORIN       2.797         6.154       124.302       267.482       216.659
+
+
+           THETA
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       0.000
+ S1STEXTB      68.637         0.000
+ S1SSKILL       2.967        95.934         0.000
+ S1SASSEX     146.406         0.936       127.882         0.000
+ S1SENJNG      14.366         4.078         0.586         0.773         0.000
+ S1SWASTE       5.176         0.674         4.134         3.757        15.118
+ S1SBORIN       2.265         0.319         0.011         0.038       170.799
+
+
+           THETA
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       0.000
+ S1SBORIN     350.428         0.000
+
+
+     EXPECTED PARAMETER CHANGE
+
+
+           THETA
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.000
+ S1SPERS2       0.572         0.000
+ S1SUSELI      -0.020        -0.038         0.000
+ S1SUSECL      -0.045        -0.054         0.157         0.000
+ S1SUSEJO       0.058         0.036         0.207         0.346         0.000
+ S1STESTS      -0.284        -0.320        -0.005        -0.008        -0.062
+ S1STEXTB      -0.213        -0.228         0.036         0.011         0.004
+ S1SSKILL      -0.272        -0.297         0.022         0.050         0.001
+ S1SASSEX      -0.313        -0.327        -0.003         0.044        -0.019
+ S1SENJNG      -0.026        -0.069        -0.067        -0.149        -0.198
+ S1SWASTE      -0.063        -0.057        -0.140        -0.178        -0.223
+ S1SBORIN      -0.032        -0.049        -0.214        -0.341        -0.286
+
+
+           THETA
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       0.000
+ S1STEXTB       0.104         0.000
+ S1SSKILL       0.023         0.122         0.000
+ S1SASSEX       0.148        -0.013         0.142         0.000
+ S1SENJNG       0.061         0.034        -0.013         0.015         0.000
+ S1SWASTE       0.044        -0.017         0.040         0.039         0.063
+ S1SBORIN       0.030        -0.011         0.002        -0.004         0.199
+
+
+           THETA
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       0.000
+ S1SBORIN       0.332         0.000
+
+
+     MODIFICATION INDICES FOR ANALYSIS WITH 3 FACTOR(S)
+
+
+
+     MODIFICATION INDICES
+
+
+           THETA
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.000
+ S1SPERS2    1570.154         0.000
+ S1SUSELI      84.431        87.845         0.000
+ S1SUSECL     202.757       181.510       103.561         0.000
+ S1SUSEJO     186.931       191.652       178.066       590.094         0.000
+ S1STESTS       1.318         7.250         4.559         8.114         3.578
+ S1STEXTB      10.714         6.129        12.672         4.932        14.812
+ S1SSKILL      14.648        16.150        10.325        31.948        23.526
+ S1SASSEX      13.279         7.266         4.259        36.037        21.738
+ S1SENJNG      69.493        25.896         8.325        56.955       113.218
+ S1SWASTE      51.359        80.207        39.988        47.606        83.921
+ S1SBORIN     136.539       150.826       117.499       269.173       162.288
+
+
+           THETA
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       0.000
+ S1STEXTB      13.259         0.000
+ S1SSKILL      48.117        24.628         0.000
+ S1SASSEX      17.851        47.733        29.794         0.000
+ S1SENJNG       0.270         0.169        21.698         7.563         0.000
+ S1SWASTE       3.346        12.296         1.135         4.180         1.179
+ S1SBORIN      11.023        12.071        15.809        28.791       195.195
+
+
+           THETA
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       0.000
+ S1SBORIN     318.348         0.000
+
+
+     EXPECTED PARAMETER CHANGE
+
+
+           THETA
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.000
+ S1SPERS2       1.771         0.000
+ S1SUSELI      -0.175        -0.184         0.000
+ S1SUSECL      -0.296        -0.287         0.145         0.000
+ S1SUSEJO      -0.311        -0.323         0.192         0.353         0.000
+ S1STESTS      -0.020        -0.050         0.036         0.049         0.034
+ S1STEXTB      -0.057        -0.044         0.058         0.037         0.065
+ S1SSKILL      -0.067        -0.073         0.053         0.094         0.083
+ S1SASSEX      -0.066        -0.050         0.035         0.102         0.082
+ S1SENJNG       0.133         0.086        -0.042        -0.115        -0.163
+ S1SWASTE       0.150         0.196        -0.103        -0.114        -0.155
+ S1SBORIN       0.253         0.275        -0.178        -0.291        -0.217
+
+
+           THETA
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       0.000
+ S1STEXTB       0.041         0.000
+ S1SSKILL      -0.089         0.054         0.000
+ S1SASSEX       0.052        -0.085         0.066         0.000
+ S1SENJNG       0.007        -0.006        -0.066        -0.040         0.000
+ S1SWASTE      -0.031        -0.061        -0.018        -0.036         0.017
+ S1SBORIN      -0.057        -0.061        -0.068        -0.094         0.208
+
+
+           THETA
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       0.000
+ S1SBORIN       0.347         0.000
+
+
+     MODIFICATION INDICES FOR ANALYSIS WITH 4 FACTOR(S)
+
+
+
+     MODIFICATION INDICES
+
+
+           THETA
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.000
+ S1SPERS2       3.366         0.000
+ S1SUSELI       0.078         0.976         0.000
+ S1SUSECL       0.004         0.070        20.459         0.000
+ S1SUSEJO       0.039         0.102        18.638         0.165         0.000
+ S1STESTS       1.052         1.991         0.223         0.064         0.001
+ S1STEXTB       5.447         0.861         3.556         4.972         1.231
+ S1SSKILL       0.084         0.002         0.793         0.000         0.056
+ S1SASSEX       0.006         2.791         4.369         1.542         0.259
+ S1SENJNG       4.623         2.170        16.910         2.307        20.406
+ S1SWASTE       0.313         1.889         3.387        11.928         3.630
+ S1SBORIN       0.042         0.729         2.580        21.415        30.502
+
+
+           THETA
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       0.000
+ S1STEXTB      22.119         0.000
+ S1SSKILL     124.860        33.180         0.000
+ S1SASSEX      27.259       129.932        28.542         0.000
+ S1SENJNG       4.569         2.720        11.442         0.639         0.000
+ S1SWASTE       0.517         7.309         5.750         0.347         6.444
+ S1SBORIN       2.060         0.198         7.310         0.683         1.416
+
+
+           THETA
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       0.000
+ S1SBORIN      18.796         0.000
+
+
+     EXPECTED PARAMETER CHANGE
+
+
+           THETA
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.000
+ S1SPERS2       0.744         0.000
+ S1SUSELI      -0.004        -0.014         0.000
+ S1SUSECL       0.001         0.005        -0.168         0.000
+ S1SUSEJO       0.004         0.006         0.169         0.023         0.000
+ S1STESTS       0.015        -0.018         0.006         0.003         0.000
+ S1STEXTB      -0.035         0.013         0.022        -0.030         0.015
+ S1SSKILL      -0.004         0.001        -0.011         0.000        -0.003
+ S1SASSEX       0.001         0.023        -0.026         0.017         0.007
+ S1SENJNG       0.035        -0.022         0.045         0.019        -0.057
+ S1SWASTE      -0.010         0.022        -0.022         0.046        -0.026
+ S1SBORIN      -0.004        -0.014        -0.022        -0.076         0.091
+
+
+           THETA
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       0.000
+ S1STEXTB       0.036         0.000
+ S1SSKILL      -0.101         0.044         0.000
+ S1SASSEX       0.045        -0.098         0.047         0.000
+ S1SENJNG       0.021         0.017        -0.034        -0.008         0.000
+ S1SWASTE      -0.009        -0.033         0.029         0.007        -0.111
+ S1SBORIN      -0.020         0.006         0.038        -0.012        -0.070
+
+
+           THETA
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       0.000
+ S1SBORIN       0.345         0.000
+
+
+     MODIFICATION INDICES FOR ANALYSIS WITH 5 FACTOR(S)
+
+
+
+     MODIFICATION INDICES
+
+
+           THETA
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.000
+ S1SPERS2      14.622         0.000
+ S1SUSELI       0.049         1.574         0.000
+ S1SUSECL       0.216         0.356        22.922         0.000
+ S1SUSEJO       0.446         2.254        18.443         0.266         0.000
+ S1STESTS       1.415         2.678         0.559         0.065         0.382
+ S1STEXTB       2.236         1.873         5.668         0.540         0.828
+ S1SSKILL       0.002         0.237         0.058         0.089         0.019
+ S1SASSEX       1.843         1.101         0.881         1.547         3.576
+ S1SENJNG       1.500         0.018        18.970         2.963        23.591
+ S1SWASTE       0.450         1.265         3.346        12.331         3.568
+ S1SBORIN       0.234         0.176         3.850        21.478        34.422
+
+
+           THETA
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       0.000
+ S1STEXTB       3.642         0.000
+ S1SSKILL       0.744        10.966         0.000
+ S1SASSEX       1.100        11.160         7.469         0.000
+ S1SENJNG      10.683         0.426        10.583         0.216         0.000
+ S1SWASTE       2.001         0.836         2.488         0.650         6.237
+ S1SBORIN       3.152         0.091         2.668         1.369         4.189
+
+
+           THETA
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       0.000
+ S1SBORIN      27.727         0.000
+
+
+     EXPECTED PARAMETER CHANGE
+
+
+           THETA
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.000
+ S1SPERS2      -2.299         0.000
+ S1SUSELI       0.004        -0.016         0.000
+ S1SUSECL       0.010        -0.010        -0.170         0.000
+ S1SUSEJO      -0.016         0.028         0.161         0.028         0.000
+ S1STESTS       0.018        -0.018         0.009        -0.003        -0.008
+ S1STEXTB      -0.085         0.055        -0.109         0.040         0.040
+ S1SSKILL       0.001         0.005        -0.003         0.004         0.002
+ S1SASSEX      -0.028         0.016        -0.017        -0.027         0.033
+ S1SENJNG       0.023        -0.002         0.045         0.020        -0.057
+ S1SWASTE      -0.013         0.016        -0.021         0.045        -0.024
+ S1SBORIN      -0.010        -0.006        -0.026        -0.073         0.091
+
+
+           THETA
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       0.000
+ S1STEXTB      -0.158         0.000
+ S1SSKILL      -0.026         0.274         0.000
+ S1SASSEX      -0.051        -0.951         0.133         0.000
+ S1SENJNG       0.031        -0.021        -0.031        -0.006         0.000
+ S1SWASTE      -0.017         0.046         0.019        -0.015        -0.100
+ S1SBORIN      -0.023         0.013         0.022         0.021        -0.118
+
+
+           THETA
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       0.000
+ S1SBORIN       0.393         0.000
+
+
+     MODIFICATION INDICES FOR ANALYSIS WITH 6 FACTOR(S)
+
+
+
+     MODIFICATION INDICES FOR ANALYSIS WITH 7 FACTOR(S)
+
+
+
+     MODIFICATION INDICES
+
+
+           THETA
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.000
+ S1SPERS2      28.157         0.000
+ S1SUSELI       5.920         4.751         0.000
+ S1SUSECL       2.337         3.562       245.010         0.000
+ S1SUSEJO       3.859         3.077         0.093         3.684         0.000
+ S1STESTS       1.279         0.923         2.153         2.630         2.839
+ S1STEXTB     229.164       176.025        10.532         6.485         5.708
+ S1SSKILL       0.083         0.002        15.067        61.496         8.380
+ S1SASSEX       4.913         2.849         7.429        26.383         4.937
+ S1SENJNG       2.266         1.727         0.098         2.526         0.118
+ S1SWASTE       1.236         1.180         0.643         0.017         0.311
+ S1SBORIN       1.093         1.310        51.280        34.294        36.149
+
+
+           THETA
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       0.000
+ S1STEXTB       0.761         0.000
+ S1SSKILL      21.003         0.041         0.000
+ S1SASSEX       4.917       185.188         0.208         0.000
+ S1SENJNG      13.424        42.551        75.492        65.831         0.000
+ S1SWASTE       0.211         0.263         0.000         0.103         0.685
+ S1SBORIN       0.216         1.854         1.757         2.696         0.021
+
+
+           THETA
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       0.000
+ S1SBORIN      14.393         0.000
+
+
+     EXPECTED PARAMETER CHANGE
+
+
+           THETA
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.000
+ S1SPERS2      -9.286         0.000
+ S1SUSELI      -0.111         0.102         0.000
+ S1SUSECL       0.465        -0.554      -184.745         0.000
+ S1SUSEJO       0.059        -0.053        -0.300        23.737         0.000
+ S1STESTS       0.014        -0.011         0.077         0.855        -0.073
+ S1STEXTB      -7.439         5.419         3.948        42.962        -1.958
+ S1SSKILL       0.004         0.000         0.251         9.768        -0.116
+ S1SASSEX      -0.034         0.022        -0.117        -3.452         0.061
+ S1SENJNG       0.050        -0.039        -0.038        -2.230         0.033
+ S1SWASTE      -0.017         0.016         0.112         0.209        -0.059
+ S1SBORIN       0.016        -0.017        -3.021       -28.351         1.909
+
+
+           THETA
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       0.000
+ S1STEXTB       1.956         0.000
+ S1SSKILL       1.740         0.549         0.000
+ S1SASSEX      -0.725      -169.022        -0.126         0.000
+ S1SENJNG      -0.342        14.785        -1.287         0.793         0.000
+ S1SWASTE       0.014        -0.416         0.000        -0.009         0.202
+ S1SBORIN       0.015        -1.303         0.043        -0.054        -0.045
+
+
+           THETA
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       0.000
+ S1SBORIN      -4.197         0.000
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Histograms (sample values)
+  Scatterplots (sample values)
+  Eigenvalues for exploratory factor analysis
+
+     Beginning Time:  14:19:47
+        Ending Time:  14:19:48
+       Elapsed Time:  00:00:01
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen

@@ -1,0 +1,511 @@
+Mplus VERSION 8.6 (Mac)
+MUTHEN & MUTHEN
+05/31/2021  12:03 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  Class 1
+  DATA:
+  FILE = "/Users/agarber/github/NTNU-workshop/19-intro-mixtures/enum_lsay/lca_lsay.dat";
+
+  VARIABLE:
+  NAMES = Enjoy Useful Logical Job Adult female mathg12;
+   MISSING=.;
+   categorical = Enjoy-Adult;
+  usevar = Enjoy-Adult;
+  classes = c(1);
+  ANALYSIS:
+  estimator = mlr;
+      type = mixture;
+      starts = 200 100;
+      processors = 10;
+  OUTPUT:
+  sampstat residual tech11 tech14;
+  PLOT:
+  type = plot3;
+      series = Enjoy-Adult(*);
+
+
+
+*** WARNING in OUTPUT command
+  SAMPSTAT option is not available when all outcomes are censored, ordered
+  categorical, unordered categorical (nominal), count or continuous-time
+  survival variables.  Request for SAMPSTAT is ignored.
+*** WARNING in OUTPUT command
+  TECH11 option is not available for TYPE=MIXTURE with only one class.
+  Request for TECH11 is ignored.
+*** WARNING in OUTPUT command
+  TECH14 option is not available for TYPE=MIXTURE with only one class.
+  Request for TECH14 is ignored.
+   3 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+Class 1
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        3061
+
+Number of dependent variables                                    5
+Number of independent variables                                  0
+Number of continuous latent variables                            0
+Number of categorical latent variables                           1
+
+Observed dependent variables
+
+  Binary and ordered categorical (ordinal)
+   ENJOY       USEFUL      LOGICAL     JOB         ADULT
+
+Categorical latent variables
+   C
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-06
+    Relative loglikelihood change                        0.100D-06
+    Derivative                                           0.100D-05
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+Random Starts Specifications
+  Number of initial stage random starts                        200
+  Number of final stage optimizations                          100
+  Number of initial stage iterations                            10
+  Initial stage convergence criterion                    0.100D+01
+  Random starts scale                                    0.500D+01
+  Random seed for generating random starts                       0
+Link                                                         LOGIT
+
+Input data file(s)
+  /Users/agarber/github/NTNU-workshop/19-intro-mixtures/enum_lsay/lca_lsay.dat
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns            21
+     Number of y missing data patterns           0
+     Number of u missing data patterns          21
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT FOR U
+
+
+           Covariance Coverage
+              ENJOY         USEFUL        LOGICAL       JOB           ADULT
+              ________      ________      ________      ________      ________
+ ENJOY          0.994
+ USEFUL         0.972         0.976
+ LOGICAL        0.972         0.960         0.977
+ JOB            0.979         0.965         0.966         0.984
+ ADULT          0.989         0.973         0.975         0.982         0.994
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    ENJOY
+      Category 1    0.387         1177.000
+      Category 2    0.613         1865.000
+    USEFUL
+      Category 1    0.596         1782.000
+      Category 2    0.404         1206.000
+    LOGICAL
+      Category 1    0.508         1519.000
+      Category 2    0.492         1473.000
+    JOB
+      Category 1    0.596         1796.000
+      Category 2    0.404         1216.000
+    ADULT
+      Category 1    0.539         1639.000
+      Category 2    0.461         1404.000
+
+
+RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
+
+Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
+
+          -10250.604  931874           141
+          -10250.604  821011           161
+          -10250.604  314084           81
+          -10250.604  370466           41
+          -10250.604  902278           21
+          -10250.604  609185           181
+          -10250.604  371246           101
+          -10250.604  635245           121
+          -10250.604  603842           61
+          -10250.604  285380           1
+          -10250.604  93468            3
+          -10250.604  27071            15
+          -10250.604  462953           7
+          -10250.604  76974            16
+          -10250.604  939021           8
+          -10250.604  68985            17
+          -10250.604  851945           18
+          -10250.604  608496           4
+          -10250.604  unperturbed      0
+          -10250.604  991329           182
+          -10250.604  131856           90
+          -10250.604  264081           186
+          -10250.604  164305           128
+          -10250.604  311214           64
+          -10250.604  814975           129
+          -10250.604  509733           130
+          -10250.604  626891           32
+          -10250.604  565819           65
+          -10250.604  468036           131
+          -10250.604  313407           132
+          -10250.604  467339           66
+          -10250.604  783165           170
+          -10250.604  303634           169
+          -10250.604  321390           133
+          -10250.604  903369           134
+          -10250.604  297518           166
+          -10250.604  263268           165
+          -10250.604  749453           33
+          -10250.604  789985           67
+          -10250.604  437181           135
+          -10250.604  232559           136
+          -10250.604  405079           68
+          -10250.604  685657           69
+          -10250.604  341041           34
+          -10250.604  987090           70
+          -10250.604  192071           142
+          -10250.604  830392           35
+          -10250.604  475420           71
+          -10250.604  22089            143
+          -10250.604  856536           144
+          -10250.604  783110           72
+          -10250.604  695155           150
+          -10250.604  788796           145
+          -10250.604  369602           146
+          -10250.604  260601           36
+          -10250.604  863094           147
+          -10250.604  51375            148
+          -10250.604  417035           149
+          -10250.604  40340            188
+          -10250.604  966014           37
+          -10250.604  246261           38
+          -10250.604  645664           39
+          -10250.604  913639           162
+          -10250.604  915642           40
+          -10250.604  484501           163
+          -10250.604  215353           164
+          -10250.604  284109           82
+          -10250.604  268217           83
+          -10250.604  654136           167
+          -10250.604  636396           168
+          -10250.604  782200           84
+          -10250.604  352277           42
+          -10250.604  569833           85
+          -10250.604  170954           86
+          -10250.604  963053           43
+          -10250.604  544048           87
+          -10250.604  373505           88
+          -10250.604  436460           89
+          -10250.604  407168           44
+          -10250.604  120506           45
+          -10250.604  579995           183
+          -10250.604  281558           184
+          -10250.604  329127           185
+          -10250.604  318230           46
+          -10250.604  793035           187
+          -10250.604  458181           189
+          -10250.604  848163           47
+          -10250.604  967237           48
+          -10250.604  202790           198
+          -10250.604  568859           49
+          -10250.604  761633           50
+          -10250.604  751153           110
+          -10250.604  190339           102
+          -10250.604  292884           103
+          -10250.604  70118            104
+          -10250.604  165853           105
+          -10250.604  464179           106
+          -10250.604  25127            107
+          -10250.604  100874           108
+          -10250.604  466971           109
+
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                        5
+
+Loglikelihood
+
+          H0 Value                      -10250.604
+          H0 Scaling Correction Factor      1.0000
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                   20511.208
+          Bayesian (BIC)                 20541.340
+          Sample-Size Adjusted BIC       20525.453
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit for the Binary and Ordered Categorical
+(Ordinal) Outcomes
+
+          Pearson Chi-Square
+
+          Value                           1005.225
+          Degrees of Freedom                    26
+          P-Value                           0.0000
+
+          Likelihood Ratio Chi-Square
+
+          The chi-square is negative for this model part.  This is most likely
+          due to deleted cells in the H0 log-likelihood calculation.
+
+Chi-Square Test for MCAR under the Unrestricted Latent Class Indicator Model
+
+          Pearson Chi-Square
+
+          Value                            161.488
+          Degrees of Freedom                   148
+          P-Value                           0.2119
+
+          Likelihood Ratio Chi-Square
+
+          Value                            128.456
+          Degrees of Freedom                   148
+          P-Value                           0.8751
+
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THE ESTIMATED MODEL
+
+    Latent
+   Classes
+
+       1       3061.00000          1.00000
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+    Latent
+   Classes
+
+       1       3061.00000          1.00000
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THEIR MOST LIKELY LATENT CLASS MEMBERSHIP
+
+Class Counts and Proportions
+
+    Latent
+   Classes
+
+       1             3061          1.00000
+
+
+Average Latent Class Probabilities for Most Likely Latent Class Membership (Row)
+by Latent Class (Column)
+
+           1
+
+    1   1.000
+
+
+Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+           1
+
+    1   1.000
+
+
+Logits for the Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+              1
+
+    1      0.000
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Latent Class 1
+
+ Thresholds
+    ENJOY$1           -0.460      0.037    -12.365      0.000
+    USEFUL$1           0.390      0.037     10.471      0.000
+    LOGICAL$1          0.031      0.037      0.841      0.400
+    JOB$1              0.390      0.037     10.502      0.000
+    ADULT$1            0.155      0.036      4.256      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.186E+00
+       (ratio of smallest to largest eigenvalue)
+
+
+RESULTS IN PROBABILITY SCALE
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Latent Class 1
+
+ ENJOY
+    Category 1         0.387      0.009     43.816      0.000
+    Category 2         0.613      0.009     69.427      0.000
+ USEFUL
+    Category 1         0.596      0.009     66.446      0.000
+    Category 2         0.404      0.009     44.969      0.000
+ LOGICAL
+    Category 1         0.508      0.009     55.547      0.000
+    Category 2         0.492      0.009     53.865      0.000
+ JOB
+    Category 1         0.596      0.009     66.698      0.000
+    Category 2         0.404      0.009     45.159      0.000
+ ADULT
+    Category 1         0.539      0.009     59.601      0.000
+    Category 2         0.461      0.009     51.056      0.000
+
+
+RESIDUAL OUTPUT
+
+
+     UNIVARIATE DISTRIBUTION FIT FOR CLASS 1
+
+     Variable          Observed      Estimated      Residual (Obs.-Est.)    Stand. Residual
+     ENJOY
+       Category 1        0.387          0.387                  0.000                0.000
+       Category 2        0.613          0.613                  0.000                0.000
+     USEFUL
+       Category 1        0.596          0.596                  0.000                0.000
+       Category 2        0.404          0.404                  0.000                0.000
+     LOGICAL
+       Category 1        0.508          0.508                  0.000                0.000
+       Category 2        0.492          0.492                  0.000                0.000
+     JOB
+       Category 1        0.596          0.596                  0.000                0.000
+       Category 2        0.404          0.404                  0.000                0.000
+     ADULT
+       Category 1        0.539          0.539                  0.000                0.000
+       Category 2        0.461          0.461                  0.000                0.000
+
+
+     BIVARIATE DISTRIBUTIONS FIT FOR CLASS 1
+
+     Variable       Variable          Observed     Estimated    Residual (Obs.-Est.)  Stand. Residual
+     ENJOY          USEFUL
+       Category 1     Category 1        0.304       0.231             0.073            9.557
+       Category 1     Category 2        0.084       0.156            -0.072          -10.993
+       Category 2     Category 1        0.293       0.366            -0.073           -8.332
+       Category 2     Category 2        0.319       0.247             0.072            9.215
+     ENJOY          LOGICAL
+       Category 1     Category 1        0.268       0.196             0.072           10.033
+       Category 1     Category 2        0.118       0.190            -0.072          -10.173
+       Category 2     Category 1        0.239       0.311            -0.073           -8.685
+       Category 2     Category 2        0.375       0.302             0.073            8.778
+     ENJOY          JOB
+       Category 1     Category 1        0.294       0.231             0.064            8.350
+       Category 1     Category 2        0.093       0.156            -0.063           -9.618
+       Category 2     Category 1        0.301       0.366            -0.064           -7.383
+       Category 2     Category 2        0.311       0.248             0.064            8.179
+     ENJOY          ADULT
+       Category 1     Category 1        0.289       0.208             0.081           11.001
+       Category 1     Category 2        0.098       0.179            -0.080          -11.611
+       Category 2     Category 1        0.249       0.330            -0.081           -9.534
+       Category 2     Category 2        0.364       0.283             0.081            9.907
+     USEFUL         LOGICAL
+       Category 1     Category 1        0.421       0.303             0.118           14.182
+       Category 1     Category 2        0.178       0.294            -0.116          -14.092
+       Category 2     Category 1        0.087       0.205            -0.118          -16.148
+       Category 2     Category 2        0.315       0.199             0.116           16.088
+     USEFUL         JOB
+       Category 1     Category 1        0.467       0.356             0.112           12.911
+       Category 1     Category 2        0.129       0.241            -0.111          -14.417
+       Category 2     Category 1        0.130       0.241            -0.111          -14.362
+       Category 2     Category 2        0.274       0.163             0.111           16.580
+     USEFUL         ADULT
+       Category 1     Category 1        0.431       0.321             0.110           13.049
+       Category 1     Category 2        0.165       0.275            -0.110          -13.587
+       Category 2     Category 1        0.107       0.217            -0.110          -14.796
+       Category 2     Category 2        0.296       0.186             0.110           15.612
+     LOGICAL        JOB
+       Category 1     Category 1        0.401       0.303             0.098           11.804
+       Category 1     Category 2        0.108       0.205            -0.097          -13.306
+       Category 2     Category 1        0.194       0.294            -0.099          -12.040
+       Category 2     Category 2        0.297       0.199             0.098           13.610
+     LOGICAL        ADULT
+       Category 1     Category 1        0.374       0.273             0.100           12.465
+       Category 1     Category 2        0.133       0.234            -0.101          -13.182
+       Category 2     Category 1        0.164       0.265            -0.101          -12.703
+       Category 2     Category 2        0.329       0.227             0.102           13.447
+     JOB            ADULT
+       Category 1     Category 1        0.449       0.321             0.127           15.098
+       Category 1     Category 2        0.147       0.275            -0.128          -15.820
+       Category 2     Category 1        0.091       0.217            -0.127          -17.024
+       Category 2     Category 2        0.313       0.186             0.127           18.077
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Histograms (sample values)
+  Scatterplots (sample values)
+  Sample proportions and estimated probabilities
+
+     Beginning Time:  12:03:34
+        Ending Time:  12:03:35
+       Elapsed Time:  00:00:01
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen

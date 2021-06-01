@@ -1,0 +1,28 @@
+TITLE:
+m2 single indicator factor - Lab 1
+DATA:
+FILE = "/Users/agarber/github/NTNU-workshop/12-path-models/mplus_files/nces.dat";
+ 
+VARIABLE:
+NAMES = bystlang freelnch byincome stolen t_hurt p_fight hit damaged bullied unsafe
+     disrupt gangs rac_fght late skipped mth_test rd_test mean_scr; 
+ MISSING=.;
+ usevar =
+    unsafe disrupt gangs rac_fght  ! factor 1
+    mth_test                       ! outcome
+    mean_scr;                      ! mediator 
+ANALYSIS:
+estimator = MLR
+MODEL:
+! measurement model
+    factor1 by unsafe, disrupt, gangs, rac_fght; 
+    
+    SIF by mean_scr@1; ! fix factor loading to 1
+
+    mean_scr@.154;     ! fix residual variance
+    
+    ! structural model
+    mth_test on factor1 SIF;
+    SIF on factor1; 
+OUTPUT:
+sampstat standardized

@@ -1,0 +1,516 @@
+Mplus VERSION 8.6 (Mac)
+MUTHEN & MUTHEN
+05/29/2021  10:26 AM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  m2 growth model centering time scores
+  DATA:
+  FILE = "/Users/agarber/github/NTNU-workshop/18-advanced-growth/mplus_files/LSAY.dat";
+
+  VARIABLE:
+  NAMES = rural gender fathed mothed math_07 math_08 math_09 math_10 math_11 math_12
+       sci_07 sci_08 sci_09 sci_10 sci_11 sci_12;
+   MISSING=.;
+   usevar =
+      sci_07-sci_12;
+  ANALYSIS:
+  estimator = MLR
+  MODEL:
+  i s | sci_07@-2 sci_08@-1 sci_09@0 sci_10@1 sci_11@2 sci_12@3;
+  OUTPUT:
+  sampstat standardized;
+  PLOT:
+  type=plot3;
+            series = sci_07-sci_12(*)
+
+
+
+*** WARNING
+  Data set contains cases with missing on all variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on all variables:  79
+   1 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+m2 growth model centering time scores
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        5866
+
+Number of dependent variables                                    6
+Number of independent variables                                  0
+Number of continuous latent variables                            2
+
+Observed dependent variables
+
+  Continuous
+   SCI_07      SCI_08      SCI_09      SCI_10      SCI_11      SCI_12
+
+Continuous latent variables
+   I           S
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+
+Input data file(s)
+  /Users/agarber/github/NTNU-workshop/18-advanced-growth/mplus_files/LSAY.dat
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns            24
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              SCI_07        SCI_08        SCI_09        SCI_10        SCI_11
+              ________      ________      ________      ________      ________
+ SCI_07         0.528
+ SCI_08         0.474         0.475
+ SCI_09         0.465         0.465         0.465
+ SCI_10         0.454         0.444         0.444         0.921
+ SCI_11         0.386         0.378         0.378         0.754         0.759
+ SCI_12         0.327         0.320         0.320         0.680         0.680
+
+
+           Covariance Coverage
+              SCI_12
+              ________
+ SCI_12         0.685
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           Means
+              SCI_07        SCI_08        SCI_09        SCI_10        SCI_11
+              ________      ________      ________      ________      ________
+               50.185        53.540        57.706        59.843        62.548
+
+
+           Means
+              SCI_12
+              ________
+               64.035
+
+
+           Covariances
+              SCI_07        SCI_08        SCI_09        SCI_10        SCI_11
+              ________      ________      ________      ________      ________
+ SCI_07        97.836
+ SCI_08        84.454       112.140
+ SCI_09        79.969        97.601       113.934
+ SCI_10        81.265        95.297       103.668       120.210
+ SCI_11        82.041        96.090       105.277       112.144       129.550
+ SCI_12        82.379        94.803       103.427       110.304       124.659
+
+
+           Covariances
+              SCI_12
+              ________
+ SCI_12       137.074
+
+
+           Correlations
+              SCI_07        SCI_08        SCI_09        SCI_10        SCI_11
+              ________      ________      ________      ________      ________
+ SCI_07         1.000
+ SCI_08         0.806         1.000
+ SCI_09         0.757         0.863         1.000
+ SCI_10         0.749         0.821         0.886         1.000
+ SCI_11         0.729         0.797         0.867         0.899         1.000
+ SCI_12         0.711         0.765         0.828         0.859         0.935
+
+
+           Correlations
+              SCI_12
+              ________
+ SCI_12         1.000
+
+
+     MAXIMUM LOG-LIKELIHOOD VALUE FOR THE UNRESTRICTED (H1) MODEL IS -72163.595
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     SCI_07               50.366       0.193      26.140    0.03%      40.910     47.150     50.020
+            3098.000     104.263      -0.460      88.030    0.03%      52.940     59.270
+     SCI_08               53.927      -0.139      22.820    0.04%      43.720     51.460     54.420
+            2784.000     121.790      -0.648      83.940    0.04%      57.730     63.870
+     SCI_09               58.373      -0.298      27.360    0.04%      48.400     56.650     59.825
+            2730.000     123.150      -0.446      91.210    0.04%      62.480     67.870
+     SCI_10               60.176      -0.118      26.970    0.02%      50.540     57.510     60.650
+            5401.000     118.108      -0.428      91.330    0.02%      63.470     69.780
+     SCI_11               63.567      -0.290      24.440    0.02%      54.130     61.430     64.305
+            4454.000     126.409      -0.263      93.130    0.02%      67.020     73.360
+     SCI_12               65.494      -0.355      25.060    0.02%      56.460     63.340     66.085
+            4018.000     131.306       0.025      95.560    0.02%      68.700     75.280
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       11
+
+Loglikelihood
+
+          H0 Value                      -72822.977
+          H0 Scaling Correction Factor      1.3744
+            for MLR
+          H1 Value                      -72163.595
+          H1 Scaling Correction Factor      1.2941
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                  145667.954
+          Bayesian (BIC)                145741.400
+          Sample-Size Adjusted BIC      145706.446
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                           1064.492*
+          Degrees of Freedom                    16
+          P-Value                           0.0000
+          Scaling Correction Factor         1.2389
+            for MLR
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.106
+          90 Percent C.I.                    0.100  0.111
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                0.938
+          TLI                                0.942
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                          17035.829
+          Degrees of Freedom                    15
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.076
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ I        |
+    SCI_07             1.000      0.000    999.000    999.000
+    SCI_08             1.000      0.000    999.000    999.000
+    SCI_09             1.000      0.000    999.000    999.000
+    SCI_10             1.000      0.000    999.000    999.000
+    SCI_11             1.000      0.000    999.000    999.000
+    SCI_12             1.000      0.000    999.000    999.000
+
+ S        |
+    SCI_07            -2.000      0.000    999.000    999.000
+    SCI_08            -1.000      0.000    999.000    999.000
+    SCI_09             0.000      0.000    999.000    999.000
+    SCI_10             1.000      0.000    999.000    999.000
+    SCI_11             2.000      0.000    999.000    999.000
+    SCI_12             3.000      0.000    999.000    999.000
+
+ S        WITH
+    I                  3.642      0.286     12.717      0.000
+
+ Means
+    I                 56.868      0.136    417.904      0.000
+    S                  2.681      0.031     86.324      0.000
+
+ Intercepts
+    SCI_07             0.000      0.000    999.000    999.000
+    SCI_08             0.000      0.000    999.000    999.000
+    SCI_09             0.000      0.000    999.000    999.000
+    SCI_10             0.000      0.000    999.000    999.000
+    SCI_11             0.000      0.000    999.000    999.000
+    SCI_12             0.000      0.000    999.000    999.000
+
+ Variances
+    I                 95.403      1.687     56.569      0.000
+    S                  1.823      0.093     19.632      0.000
+
+ Residual Variances
+    SCI_07            26.364      1.207     21.837      0.000
+    SCI_08            17.564      0.802     21.906      0.000
+    SCI_09            16.435      0.678     24.255      0.000
+    SCI_10            16.284      0.584     27.887      0.000
+    SCI_11             6.991      0.365     19.170      0.000
+    SCI_12            12.148      0.674     18.026      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.856E-03
+       (ratio of smallest to largest eigenvalue)
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ I        |
+    SCI_07             0.913      0.007    135.900      0.000
+    SCI_08             0.942      0.004    215.634      0.000
+    SCI_09             0.924      0.003    291.686      0.000
+    SCI_10             0.889      0.003    256.650      0.000
+    SCI_11             0.876      0.005    193.494      0.000
+    SCI_12             0.809      0.006    128.371      0.000
+
+ S        |
+    SCI_07            -0.252      0.007    -37.695      0.000
+    SCI_08            -0.130      0.003    -37.472      0.000
+    SCI_09             0.000      0.000    999.000    999.000
+    SCI_10             0.123      0.003     38.746      0.000
+    SCI_11             0.242      0.006     39.626      0.000
+    SCI_12             0.335      0.008     42.363      0.000
+
+ S        WITH
+    I                  0.276      0.022     12.553      0.000
+
+ Means
+    I                  5.822      0.053    109.801      0.000
+    S                  1.986      0.057     34.919      0.000
+
+ Intercepts
+    SCI_07             0.000      0.000    999.000    999.000
+    SCI_08             0.000      0.000    999.000    999.000
+    SCI_09             0.000      0.000    999.000    999.000
+    SCI_10             0.000      0.000    999.000    999.000
+    SCI_11             0.000      0.000    999.000    999.000
+    SCI_12             0.000      0.000    999.000    999.000
+
+ Variances
+    I                  1.000      0.000    999.000    999.000
+    S                  1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SCI_07             0.230      0.009     24.974      0.000
+    SCI_08             0.163      0.007     22.823      0.000
+    SCI_09             0.147      0.006     25.124      0.000
+    SCI_10             0.135      0.005     27.625      0.000
+    SCI_11             0.056      0.003     18.200      0.000
+    SCI_12             0.083      0.004     19.007      0.000
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ I        |
+    SCI_07             0.913      0.007    135.900      0.000
+    SCI_08             0.942      0.004    215.634      0.000
+    SCI_09             0.924      0.003    291.686      0.000
+    SCI_10             0.889      0.003    256.650      0.000
+    SCI_11             0.876      0.005    193.494      0.000
+    SCI_12             0.809      0.006    128.371      0.000
+
+ S        |
+    SCI_07            -0.252      0.007    -37.695      0.000
+    SCI_08            -0.130      0.003    -37.472      0.000
+    SCI_09             0.000      0.000    999.000    999.000
+    SCI_10             0.123      0.003     38.746      0.000
+    SCI_11             0.242      0.006     39.626      0.000
+    SCI_12             0.335      0.008     42.363      0.000
+
+ S        WITH
+    I                  0.276      0.022     12.553      0.000
+
+ Means
+    I                  5.822      0.053    109.801      0.000
+    S                  1.986      0.057     34.919      0.000
+
+ Intercepts
+    SCI_07             0.000      0.000    999.000    999.000
+    SCI_08             0.000      0.000    999.000    999.000
+    SCI_09             0.000      0.000    999.000    999.000
+    SCI_10             0.000      0.000    999.000    999.000
+    SCI_11             0.000      0.000    999.000    999.000
+    SCI_12             0.000      0.000    999.000    999.000
+
+ Variances
+    I                  1.000      0.000    999.000    999.000
+    S                  1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SCI_07             0.230      0.009     24.974      0.000
+    SCI_08             0.163      0.007     22.823      0.000
+    SCI_09             0.147      0.006     25.124      0.000
+    SCI_10             0.135      0.005     27.625      0.000
+    SCI_11             0.056      0.003     18.200      0.000
+    SCI_12             0.083      0.004     19.007      0.000
+
+
+STD Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ I        |
+    SCI_07             9.767      0.086    113.137      0.000
+    SCI_08             9.767      0.086    113.137      0.000
+    SCI_09             9.767      0.086    113.137      0.000
+    SCI_10             9.767      0.086    113.137      0.000
+    SCI_11             9.767      0.086    113.137      0.000
+    SCI_12             9.767      0.086    113.137      0.000
+
+ S        |
+    SCI_07            -2.700      0.069    -39.264      0.000
+    SCI_08            -1.350      0.034    -39.264      0.000
+    SCI_09             0.000      0.000    999.000    999.000
+    SCI_10             1.350      0.034     39.264      0.000
+    SCI_11             2.700      0.069     39.264      0.000
+    SCI_12             4.050      0.103     39.264      0.000
+
+ S        WITH
+    I                  0.276      0.022     12.553      0.000
+
+ Means
+    I                  5.822      0.053    109.801      0.000
+    S                  1.986      0.057     34.919      0.000
+
+ Intercepts
+    SCI_07             0.000      0.000    999.000    999.000
+    SCI_08             0.000      0.000    999.000    999.000
+    SCI_09             0.000      0.000    999.000    999.000
+    SCI_10             0.000      0.000    999.000    999.000
+    SCI_11             0.000      0.000    999.000    999.000
+    SCI_12             0.000      0.000    999.000    999.000
+
+ Variances
+    I                  1.000      0.000    999.000    999.000
+    S                  1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SCI_07            26.364      1.207     21.837      0.000
+    SCI_08            17.564      0.802     21.906      0.000
+    SCI_09            16.435      0.678     24.255      0.000
+    SCI_10            16.284      0.584     27.887      0.000
+    SCI_11             6.991      0.365     19.170      0.000
+    SCI_12            12.148      0.674     18.026      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    SCI_07             0.770      0.009     83.482      0.000
+    SCI_08             0.837      0.007    116.874      0.000
+    SCI_09             0.853      0.006    145.843      0.000
+    SCI_10             0.865      0.005    177.291      0.000
+    SCI_11             0.944      0.003    305.272      0.000
+    SCI_12             0.917      0.004    209.127      0.000
+
+
+SAMPLE STATISTICS FOR ESTIMATED FACTOR SCORES
+
+
+     SAMPLE STATISTICS
+
+
+           Means
+              I             I_SE          S             S_SE
+              ________      ________      ________      ________
+               56.868         2.505         2.681         0.994
+
+
+           Covariances
+              I             I_SE          S             S_SE
+              ________      ________      ________      ________
+ I             88.344
+ I_SE          -0.947         0.779
+ S              4.521        -0.027         0.798
+ S_SE          -0.287         0.153        -0.004         0.037
+
+
+           Correlations
+              I             I_SE          S             S_SE
+              ________      ________      ________      ________
+ I              1.000
+ I_SE          -0.114         1.000
+ S              0.539        -0.034         1.000
+ S_SE          -0.159         0.904        -0.025         1.000
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Histograms (sample values, estimated factor scores, estimated values, residuals)
+  Scatterplots (sample values, estimated factor scores, estimated values, residuals)
+  Sample means
+  Estimated means
+  Sample and estimated means
+  Latent variable distribution plots
+  Observed individual values
+  Estimated individual values
+
+     Beginning Time:  10:26:19
+        Ending Time:  10:26:19
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen

@@ -1,0 +1,25 @@
+TITLE:
+Data source - Hayes (2013) TEAMS Case 2 moderation of M -> Y 
+DATA:
+FILE = "/Users/agarber/github/NTNU-workshop/16-cond-mediation/mplus_files/teams.dat";
+ 
+VARIABLE:
+NAMES = dysfunc negtone negexp perform; 
+ MISSING=.;
+ usevar = dysfunc negtone negexp perform mz;
+DEFINE:
+MZ = negtone*negexp;  ! create interaction term 
+ANALYSIS:
+! set number of bootstrap draws (small # for demonstration purposes)
+     bootstrap = 500; 
+MODEL:
+perform on negtone dysfunc negexp mz;
+    negtone on dysfunc;
+  
+    Model indirect:
+    perform MOD
+    negtone negexp(-0.4,0.6,0.1) mz dysfunc(0.4038 0.035); 
+OUTPUT:
+sampstat standardized cinterval (bcbootstrap); ! bias-corrected bootstrap
+PLOT:
+type=plot3;

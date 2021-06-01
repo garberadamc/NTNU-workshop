@@ -1,0 +1,470 @@
+Mplus VERSION 8.6 (Mac)
+MUTHEN & MUTHEN
+05/29/2021  10:02 AM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  m4 growth model - HSLS
+  DATA:
+  FILE = "/Users/agarber/github/NTNU-workshop/17-growth-models/mplus_files/hsls_rep.dat";
+
+  VARIABLE:
+  NAMES = stu_id x1stdob x1ses x1sex x1race x1par1edu x1par2edu x1mtscor x2mtscor
+       x3gpa9 x3gpaacd x1parexp s1eduexp s2eduexp s4eduexp;
+   MISSING=.;
+   usevar = s1eduexp-s4eduexp;
+       categorical = s1eduexp-s4eduexp; !!! key difference !!!
+  MODEL:
+  ! 0=09 1=10 2=11 3=12 | 4=13 5=14 6=15 7=16
+
+      i s | s1eduexp@0 s2eduexp@3 s4eduexp@7;
+  OUTPUT:
+  sampstat standardized;
+  PLOT:
+  type=plot3;
+            series = s1eduexp-s4eduexp(*);
+
+
+
+*** WARNING
+  Data set contains cases with missing on all variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on all variables:  1745
+   1 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+m4 growth model - HSLS
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                       21758
+
+Number of dependent variables                                    3
+Number of independent variables                                  0
+Number of continuous latent variables                            2
+
+Observed dependent variables
+
+  Binary and ordered categorical (ordinal)
+   S1EDUEXP    S2EDUEXP    S4EDUEXP
+
+Continuous latent variables
+   I           S
+
+
+Estimator                                                    WLSMV
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Parameterization                                             DELTA
+Link                                                        PROBIT
+
+Input data file(s)
+  /Users/agarber/github/NTNU-workshop/17-growth-models/mplus_files/hsls_rep.dat
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             7
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              S1EDUEXP      S2EDUEXP      S4EDUEXP
+              ________      ________      ________
+ S1EDUEXP       0.732
+ S2EDUEXP       0.538         0.755
+ S4EDUEXP       0.436         0.480         0.610
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    S1EDUEXP
+      Category 1    0.006           92.000
+      Category 2    0.162         2572.000
+      Category 3    0.074         1174.000
+      Category 4    0.218         3469.000
+      Category 5    0.265         4214.000
+      Category 6    0.276         4396.000
+    S2EDUEXP
+      Category 1    0.007          115.000
+      Category 2    0.105         1720.000
+      Category 3    0.112         1835.000
+      Category 4    0.334         5483.000
+      Category 5    0.265         4355.000
+      Category 6    0.178         2923.000
+    S4EDUEXP
+      Category 1    0.005           62.000
+      Category 2    0.079         1054.000
+      Category 3    0.100         1326.000
+      Category 4    0.383         5089.000
+      Category 5    0.276         3664.000
+      Category 6    0.156         2077.000
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           MEANS/INTERCEPTS/THRESHOLDS
+              S1EDUEXP      S1EDUEXP      S1EDUEXP      S1EDUEXP      S1EDUEXP
+              ________      ________      ________      ________      ________
+               -2.525        -0.965        -0.703        -0.103         0.594
+
+
+           MEANS/INTERCEPTS/THRESHOLDS
+              S2EDUEXP      S2EDUEXP      S2EDUEXP      S2EDUEXP      S2EDUEXP
+              ________      ________      ________      ________      ________
+               -2.457        -1.218        -0.761         0.144         0.923
+
+
+           MEANS/INTERCEPTS/THRESHOLDS
+              S4EDUEXP      S4EDUEXP      S4EDUEXP      S4EDUEXP      S4EDUEXP
+              ________      ________      ________      ________      ________
+               -2.599        -1.378        -0.900         0.170         1.009
+
+
+           CORRELATION MATRIX (WITH VARIANCES ON THE DIAGONAL)
+              S1EDUEXP      S2EDUEXP      S4EDUEXP
+              ________      ________      ________
+ S1EDUEXP
+ S2EDUEXP       0.583
+ S4EDUEXP       0.456         0.574
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       11
+
+Chi-Square Test of Model Fit
+
+          Value                            725.710*
+          Degrees of Freedom                     7
+          P-Value                           0.0000
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.069
+          90 Percent C.I.                    0.065  0.073
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                0.962
+          TLI                                0.984
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                          18724.080
+          Degrees of Freedom                     3
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.017
+
+Optimum Function Value for Weighted Least-Squares Estimator
+
+          Value                     0.11973860D-01
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ I        |
+    S1EDUEXP           1.000      0.000    999.000    999.000
+    S2EDUEXP           1.000      0.000    999.000    999.000
+    S4EDUEXP           1.000      0.000    999.000    999.000
+
+ S        |
+    S1EDUEXP           0.000      0.000    999.000    999.000
+    S2EDUEXP           3.000      0.000    999.000    999.000
+    S4EDUEXP           7.000      0.000    999.000    999.000
+
+ S        WITH
+    I                 -0.037      0.002    -18.690      0.000
+
+ Means
+    I                  0.000      0.000    999.000    999.000
+    S                 -0.015      0.001    -11.941      0.000
+
+ Thresholds
+    S1EDUEXP$1        -2.111      0.023    -91.516      0.000
+    S1EDUEXP$2        -1.025      0.011    -92.908      0.000
+    S1EDUEXP$3        -0.700      0.009    -74.000      0.000
+    S1EDUEXP$4         0.006      0.008      0.791      0.429
+    S1EDUEXP$5         0.634      0.010     66.195      0.000
+    S2EDUEXP$1        -2.111      0.023    -91.516      0.000
+    S2EDUEXP$2        -1.025      0.011    -92.908      0.000
+    S2EDUEXP$3        -0.700      0.009    -74.000      0.000
+    S2EDUEXP$4         0.006      0.008      0.791      0.429
+    S2EDUEXP$5         0.634      0.010     66.195      0.000
+    S4EDUEXP$1        -2.111      0.023    -91.516      0.000
+    S4EDUEXP$2        -1.025      0.011    -92.908      0.000
+    S4EDUEXP$3        -0.700      0.009    -74.000      0.000
+    S4EDUEXP$4         0.006      0.008      0.791      0.429
+    S4EDUEXP$5         0.634      0.010     66.195      0.000
+
+ Variances
+    I                  0.582      0.011     52.130      0.000
+    S                  0.006      0.001      9.967      0.000
+
+ Scales
+    S1EDUEXP           1.000      0.000    999.000    999.000
+    S2EDUEXP           1.241      0.012    104.608      0.000
+    S4EDUEXP           1.426      0.014    100.152      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.355E-04
+       (ratio of smallest to largest eigenvalue)
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ I        |
+    S1EDUEXP           0.763      0.007    104.259      0.000
+    S2EDUEXP           0.947      0.008    116.484      0.000
+    S4EDUEXP           1.088      0.015     74.884      0.000
+
+ S        |
+    S1EDUEXP           0.000      0.000    999.000    999.000
+    S2EDUEXP           0.277      0.013     21.785      0.000
+    S4EDUEXP           0.744      0.037     19.923      0.000
+
+ S        WITH
+    I                 -0.658      0.015    -43.327      0.000
+
+ Means
+    I                  0.000      0.000    999.000    999.000
+    S                 -0.206      0.020    -10.268      0.000
+
+ Thresholds
+    S1EDUEXP$1        -2.111      0.023    -91.516      0.000
+    S1EDUEXP$2        -1.025      0.011    -92.908      0.000
+    S1EDUEXP$3        -0.700      0.009    -74.000      0.000
+    S1EDUEXP$4         0.006      0.008      0.791      0.429
+    S1EDUEXP$5         0.634      0.010     66.195      0.000
+    S2EDUEXP$1        -2.619      0.027    -98.655      0.000
+    S2EDUEXP$2        -1.272      0.013    -96.286      0.000
+    S2EDUEXP$3        -0.868      0.011    -76.212      0.000
+    S2EDUEXP$4         0.008      0.010      0.792      0.429
+    S2EDUEXP$5         0.787      0.012     68.299      0.000
+    S4EDUEXP$1        -3.009      0.032    -92.922      0.000
+    S4EDUEXP$2        -1.461      0.016    -90.833      0.000
+    S4EDUEXP$3        -0.997      0.014    -72.995      0.000
+    S4EDUEXP$4         0.009      0.011      0.792      0.428
+    S4EDUEXP$5         0.904      0.013     70.076      0.000
+
+ Variances
+    I                  1.000      0.000    999.000    999.000
+    S                  1.000      0.000    999.000    999.000
+
+ Scales
+    S1EDUEXP           1.000      0.000      0.000      1.000
+    S2EDUEXP           1.000      0.000      0.000      1.000
+    S4EDUEXP           1.000      0.000      0.000      1.000
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ I        |
+    S1EDUEXP           0.763      0.007    104.259      0.000
+    S2EDUEXP           0.947      0.008    116.484      0.000
+    S4EDUEXP           1.088      0.015     74.884      0.000
+
+ S        |
+    S1EDUEXP           0.000      0.000    999.000    999.000
+    S2EDUEXP           0.277      0.013     21.785      0.000
+    S4EDUEXP           0.744      0.037     19.923      0.000
+
+ S        WITH
+    I                 -0.658      0.015    -43.327      0.000
+
+ Means
+    I                  0.000      0.000    999.000    999.000
+    S                 -0.206      0.020    -10.268      0.000
+
+ Thresholds
+    S1EDUEXP$1        -2.111      0.023    -91.516      0.000
+    S1EDUEXP$2        -1.025      0.011    -92.908      0.000
+    S1EDUEXP$3        -0.700      0.009    -74.000      0.000
+    S1EDUEXP$4         0.006      0.008      0.791      0.429
+    S1EDUEXP$5         0.634      0.010     66.195      0.000
+    S2EDUEXP$1        -2.619      0.027    -98.655      0.000
+    S2EDUEXP$2        -1.272      0.013    -96.286      0.000
+    S2EDUEXP$3        -0.868      0.011    -76.212      0.000
+    S2EDUEXP$4         0.008      0.010      0.792      0.429
+    S2EDUEXP$5         0.787      0.012     68.299      0.000
+    S4EDUEXP$1        -3.009      0.032    -92.922      0.000
+    S4EDUEXP$2        -1.461      0.016    -90.833      0.000
+    S4EDUEXP$3        -0.997      0.014    -72.995      0.000
+    S4EDUEXP$4         0.009      0.011      0.792      0.428
+    S4EDUEXP$5         0.904      0.013     70.076      0.000
+
+ Variances
+    I                  1.000      0.000    999.000    999.000
+    S                  1.000      0.000    999.000    999.000
+
+ Scales
+    S1EDUEXP           1.000      0.000      0.000      1.000
+    S2EDUEXP           1.000      0.000      0.000      1.000
+    S4EDUEXP           1.000      0.000      0.000      1.000
+
+
+STD Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ I        |
+    S1EDUEXP           0.763      0.007    104.259      0.000
+    S2EDUEXP           0.763      0.007    104.259      0.000
+    S4EDUEXP           0.763      0.007    104.259      0.000
+
+ S        |
+    S1EDUEXP           0.000      0.000    999.000    999.000
+    S2EDUEXP           0.224      0.011     19.934      0.000
+    S4EDUEXP           0.522      0.026     19.934      0.000
+
+ S        WITH
+    I                 -0.658      0.015    -43.327      0.000
+
+ Means
+    I                  0.000      0.000    999.000    999.000
+    S                 -0.206      0.020    -10.268      0.000
+
+ Thresholds
+    S1EDUEXP$1        -2.111      0.023    -91.516      0.000
+    S1EDUEXP$2        -1.025      0.011    -92.908      0.000
+    S1EDUEXP$3        -0.700      0.009    -74.000      0.000
+    S1EDUEXP$4         0.006      0.008      0.791      0.429
+    S1EDUEXP$5         0.634      0.010     66.195      0.000
+    S2EDUEXP$1        -2.111      0.023    -91.516      0.000
+    S2EDUEXP$2        -1.025      0.011    -92.908      0.000
+    S2EDUEXP$3        -0.700      0.009    -74.000      0.000
+    S2EDUEXP$4         0.006      0.008      0.791      0.429
+    S2EDUEXP$5         0.634      0.010     66.195      0.000
+    S4EDUEXP$1        -2.111      0.023    -91.516      0.000
+    S4EDUEXP$2        -1.025      0.011    -92.908      0.000
+    S4EDUEXP$3        -0.700      0.009    -74.000      0.000
+    S4EDUEXP$4         0.006      0.008      0.791      0.429
+    S4EDUEXP$5         0.634      0.010     66.195      0.000
+
+ Variances
+    I                  1.000      0.000    999.000    999.000
+    S                  1.000      0.000    999.000    999.000
+
+ Scales
+    S1EDUEXP           1.000      0.000    999.000    999.000
+    S2EDUEXP           1.241      0.012    104.608      0.000
+    S4EDUEXP           1.426      0.014    100.152      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed   Residual
+    Variable        Estimate       S.E.  Est./S.E.    P-Value    Variance
+
+    S1EDUEXP           0.582      0.011     52.130      0.000      0.418
+    S2EDUEXP           0.627      0.007     87.811      0.000      0.242
+    S4EDUEXP           0.671      0.024     28.112      0.000      0.162
+
+
+SAMPLE STATISTICS FOR ESTIMATED FACTOR SCORES
+
+
+     SAMPLE STATISTICS
+
+
+           Means
+              I             I_SE          S             S_SE
+              ________      ________      ________      ________
+               -0.043         0.460        -0.014         0.065
+
+
+           Covariances
+              I             I_SE          S             S_SE
+              ________      ________      ________      ________
+ I              0.348
+ I_SE          -0.001         0.004
+ S             -0.016         0.000         0.001
+ S_SE           0.000         0.000         0.000         0.000
+
+
+           Correlations
+              I             I_SE          S             S_SE
+              ________      ________      ________      ________
+ I              1.000
+ I_SE          -0.015         1.000
+ S             -0.756        -0.014         1.000
+ S_SE          -0.060         0.867         0.017         1.000
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Histograms (sample values, estimated factor scores, estimated values, residuals)
+  Scatterplots (sample values, estimated factor scores, estimated values, residuals)
+  Sample proportions and estimated probabilities
+  Item characteristic curves
+  Information curves
+  Latent variable distribution plots
+  Estimated individual probability values
+
+     Beginning Time:  10:02:08
+        Ending Time:  10:02:08
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen

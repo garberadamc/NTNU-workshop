@@ -1,0 +1,23 @@
+TITLE:
+m09 piecewise growth
+DATA:
+FILE = "/Users/agarber/github/NTNU-workshop/18-advanced-growth/mplus_files/LSAY.dat";
+ 
+VARIABLE:
+NAMES = rural gender fathed mothed math_07 math_08 math_09 math_10 math_11 math_12
+     sci_07 sci_08 sci_09 sci_10 sci_11 sci_12; 
+ MISSING=.;
+ usevar =
+     sci_07-sci_12 mothed;
+ANALYSIS:
+estimator = MLR
+MODEL:
+i1 s1 | sci_07@0 sci_08@1 sci_09@2 sci_10@2 sci_11@2 sci_12@2; 
+      s2 by sci_07@0 sci_08@0 sci_09@0 sci_10@1 sci_11@2 sci_12@3; 
+    
+    i1 s1 s2 on mothed; 
+OUTPUT:
+sampstat standardized;
+PLOT:
+type=plot3;
+          series = sci_07-sci_12(*)

@@ -1,0 +1,695 @@
+Mplus VERSION 8.6 (Mac)
+MUTHEN & MUTHEN
+05/28/2021  11:12 AM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  m2 jobs mediate Lab4
+  DATA:
+  FILE = "/Users/agarber/github/NTNU-workshop/15-mediation/mplus_files/jobs.dat";
+
+  VARIABLE:
+  NAMES = treat econ_hard depress1 sex age occp marital nonwhite educ income job_seek
+       depress2 work1 comply control job_dich job_disc;
+   MISSING=.;
+   usevar = treat sex
+      age marital nonwhite
+      educ income depress2 job_dich;
+
+      categorical = job_dich; ! moderator is binary
+  ANALYSIS:
+  bootstrap = 500; ! set number of bootstrap draws (500 for example purposes)
+  MODEL:
+  job_dich on treat sex age marital nonwhite educ income;
+
+      depress2 on job_dich treat sex age marital nonwhite educ income;
+
+      Model indirect:
+      depress2 ind treat;
+  OUTPUT:
+  sampstat standardized cinterval (bcbootstrap); ! bias-corrected bootstrap
+  PLOT:
+  type=plot2;
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+
+m2 jobs mediate Lab4
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         899
+
+Number of dependent variables                                    2
+Number of independent variables                                  7
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   DEPRESS2
+
+  Binary and ordered categorical (ordinal)
+   JOB_DICH
+
+Observed independent variables
+   TREAT       SEX         AGE         MARITAL     NONWHITE    EDUC
+   INCOME
+
+
+Estimator                                                    WLSMV
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Number of bootstrap draws
+    Requested                                                  500
+    Completed                                                  500
+Parameterization                                             DELTA
+Link                                                        PROBIT
+
+Input data file(s)
+  /Users/agarber/github/NTNU-workshop/15-mediation/mplus_files/jobs.dat
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             1
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              DEPRESS2      JOB_DICH
+              ________      ________
+ DEPRESS2       1.000
+ JOB_DICH       1.000         1.000
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    JOB_DICH
+      Category 1    0.383          344.000
+      Category 2    0.617          555.000
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           MEANS/INTERCEPTS/THRESHOLDS
+              DEPRESS2      JOB_DICH
+              ________      ________
+                1.992         0.566
+
+
+           SLOPES
+              TREAT         SEX           AGE           MARITAL       NONWHITE
+              ________      ________      ________      ________      ________
+ DEPRESS2      -0.060         0.094         0.001         0.002        -0.133
+ JOB_DICH       0.218        -0.003        -0.002         0.100         0.076
+
+
+           SLOPES
+              EDUC          INCOME
+              ________      ________
+ DEPRESS2       0.015        -0.060
+ JOB_DICH       0.114         0.047
+
+
+           CORRELATION MATRIX (WITH VARIANCES ON THE DIAGONAL)
+              DEPRESS2      JOB_DICH
+              ________      ________
+ DEPRESS2       0.413
+ JOB_DICH      -0.281
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     DEPRESS2              1.741       1.135       1.000   11.23%       1.182      1.455      1.600
+             899.000       0.424       1.240       4.909    0.11%       1.727      2.273
+     TREAT                 0.667      -0.711       0.000   33.26%       0.000      1.000      1.000
+             899.000       0.222      -1.495       1.000   66.74%       1.000      1.000
+     SEX                   0.536      -0.145       0.000   46.38%       0.000      0.000      1.000
+             899.000       0.249      -1.979       1.000   53.62%       1.000      1.000
+     AGE                  37.565       0.441      17.488    0.11%      27.677     33.879     36.636
+             899.000     109.111      -0.350      72.479    0.11%      39.666     46.323
+     MARITAL               2.149       0.863       1.000   31.03%       1.000      2.000      2.000
+             899.000       1.237      -0.331       5.000    2.11%       2.000      4.000
+     NONWHITE              1.169       1.766       1.000   83.09%       1.000      1.000      1.000
+             899.000       0.140       1.118       2.000   16.91%       1.000      1.000
+     EDUC                  2.998       0.325       1.000    5.56%       2.000      3.000      3.000
+             899.000       1.186      -0.616       5.000   12.46%       3.000      4.000
+     INCOME                2.976       0.132       1.000   18.24%       2.000      2.000      3.000
+             899.000       1.975      -1.237       5.000   22.36%       3.000      5.000
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       18
+
+Chi-Square Test of Model Fit
+
+          Value                              0.000*
+          Degrees of Freedom                     0
+          P-Value                           0.0000
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.000
+          90 Percent C.I.                    0.000  0.000
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                1.000
+          TLI                                1.000
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                            100.646
+          Degrees of Freedom                    15
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.000
+
+Optimum Function Value for Weighted Least-Squares Estimator
+
+          Value                     0.10814894D-13
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ JOB_DICH ON
+    TREAT              0.218      0.088      2.493      0.013
+    SEX               -0.003      0.083     -0.032      0.975
+    AGE               -0.002      0.005     -0.326      0.744
+    MARITAL            0.100      0.041      2.422      0.015
+    NONWHITE           0.076      0.123      0.621      0.534
+    EDUC               0.114      0.041      2.802      0.005
+    INCOME             0.047      0.033      1.414      0.158
+
+ DEPRESS2 ON
+    JOB_DICH          -0.181      0.025     -7.131      0.000
+    TREAT             -0.020      0.046     -0.440      0.660
+    SEX                0.094      0.045      2.098      0.036
+    AGE                0.000      0.002      0.146      0.884
+    MARITAL            0.020      0.022      0.895      0.371
+    NONWHITE          -0.119      0.064     -1.880      0.060
+    EDUC               0.036      0.021      1.727      0.084
+    INCOME            -0.051      0.015     -3.309      0.001
+
+ Intercepts
+    DEPRESS2           1.992      0.130     15.315      0.000
+
+ Thresholds
+    JOB_DICH$1         0.566      0.264      2.145      0.032
+
+ Residual Variances
+    DEPRESS2           0.381      0.025     15.497      0.000
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ JOB_DICH ON
+    TREAT              0.101      0.040      2.534      0.011
+    SEX               -0.001      0.040     -0.032      0.975
+    AGE               -0.016      0.048     -0.330      0.741
+    MARITAL            0.109      0.044      2.461      0.014
+    NONWHITE           0.028      0.045      0.623      0.533
+    EDUC               0.121      0.042      2.883      0.004
+    INCOME             0.065      0.045      1.436      0.151
+
+ DEPRESS2 ON
+    JOB_DICH          -0.283      0.040     -7.068      0.000
+    TREAT             -0.015      0.033     -0.440      0.660
+    SEX                0.072      0.034      2.109      0.035
+    AGE                0.005      0.035      0.147      0.883
+    MARITAL            0.034      0.038      0.890      0.373
+    NONWHITE          -0.069      0.037     -1.885      0.059
+    EDUC               0.059      0.034      1.730      0.084
+    INCOME            -0.110      0.033     -3.305      0.001
+
+ Intercepts
+    DEPRESS2           3.058      0.205     14.934      0.000
+
+ Thresholds
+    JOB_DICH$1         0.554      0.253      2.188      0.029
+
+ Residual Variances
+    DEPRESS2           0.897      0.025     36.460      0.000
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ JOB_DICH ON
+    TREAT              0.214      0.084      2.535      0.011
+    SEX               -0.003      0.081     -0.032      0.975
+    AGE               -0.002      0.005     -0.329      0.742
+    MARITAL            0.098      0.040      2.463      0.014
+    NONWHITE           0.075      0.119      0.626      0.531
+    EDUC               0.111      0.039      2.861      0.004
+    INCOME             0.046      0.032      1.432      0.152
+
+ DEPRESS2 ON
+    JOB_DICH          -0.283      0.040     -7.068      0.000
+    TREAT             -0.031      0.070     -0.440      0.660
+    SEX                0.144      0.068      2.109      0.035
+    AGE                0.000      0.003      0.146      0.884
+    MARITAL            0.031      0.034      0.892      0.373
+    NONWHITE          -0.183      0.097     -1.882      0.060
+    EDUC               0.055      0.032      1.728      0.084
+    INCOME            -0.078      0.024     -3.302      0.001
+
+ Intercepts
+    DEPRESS2           3.058      0.205     14.934      0.000
+
+ Thresholds
+    JOB_DICH$1         0.554      0.253      2.188      0.029
+
+ Residual Variances
+    DEPRESS2           0.897      0.025     36.460      0.000
+
+
+STD Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ JOB_DICH ON
+    TREAT              0.218      0.088      2.493      0.013
+    SEX               -0.003      0.083     -0.032      0.975
+    AGE               -0.002      0.005     -0.326      0.744
+    MARITAL            0.100      0.041      2.422      0.015
+    NONWHITE           0.076      0.123      0.621      0.534
+    EDUC               0.114      0.041      2.802      0.005
+    INCOME             0.047      0.033      1.414      0.158
+
+ DEPRESS2 ON
+    JOB_DICH          -0.181      0.025     -7.131      0.000
+    TREAT             -0.020      0.046     -0.440      0.660
+    SEX                0.094      0.045      2.098      0.036
+    AGE                0.000      0.002      0.146      0.884
+    MARITAL            0.020      0.022      0.895      0.371
+    NONWHITE          -0.119      0.064     -1.880      0.060
+    EDUC               0.036      0.021      1.727      0.084
+    INCOME            -0.051      0.015     -3.309      0.001
+
+ Intercepts
+    DEPRESS2           1.992      0.130     15.315      0.000
+
+ Thresholds
+    JOB_DICH$1         0.566      0.264      2.145      0.032
+
+ Residual Variances
+    DEPRESS2           0.381      0.025     15.497      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed   Residual
+    Variable        Estimate       S.E.  Est./S.E.    P-Value    Variance
+
+    DEPRESS2           0.103      0.025      4.166      0.000
+    JOB_DICH           0.041      0.017      2.441      0.015      1.000
+
+
+TOTAL, TOTAL INDIRECT, SPECIFIC INDIRECT, AND DIRECT EFFECTS
+
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Effects from TREAT to DEPRESS2
+
+  Total               -0.060      0.046     -1.303      0.193
+  Total indirect      -0.039      0.017     -2.387      0.017
+
+  Specific indirect 1
+    DEPRESS2
+    JOB_DICH
+    TREAT             -0.039      0.017     -2.387      0.017
+
+  Direct
+    DEPRESS2
+    TREAT             -0.020      0.046     -0.440      0.660
+
+
+
+STANDARDIZED TOTAL, TOTAL INDIRECT, SPECIFIC INDIRECT, AND DIRECT EFFECTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Effects from TREAT to DEPRESS2
+
+  Total               -0.043      0.033     -1.306      0.192
+  Total indirect      -0.029      0.012     -2.385      0.017
+
+  Specific indirect 1
+    DEPRESS2
+    JOB_DICH
+    TREAT             -0.029      0.012     -2.385      0.017
+
+  Direct
+    DEPRESS2
+    TREAT             -0.015      0.033     -0.440      0.660
+
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Effects from TREAT to DEPRESS2
+
+  Total               -0.091      0.070     -1.306      0.192
+  Total indirect      -0.060      0.025     -2.387      0.017
+
+  Specific indirect 1
+    DEPRESS2
+    JOB_DICH
+    TREAT             -0.060      0.025     -2.387      0.017
+
+  Direct
+    DEPRESS2
+    TREAT             -0.031      0.070     -0.440      0.660
+
+
+
+STD Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Effects from TREAT to DEPRESS2
+
+  Total               -0.060      0.046     -1.303      0.193
+  Total indirect      -0.039      0.017     -2.387      0.017
+
+  Specific indirect 1
+    DEPRESS2
+    JOB_DICH
+    TREAT             -0.039      0.017     -2.387      0.017
+
+  Direct
+    DEPRESS2
+    TREAT             -0.020      0.046     -0.440      0.660
+
+
+
+
+CONFIDENCE INTERVALS OF MODEL RESULTS
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ JOB_DICH ON
+    TREAT           -0.015       0.047       0.079       0.218       0.355       0.387       0.433
+    SEX             -0.259      -0.172      -0.139      -0.003       0.126       0.164       0.186
+    AGE             -0.015      -0.012      -0.010      -0.002       0.005       0.007       0.011
+    MARITAL         -0.023       0.021       0.034       0.100       0.173       0.182       0.201
+    NONWHITE        -0.271      -0.181      -0.124       0.076       0.270       0.315       0.375
+    EDUC             0.018       0.038       0.054       0.114       0.190       0.206       0.218
+    INCOME          -0.032      -0.018      -0.005       0.047       0.103       0.118       0.137
+
+ DEPRESS2 ON
+    JOB_DICH        -0.245      -0.229      -0.222      -0.181      -0.137      -0.132      -0.124
+    TREAT           -0.145      -0.113      -0.101      -0.020       0.056       0.073       0.109
+    SEX             -0.016       0.011       0.020       0.094       0.161       0.180       0.212
+    AGE             -0.006      -0.004      -0.003       0.000       0.004       0.005       0.006
+    MARITAL         -0.038      -0.022      -0.017       0.020       0.056       0.060       0.077
+    NONWHITE        -0.303      -0.251      -0.230      -0.119      -0.024      -0.004       0.026
+    EDUC            -0.020      -0.007       0.001       0.036       0.070       0.074       0.084
+    INCOME          -0.088      -0.081      -0.075      -0.051      -0.026      -0.020      -0.006
+
+ Intercepts
+    DEPRESS2         1.642       1.735       1.780       1.992       2.190       2.256       2.341
+
+ Thresholds
+    JOB_DICH        -0.125       0.040       0.100       0.566       1.012       1.070       1.171
+
+ Residual Variances
+    DEPRESS2         0.324       0.339       0.345       0.381       0.425       0.436       0.452
+
+
+CONFIDENCE INTERVALS OF STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ JOB_DICH ON
+    TREAT           -0.001       0.024       0.037       0.101       0.165       0.179       0.203
+    SEX             -0.125      -0.084      -0.067      -0.001       0.062       0.079       0.090
+    AGE             -0.147      -0.125      -0.106      -0.016       0.055       0.072       0.111
+    MARITAL         -0.025       0.025       0.038       0.109       0.186       0.198       0.212
+    NONWHITE        -0.099      -0.058      -0.046       0.028       0.100       0.119       0.137
+    EDUC             0.021       0.042       0.059       0.121       0.202       0.212       0.228
+    INCOME          -0.043      -0.024      -0.007       0.065       0.141       0.158       0.187
+
+ DEPRESS2 ON
+    JOB_DICH        -0.395      -0.362      -0.351      -0.283      -0.220      -0.209      -0.197
+    TREAT           -0.105      -0.082      -0.072      -0.015       0.040       0.055       0.081
+    SEX             -0.013       0.009       0.016       0.072       0.124       0.138       0.157
+    AGE             -0.088      -0.060      -0.050       0.005       0.062       0.077       0.090
+    MARITAL         -0.061      -0.036      -0.029       0.034       0.096       0.105       0.129
+    NONWHITE        -0.168      -0.144      -0.132      -0.069      -0.014      -0.003       0.015
+    EDUC            -0.033      -0.011       0.002       0.059       0.116       0.124       0.138
+    INCOME          -0.199      -0.176      -0.161      -0.110      -0.057      -0.045      -0.014
+
+ Intercepts
+    DEPRESS2         2.426       2.596       2.705       3.058       3.359       3.432       3.573
+
+ Thresholds
+    JOB_DICH        -0.098       0.041       0.114       0.554       0.978       1.041       1.129
+
+ Residual Variances
+    DEPRESS2         0.841       0.858       0.865       0.897       0.938       0.944       0.954
+
+
+STDY Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ JOB_DICH ON
+    TREAT           -0.003       0.050       0.078       0.214       0.346       0.376       0.430
+    SEX             -0.250      -0.169      -0.135      -0.003       0.124       0.157       0.179
+    AGE             -0.015      -0.011      -0.010      -0.002       0.005       0.007       0.011
+    MARITAL         -0.018       0.022       0.038       0.098       0.168       0.177       0.193
+    NONWHITE        -0.266      -0.174      -0.119       0.075       0.265       0.308       0.362
+    EDUC             0.017       0.039       0.053       0.111       0.183       0.196       0.209
+    INCOME          -0.031      -0.017      -0.005       0.046       0.101       0.113       0.132
+
+ DEPRESS2 ON
+    JOB_DICH        -0.395      -0.362      -0.351      -0.283      -0.220      -0.209      -0.197
+    TREAT           -0.227      -0.172      -0.153      -0.031       0.085       0.118       0.169
+    SEX             -0.025       0.018       0.033       0.144       0.248       0.277       0.315
+    AGE             -0.008      -0.006      -0.005       0.000       0.006       0.007       0.008
+    MARITAL         -0.056      -0.033      -0.026       0.031       0.086       0.093       0.115
+    NONWHITE        -0.470      -0.390      -0.357      -0.183      -0.045      -0.007       0.039
+    EDUC            -0.030      -0.010       0.002       0.055       0.107       0.114       0.126
+    INCOME          -0.144      -0.125      -0.117      -0.078      -0.041      -0.032      -0.010
+
+ Intercepts
+    DEPRESS2         2.426       2.596       2.705       3.058       3.359       3.432       3.573
+
+ Thresholds
+    JOB_DICH        -0.098       0.041       0.114       0.554       0.978       1.041       1.129
+
+ Residual Variances
+    DEPRESS2         0.841       0.858       0.865       0.897       0.938       0.944       0.954
+
+
+STD Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+ JOB_DICH ON
+    TREAT           -0.015       0.047       0.079       0.218       0.355       0.387       0.433
+    SEX             -0.259      -0.172      -0.139      -0.003       0.126       0.164       0.186
+    AGE             -0.015      -0.012      -0.010      -0.002       0.005       0.007       0.011
+    MARITAL         -0.023       0.021       0.034       0.100       0.173       0.182       0.201
+    NONWHITE        -0.271      -0.181      -0.124       0.076       0.270       0.315       0.375
+    EDUC             0.018       0.038       0.054       0.114       0.190       0.206       0.218
+    INCOME          -0.032      -0.018      -0.005       0.047       0.103       0.118       0.137
+
+ DEPRESS2 ON
+    JOB_DICH        -0.245      -0.229      -0.222      -0.181      -0.137      -0.132      -0.124
+    TREAT           -0.145      -0.113      -0.101      -0.020       0.056       0.073       0.109
+    SEX             -0.016       0.011       0.020       0.094       0.161       0.180       0.212
+    AGE             -0.006      -0.004      -0.003       0.000       0.004       0.005       0.006
+    MARITAL         -0.038      -0.022      -0.017       0.020       0.056       0.060       0.077
+    NONWHITE        -0.303      -0.251      -0.230      -0.119      -0.024      -0.004       0.026
+    EDUC            -0.020      -0.007       0.001       0.036       0.070       0.074       0.084
+    INCOME          -0.088      -0.081      -0.075      -0.051      -0.026      -0.020      -0.006
+
+ Intercepts
+    DEPRESS2         1.642       1.735       1.780       1.992       2.190       2.256       2.341
+
+ Thresholds
+    JOB_DICH        -0.125       0.040       0.100       0.566       1.012       1.070       1.171
+
+ Residual Variances
+    DEPRESS2         0.324       0.339       0.345       0.381       0.425       0.436       0.452
+
+
+CONFIDENCE INTERVALS OF TOTAL, TOTAL INDIRECT, SPECIFIC INDIRECT, AND DIRECT EFFECTS
+
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+Effects from TREAT to DEPRESS2
+
+  Total             -0.186      -0.146      -0.133      -0.060       0.018       0.034       0.066
+  Total indirect    -0.086      -0.077      -0.071      -0.039      -0.015      -0.011      -0.003
+
+  Specific indirect 1
+    DEPRESS2
+    JOB_DICH
+    TREAT           -0.086      -0.077      -0.071      -0.039      -0.015      -0.011      -0.003
+
+  Direct
+    DEPRESS2
+    TREAT           -0.145      -0.113      -0.101      -0.020       0.056       0.073       0.109
+
+
+
+CONFIDENCE INTERVALS OF STANDARDIZED TOTAL, TOTAL INDIRECT, SPECIFIC INDIRECT, AND DIRECT EFFECTS
+
+
+STDYX Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+Effects from TREAT to DEPRESS2
+
+  Total             -0.131      -0.105      -0.091      -0.043       0.014       0.027       0.062
+  Total indirect    -0.064      -0.056      -0.051      -0.029      -0.011      -0.008      -0.002
+
+  Specific indirect 1
+    DEPRESS2
+    JOB_DICH
+    TREAT           -0.064      -0.056      -0.051      -0.029      -0.011      -0.008      -0.002
+
+  Direct
+    DEPRESS2
+    TREAT           -0.105      -0.082      -0.072      -0.015       0.040       0.055       0.081
+
+
+
+STDY Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+Effects from TREAT to DEPRESS2
+
+  Total             -0.277      -0.222      -0.192      -0.091       0.032       0.057       0.132
+  Total indirect    -0.138      -0.118      -0.107      -0.060      -0.023      -0.016      -0.004
+
+  Specific indirect 1
+    DEPRESS2
+    JOB_DICH
+    TREAT           -0.138      -0.118      -0.107      -0.060      -0.023      -0.016      -0.004
+
+  Direct
+    DEPRESS2
+    TREAT           -0.227      -0.172      -0.153      -0.031       0.085       0.118       0.169
+
+
+
+STD Standardization
+
+                  Lower .5%  Lower 2.5%    Lower 5%    Estimate    Upper 5%  Upper 2.5%   Upper .5%
+
+Effects from TREAT to DEPRESS2
+
+  Total             -0.186      -0.146      -0.133      -0.060       0.018       0.034       0.066
+  Total indirect    -0.086      -0.077      -0.071      -0.039      -0.015      -0.011      -0.003
+
+  Specific indirect 1
+    DEPRESS2
+    JOB_DICH
+    TREAT           -0.086      -0.077      -0.071      -0.039      -0.015      -0.011      -0.003
+
+  Direct
+    DEPRESS2
+    TREAT           -0.145      -0.113      -0.101      -0.020       0.056       0.073       0.109
+
+
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Sample proportions and estimated probabilities
+  Bootstrap distributions
+
+     Beginning Time:  11:12:56
+        Ending Time:  11:12:58
+       Elapsed Time:  00:00:02
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen

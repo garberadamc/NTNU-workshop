@@ -1,0 +1,1082 @@
+Mplus VERSION 8.6 (Mac)
+MUTHEN & MUTHEN
+05/30/2021   5:13 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  Higher Order FA Models - HSLS SCIENCE
+  DATA:
+  FILE = "/Users/agarber/github/NTNU-workshop/11-higher-order/2nd_order_FA/cfa_baseline.dat"
+
+  VARIABLE:
+  NAMES = STU_ID X1STDOB X1SES X1SEX X1RACE X1PAR1ED X1PAR2ED X1TXMTSC X2TXMTSC
+       X3TGPA9T X3TGPAAC X1STUEDE X1PAREDE S1MPERS1 S1MPERS2 S1MUSELI S1MUSECL
+       S1MUSEJO S1MTESTS S1MTEXTB S1MSKILL S1MASSEX S1MENJNG S1MWASTE S1MBORIN
+       S1MENJYS S1SPERS1 S1SPERS2 S1SUSELI S1SUSECL S1SUSEJO S1STESTS S1STEXTB
+       S1SSKILL S1SASSEX S1SENJNG S1SWASTE S1SBORIN S1SENJYS S1SAFE S1PROUD S1TALKPR
+       S1SCHWAS S1GOODGR S1NOHWDN S1NOPAPE S1NOBOOK S1LATE;
+   MISSING=.;
+   usevar =
+   S1SPERS1 S1SPERS2 S1SUSELI S1SUSECL
+   S1SUSEJO S1STESTS S1STEXTB S1SSKILL
+   S1SASSEX S1SENJNG S1SWASTE S1SBORIN;
+  ANALYSIS:
+  estimator=mlr;
+  MODEL:
+  SCI_ID BY S1SPERS1* S1SPERS2;
+    SCI_ID@1;
+
+    SCI_UT BY S1SUSELI* S1SUSECL S1SUSEJO;
+    SCI_UT@1;
+
+    SCI_EFF BY S1STESTS* S1STEXTB S1SSKILL S1SASSEX ;
+    SCI_EFF@1;
+
+    SCI_INT BY S1SENJNG* S1SWASTE S1SBORIN;
+    SCI_INT@1;
+  OUTPUT:
+  sampstat standardized residual modindices (3.84);
+  PLOT:
+  type = plot3;
+
+
+
+*** WARNING
+  Input line exceeded 90 characters. Some input may be truncated.
+  FILE = "/Users/agarber/github/NTNU-workshop/11-higher-order/2nd_order_FA/cfa_baseline.dat";
+*** WARNING
+  Data set contains cases with missing on all variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on all variables:  257
+   2 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+Higher Order FA Models - HSLS SCIENCE
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        2743
+
+Number of dependent variables                                   12
+Number of independent variables                                  0
+Number of continuous latent variables                            4
+
+Observed dependent variables
+
+  Continuous
+   S1SPERS1    S1SPERS2    S1SUSELI    S1SUSECL    S1SUSEJO    S1STESTS
+   S1STEXTB    S1SSKILL    S1SASSEX    S1SENJNG    S1SWASTE    S1SBORIN
+
+Continuous latent variables
+   SCI_ID      SCI_UT      SCI_EFF     SCI_INT
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+
+Input data file(s)
+  /Users/agarber/github/NTNU-workshop/11-higher-order/2nd_order_FA/cfa_baseline.
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns            36
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.996
+ S1SPERS2       0.984         0.986
+ S1SUSELI       0.808         0.802         0.811
+ S1SUSECL       0.808         0.801         0.809         0.810
+ S1SUSEJO       0.805         0.799         0.807         0.806         0.808
+ S1STESTS       0.817         0.808         0.808         0.808         0.806
+ S1STEXTB       0.815         0.808         0.807         0.806         0.804
+ S1SSKILL       0.814         0.807         0.806         0.806         0.803
+ S1SASSEX       0.813         0.806         0.806         0.805         0.803
+ S1SENJNG       0.816         0.808         0.809         0.809         0.806
+ S1SWASTE       0.816         0.808         0.809         0.808         0.806
+ S1SBORIN       0.814         0.807         0.807         0.806         0.805
+
+
+           Covariance Coverage
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       0.819
+ S1STEXTB       0.815         0.817
+ S1SSKILL       0.814         0.813         0.816
+ S1SASSEX       0.814         0.812         0.812         0.816
+ S1SENJNG       0.816         0.814         0.814         0.813         0.819
+ S1SWASTE       0.816         0.814         0.813         0.813         0.816
+ S1SBORIN       0.814         0.813         0.812         0.812         0.815
+
+
+           Covariance Coverage
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       0.818
+ S1SBORIN       0.816         0.816
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           Means
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+                2.335         2.240         2.633         3.199         2.875
+
+
+           Means
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+                2.848         2.635         2.849         2.989         2.765
+
+
+           Means
+              S1SWASTE      S1SBORIN
+              ________      ________
+                3.080         2.690
+
+
+           Covariances
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.826
+ S1SPERS2       0.558         0.723
+ S1SUSELI       0.191         0.152         0.589
+ S1SUSECL       0.170         0.137         0.232         0.451
+ S1SUSEJO       0.265         0.217         0.308         0.309         0.687
+ S1STESTS       0.278         0.221         0.144         0.137         0.151
+ S1STEXTB       0.300         0.252         0.152         0.133         0.167
+ S1SSKILL       0.284         0.233         0.151         0.149         0.171
+ S1SASSEX       0.254         0.211         0.130         0.137         0.153
+ S1SENJNG       0.325         0.259         0.241         0.203         0.242
+ S1SWASTE       0.217         0.183         0.216         0.200         0.242
+ S1SBORIN       0.260         0.208         0.208         0.153         0.235
+
+
+           Covariances
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       0.530
+ S1STEXTB       0.359         0.605
+ S1SSKILL       0.335         0.359         0.510
+ S1SASSEX       0.345         0.311         0.339         0.471
+ S1SENJNG       0.279         0.262         0.249         0.243         0.693
+ S1SWASTE       0.195         0.164         0.188         0.175         0.378
+ S1SBORIN       0.211         0.183         0.194         0.180         0.459
+
+
+           Covariances
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       0.638
+ S1SBORIN       0.462         0.837
+
+
+           Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       1.000
+ S1SPERS2       0.722         1.000
+ S1SUSELI       0.273         0.233         1.000
+ S1SUSECL       0.278         0.240         0.450         1.000
+ S1SUSEJO       0.352         0.307         0.485         0.555         1.000
+ S1STESTS       0.421         0.357         0.257         0.280         0.250
+ S1STEXTB       0.425         0.381         0.255         0.255         0.259
+ S1SSKILL       0.437         0.383         0.276         0.312         0.289
+ S1SASSEX       0.407         0.362         0.248         0.299         0.268
+ S1SENJNG       0.430         0.365         0.378         0.363         0.350
+ S1SWASTE       0.299         0.270         0.352         0.373         0.366
+ S1SBORIN       0.312         0.268         0.296         0.250         0.310
+
+
+           Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       1.000
+ S1STEXTB       0.633         1.000
+ S1SSKILL       0.644         0.645         1.000
+ S1SASSEX       0.692         0.583         0.692         1.000
+ S1SENJNG       0.460         0.404         0.420         0.425         1.000
+ S1SWASTE       0.335         0.265         0.330         0.320         0.569
+ S1SBORIN       0.316         0.257         0.297         0.287         0.603
+
+
+           Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       1.000
+ S1SBORIN       0.633         1.000
+
+
+     MAXIMUM LOG-LIKELIHOOD VALUE FOR THE UNRESTRICTED (H1) MODEL IS -26355.565
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     S1SPERS1              2.336       0.115       1.000   19.76%       2.000      2.000      2.000
+            2733.000       0.825      -0.810       4.000   10.32%       3.000      3.000
+     S1SPERS2              2.241       0.170       1.000   20.34%       1.000      2.000      2.000
+            2704.000       0.723      -0.656       4.000    6.66%       2.000      3.000
+     S1SUSELI              2.641      -0.099       1.000    6.12%       2.000      2.000      3.000
+            2224.000       0.589      -0.364       4.000   11.83%       3.000      3.000
+     S1SUSECL              3.206      -0.750       1.000    2.43%       3.000      3.000      3.000
+            2223.000       0.451       1.211       4.000   32.52%       3.000      4.000
+     S1SUSEJO              2.886      -0.412       1.000    5.96%       2.000      3.000      3.000
+            2216.000       0.687      -0.343       4.000   23.33%       3.000      4.000
+     S1STESTS              2.858      -0.281       1.000    3.25%       2.000      3.000      3.000
+            2246.000       0.530      -0.100       4.000   17.14%       3.000      3.000
+     S1STEXTB              2.646      -0.149       1.000    6.74%       2.000      2.000      3.000
+            2241.000       0.606      -0.362       4.000   12.14%       3.000      3.000
+     S1SSKILL              2.860      -0.289       1.000    3.04%       2.000      3.000      3.000
+            2239.000       0.510      -0.022       4.000   16.44%       3.000      3.000
+     S1SASSEX              2.998      -0.423       1.000    2.28%       3.000      3.000      3.000
+            2237.000       0.469       0.368       4.000   21.10%       3.000      4.000
+     S1SENJNG              2.778      -0.367       1.000    7.70%       2.000      3.000      3.000
+            2246.000       0.693      -0.353       4.000   18.30%       3.000      3.000
+     S1SWASTE              3.088      -0.748       1.000    4.99%       3.000      3.000      3.000
+            2245.000       0.637       0.321       4.000   31.63%       3.000      4.000
+     S1SBORIN              2.699      -0.267       1.000   11.43%       2.000      3.000      3.000
+            2239.000       0.837      -0.729       4.000   19.92%       3.000      3.000
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       42
+
+Loglikelihood
+
+          H0 Value                      -26559.017
+          H0 Scaling Correction Factor      1.1924
+            for MLR
+          H1 Value                      -26355.565
+          H1 Scaling Correction Factor      1.1877
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                   53202.035
+          Bayesian (BIC)                 53450.541
+          Sample-Size Adjusted BIC       53317.093
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                            343.803*
+          Degrees of Freedom                    48
+          P-Value                           0.0000
+          Scaling Correction Factor         1.1835
+            for MLR
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.047
+          90 Percent C.I.                    0.043  0.052
+          Probability RMSEA <= .05           0.811
+
+CFI/TLI
+
+          CFI                                0.971
+          TLI                                0.960
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                          10230.981
+          Degrees of Freedom                    66
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.032
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ SCI_ID   BY
+    S1SPERS1           0.827      0.015     54.610      0.000
+    S1SPERS2           0.674      0.016     43.174      0.000
+
+ SCI_UT   BY
+    S1SUSELI           0.497      0.018     28.179      0.000
+    S1SUSECL           0.479      0.017     27.408      0.000
+    S1SUSEJO           0.630      0.017     36.377      0.000
+
+ SCI_EFF  BY
+    S1STESTS           0.595      0.013     45.424      0.000
+    S1STEXTB           0.589      0.014     41.160      0.000
+    S1SSKILL           0.589      0.014     43.277      0.000
+    S1SASSEX           0.563      0.014     40.094      0.000
+
+ SCI_INT  BY
+    S1SENJNG           0.660      0.017     38.148      0.000
+    S1SWASTE           0.610      0.018     33.731      0.000
+    S1SBORIN           0.701      0.017     40.153      0.000
+
+ SCI_UT   WITH
+    SCI_ID             0.470      0.025     19.036      0.000
+
+ SCI_EFF  WITH
+    SCI_ID             0.574      0.021     27.869      0.000
+    SCI_UT             0.470      0.027     17.644      0.000
+
+ SCI_INT  WITH
+    SCI_ID             0.497      0.024     20.617      0.000
+    SCI_UT             0.610      0.024     25.871      0.000
+    SCI_EFF            0.557      0.024     22.856      0.000
+
+ Intercepts
+    S1SPERS1           2.335      0.017    134.507      0.000
+    S1SPERS2           2.240      0.016    137.581      0.000
+    S1SUSELI           2.633      0.016    162.848      0.000
+    S1SUSECL           3.199      0.014    225.188      0.000
+    S1SUSEJO           2.876      0.017    164.681      0.000
+    S1STESTS           2.848      0.015    187.810      0.000
+    S1STEXTB           2.636      0.016    163.078      0.000
+    S1SSKILL           2.850      0.015    191.624      0.000
+    S1SASSEX           2.989      0.014    208.414      0.000
+    S1SENJNG           2.767      0.017    160.148      0.000
+    S1SWASTE           3.079      0.017    183.453      0.000
+    S1SBORIN           2.689      0.019    140.213      0.000
+
+ Variances
+    SCI_ID             1.000      0.000    999.000    999.000
+    SCI_UT             1.000      0.000    999.000    999.000
+    SCI_EFF            1.000      0.000    999.000    999.000
+    SCI_INT            1.000      0.000    999.000    999.000
+
+ Residual Variances
+    S1SPERS1           0.142      0.018      7.782      0.000
+    S1SPERS2           0.268      0.016     16.926      0.000
+    S1SUSELI           0.342      0.014     25.196      0.000
+    S1SUSECL           0.221      0.012     19.061      0.000
+    S1SUSEJO           0.290      0.017     16.889      0.000
+    S1STESTS           0.176      0.009     19.479      0.000
+    S1STEXTB           0.258      0.010     26.603      0.000
+    S1SSKILL           0.163      0.008     20.668      0.000
+    S1SASSEX           0.153      0.009     17.095      0.000
+    S1SENJNG           0.257      0.018     14.269      0.000
+    S1SWASTE           0.265      0.014     18.781      0.000
+    S1SBORIN           0.346      0.018     18.794      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.276E-01
+       (ratio of smallest to largest eigenvalue)
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ SCI_ID   BY
+    S1SPERS1           0.910      0.012     73.877      0.000
+    S1SPERS2           0.793      0.014     56.210      0.000
+
+ SCI_UT   BY
+    S1SUSELI           0.647      0.018     35.457      0.000
+    S1SUSECL           0.714      0.018     39.767      0.000
+    S1SUSEJO           0.760      0.016     46.925      0.000
+
+ SCI_EFF  BY
+    S1STESTS           0.817      0.011     77.640      0.000
+    S1STEXTB           0.757      0.011     65.980      0.000
+    S1SSKILL           0.825      0.010     80.208      0.000
+    S1SASSEX           0.821      0.012     68.815      0.000
+
+ SCI_INT  BY
+    S1SENJNG           0.793      0.016     48.926      0.000
+    S1SWASTE           0.765      0.015     50.525      0.000
+    S1SBORIN           0.766      0.015     52.472      0.000
+
+ SCI_UT   WITH
+    SCI_ID             0.470      0.025     19.036      0.000
+
+ SCI_EFF  WITH
+    SCI_ID             0.574      0.021     27.869      0.000
+    SCI_UT             0.470      0.027     17.644      0.000
+
+ SCI_INT  WITH
+    SCI_ID             0.497      0.024     20.617      0.000
+    SCI_UT             0.610      0.024     25.871      0.000
+    SCI_EFF            0.557      0.024     22.856      0.000
+
+ Intercepts
+    S1SPERS1           2.570      0.031     82.263      0.000
+    S1SPERS2           2.635      0.033     80.877      0.000
+    S1SUSELI           3.431      0.053     65.173      0.000
+    S1SUSECL           4.766      0.101     47.056      0.000
+    S1SUSEJO           3.469      0.058     60.154      0.000
+    S1STESTS           3.913      0.064     60.824      0.000
+    S1STEXTB           3.389      0.052     64.714      0.000
+    S1SSKILL           3.991      0.067     59.832      0.000
+    S1SASSEX           4.357      0.079     55.136      0.000
+    S1SENJNG           3.325      0.055     60.800      0.000
+    S1SWASTE           3.856      0.075     51.704      0.000
+    S1SBORIN           2.938      0.045     65.520      0.000
+
+ Variances
+    SCI_ID             1.000      0.000    999.000    999.000
+    SCI_UT             1.000      0.000    999.000    999.000
+    SCI_EFF            1.000      0.000    999.000    999.000
+    SCI_INT            1.000      0.000    999.000    999.000
+
+ Residual Variances
+    S1SPERS1           0.172      0.022      7.691      0.000
+    S1SPERS2           0.371      0.022     16.556      0.000
+    S1SUSELI           0.581      0.024     24.588      0.000
+    S1SUSECL           0.491      0.026     19.166      0.000
+    S1SUSEJO           0.422      0.025     17.144      0.000
+    S1STESTS           0.332      0.017     19.317      0.000
+    S1STEXTB           0.426      0.017     24.527      0.000
+    S1SSKILL           0.319      0.017     18.768      0.000
+    S1SASSEX           0.326      0.020     16.639      0.000
+    S1SENJNG           0.372      0.026     14.460      0.000
+    S1SWASTE           0.416      0.023     17.961      0.000
+    S1SBORIN           0.413      0.022     18.483      0.000
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ SCI_ID   BY
+    S1SPERS1           0.910      0.012     73.877      0.000
+    S1SPERS2           0.793      0.014     56.210      0.000
+
+ SCI_UT   BY
+    S1SUSELI           0.647      0.018     35.457      0.000
+    S1SUSECL           0.714      0.018     39.767      0.000
+    S1SUSEJO           0.760      0.016     46.925      0.000
+
+ SCI_EFF  BY
+    S1STESTS           0.817      0.011     77.640      0.000
+    S1STEXTB           0.757      0.011     65.980      0.000
+    S1SSKILL           0.825      0.010     80.208      0.000
+    S1SASSEX           0.821      0.012     68.815      0.000
+
+ SCI_INT  BY
+    S1SENJNG           0.793      0.016     48.926      0.000
+    S1SWASTE           0.765      0.015     50.525      0.000
+    S1SBORIN           0.766      0.015     52.472      0.000
+
+ SCI_UT   WITH
+    SCI_ID             0.470      0.025     19.036      0.000
+
+ SCI_EFF  WITH
+    SCI_ID             0.574      0.021     27.869      0.000
+    SCI_UT             0.470      0.027     17.644      0.000
+
+ SCI_INT  WITH
+    SCI_ID             0.497      0.024     20.617      0.000
+    SCI_UT             0.610      0.024     25.871      0.000
+    SCI_EFF            0.557      0.024     22.856      0.000
+
+ Intercepts
+    S1SPERS1           2.570      0.031     82.263      0.000
+    S1SPERS2           2.635      0.033     80.877      0.000
+    S1SUSELI           3.431      0.053     65.173      0.000
+    S1SUSECL           4.766      0.101     47.056      0.000
+    S1SUSEJO           3.469      0.058     60.154      0.000
+    S1STESTS           3.913      0.064     60.824      0.000
+    S1STEXTB           3.389      0.052     64.714      0.000
+    S1SSKILL           3.991      0.067     59.832      0.000
+    S1SASSEX           4.357      0.079     55.136      0.000
+    S1SENJNG           3.325      0.055     60.800      0.000
+    S1SWASTE           3.856      0.075     51.704      0.000
+    S1SBORIN           2.938      0.045     65.520      0.000
+
+ Variances
+    SCI_ID             1.000      0.000    999.000    999.000
+    SCI_UT             1.000      0.000    999.000    999.000
+    SCI_EFF            1.000      0.000    999.000    999.000
+    SCI_INT            1.000      0.000    999.000    999.000
+
+ Residual Variances
+    S1SPERS1           0.172      0.022      7.691      0.000
+    S1SPERS2           0.371      0.022     16.556      0.000
+    S1SUSELI           0.581      0.024     24.588      0.000
+    S1SUSECL           0.491      0.026     19.166      0.000
+    S1SUSEJO           0.422      0.025     17.144      0.000
+    S1STESTS           0.332      0.017     19.317      0.000
+    S1STEXTB           0.426      0.017     24.527      0.000
+    S1SSKILL           0.319      0.017     18.768      0.000
+    S1SASSEX           0.326      0.020     16.639      0.000
+    S1SENJNG           0.372      0.026     14.460      0.000
+    S1SWASTE           0.416      0.023     17.961      0.000
+    S1SBORIN           0.413      0.022     18.483      0.000
+
+
+STD Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ SCI_ID   BY
+    S1SPERS1           0.827      0.015     54.610      0.000
+    S1SPERS2           0.674      0.016     43.174      0.000
+
+ SCI_UT   BY
+    S1SUSELI           0.497      0.018     28.179      0.000
+    S1SUSECL           0.479      0.017     27.408      0.000
+    S1SUSEJO           0.630      0.017     36.377      0.000
+
+ SCI_EFF  BY
+    S1STESTS           0.595      0.013     45.424      0.000
+    S1STEXTB           0.589      0.014     41.160      0.000
+    S1SSKILL           0.589      0.014     43.277      0.000
+    S1SASSEX           0.563      0.014     40.094      0.000
+
+ SCI_INT  BY
+    S1SENJNG           0.660      0.017     38.148      0.000
+    S1SWASTE           0.610      0.018     33.731      0.000
+    S1SBORIN           0.701      0.017     40.153      0.000
+
+ SCI_UT   WITH
+    SCI_ID             0.470      0.025     19.036      0.000
+
+ SCI_EFF  WITH
+    SCI_ID             0.574      0.021     27.869      0.000
+    SCI_UT             0.470      0.027     17.644      0.000
+
+ SCI_INT  WITH
+    SCI_ID             0.497      0.024     20.617      0.000
+    SCI_UT             0.610      0.024     25.871      0.000
+    SCI_EFF            0.557      0.024     22.856      0.000
+
+ Intercepts
+    S1SPERS1           2.335      0.017    134.507      0.000
+    S1SPERS2           2.240      0.016    137.581      0.000
+    S1SUSELI           2.633      0.016    162.848      0.000
+    S1SUSECL           3.199      0.014    225.188      0.000
+    S1SUSEJO           2.876      0.017    164.681      0.000
+    S1STESTS           2.848      0.015    187.810      0.000
+    S1STEXTB           2.636      0.016    163.078      0.000
+    S1SSKILL           2.850      0.015    191.624      0.000
+    S1SASSEX           2.989      0.014    208.414      0.000
+    S1SENJNG           2.767      0.017    160.148      0.000
+    S1SWASTE           3.079      0.017    183.453      0.000
+    S1SBORIN           2.689      0.019    140.213      0.000
+
+ Variances
+    SCI_ID             1.000      0.000    999.000    999.000
+    SCI_UT             1.000      0.000    999.000    999.000
+    SCI_EFF            1.000      0.000    999.000    999.000
+    SCI_INT            1.000      0.000    999.000    999.000
+
+ Residual Variances
+    S1SPERS1           0.142      0.018      7.782      0.000
+    S1SPERS2           0.268      0.016     16.926      0.000
+    S1SUSELI           0.342      0.014     25.196      0.000
+    S1SUSECL           0.221      0.012     19.061      0.000
+    S1SUSEJO           0.290      0.017     16.889      0.000
+    S1STESTS           0.176      0.009     19.479      0.000
+    S1STEXTB           0.258      0.010     26.603      0.000
+    S1SSKILL           0.163      0.008     20.668      0.000
+    S1SASSEX           0.153      0.009     17.095      0.000
+    S1SENJNG           0.257      0.018     14.269      0.000
+    S1SWASTE           0.265      0.014     18.781      0.000
+    S1SBORIN           0.346      0.018     18.794      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    S1SPERS1           0.828      0.022     36.939      0.000
+    S1SPERS2           0.629      0.022     28.105      0.000
+    S1SUSELI           0.419      0.024     17.728      0.000
+    S1SUSECL           0.509      0.026     19.883      0.000
+    S1SUSEJO           0.578      0.025     23.462      0.000
+    S1STESTS           0.668      0.017     38.820      0.000
+    S1STEXTB           0.574      0.017     32.990      0.000
+    S1SSKILL           0.681      0.017     40.104      0.000
+    S1SASSEX           0.674      0.020     34.407      0.000
+    S1SENJNG           0.628      0.026     24.463      0.000
+    S1SWASTE           0.584      0.023     25.263      0.000
+    S1SBORIN           0.587      0.022     26.236      0.000
+
+
+RESIDUAL OUTPUT
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED)
+
+
+           Model Estimated Means
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+                2.335         2.240         2.633         3.199         2.876
+
+
+           Model Estimated Means
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+                2.848         2.636         2.850         2.989         2.767
+
+
+           Model Estimated Means
+              S1SWASTE      S1SBORIN
+              ________      ________
+                3.079         2.689
+
+
+           Residuals for Means
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000        -0.001
+
+
+           Residuals for Means
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+                0.000        -0.001         0.000         0.000        -0.002
+
+
+           Residuals for Means
+              S1SWASTE      S1SBORIN
+              ________      ________
+                0.001         0.001
+
+
+           Standardized Residuals (z-scores) for Means
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+               -0.593        -0.257         0.107       999.000        -1.177
+
+
+           Standardized Residuals (z-scores) for Means
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+                0.206        -0.908        -0.719         0.942        -2.590
+
+
+           Standardized Residuals (z-scores) for Means
+              S1SWASTE      S1SBORIN
+              ________      ________
+                2.112         1.021
+
+
+           Normalized Residuals for Means
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+               -0.010        -0.005         0.005         0.030        -0.058
+
+
+           Normalized Residuals for Means
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+                0.008        -0.051        -0.026         0.015        -0.115
+
+
+           Normalized Residuals for Means
+              S1SWASTE      S1SBORIN
+              ________      ________
+                0.065         0.053
+
+
+           Model Estimated Covariances
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.826
+ S1SPERS2       0.557         0.722
+ S1SUSELI       0.193         0.157         0.589
+ S1SUSECL       0.186         0.152         0.238         0.450
+ S1SUSEJO       0.245         0.200         0.313         0.302         0.687
+ S1STESTS       0.282         0.230         0.139         0.134         0.176
+ S1STEXTB       0.279         0.228         0.137         0.133         0.174
+ S1SSKILL       0.280         0.228         0.137         0.133         0.174
+ S1SASSEX       0.267         0.218         0.131         0.127         0.167
+ S1SENJNG       0.271         0.221         0.200         0.193         0.254
+ S1SWASTE       0.251         0.205         0.185         0.178         0.235
+ S1SBORIN       0.288         0.235         0.212         0.205         0.269
+
+
+           Model Estimated Covariances
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       0.530
+ S1STEXTB       0.350         0.605
+ S1SSKILL       0.351         0.347         0.510
+ S1SASSEX       0.335         0.332         0.332         0.471
+ S1SENJNG       0.219         0.217         0.217         0.207         0.692
+ S1SWASTE       0.202         0.200         0.201         0.192         0.403
+ S1SBORIN       0.232         0.230         0.230         0.220         0.462
+
+
+           Model Estimated Covariances
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       0.637
+ S1SBORIN       0.428         0.837
+
+
+           Model Estimated Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       1.000
+ S1SPERS2       0.722         1.000
+ S1SUSELI       0.277         0.241         1.000
+ S1SUSECL       0.305         0.266         0.462         1.000
+ S1SUSEJO       0.325         0.283         0.492         0.542         1.000
+ S1STESTS       0.427         0.372         0.248         0.274         0.292
+ S1STEXTB       0.395         0.345         0.230         0.254         0.270
+ S1SSKILL       0.431         0.376         0.251         0.277         0.295
+ S1SASSEX       0.429         0.374         0.250         0.275         0.293
+ S1SENJNG       0.358         0.313         0.313         0.345         0.368
+ S1SWASTE       0.346         0.301         0.302         0.333         0.354
+ S1SBORIN       0.346         0.302         0.302         0.333         0.355
+
+
+           Model Estimated Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       1.000
+ S1STEXTB       0.619         1.000
+ S1SSKILL       0.674         0.625         1.000
+ S1SASSEX       0.671         0.622         0.678         1.000
+ S1SENJNG       0.361         0.335         0.365         0.363         1.000
+ S1SWASTE       0.348         0.323         0.352         0.350         0.606
+ S1SBORIN       0.349         0.323         0.352         0.351         0.607
+
+
+           Model Estimated Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       1.000
+ S1SBORIN       0.586         1.000
+
+
+           Residuals for Covariances
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.000
+ S1SPERS2       0.000         0.000
+ S1SUSELI      -0.002        -0.005         0.000
+ S1SUSECL      -0.016        -0.015        -0.006         0.000
+ S1SUSEJO       0.021         0.017        -0.005         0.007         0.000
+ S1STESTS      -0.004        -0.009         0.005         0.003        -0.025
+ S1STEXTB       0.021         0.024         0.015         0.001        -0.007
+ S1SSKILL       0.004         0.004         0.014         0.017        -0.003
+ S1SASSEX      -0.013        -0.007        -0.001         0.011        -0.014
+ S1SENJNG       0.054         0.037         0.042         0.010        -0.012
+ S1SWASTE      -0.034        -0.022         0.031         0.022         0.008
+ S1SBORIN      -0.028        -0.027        -0.004        -0.051        -0.034
+
+
+           Residuals for Covariances
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       0.000
+ S1STEXTB       0.008         0.000
+ S1SSKILL      -0.016         0.011         0.000
+ S1SASSEX       0.011        -0.021         0.007         0.000
+ S1SENJNG       0.060         0.045         0.033         0.036         0.000
+ S1SWASTE      -0.008        -0.036        -0.013        -0.017        -0.025
+ S1SBORIN      -0.022        -0.047        -0.036        -0.040        -0.003
+
+
+           Residuals for Covariances
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       0.000
+ S1SBORIN       0.035         0.000
+
+
+           Residuals for Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.000
+ S1SPERS2       0.000         0.000
+ S1SUSELI      -0.003        -0.008         0.000
+ S1SUSECL      -0.027        -0.026        -0.012         0.000
+ S1SUSEJO       0.027         0.024        -0.007         0.013         0.000
+ S1STESTS      -0.006        -0.015         0.009         0.007        -0.041
+ S1STEXTB       0.029         0.036         0.024         0.002        -0.011
+ S1SSKILL       0.006         0.007         0.025         0.035        -0.006
+ S1SASSEX      -0.022        -0.012        -0.002         0.023        -0.025
+ S1SENJNG       0.071         0.053         0.065         0.017        -0.017
+ S1SWASTE      -0.046        -0.032         0.050         0.040         0.011
+ S1SBORIN      -0.034        -0.034        -0.006        -0.084        -0.045
+
+
+           Residuals for Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       0.000
+ S1STEXTB       0.014         0.000
+ S1SSKILL      -0.031         0.020         0.000
+ S1SASSEX       0.021        -0.039         0.014         0.000
+ S1SENJNG       0.099         0.069         0.055         0.062         0.000
+ S1SWASTE      -0.013        -0.058        -0.022        -0.030        -0.037
+ S1SBORIN      -0.033        -0.066        -0.055        -0.064        -0.004
+
+
+           Residuals for Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       0.000
+ S1SBORIN       0.047         0.000
+
+
+           Standardized Residuals (z-scores) for Covariances
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.606
+ S1SPERS2       0.505         0.369
+ S1SUSELI      -0.235        -0.533         0.175
+ S1SUSECL      -2.436        -1.980        -1.364         0.267
+ S1SUSEJO       3.670         2.160        -0.958       999.000       999.000
+ S1STESTS      -0.599        -1.479         0.639         0.473        -3.167
+ S1STEXTB       2.798         3.083         1.597         0.116        -0.759
+ S1SSKILL       0.759         0.751         1.752         2.665        -0.445
+ S1SASSEX      -2.519        -1.149        -0.123         1.628        -1.849
+ S1SENJNG     999.000         7.279         6.379         1.360        -1.351
+ S1SWASTE      -3.824        -2.461         4.079         2.589         0.887
+ S1SBORIN      -3.229        -2.608        -0.476        -6.087        -3.119
+
+
+           Standardized Residuals (z-scores) for Covariances
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       0.375
+ S1STEXTB       2.245         0.848
+ S1SSKILL      -4.528         6.154         0.508
+ S1SASSEX       7.486        -4.759         5.211         0.357
+ S1SENJNG      22.006         7.798         9.020        11.920       999.000
+ S1SWASTE      -0.934        -3.780        -1.547        -2.040        -3.737
+ S1SBORIN      -2.523        -4.586        -3.960        -4.524        -0.616
+
+
+           Standardized Residuals (z-scores) for Covariances
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       0.113
+ S1SBORIN     999.000       999.000
+
+
+           Normalized Residuals for Covariances
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.027
+ S1SPERS2       0.020         0.014
+ S1SUSELI      -0.136        -0.348         0.005
+ S1SUSECL      -1.181        -1.141        -0.421         0.007
+ S1SUSEJO       1.226         1.063        -0.288         0.459        -0.005
+ S1STESTS      -0.249        -0.675         0.380         0.260        -1.732
+ S1STEXTB       1.329         1.608         1.035         0.068        -0.464
+ S1SSKILL       0.280         0.318         1.016         1.344        -0.224
+ S1SASSEX      -0.945        -0.504        -0.072         0.881        -0.993
+ S1SENJNG       3.111         2.343         2.734         0.689        -0.702
+ S1SWASTE      -2.004        -1.406         2.028         1.459         0.455
+ S1SBORIN      -1.549        -1.532        -0.271        -3.450        -1.876
+
+
+           Normalized Residuals for Covariances
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       0.016
+ S1STEXTB       0.582         0.019
+ S1SSKILL      -1.147         0.792         0.011
+ S1SASSEX       0.758        -1.482         0.496         0.015
+ S1SENJNG       4.104         2.951         2.209         2.520         0.003
+ S1SWASTE      -0.534        -2.385        -0.868        -1.164        -1.395
+ S1SBORIN      -1.411        -2.908        -2.282        -2.613        -0.180
+
+
+           Normalized Residuals for Covariances
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       0.003
+ S1SBORIN       1.887        -0.016
+
+
+MODEL MODIFICATION INDICES
+
+NOTE:  Modification indices for direct effects of observed dependent variables
+regressed on covariates may not be included.  To include these, request
+MODINDICES (ALL).
+
+Minimum M.I. value for printing the modification index     3.840
+
+                                   M.I.     E.P.C.  Std E.P.C.  StdYX E.P.C.
+
+BY Statements
+
+SCI_ID   BY S1SUSECL               6.331    -0.046     -0.046       -0.068
+SCI_ID   BY S1SUSEJO               6.781     0.060      0.060        0.073
+SCI_ID   BY S1STEXTB               8.299     0.052      0.052        0.067
+SCI_ID   BY S1SASSEX               5.383    -0.035     -0.035       -0.051
+SCI_ID   BY S1SENJNG              67.805     0.167      0.167        0.201
+SCI_ID   BY S1SWASTE              19.244    -0.085     -0.085       -0.107
+SCI_ID   BY S1SBORIN              17.016    -0.092     -0.092       -0.100
+SCI_UT   BY S1SENJNG              10.877     0.086      0.086        0.103
+SCI_UT   BY S1SWASTE              11.440     0.083      0.083        0.105
+SCI_UT   BY S1SBORIN              45.794    -0.192     -0.192       -0.209
+SCI_EFF  BY S1SUSEJO               6.707    -0.059     -0.059       -0.072
+SCI_EFF  BY S1SENJNG             101.502     0.218      0.218        0.262
+SCI_EFF  BY S1SWASTE              13.278    -0.075     -0.075       -0.094
+SCI_EFF  BY S1SBORIN              45.314    -0.159     -0.159       -0.174
+SCI_INT  BY S1SUSELI              14.957     0.100      0.100        0.131
+SCI_INT  BY S1SUSEJO               7.359    -0.083     -0.083       -0.100
+SCI_INT  BY S1STESTS               5.354     0.038      0.038        0.052
+
+WITH Statements
+
+S1SUSEJO WITH S1SPERS1             4.772     0.020      0.020        0.099
+S1SUSEJO WITH S1SUSECL             9.101     0.044      0.044        0.173
+S1STESTS WITH S1SUSEJO             7.340    -0.019     -0.019       -0.085
+S1STEXTB WITH S1STESTS             5.581     0.017      0.017        0.078
+S1SSKILL WITH S1STESTS            49.959    -0.047     -0.047       -0.278
+S1SSKILL WITH S1STEXTB            12.062     0.024      0.024        0.118
+S1SASSEX WITH S1SUSECL             4.009     0.011      0.011        0.060
+S1SASSEX WITH S1STESTS            21.082     0.029      0.029        0.178
+S1SASSEX WITH S1STEXTB            44.455    -0.045     -0.045       -0.224
+S1SASSEX WITH S1SSKILL            10.621     0.021      0.021        0.130
+S1SENJNG WITH S1SPERS1            10.474     0.027      0.027        0.142
+S1SENJNG WITH S1SUSELI             7.953     0.025      0.025        0.084
+S1SENJNG WITH S1SUSEJO             9.662    -0.028     -0.028       -0.103
+S1SENJNG WITH S1STESTS            13.450     0.024      0.024        0.113
+S1SENJNG WITH S1STEXTB             7.867     0.021      0.021        0.082
+S1SWASTE WITH S1SPERS1             9.785    -0.026     -0.026       -0.132
+S1SWASTE WITH S1SUSECL            12.704     0.026      0.026        0.108
+S1SWASTE WITH S1STEXTB            10.691    -0.024     -0.024       -0.093
+S1SWASTE WITH S1SENJNG            82.255    -0.120     -0.120       -0.461
+S1SBORIN WITH S1SUSECL            31.150    -0.047     -0.047       -0.169
+S1SBORIN WITH S1SWASTE            98.556     0.138      0.138        0.456
+
+
+SAMPLE STATISTICS FOR ESTIMATED FACTOR SCORES
+
+
+     SAMPLE STATISTICS
+
+
+           Means
+              SCI_ID        SCI_ID_S      SCI_UT        SCI_UT_S      SCI_EFF
+              ________      ________      ________      ________      ________
+                0.000         0.356         0.000         0.542         0.000
+
+
+           Means
+              SCI_EFF_      SCI_INT       SCI_INT_
+              ________      ________      ________
+                0.423         0.000         0.488
+
+
+           Covariances
+              SCI_ID        SCI_ID_S      SCI_UT        SCI_UT_S      SCI_EFF
+              ________      ________      ________      ________      ________
+ SCI_ID         0.873
+ SCI_ID_S      -0.001         0.001
+ SCI_UT         0.451        -0.001         0.677
+ SCI_UT_S      -0.012         0.001        -0.005         0.029
+ SCI_EFF        0.552        -0.001         0.422        -0.007         0.782
+ SCI_EFF_      -0.013         0.001        -0.006         0.033        -0.007
+ SCI_INT        0.479         0.000         0.514        -0.006         0.493
+ SCI_INT_      -0.012         0.001        -0.006         0.031        -0.007
+
+
+           Covariances
+              SCI_EFF_      SCI_INT       SCI_INT_
+              ________      ________      ________
+ SCI_EFF_       0.039
+ SCI_INT       -0.006         0.727
+ SCI_INT_       0.037        -0.006         0.035
+
+
+           Correlations
+              SCI_ID        SCI_ID_S      SCI_UT        SCI_UT_S      SCI_EFF
+              ________      ________      ________      ________      ________
+ SCI_ID         1.000
+ SCI_ID_S      -0.032         1.000
+ SCI_UT         0.586        -0.054         1.000
+ SCI_UT_S      -0.076         0.226        -0.039         1.000
+ SCI_EFF        0.668        -0.035         0.580        -0.045         1.000
+ SCI_EFF_      -0.070         0.251        -0.039         0.980        -0.042
+ SCI_INT        0.601        -0.001         0.733        -0.040         0.654
+ SCI_INT_      -0.072         0.225        -0.039         0.982        -0.044
+
+
+           Correlations
+              SCI_EFF_      SCI_INT       SCI_INT_
+              ________      ________      ________
+ SCI_EFF_       1.000
+ SCI_INT       -0.037         1.000
+ SCI_INT_       0.995        -0.040         1.000
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Histograms (sample values, estimated factor scores, estimated values, residuals)
+  Scatterplots (sample values, estimated factor scores, estimated values, residuals)
+  Latent variable distribution plots
+
+     Beginning Time:  17:13:01
+        Ending Time:  17:13:01
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen

@@ -1,0 +1,463 @@
+Mplus VERSION 8.6 (Mac)
+MUTHEN & MUTHEN
+05/27/2021   5:10 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  m2 single indicator factor - Lab 1
+  DATA:
+  FILE = "/Users/agarber/github/NTNU-workshop/12-path-models/mplus_files/nces.dat";
+
+  VARIABLE:
+  NAMES = bystlang freelnch byincome stolen t_hurt p_fight hit damaged bullied unsafe
+       disrupt gangs rac_fght late skipped mth_test rd_test mean_scr;
+   MISSING=.;
+   usevar =
+      unsafe disrupt gangs rac_fght  ! factor 1
+      mth_test                       ! outcome
+      mean_scr;                      ! mediator
+  ANALYSIS:
+  estimator = MLR
+  MODEL:
+  ! measurement model
+      factor1 by unsafe, disrupt, gangs, rac_fght;
+
+      SIF by mean_scr@1; ! fix factor loading to 1
+
+      mean_scr@.154;     ! fix residual variance
+
+      ! structural model
+      mth_test on factor1 SIF;
+      SIF on factor1;
+  OUTPUT:
+  sampstat standardized
+
+
+
+*** WARNING
+  Data set contains cases with missing on all variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on all variables:  9
+   1 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+m2 single indicator factor - Lab 1
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         785
+
+Number of dependent variables                                    6
+Number of independent variables                                  0
+Number of continuous latent variables                            2
+
+Observed dependent variables
+
+  Continuous
+   UNSAFE      DISRUPT     GANGS       RAC_FGHT    MTH_TEST    MEAN_SCR
+
+Continuous latent variables
+   FACTOR1     SIF
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+
+Input data file(s)
+  /Users/agarber/github/NTNU-workshop/12-path-models/mplus_files/nces.dat
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns            11
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              UNSAFE        DISRUPT       GANGS         RAC_FGHT      MTH_TEST
+              ________      ________      ________      ________      ________
+ UNSAFE         0.906
+ DISRUPT        0.899         0.908
+ GANGS          0.890         0.892         0.898
+ RAC_FGHT       0.904         0.907         0.896         0.912
+ MTH_TEST       0.906         0.908         0.898         0.912         1.000
+ MEAN_SCR       0.896         0.898         0.889         0.902         0.908
+
+
+           Covariance Coverage
+              MEAN_SCR
+              ________
+ MEAN_SCR       0.908
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           Means
+              UNSAFE        DISRUPT       GANGS         RAC_FGHT      MTH_TEST
+              ________      ________      ________      ________      ________
+                3.274         2.560         2.996         3.042        51.138
+
+
+           Means
+              MEAN_SCR
+              ________
+                1.901
+
+
+           Covariances
+              UNSAFE        DISRUPT       GANGS         RAC_FGHT      MTH_TEST
+              ________      ________      ________      ________      ________
+ UNSAFE         0.511
+ DISRUPT        0.187         0.739
+ GANGS          0.208         0.160         0.757
+ RAC_FGHT       0.192         0.138         0.328         0.687
+ MTH_TEST       1.696         1.405         1.262         2.070       100.991
+ MEAN_SCR      -0.077         0.029        -0.108        -0.062        -1.744
+
+
+           Covariances
+              MEAN_SCR
+              ________
+ MEAN_SCR       0.768
+
+
+           Correlations
+              UNSAFE        DISRUPT       GANGS         RAC_FGHT      MTH_TEST
+              ________      ________      ________      ________      ________
+ UNSAFE         1.000
+ DISRUPT        0.305         1.000
+ GANGS          0.334         0.215         1.000
+ RAC_FGHT       0.325         0.193         0.455         1.000
+ MTH_TEST       0.236         0.163         0.144         0.249         1.000
+ MEAN_SCR      -0.124         0.039        -0.142        -0.085        -0.198
+
+
+           Correlations
+              MEAN_SCR
+              ________
+ MEAN_SCR       1.000
+
+
+     MAXIMUM LOG-LIKELIHOOD VALUE FOR THE UNRESTRICTED (H1) MODEL IS -7060.532
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     UNSAFE                3.277      -0.901       1.000    2.67%       3.000      3.000      3.000
+             711.000       0.513       0.938       4.000   40.65%       4.000      4.000
+     DISRUPT               2.561      -0.150       1.000   11.92%       2.000      2.000      3.000
+             713.000       0.740      -0.620       4.000   12.76%       3.000      3.000
+     GANGS                 2.999      -0.602       1.000    6.67%       2.000      3.000      3.000
+             705.000       0.759      -0.297       4.000   31.21%       3.000      4.000
+     RAC_FGHT              3.043      -0.623       1.000    5.17%       2.000      3.000      3.000
+             716.000       0.689      -0.128       4.000   31.56%       3.000      4.000
+     MTH_TEST             51.138       0.075      24.450    0.13%      42.600     48.590     51.300
+             785.000     100.991       0.022      84.850    0.13%      53.840     58.930
+     MEAN_SCR              1.900       1.263       1.000   23.70%       1.000      1.500      1.500
+             713.000       0.770       1.290       5.000    0.98%       2.000      2.500
+
+
+     THIS ANALYSIS MAY HAVE MULTIPLE SOLUTIONS.  EXPLORE THIS USING RANDOM STARTS,
+     FOR EXAMPLE, STARTS = 20.  USE A LARGE ENOUGH NUMBER OF STARTS SO THAT THE
+     BEST FIT FUNCTION VALUE IS REPLICATED SEVERAL TIMES.
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       19
+
+Loglikelihood
+
+          H0 Value                       -7084.872
+          H0 Scaling Correction Factor      1.1460
+            for MLR
+          H1 Value                       -7060.532
+          H1 Scaling Correction Factor      1.1302
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                   14207.744
+          Bayesian (BIC)                 14296.392
+          Sample-Size Adjusted BIC       14236.057
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                             44.541*
+          Degrees of Freedom                     8
+          P-Value                           0.0000
+          Scaling Correction Factor         1.0929
+            for MLR
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.076
+          90 Percent C.I.                    0.055  0.099
+          Probability RMSEA <= .05           0.021
+
+CFI/TLI
+
+          CFI                                0.907
+          TLI                                0.827
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                            410.017
+          Degrees of Freedom                    15
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.037
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ FACTOR1  BY
+    UNSAFE             1.000      0.000    999.000    999.000
+    DISRUPT            0.805      0.096      8.361      0.000
+    GANGS              1.369      0.185      7.399      0.000
+    RAC_FGHT           1.338      0.176      7.622      0.000
+
+ SIF      BY
+    MEAN_SCR           1.000      0.000    999.000    999.000
+
+ SIF      ON
+    FACTOR1           -0.361      0.120     -2.996      0.003
+
+ MTH_TEST ON
+    FACTOR1            7.896      1.331      5.934      0.000
+    SIF               -2.093      0.510     -4.105      0.000
+
+ Intercepts
+    UNSAFE             3.275      0.027    122.240      0.000
+    DISRUPT            2.560      0.032     79.608      0.000
+    GANGS              2.995      0.033     91.525      0.000
+    RAC_FGHT           3.042      0.031     98.340      0.000
+    MTH_TEST          51.138      0.359    142.572      0.000
+    MEAN_SCR           1.900      0.033     57.989      0.000
+
+ Variances
+    FACTOR1            0.161      0.030      5.396      0.000
+
+ Residual Variances
+    UNSAFE             0.350      0.033     10.706      0.000
+    DISRUPT            0.635      0.036     17.531      0.000
+    GANGS              0.455      0.046      9.795      0.000
+    RAC_FGHT           0.399      0.039     10.303      0.000
+    MTH_TEST          86.339      4.945     17.461      0.000
+    MEAN_SCR           0.154      0.000    999.000    999.000
+    SIF                0.593      0.050     11.977      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.596E-03
+       (ratio of smallest to largest eigenvalue)
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ FACTOR1  BY
+    UNSAFE             0.561      0.047     12.042      0.000
+    DISRUPT            0.376      0.047      7.936      0.000
+    GANGS              0.632      0.046     13.782      0.000
+    RAC_FGHT           0.648      0.042     15.373      0.000
+
+ SIF      BY
+    MEAN_SCR           0.894      0.008    117.729      0.000
+
+ SIF      ON
+    FACTOR1           -0.185      0.059     -3.120      0.002
+
+ MTH_TEST ON
+    FACTOR1            0.315      0.047      6.704      0.000
+    SIF               -0.163      0.039     -4.157      0.000
+
+ Intercepts
+    UNSAFE             4.580      0.170     26.990      0.000
+    DISRUPT            2.977      0.079     37.469      0.000
+    GANGS              3.444      0.107     32.126      0.000
+    RAC_FGHT           3.669      0.115     31.785      0.000
+    MTH_TEST           5.089      0.132     38.507      0.000
+    MEAN_SCR           2.168      0.055     39.753      0.000
+
+ Variances
+    FACTOR1            1.000      0.000    999.000    999.000
+
+ Residual Variances
+    UNSAFE             0.685      0.052     13.100      0.000
+    DISRUPT            0.859      0.036     24.172      0.000
+    GANGS              0.601      0.058     10.385      0.000
+    RAC_FGHT           0.580      0.055     10.636      0.000
+    MTH_TEST           0.855      0.031     27.628      0.000
+    MEAN_SCR           0.200      0.014     14.757      0.000
+    SIF                0.966      0.022     44.101      0.000
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ FACTOR1  BY
+    UNSAFE             0.561      0.047     12.042      0.000
+    DISRUPT            0.376      0.047      7.936      0.000
+    GANGS              0.632      0.046     13.782      0.000
+    RAC_FGHT           0.648      0.042     15.373      0.000
+
+ SIF      BY
+    MEAN_SCR           0.894      0.008    117.729      0.000
+
+ SIF      ON
+    FACTOR1           -0.185      0.059     -3.120      0.002
+
+ MTH_TEST ON
+    FACTOR1            0.315      0.047      6.704      0.000
+    SIF               -0.163      0.039     -4.157      0.000
+
+ Intercepts
+    UNSAFE             4.580      0.170     26.990      0.000
+    DISRUPT            2.977      0.079     37.469      0.000
+    GANGS              3.444      0.107     32.126      0.000
+    RAC_FGHT           3.669      0.115     31.785      0.000
+    MTH_TEST           5.089      0.132     38.507      0.000
+    MEAN_SCR           2.168      0.055     39.753      0.000
+
+ Variances
+    FACTOR1            1.000      0.000    999.000    999.000
+
+ Residual Variances
+    UNSAFE             0.685      0.052     13.100      0.000
+    DISRUPT            0.859      0.036     24.172      0.000
+    GANGS              0.601      0.058     10.385      0.000
+    RAC_FGHT           0.580      0.055     10.636      0.000
+    MTH_TEST           0.855      0.031     27.628      0.000
+    MEAN_SCR           0.200      0.014     14.757      0.000
+    SIF                0.966      0.022     44.101      0.000
+
+
+STD Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ FACTOR1  BY
+    UNSAFE             0.401      0.037     10.791      0.000
+    DISRUPT            0.323      0.042      7.679      0.000
+    GANGS              0.549      0.044     12.561      0.000
+    RAC_FGHT           0.537      0.040     13.386      0.000
+
+ SIF      BY
+    MEAN_SCR           0.784      0.033     23.598      0.000
+
+ SIF      ON
+    FACTOR1           -0.185      0.059     -3.120      0.002
+
+ MTH_TEST ON
+    FACTOR1            3.169      0.491      6.449      0.000
+    SIF               -1.640      0.397     -4.130      0.000
+
+ Intercepts
+    UNSAFE             3.275      0.027    122.240      0.000
+    DISRUPT            2.560      0.032     79.608      0.000
+    GANGS              2.995      0.033     91.525      0.000
+    RAC_FGHT           3.042      0.031     98.340      0.000
+    MTH_TEST          51.138      0.359    142.572      0.000
+    MEAN_SCR           1.900      0.033     57.989      0.000
+
+ Variances
+    FACTOR1            1.000      0.000    999.000    999.000
+
+ Residual Variances
+    UNSAFE             0.350      0.033     10.706      0.000
+    DISRUPT            0.635      0.036     17.531      0.000
+    GANGS              0.455      0.046      9.795      0.000
+    RAC_FGHT           0.399      0.039     10.303      0.000
+    MTH_TEST          86.339      4.945     17.461      0.000
+    MEAN_SCR           0.154      0.000    999.000    999.000
+    SIF                0.966      0.022     44.101      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    UNSAFE             0.315      0.052      6.021      0.000
+    DISRUPT            0.141      0.036      3.968      0.000
+    GANGS              0.399      0.058      6.891      0.000
+    RAC_FGHT           0.420      0.055      7.686      0.000
+    MTH_TEST           0.145      0.031      4.688      0.000
+    MEAN_SCR           0.800      0.014     58.865      0.000
+
+     Latent                                         Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    SIF                0.034      0.022      1.560      0.119
+
+
+     Beginning Time:  17:10:55
+        Ending Time:  17:10:55
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen

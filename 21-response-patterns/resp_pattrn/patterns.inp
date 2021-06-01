@@ -1,0 +1,28 @@
+TITLE:
+C4 LCA - Save response patterns
+DATA:
+FILE = "/Users/agarber/github/NTNU-workshop/21-response-patterns/resp_pattrn/LSAY.dat";
+ 
+VARIABLE:
+NAMES = Enjoy Useful Logical Job Adult; 
+ MISSING=.;
+ categorical = Enjoy-Adult; 
+   usevar = Enjoy-Adult;
+    
+   classes = c(4);
+ANALYSIS:
+estimator = mlr; 
+    type = mixture;
+    starts = 500 100;
+OUTPUT:
+sampstat residual patterns tech10 tech11 tech14
+SAVEDATA:
+File=3step_savedata.dat;
+    Save=cprob;
+    Missflag= 999;
+    !!!!!!!! Code to save response frequency data !!!!!!!!
+    response is resp_patterns.dat; 
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+PLOT:
+type = plot3; 
+    series = Enjoy-Adult(*);

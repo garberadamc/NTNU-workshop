@@ -1,0 +1,352 @@
+Mplus VERSION 8.6 (Mac)
+MUTHEN & MUTHEN
+05/28/2021  10:51 AM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  m5 model indirect - Lab 3
+  DATA:
+  FILE = "/Users/agarber/github/NTNU-workshop/13-comp-models/mplus_files/Lab3.dat";
+
+  VARIABLE:
+  NAMES = year sex education vocabulary;
+   MISSING=.;
+   usevar =
+      year              ! covariate/moderator
+      education         ! covariate
+      vocabulary        ! outcome
+      int_yred;         ! interaction of year and education
+  DEFINE:
+  center education (grandmean);
+       int_yred = year*education;  ! create interaction term
+  ANALYSIS:
+  estimator = MLR
+  MODEL:
+  [vocabulary](b0);
+      vocabulary on
+      year(b1)
+      education(b2)
+      int_yred(b3);
+  MODEL CONSTRAINT:
+  LOOP(x,-1,1,0.01);
+     PLOT(y1974 y2016);
+     new(hi_y1974 lo_y1974 hi_y2016 lo_y2016 diff_hi);
+     y1974 = b0 + b2*x;
+     y2016 = b0 + b1 + (b2+b3)*x;
+
+     hi_y1974 = b0 + b2*(6.28);
+     lo_y1974 = b0 + b2*(-6.28);
+     hi_y2016 = b0 + b1 + (b2 + b3)*(6.28);
+     lo_y2016 = b0 + b1 + (b2 + b3)*(-6.28);
+      diff_hi = hi_y2016 - hi_y1974;
+  OUTPUT:
+  sampstat standardized modindices (3.84)
+  PLOT:
+  type=plot3;
+
+
+
+*** WARNING in VARIABLE command
+  Note that only the first 8 characters of variable names are used in the output.
+  Shorten variable names to avoid any confusion.
+*** WARNING in PLOT command
+  Note that only the first 8 characters of variable names are used in plots.
+  If variable names are not unique within the first 8 characters, problems
+  may occur.
+*** WARNING in OUTPUT command
+  MODINDICES option is not available in conjunction with nonlinear constraints
+  through the use of MODEL CONSTRAINT.  Request for MODINDICES is ignored.
+   3 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+m5 model indirect - Lab 3
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        3307
+
+Number of dependent variables                                    1
+Number of independent variables                                  3
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   VOCABULARY
+
+Observed independent variables
+   YEAR        EDUCATIO    INT_YRED
+
+Variables with special functions
+
+  Centering (GRANDMEAN)
+   EDUCATIO
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+
+Input data file(s)
+  /Users/agarber/github/NTNU-workshop/13-comp-models/mplus_files/Lab3.dat
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             1
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              VOCABULA      YEAR          EDUCATIO      INT_YRED
+              ________      ________      ________      ________
+ VOCABULA       1.000
+ YEAR           1.000         1.000
+ EDUCATIO       1.000         1.000         1.000
+ INT_YRED       1.000         1.000         1.000         1.000
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           Means
+              VOCABULA      YEAR          EDUCATIO      INT_YRED
+              ________      ________      ________      ________
+                6.022         1.563         0.000         0.455
+
+
+           Covariances
+              VOCABULA      YEAR          EDUCATIO      INT_YRED
+              ________      ________      ________      ________
+ VOCABULA       4.211
+ YEAR          -0.001         0.246
+ EDUCATIO       3.019         0.455         9.850
+ INT_YRED       4.391         0.654        14.833        24.593
+
+
+           Correlations
+              VOCABULA      YEAR          EDUCATIO      INT_YRED
+              ________      ________      ________      ________
+ VOCABULA       1.000
+ YEAR          -0.001         1.000
+ EDUCATIO       0.469         0.292         1.000
+ INT_YRED       0.431         0.266         0.953         1.000
+
+
+     MAXIMUM LOG-LIKELIHOOD VALUE FOR THE UNRESTRICTED (H1) MODEL IS -23343.082
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     VOCABULARY            6.022      -0.163       0.000    0.67%       4.000      6.000      6.000
+            3307.000       4.211      -0.092      10.000    5.29%       6.000      8.000
+     YEAR                  1.563      -0.253       1.000   43.73%       1.000      1.000      2.000
+            3307.000       0.246      -1.936       2.000   56.27%       2.000      2.000
+     EDUCATION             0.000      -0.246     -12.915    0.18%      -1.915     -0.915     -0.915
+            3307.000       9.850       0.722       7.085    2.36%       0.085      3.085
+     INT_YRED              0.455       0.246     -23.829    0.03%      -1.915     -0.915     -0.915
+            3307.000      24.593       1.162      14.171    1.84%       0.171      4.171
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                        5
+
+Loglikelihood
+
+          H0 Value                       -6607.715
+          H0 Scaling Correction Factor      1.0705
+            for MLR
+          H1 Value                       -6607.715
+          H1 Scaling Correction Factor      1.0705
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                   13225.430
+          Bayesian (BIC)                 13255.948
+          Sample-Size Adjusted BIC       13240.061
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                              0.000*
+          Degrees of Freedom                     0
+          P-Value                           0.0000
+          Scaling Correction Factor         1.0000
+            for MLR
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.000
+          90 Percent C.I.                    0.000  0.000
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                1.000
+          TLI                                1.000
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                            815.649
+          Degrees of Freedom                     3
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.000
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ VOCABULA ON
+    YEAR              -0.634      0.066     -9.575      0.000
+    EDUCATION          0.453      0.034     13.508      0.000
+    INT_YRED          -0.078      0.021     -3.668      0.000
+
+ Intercepts
+    VOCABULARY         7.048      0.110     63.785      0.000
+
+ Residual Variances
+    VOCABULARY         3.185      0.086     36.830      0.000
+
+New/Additional Parameters
+    HI_Y1974           9.894      0.255     38.799      0.000
+    LO_Y1974           4.202      0.219     19.145      0.000
+    HI_Y2016           8.771      0.119     73.581      0.000
+    LO_Y2016           4.058      0.093     43.435      0.000
+    DIFF_HI           -1.123      0.150     -7.504      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.282E-04
+       (ratio of smallest to largest eigenvalue)
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ VOCABULA ON
+    YEAR              -0.153      0.016     -9.706      0.000
+    EDUCATION          0.693      0.051     13.543      0.000
+    INT_YRED          -0.188      0.051     -3.661      0.000
+
+ Intercepts
+    VOCABULARY         3.435      0.064     53.597      0.000
+
+ Residual Variances
+    VOCABULARY         0.756      0.015     52.015      0.000
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ VOCABULA ON
+    YEAR              -0.309      0.032     -9.707      0.000
+    EDUCATION          0.221      0.016     13.677      0.000
+    INT_YRED          -0.038      0.010     -3.665      0.000
+
+ Intercepts
+    VOCABULARY         3.435      0.064     53.597      0.000
+
+ Residual Variances
+    VOCABULARY         0.756      0.015     52.015      0.000
+
+
+STD Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ VOCABULA ON
+    YEAR              -0.634      0.066     -9.575      0.000
+    EDUCATION          0.453      0.034     13.508      0.000
+    INT_YRED          -0.078      0.021     -3.668      0.000
+
+ Intercepts
+    VOCABULARY         7.048      0.110     63.785      0.000
+
+ Residual Variances
+    VOCABULARY         3.185      0.086     36.830      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    VOCABULA           0.244      0.015     16.768      0.000
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Histograms (sample values, estimated values, residuals)
+  Scatterplots (sample values, estimated values, residuals)
+  Loop plots
+
+     Beginning Time:  10:51:54
+        Ending Time:  10:51:54
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen

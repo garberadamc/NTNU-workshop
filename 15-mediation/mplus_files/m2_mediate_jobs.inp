@@ -1,0 +1,27 @@
+TITLE:
+m2 jobs mediate Lab4
+DATA:
+FILE = "/Users/agarber/github/NTNU-workshop/15-mediation/mplus_files/jobs.dat";
+ 
+VARIABLE:
+NAMES = treat econ_hard depress1 sex age occp marital nonwhite educ income job_seek
+     depress2 work1 comply control job_dich job_disc; 
+ MISSING=.;
+ usevar = treat sex
+    age marital nonwhite
+    educ income depress2 job_dich;
+                 
+    categorical = job_dich; ! moderator is binary
+ANALYSIS:
+bootstrap = 500; ! set number of bootstrap draws (500 for example purposes)
+MODEL:
+job_dich on treat sex age marital nonwhite educ income;
+   
+    depress2 on job_dich treat sex age marital nonwhite educ income;  
+    
+    Model indirect:
+    depress2 ind treat;
+OUTPUT:
+sampstat standardized cinterval (bcbootstrap); ! bias-corrected bootstrap
+PLOT:
+type=plot2;

@@ -1,0 +1,393 @@
+Mplus VERSION 8.6 (Mac)
+MUTHEN & MUTHEN
+05/28/2021  10:57 AM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  m2 model indirect - Lab 3
+  DATA:
+  FILE = "/Users/agarber/github/NTNU-workshop/14-moderation/mplus_files/caschools.dat";
+
+  VARIABLE:
+  NAMES = totexpk classk tmathssk treadssk;
+   MISSING=.;
+   usevar =
+      totexpk classk
+      tmathssk, treadssk
+      tchXclas;
+  DEFINE:
+  center totexpk (grandmean);
+       tchXclas = totexpk*classk;  ! create interaction term
+  ANALYSIS:
+  estimator = mlr;
+  MODEL:
+  treadssk on classk totexpk tchXclas;
+
+      [tmathssk](b0);
+
+      tmathssk on
+      classk (b1)
+      totexpk (b2)
+      tchXclas (b3);
+  MODEL CONSTRAINT:
+  LOOP(x,-1,1,0.01);
+     PLOT(small regular);
+     new(hi_small lo_small hi_regular lo_regular diff_hi);
+       small = b0 + b2*x;
+     regular = b0 + b1 + (b2+b3)*x;
+
+       hi_small = b0 + b2*(9.3);
+       lo_small = b0 + b2*(-9.3);
+     hi_regular = b0 + b1 + (b2 + b3)*(9.3);
+     lo_regular = b0 + b1 + (b2 + b3)*(-9.3);
+        diff_hi = hi_small - hi_regular;
+  OUTPUT:
+  sampstat standardized modindices (3.84)
+  PLOT:
+  type=plot3;
+
+
+
+*** WARNING in OUTPUT command
+  MODINDICES option is not available in conjunction with nonlinear constraints
+  through the use of MODEL CONSTRAINT.  Request for MODINDICES is ignored.
+   1 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+m2 model indirect - Lab 3
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        5748
+
+Number of dependent variables                                    2
+Number of independent variables                                  3
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   TMATHSSK    TREADSSK
+
+Observed independent variables
+   TOTEXPK     CLASSK      TCHXCLAS
+
+Variables with special functions
+
+  Centering (GRANDMEAN)
+   TOTEXPK
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+
+Input data file(s)
+  /Users/agarber/github/NTNU-workshop/14-moderation/mplus_files/caschools.dat
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             1
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              TMATHSSK      TREADSSK      TOTEXPK       CLASSK        TCHXCLAS
+              ________      ________      ________      ________      ________
+ TMATHSSK       1.000
+ TREADSSK       1.000         1.000
+ TOTEXPK        1.000         1.000         1.000
+ CLASSK         1.000         1.000         1.000         1.000
+ TCHXCLAS       1.000         1.000         1.000         1.000         1.000
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           Means
+              TMATHSSK      TREADSSK      TOTEXPK       CLASSK        TCHXCLAS
+              ________      ________      ________      ________      ________
+              485.648       436.742         0.000         1.699         0.095
+
+
+           Covariances
+              TMATHSSK      TREADSSK      TOTEXPK       CLASSK        TCHXCLAS
+              ________      ________      ________      ________      ________
+ TMATHSSK    2281.722
+ TREADSSK    1082.863      1009.339
+ TOTEXPK       26.636        20.551        33.261
+ CLASSK        -1.755        -1.157         0.095         0.211
+ TCHXCLAS      51.107        38.788        56.594         0.124       103.253
+
+
+           Correlations
+              TMATHSSK      TREADSSK      TOTEXPK       CLASSK        TCHXCLAS
+              ________      ________      ________      ________      ________
+ TMATHSSK       1.000
+ TREADSSK       0.714         1.000
+ TOTEXPK        0.097         0.112         1.000
+ CLASSK        -0.080        -0.079         0.036         1.000
+ TCHXCLAS       0.105         0.120         0.966         0.027         1.000
+
+
+     MAXIMUM LOG-LIKELIHOOD VALUE FOR THE UNRESTRICTED (H1) MODEL IS -91932.028
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     TMATHSSK            485.648       0.474     320.000    0.03%     444.000    468.000    484.000
+            5748.000    2281.722       0.288     626.000    1.18%     494.000    520.000
+     TREADSSK            436.742       1.341     315.000    0.02%     411.000    425.000    433.000
+            5748.000    1009.339       3.833     627.000    0.10%     439.000    458.000
+     TOTEXPK               0.000       0.417      -9.307    4.38%      -5.307     -1.307     -0.307
+            5748.000      33.261      -0.205      17.693    0.56%       1.693      4.693
+     CLASSK                1.699      -0.865       1.000   30.15%       1.000      2.000      2.000
+            5748.000       0.211      -1.252       2.000   69.85%       2.000      2.000
+     TCHXCLAS              0.095       0.461     -18.615    3.67%      -8.615     -2.615     -0.615
+            5748.000     103.253       0.439      35.385    0.38%       2.693      7.385
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       11
+
+Loglikelihood
+
+          H0 Value                      -56302.035
+          H0 Scaling Correction Factor      1.3501
+            for MLR
+          H1 Value                      -56302.035
+          H1 Scaling Correction Factor      1.3501
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                  112626.070
+          Bayesian (BIC)                112699.292
+          Sample-Size Adjusted BIC      112664.337
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                              0.000*
+          Degrees of Freedom                     0
+          P-Value                           0.0000
+          Scaling Correction Factor         1.0000
+            for MLR
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.000
+          90 Percent C.I.                    0.000  0.000
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                1.000
+          TLI                                1.000
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                           3365.813
+          Degrees of Freedom                     7
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.000
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ TREADSSK ON
+    CLASSK            -5.688      0.923     -6.159      0.000
+    TOTEXPK           -0.247      0.291     -0.849      0.396
+    TCHXCLAS           0.518      0.163      3.181      0.001
+
+ TMATHSSK ON
+    CLASSK            -8.567      1.393     -6.148      0.000
+    TOTEXPK           -0.510      0.434     -1.176      0.240
+    TCHXCLAS           0.785      0.245      3.207      0.001
+
+ TREADSSK WITH
+    TMATHSSK        1053.038     27.359     38.490      0.000
+
+ Intercepts
+    TMATHSSK         500.124      2.482    201.476      0.000
+    TREADSSK         446.354      1.642    271.768      0.000
+
+ Residual Variances
+    TMATHSSK        2240.239     44.456     50.392      0.000
+    TREADSSK         987.774     31.756     31.105      0.000
+
+New/Additional Parameters
+    HI_SMALL         495.382      4.755    104.190      0.000
+    LO_SMALL         504.865      4.716    107.054      0.000
+    HI_REGUL         494.113      2.266    218.058      0.000
+    LO_REGUL         489.000      2.251    217.210      0.000
+    DIFF_HI            1.269      2.684      0.473      0.636
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.128E-05
+       (ratio of smallest to largest eigenvalue)
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ TREADSSK ON
+    CLASSK            -0.082      0.013     -6.180      0.000
+    TOTEXPK           -0.045      0.053     -0.849      0.396
+    TCHXCLAS           0.166      0.052      3.177      0.001
+
+ TMATHSSK ON
+    CLASSK            -0.082      0.013     -6.181      0.000
+    TOTEXPK           -0.062      0.052     -1.176      0.240
+    TCHXCLAS           0.167      0.052      3.211      0.001
+
+ TREADSSK WITH
+    TMATHSSK           0.708      0.007    101.974      0.000
+
+ Intercepts
+    TMATHSSK          10.470      0.107     97.855      0.000
+    TREADSSK          14.049      0.218     64.419      0.000
+
+ Residual Variances
+    TMATHSSK           0.982      0.003    282.231      0.000
+    TREADSSK           0.979      0.004    263.917      0.000
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ TREADSSK ON
+    CLASSK            -0.179      0.029     -6.183      0.000
+    TOTEXPK           -0.008      0.009     -0.849      0.396
+    TCHXCLAS           0.016      0.005      3.179      0.001
+
+ TMATHSSK ON
+    CLASSK            -0.179      0.029     -6.185      0.000
+    TOTEXPK           -0.011      0.009     -1.176      0.240
+    TCHXCLAS           0.016      0.005      3.213      0.001
+
+ TREADSSK WITH
+    TMATHSSK           0.708      0.007    101.974      0.000
+
+ Intercepts
+    TMATHSSK          10.470      0.107     97.855      0.000
+    TREADSSK          14.049      0.218     64.419      0.000
+
+ Residual Variances
+    TMATHSSK           0.982      0.003    282.231      0.000
+    TREADSSK           0.979      0.004    263.917      0.000
+
+
+STD Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ TREADSSK ON
+    CLASSK            -5.688      0.923     -6.159      0.000
+    TOTEXPK           -0.247      0.291     -0.849      0.396
+    TCHXCLAS           0.518      0.163      3.181      0.001
+
+ TMATHSSK ON
+    CLASSK            -8.567      1.393     -6.148      0.000
+    TOTEXPK           -0.510      0.434     -1.176      0.240
+    TCHXCLAS           0.785      0.245      3.207      0.001
+
+ TREADSSK WITH
+    TMATHSSK        1053.038     27.359     38.490      0.000
+
+ Intercepts
+    TMATHSSK         500.124      2.482    201.476      0.000
+    TREADSSK         446.354      1.642    271.768      0.000
+
+ Residual Variances
+    TMATHSSK        2240.239     44.456     50.392      0.000
+    TREADSSK         987.774     31.756     31.105      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    TMATHSSK           0.018      0.003      5.236      0.000
+    TREADSSK           0.021      0.004      5.769      0.000
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Histograms (sample values, estimated values, residuals)
+  Scatterplots (sample values, estimated values, residuals)
+  Loop plots
+
+     Beginning Time:  10:57:31
+        Ending Time:  10:57:32
+       Elapsed Time:  00:00:01
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen

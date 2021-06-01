@@ -1,0 +1,25 @@
+TITLE:
+CFA model2 - group is 1 for freelnch
+DATA:
+FILE = "/Users/agarber/github/NTNU-workshop/09-invariance/invar_mplus/invar_data.dat";
+ 
+VARIABLE:
+NAMES = bystlang freelnch byincome stolen t_hurt p_fight hit damaged bullied unsafe
+     disrupt gangs rac_fght late skipped mth_read mth_test rd_test; 
+ MISSING=.;
+ usevar = stolen-rac_fght;
+     
+     !freelnch (1 = school proportion is greater than or equal to 11 percent)
+     USEOBS = freelnch == 1; 
+ANALYSIS:
+estimator = mlr;
+MODEL:
+VICTIM by stolen* t_hurt p_fight hit damaged bullied;
+     VICTIM@1; ! UVI identification
+     
+     NEG_CLIM by unsafe* disrupt gangs rac_fght;
+     NEG_CLIM@1; 
+OUTPUT:
+sampstat standardized residual modindices (3.84);
+PLOT:
+type = plot3;

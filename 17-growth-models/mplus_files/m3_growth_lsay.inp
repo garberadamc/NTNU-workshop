@@ -1,0 +1,23 @@
+TITLE:
+m3 growth model with covariate and freely estimated time scores
+DATA:
+FILE = "/Users/agarber/github/NTNU-workshop/17-growth-models/mplus_files/lsay.dat";
+ 
+VARIABLE:
+NAMES = rural gender fathed mothed math_07 math_08 math_09 math_10 math_11 math_12
+     sci_07 sci_08 sci_09 sci_10 sci_11 sci_12; 
+ MISSING=.;
+ usevar =
+    math_07-math_12 fathed; 
+DEFINE:
+center fathed (grandmean);
+ANALYSIS:
+estimator = ML
+MODEL:
+i s | math_07@0 math_08@1 math_09* math_10* math_11* math_12*; 
+    i s on fathed; 
+OUTPUT:
+sampstat standardized;
+PLOT:
+type=plot3;
+          series = math_07-math_12(*)

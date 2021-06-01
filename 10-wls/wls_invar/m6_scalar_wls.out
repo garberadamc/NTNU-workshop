@@ -1,0 +1,640 @@
+Mplus VERSION 8.6 (Mac)
+MUTHEN & MUTHEN
+05/27/2021   2:25 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  WSL FACTOR ANALYSIS - SCALAR
+  DATA:
+  FILE = "/Users/agarber/github/NTNU-workshop/10-wls/wls_invar/m6_scalar_wls.dat";
+
+  VARIABLE:
+  NAMES = STU_ID X1STDOB X1SES X1SEX X1RACE X1PAR1ED X1PAR2ED X1TXMTSC X2TXMTSC
+       X3TGPA9T X3TGPAAC X1STUEDE X1PAREDE S1MPERS1 S1MPERS2 S1MUSELI S1MUSECL
+       S1MUSEJO S1MTESTS S1MTEXTB S1MSKILL S1MASSEX S1MENJNG S1MWASTE S1MBORIN
+       S1MENJYS S1SPERS1 S1SPERS2 S1SUSELI S1SUSECL S1SUSEJO S1STESTS S1STEXTB
+       S1SSKILL S1SASSEX S1SENJNG S1SWASTE S1SBORIN S1SENJYS S1SAFE S1PROUD S1TALKPR
+       S1SCHWAS S1GOODGR S1NOHWDN S1NOPAPE S1NOBOOK S1LATE;
+   MISSING=.;
+   usevar =
+    S1SPERS1 S1SPERS2 S1SUSELI S1SUSECL
+    S1SUSEJO S1STESTS S1STEXTB S1SSKILL
+    S1SASSEX S1SENJNG S1SWASTE S1SBORIN;
+
+     categorical =
+    S1SPERS1 S1SPERS2 S1SUSELI S1SUSECL
+    S1SUSEJO S1STESTS S1STEXTB S1SSKILL
+    S1SASSEX S1SENJNG S1SWASTE S1SBORIN;
+
+    grouping = X1SEX (1=MALE 2=FEMALE);
+  ANALYSIS:
+  estimator=wlsmv; parameterization=theta;
+  MODEL:
+  SCI_ID  BY S1SPERS1@1 S1SPERS2;
+    SCI_UT  BY S1SUSELI@1 S1SUSECL S1SUSEJO;
+    SCI_EFF BY S1STESTS@1 S1STEXTB S1SSKILL S1SASSEX ;
+    SCI_INT BY S1SENJNG@1 S1SWASTE S1SBORIN;
+
+   ! ***NEW TO SCALAR INV*** (all thresholds set to equality)
+   [S1SPERS1$1](f1_11);  [S1SPERS1$2](f1_12);  [S1SPERS1$3](f1_13);
+   [S1SPERS2$1](f1_21);  [S1SPERS2$2](f1_22);  [S1SPERS2$3](f1_23);
+   [S1SUSELI$1](f2_11);  [S1SUSELI$2](f2_12);  [S1SUSELI$3](f2_13);
+   [S1SUSECL$1](f2_21);  [S1SUSECL$2](f2_22);  [S1SUSECL$3](f2_23);
+   [S1SUSEJO$1](f2_31);  [S1SUSEJO$2](f2_32);  [S1SUSEJO$3](f2_33);
+   [S1STESTS$1](f3_11);  [S1STESTS$2](f3_12);  [S1STESTS$3](f3_13);
+   [S1STEXTB$1](f3_21);  [S1STEXTB$2](f3_22);  [S1STEXTB$3](f3_23);
+   [S1SSKILL$1](f3_31);  [S1SSKILL$2](f3_32);  [S1SSKILL$3](f3_33);
+   [S1SASSEX$1](f3_41);  [S1SASSEX$2](f3_42);  [S1SASSEX$3](f3_43);
+   [S1SENJNG$1](f4_11);  [S1SENJNG$2](f4_12);  [S1SENJNG$3](f4_13);
+   [S1SWASTE$1](f4_21);  [S1SWASTE$2](f4_22);  [S1SWASTE$3](f4_23);
+   [S1SBORIN$1](f4_31);  [S1SBORIN$2](f4_32);  [S1SBORIN$3](f4_33);
+
+   [SCI_ID-SCI_INT@0];   ! factor means are fixed to 0 in group 1
+   SCI_ID-SCI_INT;       ! factor variances are free in group 1
+   S1SPERS1-S1SBORIN@1;  ! residual variances are fixed to 1 in group 1
+
+   MODEL FEMALE:
+
+   !SCI_ID  BY S1SPERS1@1 S1SPERS2;
+   !SCI_UT  BY S1SUSELI@1 S1SUSECL S1SUSEJO;
+   !SCI_EFF BY S1STESTS@1 S1STEXTB S1SSKILL S1SASSEX ;
+   !SCI_INT BY S1SENJNG@1 S1SWASTE S1SBORIN;
+
+   ! ***NEW TO SCALAR INV*** (all thresholds set to equality)
+   [S1SPERS1$1](f1_11);  [S1SPERS1$2](f1_12);  [S1SPERS1$3](f1_13);
+   [S1SPERS2$1](f1_21);  [S1SPERS2$2](f1_22);  [S1SPERS2$3](f1_23);
+   [S1SUSELI$1](f2_11);  [S1SUSELI$2](f2_12);  [S1SUSELI$3](f2_13);
+   [S1SUSECL$1](f2_21);  [S1SUSECL$2](f2_22);  [S1SUSECL$3](f2_23);
+   [S1SUSEJO$1](f2_31);  [S1SUSEJO$2](f2_32);  [S1SUSEJO$3](f2_33);
+   [S1STESTS$1](f3_11);  [S1STESTS$2](f3_12);  [S1STESTS$3](f3_13);
+   [S1STEXTB$1](f3_21);  [S1STEXTB$2](f3_22);  [S1STEXTB$3](f3_23);
+   [S1SSKILL$1](f3_31);  [S1SSKILL$2](f3_32);  [S1SSKILL$3](f3_33);
+   [S1SASSEX$1](f3_41);  [S1SASSEX$2](f3_42);  [S1SASSEX$3](f3_43);
+   [S1SENJNG$1](f4_11);  [S1SENJNG$2](f4_12);  [S1SENJNG$3](f4_13);
+   [S1SWASTE$1](f4_21);  [S1SWASTE$2](f4_22);  [S1SWASTE$3](f4_23);
+   [S1SBORIN$1](f4_31);  [S1SBORIN$2](f4_32);  [S1SBORIN$3](f4_33);
+
+  [SCI_ID-SCI_INT];       ! factor means are free in group 2
+  SCI_ID-SCI_INT;         ! factor variances are free in group 2
+  S1SPERS1-S1SBORIN;      ! residual variances are free in group 2
+
+  savedata: DIFFTEST=diff_3_4.dat;
+
+
+
+*** WARNING
+  Data set contains cases with missing on all variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on all variables:  257
+   1 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+WSL FACTOR ANALYSIS - SCALAR
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 2
+Number of observations
+   Group MALE                                                 1380
+   Group FEMALE                                               1363
+   Total sample size                                          2743
+
+Number of dependent variables                                   12
+Number of independent variables                                  0
+Number of continuous latent variables                            4
+
+Observed dependent variables
+
+  Binary and ordered categorical (ordinal)
+   S1SPERS1    S1SPERS2    S1SUSELI    S1SUSECL    S1SUSEJO    S1STESTS
+   S1STEXTB    S1SSKILL    S1SASSEX    S1SENJNG    S1SWASTE    S1SBORIN
+
+Continuous latent variables
+   SCI_ID      SCI_UT      SCI_EFF     SCI_INT
+
+Variables with special functions
+
+  Grouping variable     X1SEX
+
+Estimator                                                    WLSMV
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Parameterization                                             THETA
+Link                                                        PROBIT
+
+Input data file(s)
+  /Users/agarber/github/NTNU-workshop/10-wls/wls_invar/m6_scalar_wls.dat
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+   Group MALE
+     Number of missing data patterns            29
+
+   Group FEMALE
+     Number of missing data patterns            24
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT FOR MALE
+
+
+           Covariance Coverage
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.996
+ S1SPERS2       0.977         0.980
+ S1SUSELI       0.801         0.792         0.804
+ S1SUSECL       0.801         0.791         0.802         0.804
+ S1SUSEJO       0.799         0.789         0.801         0.800         0.801
+ S1STESTS       0.810         0.798         0.800         0.800         0.798
+ S1STEXTB       0.808         0.797         0.799         0.799         0.796
+ S1SSKILL       0.809         0.797         0.799         0.799         0.796
+ S1SASSEX       0.807         0.796         0.798         0.798         0.796
+ S1SENJNG       0.812         0.799         0.802         0.803         0.800
+ S1SWASTE       0.810         0.800         0.803         0.801         0.800
+ S1SBORIN       0.808         0.798         0.800         0.799         0.798
+
+
+           Covariance Coverage
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       0.812
+ S1STEXTB       0.807         0.811
+ S1SSKILL       0.807         0.806         0.811
+ S1SASSEX       0.806         0.804         0.804         0.809
+ S1SENJNG       0.810         0.808         0.809         0.807         0.814
+ S1SWASTE       0.809         0.809         0.808         0.807         0.812
+ S1SBORIN       0.807         0.806         0.806         0.804         0.809
+
+
+           Covariance Coverage
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       0.814
+ S1SBORIN       0.811         0.811
+
+
+     PROPORTION OF DATA PRESENT FOR FEMALE
+
+
+           Covariance Coverage
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.997
+ S1SPERS2       0.991         0.992
+ S1SUSELI       0.815         0.811         0.817
+ S1SUSECL       0.814         0.810         0.815         0.817
+ S1SUSEJO       0.812         0.809         0.814         0.813         0.814
+ S1STESTS       0.823         0.819         0.817         0.816         0.814
+ S1STEXTB       0.822         0.818         0.815         0.814         0.812
+ S1SSKILL       0.820         0.817         0.814         0.812         0.811
+ S1SASSEX       0.820         0.817         0.814         0.813         0.811
+ S1SENJNG       0.821         0.817         0.815         0.814         0.812
+ S1SWASTE       0.821         0.817         0.815         0.814         0.813
+ S1SBORIN       0.820         0.816         0.814         0.814         0.812
+
+
+           Covariance Coverage
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       0.825
+ S1STEXTB       0.822         0.823
+ S1SSKILL       0.821         0.820         0.822
+ S1SASSEX       0.822         0.820         0.819         0.822
+ S1SENJNG       0.822         0.820         0.819         0.820         0.823
+ S1SWASTE       0.822         0.820         0.819         0.820         0.821
+ S1SBORIN       0.821         0.820         0.818         0.819         0.821
+
+
+           Covariance Coverage
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       0.823
+ S1SBORIN       0.821         0.822
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+  Group MALE
+    S1SPERS1
+      Category 1    0.178          245.000
+      Category 2    0.348          478.000
+      Category 3    0.343          471.000
+      Category 4    0.131          180.000
+    S1SPERS2
+      Category 1    0.207          280.000
+      Category 2    0.410          554.000
+      Category 3    0.305          413.000
+      Category 4    0.078          105.000
+    S1SUSELI
+      Category 1    0.070           78.000
+      Category 2    0.370          411.000
+      Category 3    0.432          479.000
+      Category 4    0.128          142.000
+    S1SUSECL
+      Category 1    0.029           32.000
+      Category 2    0.072           80.000
+      Category 3    0.541          601.000
+      Category 4    0.358          397.000
+    S1SUSEJO
+      Category 1    0.068           75.000
+      Category 2    0.228          252.000
+      Category 3    0.469          519.000
+      Category 4    0.235          260.000
+    S1STESTS
+      Category 1    0.028           31.000
+      Category 2    0.196          220.000
+      Category 3    0.558          625.000
+      Category 4    0.219          245.000
+    S1STEXTB
+      Category 1    0.057           64.000
+      Category 2    0.289          323.000
+      Category 3    0.487          545.000
+      Category 4    0.167          187.000
+    S1SSKILL
+      Category 1    0.029           33.000
+      Category 2    0.213          238.000
+      Category 3    0.549          614.000
+      Category 4    0.209          234.000
+    S1SASSEX
+      Category 1    0.025           28.000
+      Category 2    0.151          169.000
+      Category 3    0.582          650.000
+      Category 4    0.241          269.000
+    S1SENJNG
+      Category 1    0.094          106.000
+      Category 2    0.207          233.000
+      Category 3    0.483          543.000
+      Category 4    0.215          242.000
+    S1SWASTE
+      Category 1    0.060           67.000
+      Category 2    0.132          148.000
+      Category 3    0.475          533.000
+      Category 4    0.334          375.000
+    S1SBORIN
+      Category 1    0.132          148.000
+      Category 2    0.248          277.000
+      Category 3    0.410          459.000
+      Category 4    0.210          235.000
+
+  Group FEMALE
+    S1SPERS1
+      Category 1    0.217          295.000
+      Category 2    0.397          539.000
+      Category 3    0.311          423.000
+      Category 4    0.075          102.000
+    S1SPERS2
+      Category 1    0.200          270.000
+      Category 2    0.428          579.000
+      Category 3    0.317          428.000
+      Category 4    0.055           75.000
+    S1SUSELI
+      Category 1    0.052           58.000
+      Category 2    0.340          379.000
+      Category 3    0.499          556.000
+      Category 4    0.109          121.000
+    S1SUSECL
+      Category 1    0.020           22.000
+      Category 2    0.069           77.000
+      Category 3    0.618          688.000
+      Category 4    0.293          326.000
+    S1SUSEJO
+      Category 1    0.051           57.000
+      Category 2    0.229          254.000
+      Category 3    0.488          542.000
+      Category 4    0.232          257.000
+    S1STESTS
+      Category 1    0.037           42.000
+      Category 2    0.300          338.000
+      Category 3    0.538          605.000
+      Category 4    0.124          140.000
+    S1STEXTB
+      Category 1    0.078           87.000
+      Category 2    0.392          440.000
+      Category 3    0.455          510.000
+      Category 4    0.076           85.000
+    S1SSKILL
+      Category 1    0.031           35.000
+      Category 2    0.275          308.000
+      Category 3    0.574          643.000
+      Category 4    0.120          134.000
+    S1SASSEX
+      Category 1    0.021           23.000
+      Category 2    0.183          205.000
+      Category 3    0.616          690.000
+      Category 4    0.181          203.000
+    S1SENJNG
+      Category 1    0.060           67.000
+      Category 2    0.295          331.000
+      Category 3    0.495          555.000
+      Category 4    0.151          169.000
+    S1SWASTE
+      Category 1    0.040           45.000
+      Category 2    0.126          141.000
+      Category 3    0.536          601.000
+      Category 4    0.299          335.000
+    S1SBORIN
+      Category 1    0.096          108.000
+      Category 2    0.295          330.000
+      Category 3    0.421          471.000
+      Category 4    0.188          211.000
+
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       80
+
+Chi-Square Test of Model Fit
+
+          Value                            749.934*
+          Degrees of Freedom                   124
+          P-Value                           0.0000
+
+Chi-Square Contribution From Each Group
+
+          MALE                             357.161
+          FEMALE                           392.773
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.061
+          90 Percent C.I.                    0.057  0.065
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                0.983
+          TLI                                0.982
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                          37240.969
+          Degrees of Freedom                   132
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.031
+
+Optimum Function Value for Weighted Least-Squares Estimator
+
+          Value                     0.77953049D-01
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Group MALE
+
+ SCI_ID   BY
+    S1SPERS1           1.000      0.000    999.000    999.000
+    S1SPERS2           0.395      0.097      4.066      0.000
+
+ SCI_UT   BY
+    S1SUSELI           1.000      0.000    999.000    999.000
+    S1SUSECL           1.153      0.087     13.255      0.000
+    S1SUSEJO           1.194      0.094     12.677      0.000
+
+ SCI_EFF  BY
+    S1STESTS           1.000      0.000    999.000    999.000
+    S1STEXTB           0.785      0.039     19.919      0.000
+    S1SSKILL           1.011      0.057     17.742      0.000
+    S1SASSEX           0.956      0.063     15.091      0.000
+
+ SCI_INT  BY
+    S1SENJNG           1.000      0.000    999.000    999.000
+    S1SWASTE           0.714      0.064     11.167      0.000
+    S1SBORIN           0.628      0.055     11.496      0.000
+
+ SCI_UT   WITH
+    SCI_ID             2.135      0.467      4.573      0.000
+
+ SCI_EFF  WITH
+    SCI_ID             4.986      1.059      4.706      0.000
+    SCI_UT             1.081      0.107     10.130      0.000
+
+ SCI_INT  WITH
+    SCI_ID             4.531      0.992      4.569      0.000
+    SCI_UT             1.467      0.153      9.562      0.000
+    SCI_EFF            2.429      0.242     10.043      0.000
+
+ Means
+    SCI_ID             0.000      0.000    999.000    999.000
+    SCI_UT             0.000      0.000    999.000    999.000
+    SCI_EFF            0.000      0.000    999.000    999.000
+    SCI_INT            0.000      0.000    999.000    999.000
+
+ Thresholds
+    S1SPERS1$1        -3.637      0.727     -5.005      0.000
+    S1SPERS1$2         0.428      0.150      2.856      0.004
+    S1SPERS1$3         4.766      0.932      5.112      0.000
+    S1SPERS2$1        -1.592      0.083    -19.204      0.000
+    S1SPERS2$2         0.443      0.058      7.614      0.000
+    S1SPERS2$3         2.584      0.118     21.827      0.000
+    S1SUSELI$1        -2.254      0.093    -24.314      0.000
+    S1SUSELI$2        -0.315      0.048     -6.498      0.000
+    S1SUSELI$3         1.716      0.080     21.412      0.000
+    S1SUSECL$1        -2.976      0.142    -20.954      0.000
+    S1SUSECL$2        -1.971      0.099    -19.863      0.000
+    S1SUSECL$3         0.677      0.059     11.478      0.000
+    S1SUSEJO$1        -2.424      0.111    -21.856      0.000
+    S1SUSEJO$2        -0.873      0.063    -13.828      0.000
+    S1SUSEJO$3         1.114      0.070     15.976      0.000
+    S1STESTS$1        -4.250      0.176    -24.205      0.000
+    S1STESTS$2        -1.550      0.092    -16.780      0.000
+    S1STESTS$3         1.748      0.094     18.584      0.000
+    S1STEXTB$1        -2.955      0.108    -27.280      0.000
+    S1STEXTB$2        -0.663      0.063    -10.463      0.000
+    S1STEXTB$3         1.908      0.082     23.162      0.000
+    S1SSKILL$1        -4.309      0.199    -21.629      0.000
+    S1SSKILL$2        -1.601      0.099    -16.218      0.000
+    S1SSKILL$3         1.798      0.101     17.871      0.000
+    S1SASSEX$1        -4.341      0.198    -21.916      0.000
+    S1SASSEX$2        -2.083      0.112    -18.583      0.000
+    S1SASSEX$3         1.328      0.090     14.801      0.000
+    S1SENJNG$1        -3.060      0.180    -17.001      0.000
+    S1SENJNG$2        -0.988      0.093    -10.638      0.000
+    S1SENJNG$3         1.824      0.133     13.752      0.000
+    S1SWASTE$1        -2.730      0.116    -23.628      0.000
+    S1SWASTE$2        -1.546      0.081    -19.160      0.000
+    S1SWASTE$3         0.721      0.062     11.619      0.000
+    S1SBORIN$1        -1.866      0.077    -24.121      0.000
+    S1SBORIN$2        -0.484      0.053     -9.085      0.000
+    S1SBORIN$3         1.224      0.064     19.159      0.000
+
+ Variances
+    SCI_ID            15.831      6.618      2.392      0.017
+    SCI_UT             1.186      0.130      9.103      0.000
+    SCI_EFF            4.010      0.374     10.723      0.000
+    SCI_INT            4.096      0.598      6.844      0.000
+
+ Residual Variances
+    S1SPERS1           1.000      0.000    999.000    999.000
+    S1SPERS2           1.000      0.000    999.000    999.000
+    S1SUSELI           1.000      0.000    999.000    999.000
+    S1SUSECL           1.000      0.000    999.000    999.000
+    S1SUSEJO           1.000      0.000    999.000    999.000
+    S1STESTS           1.000      0.000    999.000    999.000
+    S1STEXTB           1.000      0.000    999.000    999.000
+    S1SSKILL           1.000      0.000    999.000    999.000
+    S1SASSEX           1.000      0.000    999.000    999.000
+    S1SENJNG           1.000      0.000    999.000    999.000
+    S1SWASTE           1.000      0.000    999.000    999.000
+    S1SBORIN           1.000      0.000    999.000    999.000
+
+Group FEMALE
+
+ SCI_ID   BY
+    S1SPERS1           1.000      0.000    999.000    999.000
+    S1SPERS2           0.395      0.097      4.066      0.000
+
+ SCI_UT   BY
+    S1SUSELI           1.000      0.000    999.000    999.000
+    S1SUSECL           1.153      0.087     13.255      0.000
+    S1SUSEJO           1.194      0.094     12.677      0.000
+
+ SCI_EFF  BY
+    S1STESTS           1.000      0.000    999.000    999.000
+    S1STEXTB           0.785      0.039     19.919      0.000
+    S1SSKILL           1.011      0.057     17.742      0.000
+    S1SASSEX           0.956      0.063     15.091      0.000
+
+ SCI_INT  BY
+    S1SENJNG           1.000      0.000    999.000    999.000
+    S1SWASTE           0.714      0.064     11.167      0.000
+    S1SBORIN           0.628      0.055     11.496      0.000
+
+ SCI_UT   WITH
+    SCI_ID             1.716      0.384      4.465      0.000
+
+ SCI_EFF  WITH
+    SCI_ID             3.495      0.761      4.595      0.000
+    SCI_UT             0.849      0.089      9.519      0.000
+
+ SCI_INT  WITH
+    SCI_ID             2.906      0.662      4.391      0.000
+    SCI_UT             1.004      0.110      9.134      0.000
+    SCI_EFF            1.690      0.174      9.707      0.000
+
+ Means
+    SCI_ID            -0.534      0.195     -2.733      0.006
+    SCI_UT            -0.013      0.052     -0.246      0.806
+    SCI_EFF           -0.592      0.090     -6.596      0.000
+    SCI_INT           -0.137      0.089     -1.544      0.123
+
+ Thresholds
+    S1SPERS1$1        -3.637      0.727     -5.005      0.000
+    S1SPERS1$2         0.428      0.150      2.856      0.004
+    S1SPERS1$3         4.766      0.932      5.112      0.000
+    S1SPERS2$1        -1.592      0.083    -19.204      0.000
+    S1SPERS2$2         0.443      0.058      7.614      0.000
+    S1SPERS2$3         2.584      0.118     21.827      0.000
+    S1SUSELI$1        -2.254      0.093    -24.314      0.000
+    S1SUSELI$2        -0.315      0.048     -6.498      0.000
+    S1SUSELI$3         1.716      0.080     21.412      0.000
+    S1SUSECL$1        -2.976      0.142    -20.954      0.000
+    S1SUSECL$2        -1.971      0.099    -19.863      0.000
+    S1SUSECL$3         0.677      0.059     11.478      0.000
+    S1SUSEJO$1        -2.424      0.111    -21.856      0.000
+    S1SUSEJO$2        -0.873      0.063    -13.828      0.000
+    S1SUSEJO$3         1.114      0.070     15.976      0.000
+    S1STESTS$1        -4.250      0.176    -24.205      0.000
+    S1STESTS$2        -1.550      0.092    -16.780      0.000
+    S1STESTS$3         1.748      0.094     18.584      0.000
+    S1STEXTB$1        -2.955      0.108    -27.280      0.000
+    S1STEXTB$2        -0.663      0.063    -10.463      0.000
+    S1STEXTB$3         1.908      0.082     23.162      0.000
+    S1SSKILL$1        -4.309      0.199    -21.629      0.000
+    S1SSKILL$2        -1.601      0.099    -16.218      0.000
+    S1SSKILL$3         1.798      0.101     17.871      0.000
+    S1SASSEX$1        -4.341      0.198    -21.916      0.000
+    S1SASSEX$2        -2.083      0.112    -18.583      0.000
+    S1SASSEX$3         1.328      0.090     14.801      0.000
+    S1SENJNG$1        -3.060      0.180    -17.001      0.000
+    S1SENJNG$2        -0.988      0.093    -10.638      0.000
+    S1SENJNG$3         1.824      0.133     13.752      0.000
+    S1SWASTE$1        -2.730      0.116    -23.628      0.000
+    S1SWASTE$2        -1.546      0.081    -19.160      0.000
+    S1SWASTE$3         0.721      0.062     11.619      0.000
+    S1SBORIN$1        -1.866      0.077    -24.121      0.000
+    S1SBORIN$2        -0.484      0.053     -9.085      0.000
+    S1SBORIN$3         1.224      0.064     19.159      0.000
+
+ Variances
+    SCI_ID            13.047      5.381      2.425      0.015
+    SCI_UT             1.003      0.115      8.759      0.000
+    SCI_EFF            3.139      0.288     10.885      0.000
+    SCI_INT            2.970      0.424      7.013      0.000
+
+ Residual Variances
+    S1SPERS1           1.540      0.602      2.558      0.011
+    S1SPERS2           0.893      0.101      8.854      0.000
+    S1SUSELI           1.047      0.106      9.854      0.000
+    S1SUSECL           0.637      0.077      8.249      0.000
+    S1SUSEJO           0.708      0.087      8.168      0.000
+    S1STESTS           1.013      0.105      9.679      0.000
+    S1STEXTB           1.159      0.100     11.578      0.000
+    S1SSKILL           0.828      0.099      8.348      0.000
+    S1SASSEX           0.729      0.089      8.176      0.000
+    S1SENJNG           0.773      0.127      6.106      0.000
+    S1SWASTE           0.743      0.077      9.635      0.000
+    S1SBORIN           0.813      0.078     10.411      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.152E-04
+       (ratio of smallest to largest eigenvalue)
+
+
+SAVEDATA INFORMATION
+
+
+  Difference testing
+
+  Save file
+    diff_3_4.dat
+  Save format      Free
+
+     Beginning Time:  14:25:14
+        Ending Time:  14:25:14
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen

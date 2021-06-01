@@ -1,0 +1,148 @@
+# Principle Component Analysis (PCA)
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE)
+```
+
+____________________________________
+
+### Outline Chapter 7 - Principle Component Analysis:
+
+1. 10th grade student demographics & school safety (ELS, 2002 public-use data)
+
+**NOTE:** Syntax is modeled after Allison Horst's PCA lab at UCSB (ESM-206; Horst, 2020) using an example applied to Education data.
+
+____________________________________
+
+DATA SOURCE: This lab exercise utilizes the NCES public-use dataset: Education Longitudinal Study of 2002 (Lauff & Ingels, 2014) [$\color{blue}{\text{See website: nces.ed.gov}}$](https://nces.ed.gov/surveys/els2002/avail_data.asp)
+
+____________________________________
+
+### load packages
+```{r, eval=TRUE}
+library(FactoMineR)
+library(factoextra)
+library(skimr)
+library(naniar)
+library(ggfortify)
+library(janitor)
+library(tidyverse)
+library(here)
+```
+
+### read in ELS-2002 lab data:
+```{r}
+lab_data <- read_csv("https://garberadamc.github.io/project-site/data/els_sub4.csv")
+```
+
+### make all column names "lower_snake_case" style
+```{r}
+lab_tidy <- lab_data %>% 
+  clean_names()
+```
+
+### Prepare data for PCA
+```{r}
+# remove variables that don't make sense in a PCA
+lab_sub1 <- lab_tidy %>% 
+  select(-stu_id,   # these are random numbers
+         -sch_id,
+         -byrace,   # nominal (non-ordered variable) 
+         -byparace, # nominal (non-ordered variable) 
+         -byparlng, # nominal (non-ordered variable)
+         -byfcomp,  # nominal (non-ordered variable)
+         -bypared, -bymothed, -byfathed,
+         -bysctrl, -byurban, -byregion)
+
+# select columns and rename variables to have descriptive names
+lab_sub2 <- lab_sub1 %>% 
+  select(1:9,
+         bys20a, bys20h, bys20j, bys20k, bys20m, bys20n,
+         bys21b, bys21d, bys22a, bys22b, bys22c, bys22d,
+         bys22e, bys22g, bys22h, bys24a, bys24b) %>% 
+  rename("stu_exp" = "bystexp",
+         "par_asp" = "byparasp",
+         "mth_read" = "bytxcstd",
+         "mth_test" = "bytxmstd",
+         "rd_test" = "bytxrstd",
+         "freelnch" = "by10flp",
+         "stu_tch" = "bys20a",
+         "putdownt" = "bys20h",
+         "safe" = "bys20j",
+         "disrupt" = "bys20k",
+         "gangs" = "bys20m",
+         "rac_fght" = "bys20n",
+         "fair" = "bys21b",
+         "strict" = "bys21d",
+         "stolen" = "bys22a",
+         "drugs" = "bys22b",
+         "t_hurt" = "bys22c",
+         "p_fight" = "bys22d",
+         "hit" = "bys22e",
+         "damaged" = "bys22g",
+         "bullied" = "bys22h",
+         "late" = "bys24a",
+         "skipped" = "bys24b")
+
+```
+
+### Investigate missingness {`naniar`} & make data summary with {`skimr`}
+```{r}
+# Plot number of missings by variable
+gg_miss_var(lab_sub2)
+
+# Look at summary of data using skimr::skim()
+skim(lab_sub2)
+
+pca1 <- lab_sub2 %>% 
+  drop_na()
+```
+
+### run PCA with `prcomp()` (function does not permit NA values)
+```{r, eval = FALSE}
+
+pca_out1 <- prcomp(pca1, scale = TRUE) 
+
+plot(pca_out1)
+
+#summary(pca_out1)
+```
+
+### plot PCA biplot
+```{r}
+
+jpeg(here("figures", "biplot_pca1.jpg"), res = 100) # to save the biplot
+
+my_biplot <- autoplot(pca_out1, 
+                      colour = NA,
+                      loadings.label = TRUE,
+                      loadings.label.size = 3,
+                      loadings.label.colour = "black",
+                      loadings.label.repel = TRUE) +
+            theme_minimal()
+  
+my_biplot
+
+dev.off()
+```
+
+```{r}
+my_biplot
+```
+
+### alternative funtion to run & plot PCA biplot
+```{r}
+PCA(pca1, scale.unit = TRUE, ncp = 20, graph = TRUE)
+```
+
+## References
+
+Hallquist, M. N., & Wiley, J. F. (2018). MplusAutomation: An R Package for Facilitating Large-Scale Latent Variable Analyses in Mplus. Structural equation modeling: a multidisciplinary journal, 25(4), 621-638.
+
+Horst, A. (2020). Course & Workshop Materials. GitHub Repositories, https://https://allisonhorst.github.io/
+
+Muthén, L.K. and Muthén, B.O. (1998-2017).  Mplus User’s Guide.  Eighth Edition. Los Angeles, CA: Muthén & Muthén
+
+R Core Team (2017). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL http://www.R-project.org/
+
+Wickham et al., (2019). Welcome to the tidyverse. Journal of Open Source Software, 4(43), 1686, https://doi.org/10.21105/joss.01686

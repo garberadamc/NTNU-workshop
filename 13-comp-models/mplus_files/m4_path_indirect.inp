@@ -1,0 +1,26 @@
+TITLE:
+m4 model indirect - Lab 1
+DATA:
+FILE = "/Users/agarber/github/NTNU-workshop/13-comp-models/mplus_files/CA_schls.dat";
+ 
+VARIABLE:
+NAMES = str expnstu compstu elpct mealpct readscr mathscr testscr; 
+ MISSING=.;
+ usevar =
+    str               ! covariate
+    elpct             ! mediator
+    mealpct           ! mediator
+    mathscr           ! outcome
+DEFINE:
+int_ab = compstu*mealpct;  ! create interaction term
+ANALYSIS:
+estimator = MLR
+MODEL:
+mathscr on str;             ! direct path (c')
+    mathscr on elpct mealpct;   ! b paths
+    elpct mealpct on str;       ! a paths
+    
+    Model indirect:
+    mathscr ind str;
+OUTPUT:
+sampstat standardized modindices (ALL)

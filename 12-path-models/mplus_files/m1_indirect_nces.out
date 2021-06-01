@@ -1,0 +1,514 @@
+Mplus VERSION 8.6 (Mac)
+MUTHEN & MUTHEN
+05/27/2021   5:08 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  m1 model indirect - Lab 1
+  DATA:
+  FILE = "/Users/agarber/github/NTNU-workshop/12-path-models/mplus_files/nces.dat";
+
+  VARIABLE:
+  NAMES = bystlang freelnch byincome stolen t_hurt p_fight hit damaged bullied unsafe
+       disrupt gangs rac_fght late skipped mth_test rd_test;
+   MISSING=.;
+   usevar =
+      bystlang       ! covariate
+      late skipped   ! mediators
+      mth_test;      ! outcome
+  ANALYSIS:
+  estimator = MLR
+  MODEL:
+  late on bystlang ;
+      skipped on late bystlang ;
+      mth_test on late skipped bystlang;
+
+      Model indirect:
+      mth_test ind bystlang;
+      mth_test via late skipped bystlang;
+  OUTPUT:
+  sampstat standardized
+
+
+
+*** WARNING
+  Data set contains cases with missing on all variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on all variables:  9
+*** WARNING
+  Data set contains cases with missing on x-variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on x-variables:  36
+   2 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+m1 model indirect - Lab 1
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         749
+
+Number of dependent variables                                    3
+Number of independent variables                                  1
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   LATE        SKIPPED     MTH_TEST
+
+Observed independent variables
+   BYSTLANG
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+
+Input data file(s)
+  /Users/agarber/github/NTNU-workshop/12-path-models/mplus_files/nces.dat
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             4
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              LATE          SKIPPED       MTH_TEST      BYSTLANG
+              ________      ________      ________      ________
+ LATE           0.960
+ SKIPPED        0.952         0.955
+ MTH_TEST       0.960         0.955         1.000
+ BYSTLANG       0.960         0.955         1.000         1.000
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           Means
+              LATE          SKIPPED       MTH_TEST      BYSTLANG
+              ________      ________      ________      ________
+                2.336         1.469        51.214         0.844
+
+
+           Covariances
+              LATE          SKIPPED       MTH_TEST      BYSTLANG
+              ________      ________      ________      ________
+ LATE           1.377
+ SKIPPED        0.439         0.822
+ MTH_TEST      -1.863        -1.768       103.888
+ BYSTLANG      -0.032        -0.009         0.533         0.132
+
+
+           Correlations
+              LATE          SKIPPED       MTH_TEST      BYSTLANG
+              ________      ________      ________      ________
+ LATE           1.000
+ SKIPPED        0.412         1.000
+ MTH_TEST      -0.156        -0.191         1.000
+ BYSTLANG      -0.076        -0.026         0.144         1.000
+
+
+     MAXIMUM LOG-LIKELIHOOD VALUE FOR THE UNRESTRICTED (H1) MODEL IS -5093.602
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     LATE                  2.338       0.812       1.000   26.01%       1.000      2.000      2.000
+             719.000       1.378      -0.042       5.000    8.48%       2.000      3.000
+     SKIPPED               1.467       2.208       1.000   72.45%       1.000      1.000      1.000
+             715.000       0.822       4.587       5.000    2.38%       1.000      2.000
+     MTH_TEST             51.214       0.062      24.450    0.13%      42.490     48.650     51.400
+             749.000     103.888      -0.028      84.850    0.13%      54.280     59.140
+     BYSTLANG              0.844      -1.894       0.000   15.62%       1.000      1.000      1.000
+             749.000       0.132       1.587       1.000   84.38%       1.000      1.000
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       12
+
+Loglikelihood
+
+          H0 Value                       -4789.709
+          H0 Scaling Correction Factor      1.2091
+            for MLR
+          H1 Value                       -4789.709
+          H1 Scaling Correction Factor      1.2091
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                    9603.418
+          Bayesian (BIC)                  9658.843
+          Sample-Size Adjusted BIC        9620.738
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                              0.000*
+          Degrees of Freedom                     0
+          P-Value                           0.0000
+          Scaling Correction Factor         1.0000
+            for MLR
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.000
+          90 Percent C.I.                    0.000  0.000
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                1.000
+          TLI                                1.000
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                            176.883
+          Degrees of Freedom                     6
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.000
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ LATE     ON
+    BYSTLANG          -0.244      0.126     -1.946      0.052
+
+ SKIPPED  ON
+    LATE               0.319      0.033      9.571      0.000
+    BYSTLANG           0.012      0.084      0.140      0.888
+
+ MTH_TEST ON
+    LATE              -0.714      0.325     -2.194      0.028
+    SKIPPED           -1.730      0.377     -4.594      0.000
+    BYSTLANG           3.752      1.022      3.671      0.000
+
+ Intercepts
+    LATE               2.542      0.117     21.814      0.000
+    SKIPPED            0.714      0.096      7.400      0.000
+    MTH_TEST          52.257      1.287     40.592      0.000
+
+ Residual Variances
+    LATE               1.369      0.071     19.191      0.000
+    SKIPPED            0.682      0.063     10.747      0.000
+    MTH_TEST          97.500      5.081     19.190      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.407E-03
+       (ratio of smallest to largest eigenvalue)
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ LATE     ON
+    BYSTLANG          -0.076      0.039     -1.950      0.051
+
+ SKIPPED  ON
+    LATE               0.413      0.036     11.619      0.000
+    BYSTLANG           0.005      0.034      0.140      0.888
+
+ MTH_TEST ON
+    LATE              -0.082      0.037     -2.203      0.028
+    SKIPPED           -0.154      0.033     -4.681      0.000
+    BYSTLANG           0.134      0.036      3.707      0.000
+
+ Intercepts
+    LATE               2.166      0.097     22.229      0.000
+    SKIPPED            0.788      0.122      6.460      0.000
+    MTH_TEST           5.127      0.186     27.522      0.000
+
+ Residual Variances
+    LATE               0.994      0.006    169.484      0.000
+    SKIPPED            0.830      0.029     28.291      0.000
+    MTH_TEST           0.939      0.016     58.406      0.000
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ LATE     ON
+    BYSTLANG          -0.208      0.107     -1.954      0.051
+
+ SKIPPED  ON
+    LATE               0.413      0.036     11.619      0.000
+    BYSTLANG           0.013      0.093      0.140      0.888
+
+ MTH_TEST ON
+    LATE              -0.082      0.037     -2.203      0.028
+    SKIPPED           -0.154      0.033     -4.681      0.000
+    BYSTLANG           0.368      0.099      3.736      0.000
+
+ Intercepts
+    LATE               2.166      0.097     22.229      0.000
+    SKIPPED            0.788      0.122      6.460      0.000
+    MTH_TEST           5.127      0.186     27.522      0.000
+
+ Residual Variances
+    LATE               0.994      0.006    169.484      0.000
+    SKIPPED            0.830      0.029     28.291      0.000
+    MTH_TEST           0.939      0.016     58.406      0.000
+
+
+STD Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ LATE     ON
+    BYSTLANG          -0.244      0.126     -1.946      0.052
+
+ SKIPPED  ON
+    LATE               0.319      0.033      9.571      0.000
+    BYSTLANG           0.012      0.084      0.140      0.888
+
+ MTH_TEST ON
+    LATE              -0.714      0.325     -2.194      0.028
+    SKIPPED           -1.730      0.377     -4.594      0.000
+    BYSTLANG           3.752      1.022      3.671      0.000
+
+ Intercepts
+    LATE               2.542      0.117     21.814      0.000
+    SKIPPED            0.714      0.096      7.400      0.000
+    MTH_TEST          52.257      1.287     40.592      0.000
+
+ Residual Variances
+    LATE               1.369      0.071     19.191      0.000
+    SKIPPED            0.682      0.063     10.747      0.000
+    MTH_TEST          97.500      5.081     19.190      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    LATE               0.006      0.006      0.975      0.330
+    SKIPPED            0.170      0.029      5.798      0.000
+    MTH_TEST           0.061      0.016      3.827      0.000
+
+
+TOTAL, TOTAL INDIRECT, SPECIFIC INDIRECT, AND DIRECT EFFECTS
+
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Effects from BYSTLANG to MTH_TEST
+
+  Total                4.041      1.036      3.902      0.000
+  Total indirect       0.289      0.240      1.205      0.228
+
+  Specific indirect 1
+    MTH_TEST
+    LATE
+    BYSTLANG           0.175      0.119      1.461      0.144
+
+  Specific indirect 2
+    MTH_TEST
+    SKIPPED
+    BYSTLANG          -0.020      0.146     -0.140      0.889
+
+  Specific indirect 3
+    MTH_TEST
+    SKIPPED
+    LATE
+    BYSTLANG           0.135      0.077      1.747      0.081
+
+  Direct
+    MTH_TEST
+    BYSTLANG           3.752      1.022      3.671      0.000
+
+
+Effects from BYSTLANG to MTH_TEST via LATE SKIPPED
+
+  Sum of indirect      0.000      0.000    999.000      0.000
+
+
+
+STANDARDIZED TOTAL, TOTAL INDIRECT, SPECIFIC INDIRECT, AND DIRECT EFFECTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Effects from BYSTLANG to MTH_TEST
+
+  Total                0.144      0.037      3.944      0.000
+  Total indirect       0.010      0.009      1.206      0.228
+
+  Specific indirect 1
+    MTH_TEST
+    LATE
+    BYSTLANG           0.006      0.004      1.461      0.144
+
+  Specific indirect 2
+    MTH_TEST
+    SKIPPED
+    BYSTLANG          -0.001      0.005     -0.140      0.889
+
+  Specific indirect 3
+    MTH_TEST
+    SKIPPED
+    LATE
+    BYSTLANG           0.005      0.003      1.748      0.080
+
+  Direct
+    MTH_TEST
+    BYSTLANG           0.134      0.036      3.707      0.000
+
+
+Effects from BYSTLANG to MTH_TEST via LATE SKIPPED
+
+  Sum of indirect      0.000      0.000      0.000      1.000
+
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Effects from BYSTLANG to MTH_TEST
+
+  Total                0.396      0.100      3.979      0.000
+  Total indirect       0.028      0.023      1.207      0.227
+
+  Specific indirect 1
+    MTH_TEST
+    LATE
+    BYSTLANG           0.017      0.012      1.463      0.143
+
+  Specific indirect 2
+    MTH_TEST
+    SKIPPED
+    BYSTLANG          -0.002      0.014     -0.140      0.889
+
+  Specific indirect 3
+    MTH_TEST
+    SKIPPED
+    LATE
+    BYSTLANG           0.013      0.008      1.751      0.080
+
+  Direct
+    MTH_TEST
+    BYSTLANG           0.368      0.099      3.736      0.000
+
+
+Effects from BYSTLANG to MTH_TEST via LATE SKIPPED
+
+  Sum of indirect      0.000      0.000      0.000      1.000
+
+
+
+STD Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Effects from BYSTLANG to MTH_TEST
+
+  Total                4.041      1.036      3.902      0.000
+  Total indirect       0.289      0.240      1.205      0.228
+
+  Specific indirect 1
+    MTH_TEST
+    LATE
+    BYSTLANG           0.175      0.119      1.461      0.144
+
+  Specific indirect 2
+    MTH_TEST
+    SKIPPED
+    BYSTLANG          -0.020      0.146     -0.140      0.889
+
+  Specific indirect 3
+    MTH_TEST
+    SKIPPED
+    LATE
+    BYSTLANG           0.135      0.077      1.747      0.081
+
+  Direct
+    MTH_TEST
+    BYSTLANG           3.752      1.022      3.671      0.000
+
+
+Effects from BYSTLANG to MTH_TEST via LATE SKIPPED
+
+  Sum of indirect      0.000      0.000      0.000      1.000
+
+
+
+
+     Beginning Time:  17:08:43
+        Ending Time:  17:08:43
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen

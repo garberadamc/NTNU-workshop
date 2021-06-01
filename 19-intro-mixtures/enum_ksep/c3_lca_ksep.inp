@@ -1,0 +1,23 @@
+TITLE:
+Class 3
+DATA:
+FILE = "/Users/agarber/github/NTNU-workshop/19-intro-mixtures/enum_ksep/lca_ksep.dat";
+ 
+VARIABLE:
+NAMES = id seek_hlp cooperat imp_cntr repeats separate new_activ folw_rul name
+     writes express quantity colors shapes; 
+ MISSING=.;
+ categorical = seek_hlp-shapes; 
+usevar = seek_hlp-shapes;
+classes = c(3); 
+ANALYSIS:
+estimator = mlr; 
+    type = mixture;
+    stseed = 5212020;
+    starts = 200 100; 
+    processors = 10;
+OUTPUT:
+sampstat residual tech11 tech14;
+PLOT:
+type = plot3; 
+    series = seek_hlp-shapes(*);

@@ -1,0 +1,21 @@
+TITLE:
+Class 2
+DATA:
+FILE = "/Users/agarber/github/NTNU-workshop/19-intro-mixtures/enum_cheat/lca_cheat.dat";
+ 
+VARIABLE:
+NAMES = lieexam liepaper fraud copyexam; 
+ MISSING=.;
+ categorical = lieexam-copyexam; 
+usevar = lieexam-copyexam;
+classes = c(2); 
+ANALYSIS:
+estimator = mlr; 
+    type = mixture;
+    starts = 200 100; 
+    processors = 10;
+OUTPUT:
+tech11 tech14;
+PLOT:
+type = plot3; 
+    series = lieexam-copyexam(*);

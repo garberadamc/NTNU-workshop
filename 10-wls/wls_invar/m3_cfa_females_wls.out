@@ -1,0 +1,2222 @@
+Mplus VERSION 8.6 (Mac)
+MUTHEN & MUTHEN
+05/27/2021   2:23 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+   WSL FACTOR ANALYSIS CFA - FEMALE GROUP SCIENCE
+  DATA:
+  FILE = "/Users/agarber/github/NTNU-workshop/10-wls/wls_invar/m3_cfa_females_wls.dat";
+
+  VARIABLE:
+  NAMES = STU_ID X1STDOB X1SES X1SEX X1RACE X1PAR1ED X1PAR2ED X1TXMTSC X2TXMTSC
+       X3TGPA9T X3TGPAAC X1STUEDE X1PAREDE S1MPERS1 S1MPERS2 S1MUSELI S1MUSECL
+       S1MUSEJO S1MTESTS S1MTEXTB S1MSKILL S1MASSEX S1MENJNG S1MWASTE S1MBORIN
+       S1MENJYS S1SPERS1 S1SPERS2 S1SUSELI S1SUSECL S1SUSEJO S1STESTS S1STEXTB
+       S1SSKILL S1SASSEX S1SENJNG S1SWASTE S1SBORIN S1SENJYS S1SAFE S1PROUD S1TALKPR
+       S1SCHWAS S1GOODGR S1NOHWDN S1NOPAPE S1NOBOOK S1LATE;
+   MISSING=.;
+   usevar =
+   S1SPERS1 S1SPERS2 S1SUSELI S1SUSECL
+   S1SUSEJO S1STESTS S1STEXTB S1SSKILL
+   S1SASSEX S1SENJNG S1SWASTE S1SBORIN;
+
+    categorical =
+   S1SPERS1 S1SPERS2 S1SUSELI S1SUSECL
+   S1SUSEJO S1STESTS S1STEXTB S1SSKILL
+   S1SASSEX S1SENJNG S1SWASTE S1SBORIN;
+
+   !X1SEX (1 = MALE, 2 = FEMALE)
+   USEOBS = X1SEX==2;
+  ANALYSIS:
+  estimator=wlsmv; parameterization=theta;
+  MODEL:
+  SCI_ID BY S1SPERS1* S1SPERS2;
+    SCI_ID@1;
+
+    SCI_UT BY S1SUSELI* S1SUSECL S1SUSEJO;
+    SCI_UT@1;
+
+    SCI_EFF BY S1STESTS* S1STEXTB S1SSKILL S1SASSEX ;
+    SCI_EFF@1;
+
+    SCI_INT BY S1SENJNG* S1SWASTE S1SBORIN;
+    SCI_INT@1;
+  OUTPUT:
+  sampstat standardized residual modindices (3.84);
+  PLOT:
+  type = plot3;
+
+
+
+*** WARNING
+  Data set contains cases with missing on all variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on all variables:  119
+   1 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+WSL FACTOR ANALYSIS CFA - FEMALE GROUP SCIENCE
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        1363
+
+Number of dependent variables                                   12
+Number of independent variables                                  0
+Number of continuous latent variables                            4
+
+Observed dependent variables
+
+  Binary and ordered categorical (ordinal)
+   S1SPERS1    S1SPERS2    S1SUSELI    S1SUSECL    S1SUSEJO    S1STESTS
+   S1STEXTB    S1SSKILL    S1SASSEX    S1SENJNG    S1SWASTE    S1SBORIN
+
+Continuous latent variables
+   SCI_ID      SCI_UT      SCI_EFF     SCI_INT
+
+
+Estimator                                                    WLSMV
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Parameterization                                             THETA
+Link                                                        PROBIT
+
+Input data file(s)
+  /Users/agarber/github/NTNU-workshop/10-wls/wls_invar/m3_cfa_females_wls.dat
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns            24
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1       0.997
+ S1SPERS2       0.991         0.992
+ S1SUSELI       0.815         0.811         0.817
+ S1SUSECL       0.814         0.810         0.815         0.817
+ S1SUSEJO       0.812         0.809         0.814         0.813         0.814
+ S1STESTS       0.823         0.819         0.817         0.816         0.814
+ S1STEXTB       0.822         0.818         0.815         0.814         0.812
+ S1SSKILL       0.820         0.817         0.814         0.812         0.811
+ S1SASSEX       0.820         0.817         0.814         0.813         0.811
+ S1SENJNG       0.821         0.817         0.815         0.814         0.812
+ S1SWASTE       0.821         0.817         0.815         0.814         0.813
+ S1SBORIN       0.820         0.816         0.814         0.814         0.812
+
+
+           Covariance Coverage
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STESTS       0.825
+ S1STEXTB       0.822         0.823
+ S1SSKILL       0.821         0.820         0.822
+ S1SASSEX       0.822         0.820         0.819         0.822
+ S1SENJNG       0.822         0.820         0.819         0.820         0.823
+ S1SWASTE       0.822         0.820         0.819         0.820         0.821
+ S1SBORIN       0.821         0.820         0.818         0.819         0.821
+
+
+           Covariance Coverage
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SWASTE       0.823
+ S1SBORIN       0.821         0.822
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    S1SPERS1
+      Category 1    0.217          295.000
+      Category 2    0.397          539.000
+      Category 3    0.311          423.000
+      Category 4    0.075          102.000
+    S1SPERS2
+      Category 1    0.200          270.000
+      Category 2    0.428          579.000
+      Category 3    0.317          428.000
+      Category 4    0.055           75.000
+    S1SUSELI
+      Category 1    0.052           58.000
+      Category 2    0.340          379.000
+      Category 3    0.499          556.000
+      Category 4    0.109          121.000
+    S1SUSECL
+      Category 1    0.020           22.000
+      Category 2    0.069           77.000
+      Category 3    0.618          688.000
+      Category 4    0.293          326.000
+    S1SUSEJO
+      Category 1    0.051           57.000
+      Category 2    0.229          254.000
+      Category 3    0.488          542.000
+      Category 4    0.232          257.000
+    S1STESTS
+      Category 1    0.037           42.000
+      Category 2    0.300          338.000
+      Category 3    0.538          605.000
+      Category 4    0.124          140.000
+    S1STEXTB
+      Category 1    0.078           87.000
+      Category 2    0.392          440.000
+      Category 3    0.455          510.000
+      Category 4    0.076           85.000
+    S1SSKILL
+      Category 1    0.031           35.000
+      Category 2    0.275          308.000
+      Category 3    0.574          643.000
+      Category 4    0.120          134.000
+    S1SASSEX
+      Category 1    0.021           23.000
+      Category 2    0.183          205.000
+      Category 3    0.616          690.000
+      Category 4    0.181          203.000
+    S1SENJNG
+      Category 1    0.060           67.000
+      Category 2    0.295          331.000
+      Category 3    0.495          555.000
+      Category 4    0.151          169.000
+    S1SWASTE
+      Category 1    0.040           45.000
+      Category 2    0.126          141.000
+      Category 3    0.536          601.000
+      Category 4    0.299          335.000
+    S1SBORIN
+      Category 1    0.096          108.000
+      Category 2    0.295          330.000
+      Category 3    0.421          471.000
+      Category 4    0.188          211.000
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           MEANS/INTERCEPTS/THRESHOLDS
+              S1SPERS1      S1SPERS1      S1SPERS1      S1SPERS2      S1SPERS2
+              ________      ________      ________      ________      ________
+               -0.782         0.289         1.439        -0.843         0.326
+
+
+           MEANS/INTERCEPTS/THRESHOLDS
+              S1SPERS2      S1SUSELI      S1SUSELI      S1SUSELI      S1SUSECL
+              ________      ________      ________      ________      ________
+                1.594        -1.625        -0.273         1.234        -2.059
+
+
+           MEANS/INTERCEPTS/THRESHOLDS
+              S1SUSECL      S1SUSECL      S1SUSEJO      S1SUSEJO      S1SUSEJO
+              ________      ________      ________      ________      ________
+               -1.347         0.545        -1.632        -0.582         0.734
+
+
+           MEANS/INTERCEPTS/THRESHOLDS
+              S1STESTS      S1STESTS      S1STESTS      S1STEXTB      S1STEXTB
+              ________      ________      ________      ________      ________
+               -1.783        -0.419         1.153        -1.422        -0.076
+
+
+           MEANS/INTERCEPTS/THRESHOLDS
+              S1STEXTB      S1SSKILL      S1SSKILL      S1SSKILL      S1SASSEX
+              ________      ________      ________      ________      ________
+                1.434        -1.863        -0.507         1.177        -2.043
+
+
+           MEANS/INTERCEPTS/THRESHOLDS
+              S1SASSEX      S1SASSEX      S1SENJNG      S1SENJNG      S1SENJNG
+              ________      ________      ________      ________      ________
+               -0.830         0.911        -1.557        -0.373         1.034
+
+
+           MEANS/INTERCEPTS/THRESHOLDS
+              S1SWASTE      S1SWASTE      S1SWASTE      S1SBORIN      S1SBORIN
+              ________      ________      ________      ________      ________
+               -1.749        -0.971         0.529        -1.302        -0.277
+
+
+           MEANS/INTERCEPTS/THRESHOLDS
+              S1SBORIN
+              ________
+                0.884
+
+
+           CORRELATION MATRIX (WITH VARIANCES ON THE DIAGONAL)
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1
+ S1SPERS2       0.789
+ S1SUSELI       0.254         0.257
+ S1SUSECL       0.318         0.318         0.541
+ S1SUSEJO       0.417         0.373         0.527         0.711
+ S1STESTS       0.429         0.356         0.321         0.360         0.312
+ S1STEXTB       0.426         0.419         0.284         0.289         0.269
+ S1SSKILL       0.476         0.431         0.318         0.360         0.345
+ S1SASSEX       0.421         0.387         0.310         0.359         0.335
+ S1SENJNG       0.456         0.378         0.405         0.407         0.382
+ S1SWASTE       0.319         0.281         0.398         0.451         0.437
+ S1SBORIN       0.304         0.265         0.291         0.279         0.311
+
+
+           CORRELATION MATRIX (WITH VARIANCES ON THE DIAGONAL)
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STEXTB       0.689
+ S1SSKILL       0.737         0.720
+ S1SASSEX       0.798         0.664         0.802
+ S1SENJNG       0.507         0.440         0.470         0.482
+ S1SWASTE       0.373         0.273         0.400         0.384         0.642
+ S1SBORIN       0.314         0.273         0.357         0.317         0.683
+
+
+           CORRELATION MATRIX (WITH VARIANCES ON THE DIAGONAL)
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SBORIN       0.712
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       54
+
+Chi-Square Test of Model Fit
+
+          Value                            354.316*
+          Degrees of Freedom                    48
+          P-Value                           0.0000
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.068
+          90 Percent C.I.                    0.062  0.075
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                0.981
+          TLI                                0.974
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                          16420.626
+          Degrees of Freedom                    66
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.032
+
+Optimum Function Value for Weighted Least-Squares Estimator
+
+          Value                     0.70201385D-01
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ SCI_ID   BY
+    S1SPERS1           2.657      0.373      7.132      0.000
+    S1SPERS2           1.564      0.110     14.271      0.000
+
+ SCI_UT   BY
+    S1SUSELI           0.933      0.054     17.272      0.000
+    S1SUSECL           1.477      0.102     14.452      0.000
+    S1SUSEJO           1.460      0.106     13.728      0.000
+
+ SCI_EFF  BY
+    S1STESTS           1.776      0.095     18.792      0.000
+    S1STEXTB           1.265      0.057     22.261      0.000
+    S1SSKILL           1.970      0.112     17.632      0.000
+    S1SASSEX           2.001      0.115     17.392      0.000
+
+ SCI_INT  BY
+    S1SENJNG           1.935      0.165     11.716      0.000
+    S1SWASTE           1.433      0.077     18.672      0.000
+    S1SBORIN           1.206      0.060     20.079      0.000
+
+ SCI_UT   WITH
+    SCI_ID             0.476      0.031     15.565      0.000
+
+ SCI_EFF  WITH
+    SCI_ID             0.547      0.026     21.418      0.000
+    SCI_UT             0.479      0.029     16.467      0.000
+
+ SCI_INT  WITH
+    SCI_ID             0.468      0.028     16.835      0.000
+    SCI_UT             0.581      0.025     23.152      0.000
+    SCI_EFF            0.554      0.025     22.348      0.000
+
+ Thresholds
+    S1SPERS1$1        -2.221      0.275     -8.066      0.000
+    S1SPERS1$2         0.821      0.137      6.000      0.000
+    S1SPERS1$3         4.086      0.501      8.158      0.000
+    S1SPERS2$1        -1.564      0.096    -16.297      0.000
+    S1SPERS2$2         0.606      0.070      8.711      0.000
+    S1SPERS2$3         2.959      0.160     18.461      0.000
+    S1SUSELI$1        -2.222      0.093    -23.870      0.000
+    S1SUSELI$2        -0.374      0.053     -7.105      0.000
+    S1SUSELI$3         1.687      0.072     23.428      0.000
+    S1SUSECL$1        -3.672      0.200    -18.357      0.000
+    S1SUSECL$2        -2.403      0.132    -18.157      0.000
+    S1SUSECL$3         0.972      0.077     12.590      0.000
+    S1SUSEJO$1        -2.888      0.158    -18.302      0.000
+    S1SUSEJO$2        -1.031      0.082    -12.590      0.000
+    S1SUSEJO$3         1.299      0.089     14.618      0.000
+    S1STESTS$1        -3.634      0.151    -24.124      0.000
+    S1STESTS$2        -0.853      0.085    -10.086      0.000
+    S1STESTS$3         2.351      0.121     19.484      0.000
+    S1STEXTB$1        -2.293      0.091    -25.186      0.000
+    S1STEXTB$2        -0.122      0.061     -2.023      0.043
+    S1STEXTB$3         2.313      0.091     25.297      0.000
+    S1SSKILL$1        -4.115      0.214    -19.222      0.000
+    S1SSKILL$2        -1.119      0.098    -11.478      0.000
+    S1SSKILL$3         2.600      0.140     18.560      0.000
+    S1SASSEX$1        -4.570      0.249    -18.328      0.000
+    S1SASSEX$2        -1.856      0.121    -15.316      0.000
+    S1SASSEX$3         2.038      0.118     17.238      0.000
+    S1SENJNG$1        -3.391      0.216    -15.684      0.000
+    S1SENJNG$2        -0.812      0.096     -8.481      0.000
+    S1SENJNG$3         2.252      0.169     13.317      0.000
+    S1SWASTE$1        -3.057      0.127    -24.158      0.000
+    S1SWASTE$2        -1.696      0.088    -19.326      0.000
+    S1SWASTE$3         0.923      0.070     13.120      0.000
+    S1SBORIN$1        -2.040      0.084    -24.221      0.000
+    S1SBORIN$2        -0.433      0.060     -7.255      0.000
+    S1SBORIN$3         1.385      0.071     19.519      0.000
+
+ Variances
+    SCI_ID             1.000      0.000    999.000    999.000
+    SCI_UT             1.000      0.000    999.000    999.000
+    SCI_EFF            1.000      0.000    999.000    999.000
+    SCI_INT            1.000      0.000    999.000    999.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.483E-03
+       (ratio of smallest to largest eigenvalue)
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ SCI_ID   BY
+    S1SPERS1           0.936      0.016     57.496      0.000
+    S1SPERS2           0.843      0.017     49.189      0.000
+
+ SCI_UT   BY
+    S1SUSELI           0.682      0.021     32.293      0.000
+    S1SUSECL           0.828      0.018     45.974      0.000
+    S1SUSEJO           0.825      0.019     43.006      0.000
+
+ SCI_EFF  BY
+    S1STESTS           0.871      0.011     78.098      0.000
+    S1STEXTB           0.785      0.014     57.902      0.000
+    S1SSKILL           0.892      0.010     86.089      0.000
+    S1SASSEX           0.894      0.010     87.013      0.000
+
+ SCI_INT  BY
+    S1SENJNG           0.888      0.016     55.578      0.000
+    S1SWASTE           0.820      0.014     56.997      0.000
+    S1SBORIN           0.770      0.016     49.289      0.000
+
+ SCI_UT   WITH
+    SCI_ID             0.476      0.031     15.565      0.000
+
+ SCI_EFF  WITH
+    SCI_ID             0.547      0.026     21.418      0.000
+    SCI_UT             0.479      0.029     16.467      0.000
+
+ SCI_INT  WITH
+    SCI_ID             0.468      0.028     16.835      0.000
+    SCI_UT             0.581      0.025     23.152      0.000
+    SCI_EFF            0.554      0.025     22.348      0.000
+
+ Thresholds
+    S1SPERS1$1        -0.782      0.038    -20.551      0.000
+    S1SPERS1$2         0.289      0.035      8.373      0.000
+    S1SPERS1$3         1.439      0.050     28.517      0.000
+    S1SPERS2$1        -0.843      0.039    -21.678      0.000
+    S1SPERS2$2         0.327      0.035      9.395      0.000
+    S1SPERS2$3         1.594      0.056     28.676      0.000
+    S1SUSELI$1        -1.625      0.062    -26.005      0.000
+    S1SUSELI$2        -0.273      0.038     -7.181      0.000
+    S1SUSELI$3         1.234      0.050     24.664      0.000
+    S1SUSECL$1        -2.059      0.087    -23.657      0.000
+    S1SUSECL$2        -1.347      0.053    -25.418      0.000
+    S1SUSECL$3         0.545      0.040     13.737      0.000
+    S1SUSEJO$1        -1.632      0.063    -25.950      0.000
+    S1SUSEJO$2        -0.582      0.040    -14.546      0.000
+    S1SUSEJO$3         0.734      0.042     17.665      0.000
+    S1STESTS$1        -1.783      0.069    -25.693      0.000
+    S1STESTS$2        -0.418      0.039    -10.847      0.000
+    S1STESTS$3         1.153      0.048     24.043      0.000
+    S1STEXTB$1        -1.422      0.055    -25.855      0.000
+    S1STEXTB$2        -0.076      0.037     -2.026      0.043
+    S1STEXTB$3         1.434      0.055     25.898      0.000
+    S1SSKILL$1        -1.862      0.074    -25.211      0.000
+    S1SSKILL$2        -0.507      0.039    -12.906      0.000
+    S1SSKILL$3         1.177      0.049     24.223      0.000
+    S1SASSEX$1        -2.043      0.086    -23.877      0.000
+    S1SASSEX$2        -0.830      0.043    -19.514      0.000
+    S1SASSEX$3         0.911      0.044     20.870      0.000
+    S1SENJNG$1        -1.557      0.060    -26.123      0.000
+    S1SENJNG$2        -0.373      0.038     -9.709      0.000
+    S1SENJNG$3         1.034      0.046     22.636      0.000
+    S1SWASTE$1        -1.750      0.068    -25.793      0.000
+    S1SWASTE$2        -0.971      0.045    -21.776      0.000
+    S1SWASTE$3         0.528      0.039     13.419      0.000
+    S1SBORIN$1        -1.302      0.052    -25.229      0.000
+    S1SBORIN$2        -0.277      0.038     -7.284      0.000
+    S1SBORIN$3         0.884      0.043     20.419      0.000
+
+ Variances
+    SCI_ID             1.000      0.000    999.000    999.000
+    SCI_UT             1.000      0.000    999.000    999.000
+    SCI_EFF            1.000      0.000    999.000    999.000
+    SCI_INT            1.000      0.000    999.000    999.000
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ SCI_ID   BY
+    S1SPERS1           0.936      0.016     57.496      0.000
+    S1SPERS2           0.843      0.017     49.189      0.000
+
+ SCI_UT   BY
+    S1SUSELI           0.682      0.021     32.293      0.000
+    S1SUSECL           0.828      0.018     45.974      0.000
+    S1SUSEJO           0.825      0.019     43.006      0.000
+
+ SCI_EFF  BY
+    S1STESTS           0.871      0.011     78.098      0.000
+    S1STEXTB           0.785      0.014     57.902      0.000
+    S1SSKILL           0.892      0.010     86.089      0.000
+    S1SASSEX           0.894      0.010     87.013      0.000
+
+ SCI_INT  BY
+    S1SENJNG           0.888      0.016     55.578      0.000
+    S1SWASTE           0.820      0.014     56.997      0.000
+    S1SBORIN           0.770      0.016     49.289      0.000
+
+ SCI_UT   WITH
+    SCI_ID             0.476      0.031     15.565      0.000
+
+ SCI_EFF  WITH
+    SCI_ID             0.547      0.026     21.418      0.000
+    SCI_UT             0.479      0.029     16.467      0.000
+
+ SCI_INT  WITH
+    SCI_ID             0.468      0.028     16.835      0.000
+    SCI_UT             0.581      0.025     23.152      0.000
+    SCI_EFF            0.554      0.025     22.348      0.000
+
+ Thresholds
+    S1SPERS1$1        -0.782      0.038    -20.551      0.000
+    S1SPERS1$2         0.289      0.035      8.373      0.000
+    S1SPERS1$3         1.439      0.050     28.517      0.000
+    S1SPERS2$1        -0.843      0.039    -21.678      0.000
+    S1SPERS2$2         0.327      0.035      9.395      0.000
+    S1SPERS2$3         1.594      0.056     28.676      0.000
+    S1SUSELI$1        -1.625      0.062    -26.005      0.000
+    S1SUSELI$2        -0.273      0.038     -7.181      0.000
+    S1SUSELI$3         1.234      0.050     24.664      0.000
+    S1SUSECL$1        -2.059      0.087    -23.657      0.000
+    S1SUSECL$2        -1.347      0.053    -25.418      0.000
+    S1SUSECL$3         0.545      0.040     13.737      0.000
+    S1SUSEJO$1        -1.632      0.063    -25.950      0.000
+    S1SUSEJO$2        -0.582      0.040    -14.546      0.000
+    S1SUSEJO$3         0.734      0.042     17.665      0.000
+    S1STESTS$1        -1.783      0.069    -25.693      0.000
+    S1STESTS$2        -0.418      0.039    -10.847      0.000
+    S1STESTS$3         1.153      0.048     24.043      0.000
+    S1STEXTB$1        -1.422      0.055    -25.855      0.000
+    S1STEXTB$2        -0.076      0.037     -2.026      0.043
+    S1STEXTB$3         1.434      0.055     25.898      0.000
+    S1SSKILL$1        -1.862      0.074    -25.211      0.000
+    S1SSKILL$2        -0.507      0.039    -12.906      0.000
+    S1SSKILL$3         1.177      0.049     24.223      0.000
+    S1SASSEX$1        -2.043      0.086    -23.877      0.000
+    S1SASSEX$2        -0.830      0.043    -19.514      0.000
+    S1SASSEX$3         0.911      0.044     20.870      0.000
+    S1SENJNG$1        -1.557      0.060    -26.123      0.000
+    S1SENJNG$2        -0.373      0.038     -9.709      0.000
+    S1SENJNG$3         1.034      0.046     22.636      0.000
+    S1SWASTE$1        -1.750      0.068    -25.793      0.000
+    S1SWASTE$2        -0.971      0.045    -21.776      0.000
+    S1SWASTE$3         0.528      0.039     13.419      0.000
+    S1SBORIN$1        -1.302      0.052    -25.229      0.000
+    S1SBORIN$2        -0.277      0.038     -7.284      0.000
+    S1SBORIN$3         0.884      0.043     20.419      0.000
+
+ Variances
+    SCI_ID             1.000      0.000    999.000    999.000
+    SCI_UT             1.000      0.000    999.000    999.000
+    SCI_EFF            1.000      0.000    999.000    999.000
+    SCI_INT            1.000      0.000    999.000    999.000
+
+
+STD Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ SCI_ID   BY
+    S1SPERS1           2.657      0.373      7.132      0.000
+    S1SPERS2           1.564      0.110     14.271      0.000
+
+ SCI_UT   BY
+    S1SUSELI           0.933      0.054     17.272      0.000
+    S1SUSECL           1.477      0.102     14.452      0.000
+    S1SUSEJO           1.460      0.106     13.728      0.000
+
+ SCI_EFF  BY
+    S1STESTS           1.776      0.095     18.792      0.000
+    S1STEXTB           1.265      0.057     22.261      0.000
+    S1SSKILL           1.970      0.112     17.632      0.000
+    S1SASSEX           2.001      0.115     17.392      0.000
+
+ SCI_INT  BY
+    S1SENJNG           1.935      0.165     11.716      0.000
+    S1SWASTE           1.433      0.077     18.672      0.000
+    S1SBORIN           1.206      0.060     20.079      0.000
+
+ SCI_UT   WITH
+    SCI_ID             0.476      0.031     15.565      0.000
+
+ SCI_EFF  WITH
+    SCI_ID             0.547      0.026     21.418      0.000
+    SCI_UT             0.479      0.029     16.467      0.000
+
+ SCI_INT  WITH
+    SCI_ID             0.468      0.028     16.835      0.000
+    SCI_UT             0.581      0.025     23.152      0.000
+    SCI_EFF            0.554      0.025     22.348      0.000
+
+ Thresholds
+    S1SPERS1$1        -2.221      0.275     -8.066      0.000
+    S1SPERS1$2         0.821      0.137      6.000      0.000
+    S1SPERS1$3         4.086      0.501      8.158      0.000
+    S1SPERS2$1        -1.564      0.096    -16.297      0.000
+    S1SPERS2$2         0.606      0.070      8.711      0.000
+    S1SPERS2$3         2.959      0.160     18.461      0.000
+    S1SUSELI$1        -2.222      0.093    -23.870      0.000
+    S1SUSELI$2        -0.374      0.053     -7.105      0.000
+    S1SUSELI$3         1.687      0.072     23.428      0.000
+    S1SUSECL$1        -3.672      0.200    -18.357      0.000
+    S1SUSECL$2        -2.403      0.132    -18.157      0.000
+    S1SUSECL$3         0.972      0.077     12.590      0.000
+    S1SUSEJO$1        -2.888      0.158    -18.302      0.000
+    S1SUSEJO$2        -1.031      0.082    -12.590      0.000
+    S1SUSEJO$3         1.299      0.089     14.618      0.000
+    S1STESTS$1        -3.634      0.151    -24.124      0.000
+    S1STESTS$2        -0.853      0.085    -10.086      0.000
+    S1STESTS$3         2.351      0.121     19.484      0.000
+    S1STEXTB$1        -2.293      0.091    -25.186      0.000
+    S1STEXTB$2        -0.122      0.061     -2.023      0.043
+    S1STEXTB$3         2.313      0.091     25.297      0.000
+    S1SSKILL$1        -4.115      0.214    -19.222      0.000
+    S1SSKILL$2        -1.119      0.098    -11.478      0.000
+    S1SSKILL$3         2.600      0.140     18.560      0.000
+    S1SASSEX$1        -4.570      0.249    -18.328      0.000
+    S1SASSEX$2        -1.856      0.121    -15.316      0.000
+    S1SASSEX$3         2.038      0.118     17.238      0.000
+    S1SENJNG$1        -3.391      0.216    -15.684      0.000
+    S1SENJNG$2        -0.812      0.096     -8.481      0.000
+    S1SENJNG$3         2.252      0.169     13.317      0.000
+    S1SWASTE$1        -3.057      0.127    -24.158      0.000
+    S1SWASTE$2        -1.696      0.088    -19.326      0.000
+    S1SWASTE$3         0.923      0.070     13.120      0.000
+    S1SBORIN$1        -2.040      0.084    -24.221      0.000
+    S1SBORIN$2        -0.433      0.060     -7.255      0.000
+    S1SBORIN$3         1.385      0.071     19.519      0.000
+
+ Variances
+    SCI_ID             1.000      0.000    999.000    999.000
+    SCI_UT             1.000      0.000    999.000    999.000
+    SCI_EFF            1.000      0.000    999.000    999.000
+    SCI_INT            1.000      0.000    999.000    999.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed     Scale
+    Variable        Estimate       S.E.  Est./S.E.    P-Value     Factors
+
+    S1SPERS1           0.876      0.030     28.748      0.000      0.352
+    S1SPERS2           0.710      0.029     24.595      0.000      0.539
+    S1SUSELI           0.465      0.029     16.147      0.000      0.731
+    S1SUSECL           0.686      0.030     22.987      0.000      0.561
+    S1SUSEJO           0.681      0.032     21.503      0.000      0.565
+    S1STESTS           0.759      0.019     39.049      0.000      0.491
+    S1STEXTB           0.616      0.021     28.951      0.000      0.620
+    S1SSKILL           0.795      0.018     43.045      0.000      0.453
+    S1SASSEX           0.800      0.018     43.507      0.000      0.447
+    S1SENJNG           0.789      0.028     27.789      0.000      0.459
+    S1SWASTE           0.672      0.024     28.498      0.000      0.572
+    S1SBORIN           0.593      0.024     24.644      0.000      0.638
+
+
+RESIDUAL OUTPUT
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED)
+
+
+           Model Estimated Means/Intercepts/Thresholds
+              S1SPERS1      S1SPERS1      S1SPERS1      S1SPERS2      S1SPERS2
+              ________      ________      ________      ________      ________
+               -0.782         0.289         1.439        -0.843         0.327
+
+
+           Model Estimated Means/Intercepts/Thresholds
+              S1SPERS2      S1SUSELI      S1SUSELI      S1SUSELI      S1SUSECL
+              ________      ________      ________      ________      ________
+                1.594        -1.625        -0.273         1.234        -2.059
+
+
+           Model Estimated Means/Intercepts/Thresholds
+              S1SUSECL      S1SUSECL      S1SUSEJO      S1SUSEJO      S1SUSEJO
+              ________      ________      ________      ________      ________
+               -1.347         0.545        -1.632        -0.582         0.734
+
+
+           Model Estimated Means/Intercepts/Thresholds
+              S1STESTS      S1STESTS      S1STESTS      S1STEXTB      S1STEXTB
+              ________      ________      ________      ________      ________
+               -1.783        -0.418         1.153        -1.422        -0.076
+
+
+           Model Estimated Means/Intercepts/Thresholds
+              S1STEXTB      S1SSKILL      S1SSKILL      S1SSKILL      S1SASSEX
+              ________      ________      ________      ________      ________
+                1.434        -1.862        -0.507         1.177        -2.043
+
+
+           Model Estimated Means/Intercepts/Thresholds
+              S1SASSEX      S1SASSEX      S1SENJNG      S1SENJNG      S1SENJNG
+              ________      ________      ________      ________      ________
+               -0.830         0.911        -1.557        -0.373         1.034
+
+
+           Model Estimated Means/Intercepts/Thresholds
+              S1SWASTE      S1SWASTE      S1SWASTE      S1SBORIN      S1SBORIN
+              ________      ________      ________      ________      ________
+               -1.750        -0.971         0.528        -1.302        -0.277
+
+
+           Model Estimated Means/Intercepts/Thresholds
+              S1SBORIN
+              ________
+                0.884
+
+
+           Residuals for Means/Intercepts/Thresholds
+              S1SPERS1      S1SPERS1      S1SPERS1      S1SPERS2      S1SPERS2
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Residuals for Means/Intercepts/Thresholds
+              S1SPERS2      S1SUSELI      S1SUSELI      S1SUSELI      S1SUSECL
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Residuals for Means/Intercepts/Thresholds
+              S1SUSECL      S1SUSECL      S1SUSEJO      S1SUSEJO      S1SUSEJO
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Residuals for Means/Intercepts/Thresholds
+              S1STESTS      S1STESTS      S1STESTS      S1STEXTB      S1STEXTB
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Residuals for Means/Intercepts/Thresholds
+              S1STEXTB      S1SSKILL      S1SSKILL      S1SSKILL      S1SASSEX
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Residuals for Means/Intercepts/Thresholds
+              S1SASSEX      S1SASSEX      S1SENJNG      S1SENJNG      S1SENJNG
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Residuals for Means/Intercepts/Thresholds
+              S1SWASTE      S1SWASTE      S1SWASTE      S1SBORIN      S1SBORIN
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Residuals for Means/Intercepts/Thresholds
+              S1SBORIN
+              ________
+                0.000
+
+
+           Model Estimated Covariances/Correlations/Residual Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1
+ S1SPERS2       0.789
+ S1SUSELI       0.304         0.273
+ S1SUSECL       0.369         0.332         0.565
+ S1SUSEJO       0.367         0.331         0.563         0.683
+ S1STESTS       0.446         0.402         0.285         0.346         0.344
+ S1STEXTB       0.402         0.362         0.256         0.311         0.310
+ S1SSKILL       0.457         0.411         0.291         0.354         0.352
+ S1SASSEX       0.458         0.412         0.292         0.355         0.353
+ S1SENJNG       0.389         0.350         0.352         0.428         0.426
+ S1SWASTE       0.359         0.323         0.325         0.395         0.393
+ S1SBORIN       0.337         0.303         0.305         0.371         0.369
+
+
+           Model Estimated Covariances/Correlations/Residual Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STEXTB       0.684
+ S1SSKILL       0.777         0.700
+ S1SASSEX       0.779         0.702         0.798
+ S1SENJNG       0.429         0.386         0.439         0.440
+ S1SWASTE       0.396         0.356         0.405         0.406         0.728
+ S1SBORIN       0.371         0.334         0.380         0.381         0.684
+
+
+           Model Estimated Covariances/Correlations/Residual Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SBORIN       0.631
+
+
+           Residuals for Covariances/Correlations/Residual Correlations
+              S1SPERS1      S1SPERS2      S1SUSELI      S1SUSECL      S1SUSEJO
+              ________      ________      ________      ________      ________
+ S1SPERS1
+ S1SPERS2       0.000
+ S1SUSELI      -0.050        -0.017
+ S1SUSECL      -0.050        -0.014        -0.024
+ S1SUSEJO       0.049         0.043        -0.035         0.027
+ S1STESTS      -0.017        -0.045         0.036         0.015        -0.032
+ S1STEXTB       0.024         0.057         0.028        -0.022        -0.041
+ S1SSKILL       0.020         0.020         0.027         0.006        -0.007
+ S1SASSEX      -0.037        -0.025         0.018         0.004        -0.019
+ S1SENJNG       0.067         0.028         0.053        -0.021        -0.045
+ S1SWASTE      -0.040        -0.042         0.073         0.057         0.043
+ S1SBORIN      -0.033        -0.039        -0.014        -0.091        -0.059
+
+
+           Residuals for Covariances/Correlations/Residual Correlations
+              S1STESTS      S1STEXTB      S1SSKILL      S1SASSEX      S1SENJNG
+              ________      ________      ________      ________      ________
+ S1STEXTB       0.005
+ S1SSKILL      -0.041         0.021
+ S1SASSEX       0.019        -0.037         0.004
+ S1SENJNG       0.078         0.055         0.032         0.042
+ S1SWASTE      -0.023        -0.083        -0.005        -0.023        -0.087
+ S1SBORIN      -0.058        -0.061        -0.023        -0.065        -0.001
+
+
+           Residuals for Covariances/Correlations/Residual Correlations
+              S1SWASTE      S1SBORIN
+              ________      ________
+ S1SBORIN       0.081
+
+
+     UNIVARIATE PROPORTIONS FOR CATEGORICAL VARIABLES
+
+     Variable          Observed      Estimated      Residual (Obs.-Est.)    Stand. Residual
+     S1SPERS1
+       Category  1       0.217          0.217                  0.000                0.001
+       Category  2       0.397          0.397                  0.000               -0.003
+       Category  3       0.311          0.311                  0.000                0.003
+       Category  4       0.075          0.075                  0.000               -0.002
+     S1SPERS2
+       Category  1       0.200          0.200                  0.000               -0.001
+       Category  2       0.428          0.428                  0.000               -0.001
+       Category  3       0.317          0.317                  0.000                0.002
+       Category  4       0.055          0.055                  0.000                0.000
+     S1SUSELI
+       Category  1       0.052          0.052                  0.000               -0.001
+       Category  2       0.340          0.340                  0.000                0.000
+       Category  3       0.499          0.499                  0.000                0.000
+       Category  4       0.109          0.109                  0.000                0.001
+     S1SUSECL
+       Category  1       0.020          0.020                  0.000                0.005
+       Category  2       0.069          0.069                  0.000               -0.002
+       Category  3       0.618          0.618                  0.000                0.000
+       Category  4       0.293          0.293                  0.000                0.000
+     S1SUSEJO
+       Category  1       0.051          0.051                  0.000               -0.001
+       Category  2       0.229          0.229                  0.000                0.000
+       Category  3       0.488          0.488                  0.000                0.001
+       Category  4       0.232          0.232                  0.000                0.000
+     S1STESTS
+       Category  1       0.037          0.037                  0.000                0.002
+       Category  2       0.300          0.300                  0.000               -0.003
+       Category  3       0.538          0.538                  0.000                0.002
+       Category  4       0.124          0.124                  0.000               -0.001
+     S1STEXTB
+       Category  1       0.078          0.078                  0.000                0.000
+       Category  2       0.392          0.392                  0.000               -0.004
+       Category  3       0.455          0.454                  0.000                0.003
+       Category  4       0.076          0.076                  0.000                0.000
+     S1SSKILL
+       Category  1       0.031          0.031                  0.000               -0.006
+       Category  2       0.275          0.275                  0.000                0.003
+       Category  3       0.574          0.574                  0.000                0.000
+       Category  4       0.120          0.120                  0.000               -0.001
+     S1SASSEX
+       Category  1       0.021          0.021                  0.000                0.001
+       Category  2       0.183          0.183                  0.000                0.000
+       Category  3       0.616          0.616                  0.000               -0.002
+       Category  4       0.181          0.181                  0.000                0.002
+     S1SENJNG
+       Category  1       0.060          0.060                  0.000               -0.001
+       Category  2       0.295          0.295                  0.000                0.001
+       Category  3       0.495          0.495                  0.000               -0.001
+       Category  4       0.151          0.151                  0.000                0.002
+     S1SWASTE
+       Category  1       0.040          0.040                  0.000                0.001
+       Category  2       0.126          0.126                  0.000               -0.001
+       Category  3       0.536          0.536                  0.000                0.002
+       Category  4       0.299          0.299                  0.000               -0.002
+     S1SBORIN
+       Category  1       0.096          0.096                  0.000                0.000
+       Category  2       0.295          0.295                  0.000                0.002
+       Category  3       0.421          0.421                  0.000               -0.001
+       Category  4       0.188          0.188                  0.000               -0.001
+
+
+     BIVARIATE PROPORTIONS FOR CATEGORICAL VARIABLES
+
+     Variable       Variable          Observed     Estimated    Residual (Obs.-Est.)  Stand. Residual
+     S1SPERS1       S1SPERS2
+       Category 1     Category 1        0.149       0.133             0.016            1.682
+       Category 1     Category 2        0.059       0.079            -0.020           -2.705
+       Category 1     Category 3        0.007       0.005             0.003            1.422
+       Category 1     Category 4        0.002       0.000             0.002           28.872
+       Category 2     Category 1        0.039       0.062            -0.023           -3.494
+       Category 2     Category 2        0.275       0.246             0.029            2.456
+       Category 2     Category 3        0.079       0.087            -0.008           -1.047
+       Category 2     Category 4        0.002       0.001             0.001            0.825
+       Category 3     Category 1        0.010       0.004             0.006            3.420
+       Category 3     Category 2        0.094       0.100            -0.006           -0.760
+       Category 3     Category 3        0.194       0.185             0.009            0.850
+       Category 3     Category 4        0.013       0.022            -0.008           -2.128
+       Category 4     Category 1        0.001       0.000             0.001            6.931
+       Category 4     Category 2        0.001       0.003            -0.002           -1.576
+       Category 4     Category 3        0.036       0.040            -0.003           -0.629
+       Category 4     Category 4        0.038       0.032             0.005            1.132
+     S1SPERS1       S1SUSELI
+       Category 1     Category 1        0.027       0.023             0.004            0.998
+       Category 1     Category 2        0.079       0.098            -0.019           -2.131
+       Category 1     Category 3        0.082       0.087            -0.005           -0.575
+       Category 1     Category 4        0.019       0.010             0.009            3.227
+       Category 2     Category 1        0.014       0.021            -0.007           -1.664
+       Category 2     Category 2        0.157       0.144             0.013            1.193
+       Category 2     Category 3        0.194       0.198            -0.003           -0.263
+       Category 2     Category 4        0.028       0.034            -0.007           -1.199
+       Category 3     Category 1        0.009       0.008             0.001            0.334
+       Category 3     Category 2        0.089       0.085             0.005            0.544
+       Category 3     Category 3        0.176       0.172             0.003            0.280
+       Category 3     Category 4        0.044       0.046            -0.002           -0.333
+       Category 4     Category 1        0.002       0.001             0.001            1.132
+       Category 4     Category 2        0.015       0.013             0.002            0.560
+       Category 4     Category 3        0.048       0.042             0.005            0.870
+       Category 4     Category 4        0.018       0.018             0.000           -0.106
+     S1SPERS1       S1SUSECL
+       Category 1     Category 1        0.012       0.011             0.001            0.292
+       Category 1     Category 2        0.027       0.029            -0.002           -0.450
+       Category 1     Category 3        0.127       0.148            -0.021           -1.940
+       Category 1     Category 4        0.041       0.029             0.012            2.407
+       Category 2     Category 1        0.005       0.007            -0.002           -0.963
+       Category 2     Category 2        0.030       0.028             0.002            0.316
+       Category 2     Category 3        0.271       0.262             0.009            0.704
+       Category 2     Category 4        0.086       0.100            -0.013           -1.471
+       Category 3     Category 1        0.003       0.002             0.001            0.598
+       Category 3     Category 2        0.011       0.011             0.000            0.021
+       Category 3     Category 3        0.183       0.177             0.006            0.521
+       Category 3     Category 4        0.122       0.122             0.000           -0.002
+       Category 4     Category 1        0.001       0.000             0.001            2.300
+       Category 4     Category 2        0.001       0.001             0.000           -0.093
+       Category 4     Category 3        0.037       0.032             0.005            1.002
+       Category 4     Category 4        0.044       0.042             0.002            0.308
+     S1SPERS1       S1SUSEJO
+       Category 1     Category 1        0.032       0.025             0.007            1.401
+       Category 1     Category 2        0.070       0.076            -0.005           -0.646
+       Category 1     Category 3        0.079       0.095            -0.016           -1.809
+       Category 1     Category 4        0.024       0.021             0.003            0.800
+       Category 2     Category 1        0.013       0.019            -0.007           -1.640
+       Category 2     Category 2        0.108       0.098             0.010            1.135
+       Category 2     Category 3        0.212       0.203             0.009            0.780
+       Category 2     Category 4        0.060       0.076            -0.016           -2.067
+       Category 3     Category 1        0.006       0.006             0.000           -0.017
+       Category 3     Category 2        0.039       0.049            -0.010           -1.553
+       Category 3     Category 3        0.172       0.158             0.014            1.276
+       Category 3     Category 4        0.101       0.098             0.003            0.324
+       Category 4     Category 1        0.001       0.001             0.000            0.596
+       Category 4     Category 2        0.010       0.006             0.004            1.654
+       Category 4     Category 3        0.025       0.032            -0.007           -1.315
+       Category 4     Category 4        0.047       0.036             0.011            1.917
+     S1SPERS1       S1STESTS
+       Category 1     Category 1        0.022       0.022             0.001            0.120
+       Category 1     Category 2        0.094       0.104            -0.009           -1.037
+       Category 1     Category 3        0.078       0.085            -0.008           -0.939
+       Category 1     Category 4        0.012       0.006             0.006            2.812
+       Category 2     Category 1        0.007       0.012            -0.005           -1.618
+       Category 2     Category 2        0.150       0.131             0.018            1.832
+       Category 2     Category 3        0.211       0.220            -0.009           -0.703
+       Category 2     Category 4        0.025       0.033            -0.008           -1.503
+       Category 3     Category 1        0.005       0.003             0.002            1.505
+       Category 3     Category 2        0.050       0.059            -0.009           -1.317
+       Category 3     Category 3        0.204       0.191             0.013            1.108
+       Category 3     Category 4        0.058       0.058             0.000           -0.012
+       Category 4     Category 1        0.002       0.000             0.002            4.548
+       Category 4     Category 2        0.006       0.006             0.000            0.060
+       Category 4     Category 3        0.045       0.041             0.004            0.690
+       Category 4     Category 4        0.029       0.027             0.002            0.397
+     S1SPERS1       S1STEXTB
+       Category 1     Category 1        0.046       0.038             0.009            1.526
+       Category 1     Category 2        0.098       0.112            -0.014           -1.491
+       Category 1     Category 3        0.055       0.063            -0.008           -1.099
+       Category 1     Category 4        0.008       0.004             0.004            2.401
+       Category 2     Category 1        0.018       0.030            -0.012           -2.323
+       Category 2     Category 2        0.193       0.171             0.022            1.933
+       Category 2     Category 3        0.171       0.176            -0.006           -0.506
+       Category 2     Category 4        0.013       0.020            -0.007           -1.719
+       Category 3     Category 1        0.011       0.009             0.001            0.431
+       Category 3     Category 2        0.084       0.096            -0.012           -1.336
+       Category 3     Category 3        0.187       0.171             0.015            1.374
+       Category 3     Category 4        0.034       0.035            -0.001           -0.183
+       Category 4     Category 1        0.002       0.001             0.001            1.366
+       Category 4     Category 2        0.017       0.013             0.004            1.116
+       Category 4     Category 3        0.043       0.044            -0.001           -0.137
+       Category 4     Category 4        0.021       0.018             0.004            1.000
+     S1SPERS1       S1SSKILL
+       Category 1     Category 1        0.024       0.019             0.005            1.266
+       Category 1     Category 2        0.088       0.100            -0.012           -1.359
+       Category 1     Category 3        0.087       0.093            -0.006           -0.707
+       Category 1     Category 4        0.010       0.005             0.005            2.069
+       Category 2     Category 1        0.004       0.010            -0.006           -1.867
+       Category 2     Category 2        0.137       0.120             0.017            1.783
+       Category 2     Category 3        0.232       0.236            -0.005           -0.361
+       Category 2     Category 4        0.019       0.031            -0.012           -2.330
+       Category 3     Category 1        0.000       0.002            -0.002           -1.557
+       Category 3     Category 2        0.045       0.051            -0.006           -0.917
+       Category 3     Category 3        0.211       0.202             0.009            0.747
+       Category 3     Category 4        0.061       0.056             0.005            0.672
+       Category 4     Category 1        0.002       0.000             0.002            5.743
+       Category 4     Category 2        0.005       0.005             0.001            0.263
+       Category 4     Category 3        0.046       0.043             0.003            0.456
+       Category 4     Category 4        0.030       0.027             0.003            0.639
+     S1SPERS1       S1SASSEX
+       Category 1     Category 1        0.016       0.013             0.003            0.878
+       Category 1     Category 2        0.065       0.076            -0.010           -1.295
+       Category 1     Category 3        0.108       0.118            -0.010           -1.042
+       Category 1     Category 4        0.019       0.010             0.009            2.892
+       Category 2     Category 1        0.002       0.006            -0.004           -1.865
+       Category 2     Category 2        0.081       0.077             0.004            0.556
+       Category 2     Category 3        0.270       0.262             0.008            0.616
+       Category 2     Category 4        0.038       0.052            -0.013           -1.975
+       Category 3     Category 1        0.001       0.001             0.000           -0.297
+       Category 3     Category 2        0.031       0.028             0.003            0.641
+       Category 3     Category 3        0.199       0.198             0.000            0.015
+       Category 3     Category 4        0.086       0.083             0.002            0.288
+       Category 4     Category 1        0.001       0.000             0.001            4.071
+       Category 4     Category 2        0.004       0.002             0.002            1.570
+       Category 4     Category 3        0.039       0.037             0.003            0.446
+       Category 4     Category 4        0.038       0.036             0.003            0.455
+     S1SPERS1       S1SENJNG
+       Category 1     Category 1        0.036       0.030             0.006            1.213
+       Category 1     Category 2        0.094       0.093             0.001            0.107
+       Category 1     Category 3        0.060       0.084            -0.024           -2.920
+       Category 1     Category 4        0.017       0.010             0.007            2.148
+       Category 2     Category 1        0.011       0.023            -0.012           -2.658
+       Category 2     Category 2        0.140       0.128             0.012            1.240
+       Category 2     Category 3        0.211       0.201             0.010            0.818
+       Category 2     Category 4        0.030       0.045            -0.015           -2.375
+       Category 3     Category 1        0.010       0.007             0.003            1.093
+       Category 3     Category 2        0.055       0.066            -0.011           -1.527
+       Category 3     Category 3        0.196       0.171             0.024            2.167
+       Category 3     Category 4        0.058       0.067            -0.009           -1.191
+       Category 4     Category 1        0.003       0.001             0.002            3.149
+       Category 4     Category 2        0.006       0.008            -0.002           -0.764
+       Category 4     Category 3        0.029       0.038            -0.009           -1.515
+       Category 4     Category 4        0.045       0.028             0.017            3.370
+     S1SPERS1       S1SWASTE
+       Category 1     Category 1        0.021       0.020             0.001            0.161
+       Category 1     Category 2        0.045       0.046            -0.001           -0.234
+       Category 1     Category 3        0.105       0.120            -0.016           -1.599
+       Category 1     Category 4        0.038       0.031             0.007            1.277
+       Category 2     Category 1        0.007       0.015            -0.008           -2.163
+       Category 2     Category 2        0.055       0.053             0.001            0.216
+       Category 2     Category 3        0.236       0.226             0.010            0.791
+       Category 2     Category 4        0.095       0.103            -0.008           -0.862
+       Category 3     Category 1        0.010       0.005             0.005            2.413
+       Category 3     Category 2        0.022       0.024            -0.001           -0.323
+       Category 3     Category 3        0.170       0.160             0.010            0.925
+       Category 3     Category 4        0.115       0.123            -0.008           -0.777
+       Category 4     Category 1        0.003       0.000             0.002            3.973
+       Category 4     Category 2        0.004       0.003             0.002            1.187
+       Category 4     Category 3        0.026       0.030            -0.004           -0.770
+       Category 4     Category 4        0.050       0.042             0.008            1.302
+     S1SPERS1       S1SBORIN
+       Category 1     Category 1        0.037       0.041            -0.004           -0.685
+       Category 1     Category 2        0.085       0.084             0.001            0.141
+       Category 1     Category 3        0.060       0.075            -0.015           -1.908
+       Category 1     Category 4        0.025       0.017             0.008            1.960
+       Category 2     Category 1        0.032       0.039            -0.006           -1.124
+       Category 2     Category 2        0.126       0.126             0.000           -0.002
+       Category 2     Category 3        0.184       0.170             0.014            1.205
+       Category 2     Category 4        0.051       0.062            -0.011           -1.483
+       Category 3     Category 1        0.023       0.015             0.008            2.136
+       Category 3     Category 2        0.073       0.073             0.000            0.004
+       Category 3     Category 3        0.146       0.143             0.003            0.287
+       Category 3     Category 4        0.075       0.080            -0.004           -0.532
+       Category 4     Category 1        0.004       0.002             0.003            2.484
+       Category 4     Category 2        0.010       0.011            -0.001           -0.401
+       Category 4     Category 3        0.032       0.033             0.000           -0.073
+       Category 4     Category 4        0.036       0.030             0.006            1.182
+     S1SPERS2       S1SUSELI
+       Category 1     Category 1        0.024       0.020             0.003            0.826
+       Category 1     Category 2        0.079       0.089            -0.010           -1.181
+       Category 1     Category 3        0.073       0.081            -0.008           -0.992
+       Category 1     Category 4        0.015       0.010             0.006            1.995
+       Category 2     Category 1        0.018       0.023            -0.005           -1.026
+       Category 2     Category 2        0.160       0.155             0.006            0.507
+       Category 2     Category 3        0.215       0.213             0.003            0.208
+       Category 2     Category 4        0.031       0.038            -0.008           -1.331
+       Category 3     Category 1        0.008       0.009            -0.001           -0.200
+       Category 3     Category 2        0.090       0.087             0.004            0.441
+       Category 3     Category 3        0.177       0.174             0.003            0.294
+       Category 3     Category 4        0.050       0.047             0.002            0.380
+       Category 4     Category 1        0.002       0.001             0.001            1.449
+       Category 4     Category 2        0.012       0.010             0.002            0.498
+       Category 4     Category 3        0.033       0.031             0.001            0.254
+       Category 4     Category 4        0.014       0.013             0.000            0.068
+     S1SPERS2       S1SUSECL
+       Category 1     Category 1        0.013       0.010             0.003            1.067
+       Category 1     Category 2        0.022       0.026            -0.004           -0.884
+       Category 1     Category 3        0.122       0.135            -0.013           -1.250
+       Category 1     Category 4        0.034       0.029             0.005            1.064
+       Category 2     Category 1        0.003       0.008            -0.005           -1.941
+       Category 2     Category 2        0.035       0.031             0.004            0.864
+       Category 2     Category 3        0.286       0.280             0.007            0.484
+       Category 2     Category 4        0.099       0.110            -0.011           -1.182
+       Category 3     Category 1        0.003       0.002             0.001            0.373
+       Category 3     Category 2        0.011       0.012            -0.001           -0.217
+       Category 3     Category 3        0.183       0.179             0.004            0.310
+       Category 3     Category 4        0.130       0.123             0.006            0.621
+       Category 4     Category 1        0.002       0.000             0.002            5.294
+       Category 4     Category 2        0.000       0.001            -0.001           -0.955
+       Category 4     Category 3        0.025       0.024             0.001            0.316
+       Category 4     Category 4        0.033       0.031             0.002            0.383
+     S1SPERS2       S1SUSEJO
+       Category 1     Category 1        0.034       0.022             0.011            2.578
+       Category 1     Category 2        0.058       0.068            -0.010           -1.276
+       Category 1     Category 3        0.075       0.089            -0.013           -1.575
+       Category 1     Category 4        0.023       0.021             0.002            0.385
+       Category 2     Category 1        0.012       0.022            -0.010           -2.263
+       Category 2     Category 2        0.112       0.105             0.006            0.663
+       Category 2     Category 3        0.228       0.217             0.011            0.893
+       Category 2     Category 4        0.074       0.084            -0.011           -1.297
+       Category 3     Category 1        0.005       0.007            -0.003           -0.994
+       Category 3     Category 2        0.051       0.051             0.000            0.003
+       Category 3     Category 3        0.166       0.159             0.007            0.665
+       Category 3     Category 4        0.104       0.100             0.004            0.486
+       Category 4     Category 1        0.002       0.000             0.001            2.204
+       Category 4     Category 2        0.007       0.005             0.002            1.175
+       Category 4     Category 3        0.018       0.024            -0.006           -1.278
+       Category 4     Category 4        0.033       0.026             0.006            1.348
+     S1SPERS2       S1STESTS
+       Category 1     Category 1        0.021       0.019             0.001            0.344
+       Category 1     Category 2        0.081       0.093            -0.012           -1.397
+       Category 1     Category 3        0.075       0.081            -0.006           -0.721
+       Category 1     Category 4        0.013       0.007             0.007            2.836
+       Category 2     Category 1        0.007       0.015            -0.007           -2.051
+       Category 2     Category 2        0.156       0.141             0.015            1.468
+       Category 2     Category 3        0.231       0.235            -0.004           -0.296
+       Category 2     Category 4        0.032       0.038            -0.006           -1.032
+       Category 3     Category 1        0.007       0.003             0.004            2.092
+       Category 3     Category 2        0.058       0.062            -0.004           -0.530
+       Category 3     Category 3        0.200       0.191             0.009            0.746
+       Category 3     Category 4        0.059       0.060            -0.001           -0.114
+       Category 4     Category 1        0.002       0.000             0.002            4.633
+       Category 4     Category 2        0.006       0.005             0.001            0.608
+       Category 4     Category 3        0.030       0.031             0.000           -0.026
+       Category 4     Category 4        0.021       0.020             0.001            0.208
+     S1SPERS2       S1STEXTB
+       Category 1     Category 1        0.041       0.033             0.008            1.471
+       Category 1     Category 2        0.088       0.101            -0.014           -1.500
+       Category 1     Category 3        0.051       0.061            -0.010           -1.366
+       Category 1     Category 4        0.011       0.004             0.007            3.566
+       Category 2     Category 1        0.025       0.033            -0.008           -1.484
+       Category 2     Category 2        0.205       0.182             0.023            1.988
+       Category 2     Category 3        0.184       0.190            -0.006           -0.525
+       Category 2     Category 4        0.013       0.023            -0.010           -2.289
+       Category 3     Category 1        0.009       0.011            -0.002           -0.507
+       Category 3     Category 2        0.091       0.098            -0.008           -0.843
+       Category 3     Category 3        0.190       0.172             0.019            1.643
+       Category 3     Category 4        0.033       0.036            -0.003           -0.564
+       Category 4     Category 1        0.001       0.001             0.000            0.378
+       Category 4     Category 2        0.008       0.010            -0.002           -0.727
+       Category 4     Category 3        0.030       0.032            -0.001           -0.282
+       Category 4     Category 4        0.020       0.013             0.007            2.130
+     S1SPERS2       S1SSKILL
+       Category 1     Category 1        0.026       0.017             0.009            2.419
+       Category 1     Category 2        0.074       0.089            -0.015           -1.783
+       Category 1     Category 3        0.079       0.088            -0.009           -1.070
+       Category 1     Category 4        0.012       0.006             0.006            2.502
+       Category 2     Category 1        0.001       0.012            -0.011           -3.368
+       Category 2     Category 2        0.148       0.128             0.020            1.977
+       Category 2     Category 3        0.249       0.252            -0.003           -0.249
+       Category 2     Category 4        0.027       0.036            -0.009           -1.607
+       Category 3     Category 1        0.002       0.003            -0.001           -0.544
+       Category 3     Category 2        0.048       0.054            -0.006           -0.893
+       Category 3     Category 3        0.219       0.202             0.017            1.426
+       Category 3     Category 4        0.057       0.058            -0.002           -0.227
+       Category 4     Category 1        0.002       0.000             0.002            5.739
+       Category 4     Category 2        0.005       0.004             0.001            0.731
+       Category 4     Category 3        0.027       0.032            -0.005           -0.915
+       Category 4     Category 4        0.025       0.020             0.006            1.336
+     S1SPERS2       S1SASSEX
+       Category 1     Category 1        0.016       0.012             0.005            1.427
+       Category 1     Category 2        0.061       0.067            -0.006           -0.765
+       Category 1     Category 3        0.091       0.110            -0.020           -2.092
+       Category 1     Category 4        0.022       0.011             0.012            3.714
+       Category 2     Category 1        0.001       0.007            -0.006           -2.524
+       Category 2     Category 2        0.087       0.084             0.003            0.422
+       Category 2     Category 3        0.293       0.278             0.014            1.077
+       Category 2     Category 4        0.046       0.059            -0.013           -1.843
+       Category 3     Category 1        0.001       0.002            -0.001           -0.520
+       Category 3     Category 2        0.031       0.030             0.001            0.191
+       Category 3     Category 3        0.206       0.199             0.007            0.559
+       Category 3     Category 4        0.085       0.086             0.000           -0.019
+       Category 4     Category 1        0.002       0.000             0.002            8.215
+       Category 4     Category 2        0.003       0.002             0.001            0.574
+       Category 4     Category 3        0.026       0.028            -0.002           -0.326
+       Category 4     Category 4        0.029       0.026             0.003            0.615
+     S1SPERS2       S1SENJNG
+       Category 1     Category 1        0.030       0.026             0.003            0.729
+       Category 1     Category 2        0.079       0.083            -0.004           -0.529
+       Category 1     Category 3        0.068       0.079            -0.011           -1.356
+       Category 1     Category 4        0.013       0.011             0.003            0.848
+       Category 2     Category 1        0.017       0.025            -0.008           -1.731
+       Category 2     Category 2        0.143       0.137             0.006            0.580
+       Category 2     Category 3        0.226       0.215             0.010            0.831
+       Category 2     Category 4        0.040       0.051            -0.011           -1.726
+       Category 3     Category 1        0.011       0.008             0.003            1.087
+       Category 3     Category 2        0.066       0.068            -0.002           -0.331
+       Category 3     Category 3        0.181       0.172             0.009            0.767
+       Category 3     Category 4        0.068       0.069             0.000           -0.047
+       Category 4     Category 1        0.002       0.000             0.001            2.081
+       Category 4     Category 2        0.007       0.007             0.001            0.252
+       Category 4     Category 3        0.021       0.028            -0.008           -1.521
+       Category 4     Category 4        0.030       0.020             0.009            2.235
+     S1SPERS2       S1SWASTE
+       Category 1     Category 1        0.021       0.018             0.003            0.781
+       Category 1     Category 2        0.035       0.041            -0.006           -1.024
+       Category 1     Category 3        0.101       0.110            -0.010           -1.044
+       Category 1     Category 4        0.034       0.031             0.004            0.696
+       Category 2     Category 1        0.010       0.017            -0.007           -1.801
+       Category 2     Category 2        0.060       0.057             0.003            0.408
+       Category 2     Category 3        0.246       0.241             0.005            0.382
+       Category 2     Category 4        0.109       0.113            -0.004           -0.431
+       Category 3     Category 1        0.006       0.005             0.001            0.424
+       Category 3     Category 2        0.029       0.025             0.004            0.790
+       Category 3     Category 3        0.163       0.161             0.001            0.104
+       Category 3     Category 4        0.128       0.125             0.003            0.296
+       Category 4     Category 1        0.003       0.000             0.002            4.380
+       Category 4     Category 2        0.002       0.002             0.000           -0.244
+       Category 4     Category 3        0.026       0.022             0.004            0.819
+       Category 4     Category 4        0.029       0.031            -0.002           -0.357
+     S1SPERS2       S1SBORIN
+       Category 1     Category 1        0.039       0.036             0.002            0.443
+       Category 1     Category 2        0.070       0.076            -0.006           -0.717
+       Category 1     Category 3        0.056       0.070            -0.015           -1.898
+       Category 1     Category 4        0.026       0.017             0.009            2.217
+       Category 2     Category 1        0.034       0.042            -0.008           -1.372
+       Category 2     Category 2        0.136       0.135             0.001            0.071
+       Category 2     Category 3        0.197       0.182             0.015            1.265
+       Category 2     Category 4        0.058       0.068            -0.010           -1.319
+       Category 3     Category 1        0.020       0.016             0.003            0.861
+       Category 3     Category 2        0.076       0.075             0.000            0.047
+       Category 3     Category 3        0.148       0.144             0.005            0.430
+       Category 3     Category 4        0.081       0.081             0.000           -0.011
+       Category 4     Category 1        0.004       0.001             0.003            3.013
+       Category 4     Category 2        0.011       0.009             0.002            0.811
+       Category 4     Category 3        0.022       0.024            -0.003           -0.546
+       Category 4     Category 4        0.022       0.022             0.001            0.213
+     S1SUSELI       S1SUSECL
+       Category 1     Category 1        0.019       0.008             0.011            4.397
+       Category 1     Category 2        0.008       0.014            -0.006           -1.630
+       Category 1     Category 3        0.021       0.030            -0.009           -1.748
+       Category 1     Category 4        0.005       0.001             0.003            3.253
+       Category 2     Category 1        0.001       0.010            -0.009           -3.106
+       Category 2     Category 2        0.035       0.040            -0.005           -0.884
+       Category 2     Category 3        0.247       0.249            -0.003           -0.205
+       Category 2     Category 4        0.059       0.040             0.018            3.087
+       Category 3     Category 1        0.000       0.002            -0.002           -1.454
+       Category 3     Category 2        0.025       0.015             0.010            2.895
+       Category 3     Category 3        0.332       0.306             0.026            1.906
+       Category 3     Category 4        0.142       0.177            -0.034           -3.013
+       Category 4     Category 1        0.000       0.000             0.000           -0.148
+       Category 4     Category 2        0.001       0.000             0.001            1.043
+       Category 4     Category 3        0.018       0.033            -0.015           -2.871
+       Category 4     Category 4        0.088       0.075             0.013            1.705
+     S1SUSELI       S1SUSEJO
+       Category 1     Category 1        0.025       0.015             0.010            2.856
+       Category 1     Category 2        0.015       0.024            -0.009           -1.894
+       Category 1     Category 3        0.009       0.012            -0.003           -1.040
+       Category 1     Category 4        0.002       0.001             0.001            1.427
+       Category 2     Category 1        0.013       0.029            -0.016           -3.215
+       Category 2     Category 2        0.124       0.122             0.002            0.184
+       Category 2     Category 3        0.165       0.162             0.003            0.241
+       Category 2     Category 4        0.041       0.027             0.013            2.691
+       Category 3     Category 1        0.011       0.008             0.003            1.230
+       Category 3     Category 2        0.083       0.079             0.004            0.441
+       Category 3     Category 3        0.293       0.274             0.019            1.398
+       Category 3     Category 4        0.112       0.138            -0.026           -2.509
+       Category 4     Category 1        0.003       0.000             0.003            7.750
+       Category 4     Category 2        0.007       0.004             0.004            1.941
+       Category 4     Category 3        0.021       0.039            -0.018           -3.157
+       Category 4     Category 4        0.078       0.066             0.012            1.596
+     S1SUSELI       S1STESTS
+       Category 1     Category 1        0.013       0.006             0.007            3.153
+       Category 1     Category 2        0.020       0.024            -0.004           -0.920
+       Category 1     Category 3        0.015       0.021            -0.005           -1.263
+       Category 1     Category 4        0.004       0.002             0.003            2.023
+       Category 2     Category 1        0.013       0.018            -0.006           -1.437
+       Category 2     Category 2        0.135       0.126             0.009            0.912
+       Category 2     Category 3        0.164       0.171            -0.006           -0.539
+       Category 2     Category 4        0.029       0.026             0.003            0.656
+       Category 3     Category 1        0.011       0.012            -0.002           -0.487
+       Category 3     Category 2        0.138       0.133             0.005            0.536
+       Category 3     Category 3        0.286       0.284             0.002            0.161
+       Category 3     Category 4        0.064       0.070            -0.006           -0.845
+       Category 4     Category 1        0.002       0.001             0.001            0.824
+       Category 4     Category 2        0.009       0.018            -0.009           -2.239
+       Category 4     Category 3        0.069       0.063             0.006            0.843
+       Category 4     Category 4        0.029       0.027             0.002            0.430
+     S1SUSELI       S1STEXTB
+       Category 1     Category 1        0.017       0.009             0.008            2.732
+       Category 1     Category 2        0.019       0.026            -0.007           -1.494
+       Category 1     Category 3        0.012       0.016            -0.004           -1.059
+       Category 1     Category 4        0.005       0.001             0.003            3.324
+       Category 2     Category 1        0.038       0.036             0.002            0.317
+       Category 2     Category 2        0.151       0.153            -0.001           -0.133
+       Category 2     Category 3        0.136       0.136             0.000           -0.021
+       Category 2     Category 4        0.016       0.015             0.001            0.216
+       Category 3     Category 1        0.017       0.029            -0.012           -2.401
+       Category 3     Category 2        0.199       0.184             0.015            1.269
+       Category 3     Category 3        0.246       0.243             0.003            0.202
+       Category 3     Category 4        0.037       0.043            -0.006           -0.936
+       Category 4     Category 1        0.005       0.003             0.002            1.451
+       Category 4     Category 2        0.023       0.029            -0.007           -1.354
+       Category 4     Category 3        0.063       0.060             0.003            0.481
+       Category 4     Category 4        0.017       0.017             0.000            0.120
+     S1SUSELI       S1SSKILL
+       Category 1     Category 1        0.014       0.005             0.010            4.538
+       Category 1     Category 2        0.016       0.023            -0.007           -1.513
+       Category 1     Category 3        0.018       0.022            -0.004           -0.985
+       Category 1     Category 4        0.004       0.002             0.002            1.535
+       Category 2     Category 1        0.007       0.016            -0.008           -2.247
+       Category 2     Category 2        0.123       0.117             0.006            0.570
+       Category 2     Category 3        0.184       0.183             0.001            0.045
+       Category 2     Category 4        0.025       0.024             0.001            0.251
+       Category 3     Category 1        0.007       0.010            -0.003           -0.943
+       Category 3     Category 2        0.123       0.119             0.003            0.327
+       Category 3     Category 3        0.309       0.302             0.007            0.531
+       Category 3     Category 4        0.061       0.068            -0.006           -0.840
+       Category 4     Category 1        0.002       0.001             0.001            1.235
+       Category 4     Category 2        0.014       0.015            -0.002           -0.491
+       Category 4     Category 3        0.063       0.066            -0.003           -0.425
+       Category 4     Category 4        0.030       0.026             0.004            0.742
+     S1SUSELI       S1SASSEX
+       Category 1     Category 1        0.010       0.003             0.006            3.649
+       Category 1     Category 2        0.014       0.018            -0.004           -1.036
+       Category 1     Category 3        0.022       0.028            -0.006           -1.281
+       Category 1     Category 4        0.007       0.003             0.004            2.520
+       Category 2     Category 1        0.007       0.010            -0.003           -1.031
+       Category 2     Category 2        0.080       0.081            -0.001           -0.144
+       Category 2     Category 3        0.213       0.209             0.004            0.293
+       Category 2     Category 4        0.041       0.039             0.001            0.181
+       Category 3     Category 1        0.003       0.006            -0.004           -1.502
+       Category 3     Category 2        0.080       0.075             0.005            0.620
+       Category 3     Category 3        0.328       0.315             0.012            0.896
+       Category 3     Category 4        0.088       0.102            -0.014           -1.524
+       Category 4     Category 1        0.001       0.000             0.000            0.713
+       Category 4     Category 2        0.009       0.009             0.000            0.133
+       Category 4     Category 3        0.052       0.063            -0.011           -1.489
+       Category 4     Category 4        0.046       0.036             0.010            1.699
+     S1SUSELI       S1SENJNG
+       Category 1     Category 1        0.020       0.010             0.010            3.389
+       Category 1     Category 2        0.017       0.024            -0.007           -1.449
+       Category 1     Category 3        0.011       0.017            -0.006           -1.581
+       Category 1     Category 4        0.005       0.002             0.003            2.349
+       Category 2     Category 1        0.024       0.030            -0.006           -1.194
+       Category 2     Category 2        0.133       0.127             0.006            0.578
+       Category 2     Category 3        0.158       0.155             0.003            0.251
+       Category 2     Category 4        0.025       0.028            -0.002           -0.473
+       Category 3     Category 1        0.014       0.018            -0.004           -0.960
+       Category 3     Category 2        0.132       0.129             0.004            0.365
+       Category 3     Category 3        0.273       0.266             0.007            0.503
+       Category 3     Category 4        0.079       0.086            -0.007           -0.825
+       Category 4     Category 1        0.002       0.001             0.001            0.564
+       Category 4     Category 2        0.011       0.015            -0.004           -1.200
+       Category 4     Category 3        0.054       0.057            -0.003           -0.417
+       Category 4     Category 4        0.042       0.035             0.007            1.268
+     S1SUSELI       S1SWASTE
+       Category 1     Category 1        0.014       0.007             0.008            3.178
+       Category 1     Category 2        0.014       0.013             0.001            0.200
+       Category 1     Category 3        0.016       0.027            -0.011           -2.240
+       Category 1     Category 4        0.008       0.005             0.003            1.183
+       Category 2     Category 1        0.013       0.020            -0.008           -1.825
+       Category 2     Category 2        0.068       0.058             0.010            1.390
+       Category 2     Category 3        0.197       0.193             0.004            0.327
+       Category 2     Category 4        0.063       0.069            -0.006           -0.772
+       Category 3     Category 1        0.013       0.012             0.000            0.099
+       Category 3     Category 2        0.040       0.050            -0.010           -1.588
+       Category 3     Category 3        0.283       0.268             0.014            1.085
+       Category 3     Category 4        0.165       0.169            -0.004           -0.349
+       Category 4     Category 1        0.001       0.001             0.000            0.061
+       Category 4     Category 2        0.005       0.005            -0.001           -0.275
+       Category 4     Category 3        0.039       0.047            -0.008           -1.315
+       Category 4     Category 4        0.064       0.056             0.008            1.207
+     S1SUSELI       S1SBORIN
+       Category 1     Category 1        0.022       0.012             0.009            2.740
+       Category 1     Category 2        0.012       0.021            -0.009           -2.143
+       Category 1     Category 3        0.010       0.016            -0.006           -1.543
+       Category 1     Category 4        0.009       0.003             0.006            3.647
+       Category 2     Category 1        0.040       0.046            -0.007           -1.055
+       Category 2     Category 2        0.122       0.120             0.002            0.173
+       Category 2     Category 3        0.141       0.134             0.007            0.677
+       Category 2     Category 4        0.039       0.040            -0.002           -0.275
+       Category 3     Category 1        0.030       0.035            -0.005           -0.878
+       Category 3     Category 2        0.139       0.135             0.004            0.375
+       Category 3     Category 3        0.231       0.223             0.008            0.606
+       Category 3     Category 4        0.100       0.107            -0.007           -0.714
+       Category 4     Category 1        0.006       0.003             0.003            1.917
+       Category 4     Category 2        0.020       0.019             0.001            0.230
+       Category 4     Category 3        0.041       0.048            -0.008           -1.191
+       Category 4     Category 4        0.041       0.038             0.003            0.524
+     S1SUSECL       S1SUSEJO
+       Category 1     Category 1        0.017       0.010             0.007            2.353
+       Category 1     Category 2        0.002       0.008            -0.006           -2.339
+       Category 1     Category 3        0.000       0.002            -0.002           -1.308
+       Category 1     Category 4        0.001       0.000             0.001            7.575
+       Category 2     Category 1        0.007       0.017            -0.010           -2.494
+       Category 2     Category 2        0.050       0.036             0.014            2.438
+       Category 2     Category 3        0.011       0.016            -0.005           -1.348
+       Category 2     Category 4        0.000       0.000             0.000           -0.696
+       Category 3     Category 1        0.025       0.024             0.001            0.246
+       Category 3     Category 2        0.154       0.173            -0.019           -1.648
+       Category 3     Category 3        0.389       0.344             0.045            3.123
+       Category 3     Category 4        0.051       0.077            -0.026           -3.255
+       Category 4     Category 1        0.002       0.000             0.002            3.091
+       Category 4     Category 2        0.023       0.012             0.012            3.662
+       Category 4     Category 3        0.088       0.126            -0.038           -3.804
+       Category 4     Category 4        0.180       0.155             0.025            2.307
+     S1SUSECL       S1STESTS
+       Category 1     Category 1        0.008       0.003             0.005            2.955
+       Category 1     Category 2        0.006       0.010            -0.004           -1.274
+       Category 1     Category 3        0.004       0.006            -0.003           -1.087
+       Category 1     Category 4        0.002       0.000             0.001            2.603
+       Category 2     Category 1        0.005       0.007            -0.001           -0.557
+       Category 2     Category 2        0.035       0.032             0.003            0.561
+       Category 2     Category 3        0.024       0.028            -0.004           -0.747
+       Category 2     Category 4        0.004       0.002             0.002            1.480
+       Category 3     Category 1        0.018       0.024            -0.006           -1.359
+       Category 3     Category 2        0.212       0.205             0.008            0.633
+       Category 3     Category 3        0.335       0.331             0.004            0.310
+       Category 3     Category 4        0.052       0.058            -0.006           -0.870
+       Category 4     Category 1        0.006       0.003             0.003            1.855
+       Category 4     Category 2        0.049       0.054            -0.005           -0.757
+       Category 4     Category 3        0.172       0.173            -0.001           -0.071
+       Category 4     Category 4        0.067       0.063             0.003            0.418
+     S1SUSECL       S1STEXTB
+       Category 1     Category 1        0.008       0.005             0.003            1.604
+       Category 1     Category 2        0.005       0.010            -0.006           -1.896
+       Category 1     Category 3        0.005       0.005             0.001            0.453
+       Category 1     Category 4        0.002       0.000             0.002            3.586
+       Category 2     Category 1        0.014       0.012             0.002            0.573
+       Category 2     Category 2        0.031       0.035            -0.004           -0.794
+       Category 2     Category 3        0.023       0.021             0.002            0.556
+       Category 2     Category 4        0.002       0.001             0.000            0.328
+       Category 3     Category 1        0.041       0.052            -0.011           -1.686
+       Category 3     Category 2        0.273       0.261             0.012            0.897
+       Category 3     Category 3        0.277       0.270             0.007            0.510
+       Category 3     Category 4        0.027       0.035            -0.008           -1.433
+       Category 4     Category 1        0.015       0.009             0.006            2.103
+       Category 4     Category 2        0.084       0.086            -0.002           -0.202
+       Category 4     Category 3        0.151       0.159            -0.008           -0.760
+       Category 4     Category 4        0.043       0.039             0.004            0.709
+     S1SUSECL       S1SSKILL
+       Category 1     Category 1        0.008       0.003             0.005            3.320
+       Category 1     Category 2        0.005       0.010            -0.005           -1.811
+       Category 1     Category 3        0.005       0.007            -0.001           -0.523
+       Category 1     Category 4        0.002       0.000             0.002            2.866
+       Category 2     Category 1        0.005       0.006             0.000           -0.214
+       Category 2     Category 2        0.029       0.031            -0.002           -0.361
+       Category 2     Category 3        0.033       0.030             0.002            0.415
+       Category 2     Category 4        0.003       0.002             0.001            0.424
+       Category 3     Category 1        0.014       0.020            -0.006           -1.341
+       Category 3     Category 2        0.190       0.188             0.002            0.155
+       Category 3     Category 3        0.366       0.355             0.011            0.756
+       Category 3     Category 4        0.046       0.055            -0.009           -1.326
+       Category 4     Category 1        0.003       0.002             0.000            0.193
+       Category 4     Category 2        0.051       0.046             0.005            0.808
+       Category 4     Category 3        0.172       0.182            -0.010           -0.898
+       Category 4     Category 4        0.069       0.062             0.007            0.910
+     S1SUSECL       S1SASSEX
+       Category 1     Category 1        0.006       0.002             0.004            3.113
+       Category 1     Category 2        0.005       0.008            -0.004           -1.320
+       Category 1     Category 3        0.006       0.009            -0.003           -0.954
+       Category 1     Category 4        0.003       0.001             0.002            2.895
+       Category 2     Category 1        0.003       0.004            -0.001           -0.726
+       Category 2     Category 2        0.025       0.023             0.002            0.452
+       Category 2     Category 3        0.034       0.038            -0.004           -0.646
+       Category 2     Category 4        0.006       0.004             0.002            1.314
+       Category 3     Category 1        0.009       0.013            -0.004           -1.152
+       Category 3     Category 2        0.123       0.125            -0.002           -0.239
+       Category 3     Category 3        0.412       0.392             0.021            1.412
+       Category 3     Category 4        0.075       0.088            -0.013           -1.577
+       Category 4     Category 1        0.003       0.001             0.001            1.155
+       Category 4     Category 2        0.031       0.026             0.004            0.873
+       Category 4     Category 3        0.162       0.177            -0.015           -1.328
+       Category 4     Category 4        0.097       0.088             0.009            1.082
+     S1SUSECL       S1SENJNG
+       Category 1     Category 1        0.011       0.006             0.005            2.311
+       Category 1     Category 2        0.005       0.010            -0.004           -1.408
+       Category 1     Category 3        0.002       0.004            -0.003           -1.303
+       Category 1     Category 4        0.002       0.000             0.002            3.444
+       Category 2     Category 1        0.011       0.012            -0.001           -0.340
+       Category 2     Category 2        0.032       0.032             0.000            0.008
+       Category 2     Category 3        0.022       0.023            -0.001           -0.293
+       Category 2     Category 4        0.004       0.002             0.002            1.252
+       Category 3     Category 1        0.030       0.038            -0.009           -1.495
+       Category 3     Category 2        0.207       0.206             0.001            0.088
+       Category 3     Category 3        0.322       0.308             0.013            0.972
+       Category 3     Category 4        0.059       0.066            -0.006           -0.814
+       Category 4     Category 1        0.009       0.004             0.005            2.791
+       Category 4     Category 2        0.050       0.047             0.003            0.407
+       Category 4     Category 3        0.150       0.159            -0.010           -0.878
+       Category 4     Category 4        0.086       0.083             0.003            0.322
+     S1SUSECL       S1SWASTE
+       Category 1     Category 1        0.008       0.004             0.004            2.263
+       Category 1     Category 2        0.004       0.006            -0.002           -0.989
+       Category 1     Category 3        0.005       0.009            -0.004           -1.563
+       Category 1     Category 4        0.004       0.001             0.003            2.566
+       Category 2     Category 1        0.010       0.008             0.002            0.717
+       Category 2     Category 2        0.017       0.017             0.000            0.018
+       Category 2     Category 3        0.031       0.037            -0.006           -1.145
+       Category 2     Category 4        0.011       0.007             0.004            1.510
+       Category 3     Category 1        0.018       0.026            -0.008           -1.591
+       Category 3     Category 2        0.090       0.087             0.003            0.378
+       Category 3     Category 3        0.385       0.353             0.031            2.182
+       Category 3     Category 4        0.125       0.152            -0.027           -2.512
+       Category 4     Category 1        0.005       0.003             0.002            1.184
+       Category 4     Category 2        0.014       0.016            -0.001           -0.388
+       Category 4     Category 3        0.115       0.136            -0.021           -2.028
+       Category 4     Category 4        0.159       0.138             0.021            2.055
+     S1SUSECL       S1SBORIN
+       Category 1     Category 1        0.009       0.007             0.002            1.003
+       Category 1     Category 2        0.005       0.008            -0.003           -1.019
+       Category 1     Category 3        0.002       0.004            -0.003           -1.321
+       Category 1     Category 4        0.004       0.001             0.003            4.280
+       Category 2     Category 1        0.014       0.016            -0.001           -0.349
+       Category 2     Category 2        0.023       0.028            -0.005           -0.997
+       Category 2     Category 3        0.021       0.021            -0.001           -0.117
+       Category 2     Category 4        0.010       0.004             0.006            3.311
+       Category 3     Category 1        0.050       0.064            -0.014           -1.887
+       Category 3     Category 2        0.208       0.201             0.007            0.573
+       Category 3     Category 3        0.278       0.261             0.016            1.245
+       Category 3     Category 4        0.081       0.091            -0.010           -1.144
+       Category 4     Category 1        0.023       0.010             0.014            4.666
+       Category 4     Category 2        0.056       0.057            -0.001           -0.106
+       Category 4     Category 3        0.120       0.134            -0.014           -1.334
+       Category 4     Category 4        0.095       0.093             0.002            0.192
+     S1SUSEJO       S1STESTS
+       Category 1     Category 1        0.011       0.007             0.004            1.749
+       Category 1     Category 2        0.018       0.025            -0.007           -1.527
+       Category 1     Category 3        0.021       0.018             0.002            0.610
+       Category 1     Category 4        0.002       0.001             0.001            0.496
+       Category 2     Category 1        0.011       0.015            -0.004           -1.079
+       Category 2     Category 2        0.091       0.093            -0.002           -0.209
+       Category 2     Category 3        0.110       0.108             0.002            0.170
+       Category 2     Category 4        0.017       0.013             0.004            1.287
+       Category 3     Category 1        0.008       0.014            -0.006           -1.634
+       Category 3     Category 2        0.157       0.143             0.014            1.343
+       Category 3     Category 3        0.271       0.275            -0.004           -0.320
+       Category 3     Category 4        0.052       0.057            -0.005           -0.652
+       Category 4     Category 1        0.006       0.002             0.004            2.956
+       Category 4     Category 2        0.036       0.040            -0.004           -0.598
+       Category 4     Category 3        0.135       0.136            -0.001           -0.095
+       Category 4     Category 4        0.054       0.054             0.001            0.081
+     S1SUSEJO       S1STEXTB
+       Category 1     Category 1        0.018       0.011             0.007            2.437
+       Category 1     Category 2        0.014       0.026            -0.013           -2.672
+       Category 1     Category 3        0.017       0.014             0.004            1.035
+       Category 1     Category 4        0.003       0.001             0.002            2.289
+       Category 2     Category 1        0.020       0.028            -0.008           -1.660
+       Category 2     Category 2        0.113       0.109             0.004            0.444
+       Category 2     Category 3        0.088       0.084             0.003            0.404
+       Category 2     Category 4        0.009       0.008             0.001            0.512
+       Category 3     Category 1        0.024       0.032            -0.008           -1.479
+       Category 3     Category 2        0.205       0.192             0.013            1.071
+       Category 3     Category 3        0.230       0.230             0.001            0.064
+       Category 3     Category 4        0.027       0.034            -0.007           -1.288
+       Category 4     Category 1        0.014       0.007             0.008            3.228
+       Category 4     Category 2        0.061       0.065            -0.004           -0.558
+       Category 4     Category 3        0.122       0.127            -0.005           -0.518
+       Category 4     Category 4        0.035       0.033             0.002            0.386
+     S1SUSEJO       S1SSKILL
+       Category 1     Category 1        0.014       0.006             0.008            3.363
+       Category 1     Category 2        0.014       0.024            -0.010           -2.148
+       Category 1     Category 3        0.023       0.020             0.003            0.647
+       Category 1     Category 4        0.001       0.001             0.000           -0.228
+       Category 2     Category 1        0.010       0.013            -0.003           -0.774
+       Category 2     Category 2        0.082       0.087            -0.005           -0.588
+       Category 2     Category 3        0.123       0.117             0.006            0.618
+       Category 2     Category 4        0.014       0.012             0.003            0.815
+       Category 3     Category 1        0.005       0.011            -0.007           -2.115
+       Category 3     Category 2        0.139       0.129             0.010            1.009
+       Category 3     Category 3        0.297       0.294             0.003            0.233
+       Category 3     Category 4        0.045       0.054            -0.009           -1.317
+       Category 4     Category 1        0.003       0.002             0.001            0.872
+       Category 4     Category 2        0.040       0.034             0.006            1.076
+       Category 4     Category 3        0.131       0.143            -0.012           -1.161
+       Category 4     Category 4        0.059       0.052             0.006            0.948
+     S1SUSEJO       S1SASSEX
+       Category 1     Category 1        0.011       0.004             0.007            3.431
+       Category 1     Category 2        0.011       0.019            -0.008           -2.027
+       Category 1     Category 3        0.024       0.026            -0.002           -0.485
+       Category 1     Category 4        0.006       0.002             0.004            3.027
+       Category 2     Category 1        0.005       0.008            -0.004           -1.407
+       Category 2     Category 2        0.068       0.062             0.006            0.791
+       Category 2     Category 3        0.128       0.138            -0.010           -0.932
+       Category 2     Category 4        0.028       0.020             0.008            1.819
+       Category 3     Category 1        0.003       0.007            -0.004           -1.710
+       Category 3     Category 2        0.083       0.083             0.001            0.081
+       Category 3     Category 3        0.336       0.314             0.022            1.598
+       Category 3     Category 4        0.067       0.085            -0.018           -2.128
+       Category 4     Category 1        0.003       0.001             0.002            1.908
+       Category 4     Category 2        0.021       0.019             0.002            0.419
+       Category 4     Category 3        0.127       0.138            -0.011           -1.066
+       Category 4     Category 4        0.080       0.074             0.007            0.836
+     S1SUSEJO       S1SENJNG
+       Category 1     Category 1        0.017       0.012             0.005            1.679
+       Category 1     Category 2        0.017       0.025            -0.007           -1.597
+       Category 1     Category 3        0.011       0.014            -0.003           -0.913
+       Category 1     Category 4        0.006       0.001             0.005            5.761
+       Category 2     Category 1        0.023       0.025            -0.001           -0.296
+       Category 2     Category 2        0.091       0.095            -0.004           -0.466
+       Category 2     Category 3        0.097       0.096             0.000            0.054
+       Category 2     Category 4        0.016       0.012             0.004            1.154
+       Category 3     Category 1        0.014       0.021            -0.006           -1.436
+       Category 3     Category 2        0.145       0.141             0.004            0.402
+       Category 3     Category 3        0.273       0.260             0.013            0.991
+       Category 3     Category 4        0.056       0.067            -0.011           -1.429
+       Category 4     Category 1        0.005       0.003             0.003            1.907
+       Category 4     Category 2        0.039       0.034             0.005            0.924
+       Category 4     Category 3        0.116       0.125            -0.009           -0.911
+       Category 4     Category 4        0.072       0.071             0.002            0.230
+     S1SUSEJO       S1SWASTE
+       Category 1     Category 1        0.011       0.008             0.003            1.060
+       Category 1     Category 2        0.013       0.014            -0.001           -0.407
+       Category 1     Category 3        0.019       0.025            -0.006           -1.365
+       Category 1     Category 4        0.009       0.004             0.005            2.754
+       Category 2     Category 1        0.014       0.017            -0.003           -0.783
+       Category 2     Category 2        0.058       0.045             0.013            2.088
+       Category 2     Category 3        0.123       0.131            -0.008           -0.832
+       Category 2     Category 4        0.034       0.036            -0.002           -0.359
+       Category 3     Category 1        0.013       0.014            -0.001           -0.328
+       Category 3     Category 2        0.044       0.056            -0.011           -1.654
+       Category 3     Category 3        0.303       0.275             0.028            2.102
+       Category 3     Category 4        0.128       0.144            -0.016           -1.487
+       Category 4     Category 1        0.003       0.002             0.001            0.729
+       Category 4     Category 2        0.009       0.011            -0.002           -0.688
+       Category 4     Category 3        0.092       0.104            -0.012           -1.300
+       Category 4     Category 4        0.128       0.115             0.014            1.420
+     S1SUSEJO       S1SBORIN
+       Category 1     Category 1        0.018       0.014             0.004            1.016
+       Category 1     Category 2        0.014       0.021            -0.007           -1.577
+       Category 1     Category 3        0.011       0.014            -0.003           -0.786
+       Category 1     Category 4        0.008       0.002             0.006            4.449
+       Category 2     Category 1        0.033       0.037            -0.003           -0.580
+       Category 2     Category 2        0.087       0.087             0.000           -0.049
+       Category 2     Category 3        0.083       0.085            -0.001           -0.169
+       Category 2     Category 4        0.024       0.020             0.004            0.921
+       Category 3     Category 1        0.027       0.039            -0.011           -1.979
+       Category 3     Category 2        0.153       0.144             0.008            0.795
+       Category 3     Category 3        0.236       0.218             0.018            1.470
+       Category 3     Category 4        0.073       0.088            -0.015           -1.732
+       Category 4     Category 1        0.018       0.007             0.011            4.598
+       Category 4     Category 2        0.040       0.042            -0.002           -0.360
+       Category 4     Category 3        0.093       0.105            -0.012           -1.288
+       Category 4     Category 4        0.081       0.078             0.003            0.414
+     S1STESTS       S1STEXTB
+       Category 1     Category 1        0.022       0.020             0.002            0.574
+       Category 1     Category 2        0.012       0.016            -0.005           -1.229
+       Category 1     Category 3        0.004       0.001             0.002            2.335
+       Category 1     Category 4        0.000       0.000             0.000           -0.049
+       Category 2     Category 1        0.044       0.047            -0.004           -0.568
+       Category 2     Category 2        0.188       0.184             0.004            0.367
+       Category 2     Category 3        0.067       0.068            -0.001           -0.173
+       Category 2     Category 4        0.002       0.001             0.001            0.856
+       Category 3     Category 1        0.011       0.010             0.000            0.146
+       Category 3     Category 2        0.183       0.184            -0.002           -0.139
+       Category 3     Category 3        0.326       0.311             0.015            1.053
+       Category 3     Category 4        0.018       0.032            -0.014           -2.687
+       Category 4     Category 1        0.001       0.000             0.001            3.789
+       Category 4     Category 2        0.010       0.008             0.002            0.892
+       Category 4     Category 3        0.058       0.074            -0.016           -2.056
+       Category 4     Category 4        0.056       0.043             0.013            2.214
+     S1STESTS       S1SSKILL
+       Category 1     Category 1        0.015       0.015             0.000            0.093
+       Category 1     Category 2        0.016       0.021            -0.005           -1.148
+       Category 1     Category 3        0.005       0.001             0.004            3.417
+       Category 1     Category 4        0.001       0.000             0.001           43.963
+       Category 2     Category 1        0.013       0.016            -0.002           -0.613
+       Category 2     Category 2        0.163       0.173            -0.010           -0.894
+       Category 2     Category 3        0.124       0.111             0.013            1.371
+       Category 2     Category 4        0.001       0.001             0.000            0.209
+       Category 3     Category 1        0.003       0.001             0.002            2.380
+       Category 3     Category 2        0.097       0.081             0.016            1.948
+       Category 3     Category 3        0.398       0.406            -0.008           -0.563
+       Category 3     Category 4        0.039       0.050            -0.011           -1.696
+       Category 4     Category 1        0.000       0.000             0.000           -0.020
+       Category 4     Category 2        0.000       0.001            -0.001           -0.787
+       Category 4     Category 3        0.046       0.055            -0.009           -1.304
+       Category 4     Category 4        0.079       0.069             0.010            1.341
+     S1STESTS       S1SASSEX
+       Category 1     Category 1        0.013       0.011             0.002            0.655
+       Category 1     Category 2        0.013       0.022            -0.009           -2.017
+       Category 1     Category 3        0.009       0.004             0.005            2.875
+       Category 1     Category 4        0.002       0.000             0.002           47.203
+       Category 2     Category 1        0.006       0.009            -0.003           -0.946
+       Category 2     Category 2        0.142       0.125             0.017            1.766
+       Category 2     Category 3        0.148       0.165            -0.017           -1.493
+       Category 2     Category 4        0.004       0.002             0.002            1.552
+       Category 3     Category 1        0.001       0.000             0.001            1.205
+       Category 3     Category 2        0.028       0.036            -0.008           -1.483
+       Category 3     Category 3        0.442       0.409             0.032            2.211
+       Category 3     Category 4        0.066       0.092            -0.026           -3.008
+       Category 4     Category 1        0.000       0.000             0.000           -0.017
+       Category 4     Category 2        0.000       0.000             0.000           -0.352
+       Category 4     Category 3        0.016       0.038            -0.022           -3.786
+       Category 4     Category 4        0.109       0.087             0.022            2.637
+     S1STESTS       S1SENJNG
+       Category 1     Category 1        0.013       0.009             0.004            1.435
+       Category 1     Category 2        0.015       0.018            -0.003           -0.709
+       Category 1     Category 3        0.006       0.009            -0.003           -1.119
+       Category 1     Category 4        0.003       0.001             0.002            2.895
+       Category 2     Category 1        0.030       0.031            -0.001           -0.207
+       Category 2     Category 2        0.148       0.123             0.025            2.552
+       Category 2     Category 3        0.110       0.129            -0.019           -1.883
+       Category 2     Category 4        0.010       0.017            -0.008           -1.960
+       Category 3     Category 1        0.012       0.018            -0.007           -1.651
+       Category 3     Category 2        0.120       0.140            -0.020           -1.958
+       Category 3     Category 3        0.322       0.292             0.030            2.204
+       Category 3     Category 4        0.087       0.088            -0.001           -0.131
+       Category 4     Category 1        0.004       0.001             0.004            4.128
+       Category 4     Category 2        0.012       0.014            -0.003           -0.726
+       Category 4     Category 3        0.057       0.065            -0.007           -1.015
+       Category 4     Category 4        0.052       0.045             0.007            1.107
+     S1STESTS       S1SWASTE
+       Category 1     Category 1        0.010       0.006             0.003            1.464
+       Category 1     Category 2        0.005       0.011            -0.005           -1.708
+       Category 1     Category 3        0.016       0.018            -0.002           -0.461
+       Category 1     Category 4        0.006       0.002             0.004            2.514
+       Category 2     Category 1        0.017       0.021            -0.004           -0.919
+       Category 2     Category 2        0.062       0.057             0.004            0.616
+       Category 2     Category 3        0.181       0.172             0.009            0.782
+       Category 2     Category 4        0.040       0.050            -0.010           -1.485
+       Category 3     Category 1        0.010       0.012            -0.002           -0.737
+       Category 3     Category 2        0.050       0.053            -0.003           -0.492
+       Category 3     Category 3        0.294       0.295            -0.001           -0.067
+       Category 3     Category 4        0.185       0.178             0.007            0.639
+       Category 4     Category 1        0.004       0.001             0.003            3.982
+       Category 4     Category 2        0.009       0.004             0.004            2.241
+       Category 4     Category 3        0.044       0.051            -0.007           -1.051
+       Category 4     Category 4        0.068       0.069            -0.001           -0.116
+     S1STESTS       S1SBORIN
+       Category 1     Category 1        0.013       0.011             0.002            0.704
+       Category 1     Category 2        0.008       0.016            -0.007           -2.020
+       Category 1     Category 3        0.010       0.009             0.001            0.181
+       Category 1     Category 4        0.006       0.001             0.005            4.552
+       Category 2     Category 1        0.038       0.047            -0.009           -1.452
+       Category 2     Category 2        0.129       0.113             0.016            1.654
+       Category 2     Category 3        0.111       0.113            -0.002           -0.179
+       Category 2     Category 4        0.022       0.028            -0.006           -1.194
+       Category 3     Category 1        0.037       0.036             0.001            0.124
+       Category 3     Category 2        0.136       0.147            -0.011           -1.073
+       Category 3     Category 3        0.252       0.244             0.008            0.637
+       Category 3     Category 4        0.114       0.111             0.004            0.386
+       Category 4     Category 1        0.009       0.003             0.006            4.165
+       Category 4     Category 2        0.022       0.019             0.003            0.850
+       Category 4     Category 3        0.047       0.055            -0.008           -1.107
+       Category 4     Category 4        0.046       0.048            -0.002           -0.390
+     S1STEXTB       S1SSKILL
+       Category 1     Category 1        0.022       0.018             0.004            1.077
+       Category 1     Category 2        0.043       0.048            -0.005           -0.811
+       Category 1     Category 3        0.012       0.011             0.000            0.102
+       Category 1     Category 4        0.001       0.000             0.001            4.899
+       Category 2     Category 1        0.007       0.013            -0.005           -1.611
+       Category 2     Category 2        0.174       0.172             0.002            0.157
+       Category 2     Category 3        0.203       0.202             0.001            0.104
+       Category 2     Category 4        0.009       0.006             0.003            1.193
+       Category 3     Category 1        0.002       0.001             0.001            1.383
+       Category 3     Category 2        0.057       0.055             0.003            0.403
+       Category 3     Category 3        0.348       0.329             0.019            1.352
+       Category 3     Category 4        0.047       0.070            -0.024           -3.117
+       Category 4     Category 1        0.000       0.000             0.000           -0.032
+       Category 4     Category 2        0.001       0.001             0.000            0.440
+       Category 4     Category 3        0.012       0.032            -0.020           -3.879
+       Category 4     Category 4        0.064       0.043             0.020            3.357
+     S1STEXTB       S1SASSEX
+       Category 1     Category 1        0.018       0.013             0.005            1.407
+       Category 1     Category 2        0.027       0.044            -0.017           -2.789
+       Category 1     Category 3        0.031       0.020             0.011            2.581
+       Category 1     Category 4        0.002       0.000             0.002            5.272
+       Category 2     Category 1        0.002       0.007            -0.005           -2.117
+       Category 2     Category 2        0.123       0.114             0.009            0.895
+       Category 2     Category 3        0.245       0.257            -0.012           -0.920
+       Category 2     Category 4        0.023       0.014             0.009            2.650
+       Category 3     Category 1        0.001       0.000             0.001            1.150
+       Category 3     Category 2        0.032       0.025             0.007            1.600
+       Category 3     Category 3        0.335       0.316             0.019            1.358
+       Category 3     Category 4        0.086       0.114            -0.028           -2.940
+       Category 4     Category 1        0.000       0.000             0.000           -0.022
+       Category 4     Category 2        0.001       0.000             0.001            2.014
+       Category 4     Category 3        0.004       0.022            -0.018           -4.051
+       Category 4     Category 4        0.071       0.053             0.017            2.601
+     S1STEXTB       S1SENJNG
+       Category 1     Category 1        0.019       0.014             0.004            1.224
+       Category 1     Category 2        0.038       0.036             0.002            0.348
+       Category 1     Category 3        0.017       0.025            -0.008           -1.742
+       Category 1     Category 4        0.004       0.002             0.001            0.869
+       Category 2     Category 1        0.022       0.032            -0.009           -1.762
+       Category 2     Category 2        0.157       0.144             0.013            1.216
+       Category 2     Category 3        0.184       0.184             0.001            0.054
+       Category 2     Category 4        0.028       0.033            -0.006           -1.027
+       Category 3     Category 1        0.016       0.013             0.003            0.856
+       Category 3     Category 2        0.094       0.107            -0.013           -1.422
+       Category 3     Category 3        0.265       0.247             0.017            1.354
+       Category 3     Category 4        0.081       0.087            -0.006           -0.660
+       Category 4     Category 1        0.003       0.001             0.002            3.061
+       Category 4     Category 2        0.006       0.009            -0.002           -0.824
+       Category 4     Category 3        0.030       0.039            -0.009           -1.574
+       Category 4     Category 4        0.038       0.028             0.009            1.917
+     S1STEXTB       S1SWASTE
+       Category 1     Category 1        0.013       0.010             0.004            1.240
+       Category 1     Category 2        0.013       0.019            -0.007           -1.626
+       Category 1     Category 3        0.039       0.041            -0.001           -0.211
+       Category 1     Category 4        0.012       0.008             0.004            1.374
+       Category 2     Category 1        0.012       0.021            -0.009           -2.191
+       Category 2     Category 2        0.064       0.064             0.001            0.100
+       Category 2     Category 3        0.226       0.225             0.002            0.122
+       Category 2     Category 4        0.090       0.083             0.008            0.922
+       Category 3     Category 1        0.013       0.009             0.004            1.285
+       Category 3     Category 2        0.045       0.040             0.005            0.788
+       Category 3     Category 3        0.241       0.240             0.001            0.048
+       Category 3     Category 4        0.157       0.165            -0.008           -0.726
+       Category 4     Category 1        0.003       0.000             0.002            3.879
+       Category 4     Category 2        0.004       0.003             0.001            0.553
+       Category 4     Category 3        0.030       0.030            -0.001           -0.145
+       Category 4     Category 4        0.039       0.042            -0.003           -0.503
+     S1STEXTB       S1SBORIN
+       Category 1     Category 1        0.021       0.019             0.003            0.740
+       Category 1     Category 2        0.025       0.031            -0.006           -1.207
+       Category 1     Category 3        0.019       0.023            -0.005           -1.000
+       Category 1     Category 4        0.012       0.004             0.007            3.695
+       Category 2     Category 1        0.034       0.050            -0.016           -2.397
+       Category 2     Category 2        0.149       0.136             0.012            1.187
+       Category 2     Category 3        0.167       0.158             0.010            0.894
+       Category 2     Category 4        0.042       0.049            -0.006           -1.004
+       Category 3     Category 1        0.037       0.027             0.010            2.065
+       Category 3     Category 2        0.108       0.116            -0.007           -0.751
+       Category 3     Category 3        0.206       0.207            -0.001           -0.058
+       Category 3     Category 4        0.105       0.106            -0.001           -0.097
+       Category 4     Category 1        0.004       0.002             0.003            2.410
+       Category 4     Category 2        0.013       0.011             0.002            0.668
+       Category 4     Category 3        0.028       0.033            -0.005           -0.974
+       Category 4     Category 4        0.030       0.030             0.000           -0.067
+     S1SSKILL       S1SASSEX
+       Category 1     Category 1        0.017       0.011             0.006            1.973
+       Category 1     Category 2        0.012       0.018            -0.007           -1.639
+       Category 1     Category 3        0.003       0.002             0.001            0.365
+       Category 1     Category 4        0.000       0.000             0.000           -0.024
+       Category 2     Category 1        0.003       0.009            -0.007           -2.309
+       Category 2     Category 2        0.122       0.125            -0.003           -0.287
+       Category 2     Category 3        0.147       0.140             0.007            0.693
+       Category 2     Category 4        0.004       0.001             0.002            2.368
+       Category 3     Category 1        0.001       0.000             0.001            1.216
+       Category 3     Category 2        0.049       0.040             0.009            1.600
+       Category 3     Category 3        0.449       0.441             0.008            0.551
+       Category 3     Category 4        0.076       0.093            -0.017           -1.956
+       Category 4     Category 1        0.000       0.000             0.000           -0.016
+       Category 4     Category 2        0.001       0.000             0.001            3.699
+       Category 4     Category 3        0.015       0.033            -0.018           -3.306
+       Category 4     Category 4        0.102       0.087             0.015            1.833
+     S1SSKILL       S1SENJNG
+       Category 1     Category 1        0.012       0.008             0.003            1.226
+       Category 1     Category 2        0.012       0.015            -0.003           -0.955
+       Category 1     Category 3        0.004       0.007            -0.004           -1.491
+       Category 1     Category 4        0.004       0.000             0.003            5.224
+       Category 2     Category 1        0.026       0.031            -0.005           -0.929
+       Category 2     Category 2        0.131       0.116             0.015            1.588
+       Category 2     Category 3        0.107       0.114            -0.008           -0.795
+       Category 2     Category 4        0.012       0.014            -0.003           -0.757
+       Category 3     Category 1        0.020       0.020             0.000           -0.040
+       Category 3     Category 2        0.140       0.151            -0.012           -1.075
+       Category 3     Category 3        0.335       0.311             0.024            1.713
+       Category 3     Category 4        0.080       0.092            -0.012           -1.366
+       Category 4     Category 1        0.003       0.001             0.002            2.402
+       Category 4     Category 2        0.013       0.013             0.001            0.152
+       Category 4     Category 3        0.048       0.062            -0.013           -1.845
+       Category 4     Category 4        0.056       0.044             0.011            1.825
+     S1SSKILL       S1SWASTE
+       Category 1     Category 1        0.009       0.006             0.003            1.442
+       Category 1     Category 2        0.004       0.009            -0.005           -1.630
+       Category 1     Category 3        0.012       0.015            -0.003           -0.818
+       Category 1     Category 4        0.005       0.002             0.004            2.717
+       Category 2     Category 1        0.016       0.020            -0.004           -1.026
+       Category 2     Category 2        0.059       0.055             0.004            0.658
+       Category 2     Category 3        0.159       0.157             0.001            0.120
+       Category 2     Category 4        0.042       0.043             0.000           -0.067
+       Category 3     Category 1        0.012       0.013            -0.002           -0.502
+       Category 3     Category 2        0.057       0.058            -0.001           -0.074
+       Category 3     Category 3        0.332       0.316             0.016            1.122
+       Category 3     Category 4        0.174       0.187            -0.013           -1.123
+       Category 4     Category 1        0.004       0.001             0.003            4.401
+       Category 4     Category 2        0.004       0.004             0.000            0.239
+       Category 4     Category 3        0.034       0.048            -0.014           -2.155
+       Category 4     Category 4        0.077       0.067             0.010            1.305
+     S1SSKILL       S1SBORIN
+       Category 1     Category 1        0.015       0.010             0.005            1.807
+       Category 1     Category 2        0.007       0.013            -0.006           -1.720
+       Category 1     Category 3        0.002       0.007            -0.006           -2.184
+       Category 1     Category 4        0.006       0.001             0.005            5.668
+       Category 2     Category 1        0.032       0.045            -0.013           -2.061
+       Category 2     Category 2        0.113       0.105             0.008            0.832
+       Category 2     Category 3        0.103       0.101             0.003            0.280
+       Category 2     Category 4        0.028       0.024             0.004            0.855
+       Category 3     Category 1        0.043       0.039             0.004            0.678
+       Category 3     Category 2        0.160       0.159             0.001            0.085
+       Category 3     Category 3        0.279       0.260             0.019            1.443
+       Category 3     Category 4        0.092       0.116            -0.024           -2.493
+       Category 4     Category 1        0.006       0.002             0.004            2.742
+       Category 4     Category 2        0.016       0.018            -0.001           -0.355
+       Category 4     Category 3        0.035       0.053            -0.018           -2.631
+       Category 4     Category 4        0.062       0.047             0.015            2.307
+     S1SASSEX       S1SENJNG
+       Category 1     Category 1        0.009       0.006             0.003            1.278
+       Category 1     Category 2        0.006       0.010            -0.004           -1.227
+       Category 1     Category 3        0.003       0.004            -0.002           -0.863
+       Category 1     Category 4        0.003       0.000             0.002            5.608
+       Category 2     Category 1        0.025       0.025             0.000            0.016
+       Category 2     Category 2        0.095       0.081             0.013            1.642
+       Category 2     Category 3        0.056       0.069            -0.014           -1.802
+       Category 2     Category 4        0.005       0.007            -0.002           -0.736
+       Category 3     Category 1        0.021       0.027            -0.006           -1.180
+       Category 3     Category 2        0.174       0.181            -0.007           -0.602
+       Category 3     Category 3        0.348       0.325             0.023            1.663
+       Category 3     Category 4        0.073       0.083            -0.009           -1.133
+       Category 4     Category 1        0.004       0.001             0.003            2.575
+       Category 4     Category 2        0.021       0.023            -0.002           -0.344
+       Category 4     Category 3        0.086       0.096            -0.010           -1.156
+       Category 4     Category 4        0.070       0.060             0.009            1.323
+     S1SASSEX       S1SWASTE
+       Category 1     Category 1        0.007       0.004             0.003            1.569
+       Category 1     Category 2        0.002       0.006            -0.004           -1.871
+       Category 1     Category 3        0.008       0.009            -0.001           -0.380
+       Category 1     Category 4        0.004       0.001             0.003            2.611
+       Category 2     Category 1        0.015       0.017            -0.001           -0.377
+       Category 2     Category 2        0.045       0.040             0.004            0.749
+       Category 2     Category 3        0.100       0.102            -0.002           -0.232
+       Category 2     Category 4        0.022       0.023            -0.001           -0.243
+       Category 3     Category 1        0.013       0.018            -0.006           -1.421
+       Category 3     Category 2        0.069       0.072            -0.003           -0.366
+       Category 3     Category 3        0.360       0.347             0.013            0.924
+       Category 3     Category 4        0.175       0.179            -0.004           -0.371
+       Category 4     Category 1        0.005       0.001             0.004            4.397
+       Category 4     Category 2        0.011       0.007             0.003            1.310
+       Category 4     Category 3        0.066       0.077            -0.011           -1.392
+       Category 4     Category 4        0.098       0.095             0.003            0.370
+     S1SASSEX       S1SBORIN
+       Category 1     Category 1        0.011       0.007             0.004            1.510
+       Category 1     Category 2        0.003       0.008            -0.006           -2.112
+       Category 1     Category 3        0.003       0.004            -0.002           -0.901
+       Category 1     Category 4        0.004       0.001             0.004            5.633
+       Category 2     Category 1        0.030       0.035            -0.004           -0.807
+       Category 2     Category 2        0.076       0.073             0.003            0.432
+       Category 2     Category 3        0.063       0.062             0.001            0.070
+       Category 2     Category 4        0.013       0.013             0.000           -0.121
+       Category 3     Category 1        0.043       0.050            -0.007           -1.100
+       Category 3     Category 2        0.182       0.184            -0.002           -0.141
+       Category 3     Category 3        0.285       0.273             0.012            0.928
+       Category 3     Category 4        0.107       0.109            -0.003           -0.279
+       Category 4     Category 1        0.013       0.004             0.008            4.164
+       Category 4     Category 2        0.034       0.030             0.004            0.837
+       Category 4     Category 3        0.071       0.081            -0.010           -1.279
+       Category 4     Category 4        0.064       0.066            -0.002           -0.277
+     S1SENJNG       S1SWASTE
+       Category 1     Category 1        0.025       0.020             0.005            1.166
+       Category 1     Category 2        0.014       0.024            -0.010           -2.123
+       Category 1     Category 3        0.013       0.015            -0.002           -0.540
+       Category 1     Category 4        0.007       0.000             0.007           17.109
+       Category 2     Category 1        0.008       0.018            -0.010           -2.503
+       Category 2     Category 2        0.086       0.075             0.010            1.314
+       Category 2     Category 3        0.180       0.185            -0.006           -0.490
+       Category 2     Category 4        0.022       0.016             0.006            1.601
+       Category 3     Category 1        0.004       0.002             0.002            1.871
+       Category 3     Category 2        0.022       0.026            -0.004           -0.758
+       Category 3     Category 3        0.314       0.303             0.011            0.773
+       Category 3     Category 4        0.153       0.164            -0.011           -0.983
+       Category 4     Category 1        0.003       0.000             0.003           37.549
+       Category 4     Category 2        0.003       0.000             0.002            4.560
+       Category 4     Category 3        0.029       0.032            -0.003           -0.622
+       Category 4     Category 4        0.117       0.118            -0.001           -0.141
+     S1SENJNG       S1SBORIN
+       Category 1     Category 1        0.038       0.031             0.007            1.346
+       Category 1     Category 2        0.013       0.024            -0.010           -2.239
+       Category 1     Category 3        0.002       0.005            -0.003           -1.411
+       Category 1     Category 4        0.006       0.000             0.006           21.085
+       Category 2     Category 1        0.046       0.051            -0.006           -0.894
+       Category 2     Category 2        0.169       0.143             0.026            2.521
+       Category 2     Category 3        0.073       0.093            -0.020           -2.287
+       Category 2     Category 4        0.008       0.008             0.000            0.082
+       Category 3     Category 1        0.009       0.013            -0.004           -1.294
+       Category 3     Category 2        0.105       0.122            -0.018           -1.803
+       Category 3     Category 3        0.300       0.267             0.034            2.539
+       Category 3     Category 4        0.080       0.092            -0.013           -1.484
+       Category 4     Category 1        0.004       0.000             0.003            9.010
+       Category 4     Category 2        0.008       0.006             0.002            0.739
+       Category 4     Category 3        0.045       0.056            -0.011           -1.652
+       Category 4     Category 4        0.095       0.088             0.007            0.781
+     S1SWASTE       S1SBORIN
+       Category 1     Category 1        0.034       0.021             0.013            2.994
+       Category 1     Category 2        0.005       0.015            -0.010           -2.731
+       Category 1     Category 3        0.001       0.003            -0.003           -1.470
+       Category 1     Category 4        0.000       0.000             0.000           -0.336
+       Category 2     Category 1        0.034       0.034             0.000            0.032
+       Category 2     Category 2        0.074       0.061             0.013            1.853
+       Category 2     Category 3        0.012       0.029            -0.017           -3.470
+       Category 2     Category 4        0.005       0.002             0.003            2.616
+       Category 3     Category 1        0.022       0.040            -0.017           -2.951
+       Category 3     Category 2        0.185       0.186            -0.001           -0.125
+       Category 3     Category 3        0.293       0.250             0.043            3.326
+       Category 3     Category 4        0.035       0.060            -0.025           -3.497
+       Category 4     Category 1        0.006       0.002             0.004            3.165
+       Category 4     Category 2        0.030       0.032            -0.001           -0.276
+       Category 4     Category 3        0.115       0.138            -0.023           -2.201
+       Category 4     Category 4        0.147       0.127             0.021            2.079
+
+
+MODEL MODIFICATION INDICES
+
+NOTE:  Modification indices for direct effects of observed dependent variables
+regressed on covariates and residual covariances among observed dependent
+variables may not be included.  To include these, request MODINDICES (ALL).
+
+Minimum M.I. value for printing the modification index     3.840
+
+                                   M.I.     E.P.C.  Std E.P.C.  StdYX E.P.C.
+
+BY Statements
+
+SCI_ID   BY S1SUSECL               9.047    -0.180     -0.180       -0.101
+SCI_ID   BY S1SUSEJO               6.370     0.144      0.144        0.082
+SCI_ID   BY S1STEXTB               6.738     0.107      0.107        0.066
+SCI_ID   BY S1SSKILL               4.555     0.125      0.125        0.056
+SCI_ID   BY S1SASSEX               7.716    -0.171     -0.171       -0.076
+SCI_ID   BY S1SENJNG              93.822     0.596      0.596        0.274
+SCI_ID   BY S1SWASTE               9.997    -0.153     -0.153       -0.088
+SCI_ID   BY S1SBORIN              54.337    -0.311     -0.311       -0.198
+SCI_UT   BY S1SENJNG              13.433     0.274      0.274        0.126
+SCI_UT   BY S1SWASTE              20.860     0.255      0.255        0.146
+SCI_UT   BY S1SBORIN              76.835    -0.437     -0.437       -0.279
+SCI_EFF  BY S1SUSELI              15.119     0.121      0.121        0.088
+SCI_EFF  BY S1SUSEJO               7.391    -0.133     -0.133       -0.075
+SCI_EFF  BY S1SENJNG             129.392     0.644      0.644        0.296
+SCI_EFF  BY S1SWASTE              13.220    -0.160     -0.160       -0.092
+SCI_EFF  BY S1SBORIN              74.497    -0.332     -0.332       -0.212
+SCI_INT  BY S1SUSELI              28.545     0.222      0.222        0.162
+SCI_INT  BY S1SUSECL               5.434    -0.156     -0.156       -0.088
+SCI_INT  BY S1SUSEJO               9.822    -0.208     -0.208       -0.118
+
+WITH Statements
+
+S1SUSELI WITH S1SPERS1             5.861    -0.241     -0.241       -0.241
+S1SUSECL WITH S1SPERS1             5.951    -0.340     -0.340       -0.340
+S1SUSEJO WITH S1SPERS1             9.140     0.373      0.373        0.373
+S1SUSEJO WITH S1SPERS2             5.796     0.192      0.192        0.192
+S1SUSEJO WITH S1SUSELI             8.914    -0.176     -0.176       -0.176
+S1SUSEJO WITH S1SUSECL            20.398     0.392      0.392        0.392
+S1STESTS WITH S1SPERS2             5.859    -0.214     -0.214       -0.214
+S1STEXTB WITH S1SPERS2            10.588     0.212      0.212        0.212
+S1STEXTB WITH S1SUSEJO             3.998    -0.135     -0.135       -0.135
+S1SSKILL WITH S1STESTS            22.273    -0.399     -0.399       -0.399
+S1SSKILL WITH S1STEXTB             5.162     0.142      0.142        0.142
+S1SASSEX WITH S1SPERS1             4.338    -0.310     -0.310       -0.310
+S1SASSEX WITH S1STESTS            15.603     0.301      0.301        0.301
+S1SASSEX WITH S1STEXTB            11.490    -0.231     -0.231       -0.231
+S1SENJNG WITH S1SPERS1            21.860     0.648      0.648        0.648
+S1SENJNG WITH S1SUSELI             8.264     0.196      0.196        0.196
+S1SENJNG WITH S1SUSEJO             6.593    -0.232     -0.232       -0.232
+S1SENJNG WITH S1STESTS            25.945     0.441      0.441        0.441
+S1SENJNG WITH S1STEXTB             9.444     0.226      0.226        0.226
+S1SENJNG WITH S1SASSEX             6.460     0.255      0.255        0.255
+S1SWASTE WITH S1SPERS1             4.538    -0.260     -0.260       -0.260
+S1SWASTE WITH S1SPERS2             4.024    -0.166     -0.166       -0.166
+S1SWASTE WITH S1SUSELI            13.873     0.207      0.207        0.207
+S1SWASTE WITH S1SUSECL            10.354     0.231      0.231        0.231
+S1SWASTE WITH S1SUSEJO             6.048     0.174      0.174        0.174
+S1SWASTE WITH S1STEXTB            13.912    -0.260     -0.260       -0.260
+S1SWASTE WITH S1SENJNG           124.172    -1.013     -1.013       -1.013
+S1SBORIN WITH S1SUSECL            20.428    -0.311     -0.311       -0.311
+S1SBORIN WITH S1SUSEJO             9.858    -0.203     -0.203       -0.203
+S1SBORIN WITH S1STESTS             8.529    -0.212     -0.212       -0.212
+S1SBORIN WITH S1STEXTB             8.679    -0.174     -0.174       -0.174
+S1SBORIN WITH S1SASSEX            10.466    -0.262     -0.262       -0.262
+S1SBORIN WITH S1SWASTE           115.446     0.577      0.577        0.577
+
+Means/Intercepts/Thresholds
+
+[ SCI_EFF  ]                     999.000     0.000      0.000        0.000
+
+
+SAMPLE STATISTICS FOR ESTIMATED FACTOR SCORES
+
+
+     SAMPLE STATISTICS
+
+
+           Means
+              SCI_ID        SCI_ID_S      SCI_UT        SCI_UT_S      SCI_EFF
+              ________      ________      ________      ________      ________
+                0.007         0.406        -0.016         0.544        -0.019
+
+
+           Means
+              SCI_EFF_      SCI_INT       SCI_INT_
+              ________      ________      ________
+                0.449        -0.017         0.498
+
+
+           Covariances
+              SCI_ID        SCI_ID_S      SCI_UT        SCI_UT_S      SCI_EFF
+              ________      ________      ________      ________      ________
+ SCI_ID         0.760
+ SCI_ID_S      -0.014         0.002
+ SCI_UT         0.422        -0.011         0.653
+ SCI_UT_S      -0.005         0.001         0.007         0.029
+ SCI_EFF        0.488        -0.013         0.408         0.002         0.739
+ SCI_EFF_      -0.004         0.002         0.001         0.032         0.007
+ SCI_INT        0.419        -0.010         0.470         0.004         0.467
+ SCI_INT_      -0.005         0.002         0.003         0.031         0.003
+
+
+           Covariances
+              SCI_EFF_      SCI_INT       SCI_INT_
+              ________      ________      ________
+ SCI_EFF_       0.038
+ SCI_INT        0.004         0.686
+ SCI_INT_       0.036         0.007         0.036
+
+
+           Correlations
+              SCI_ID        SCI_ID_S      SCI_UT        SCI_UT_S      SCI_EFF
+              ________      ________      ________      ________      ________
+ SCI_ID         1.000
+ SCI_ID_S      -0.333         1.000
+ SCI_UT         0.599        -0.287         1.000
+ SCI_UT_S      -0.033         0.151         0.053         1.000
+ SCI_EFF        0.651        -0.296         0.588         0.012         1.000
+ SCI_EFF_      -0.026         0.157         0.006         0.962         0.044
+ SCI_INT        0.579        -0.237         0.702         0.028         0.656
+ SCI_INT_      -0.030         0.163         0.021         0.972         0.021
+
+
+           Correlations
+              SCI_EFF_      SCI_INT       SCI_INT_
+              ________      ________      ________
+ SCI_EFF_       1.000
+ SCI_INT        0.026         1.000
+ SCI_INT_       0.978         0.047         1.000
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Histograms (sample values, estimated factor scores, estimated values, residuals)
+  Scatterplots (sample values, estimated factor scores, estimated values, residuals)
+  Sample proportions and estimated probabilities
+  Item characteristic curves
+  Information curves
+  Latent variable distribution plots
+
+     Beginning Time:  14:23:23
+        Ending Time:  14:23:23
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen

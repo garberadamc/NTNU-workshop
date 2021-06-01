@@ -1,0 +1,25 @@
+TITLE:
+m1 model indirect - Lab 1
+DATA:
+FILE = "/Users/agarber/github/NTNU-workshop/12-path-models/mplus_files/nces.dat";
+ 
+VARIABLE:
+NAMES = bystlang freelnch byincome stolen t_hurt p_fight hit damaged bullied unsafe
+     disrupt gangs rac_fght late skipped mth_test rd_test; 
+ MISSING=.;
+ usevar =
+    bystlang       ! covariate
+    late skipped   ! mediators
+    mth_test;      ! outcome   
+ANALYSIS:
+estimator = MLR
+MODEL:
+late on bystlang ;
+    skipped on late bystlang ;
+    mth_test on late skipped bystlang;
+    
+    Model indirect:
+    mth_test ind bystlang;
+    mth_test via late skipped bystlang; 
+OUTPUT:
+sampstat standardized

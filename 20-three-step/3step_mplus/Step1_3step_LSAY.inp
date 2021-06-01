@@ -1,0 +1,29 @@
+TITLE:
+Step1 - 3step LSAY - Lab9
+DATA:
+FILE = "/Users/agarber/github/NTNU-workshop/20-three-step/3step_mplus/Step1_3step_LSAY.dat";
+ 
+VARIABLE:
+NAMES = Enjoy Useful Logical Job Adult female mathg12; 
+ MISSING=.;
+ categorical = Enjoy-Adult; 
+   usevar = Enjoy-Adult;
+    
+   classes = c(4); 
+    
+   auxiliary =   ! list all potential covariates and distals here
+   female        ! covariate
+   mathg12;      ! distal math test score in 12th grade 
+ANALYSIS:
+estimator = mlr; 
+    type = mixture;
+    starts = 500 100;
+OUTPUT:
+sampstat residual tech11 tech14
+SAVEDATA:
+File=3step_savedata.dat;
+    Save=cprob;
+    Missflag= 999;
+PLOT:
+type = plot3; 
+    series = Enjoy-Adult(*);

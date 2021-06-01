@@ -1,0 +1,144 @@
+---
+title: "Template Method - Nested Iterators"
+author: "Norwegian University of Science and Technology - A Course in `MplusAutomation`"
+subtitle: '*Adam Garber*'
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE)
+library(here);library(glue);library(linguisticsdown)
+```
+
+______________________________________________
+
+
+## Data source:
+
+
+______________________________________________
+
+## Change starting location to folder `23-template-method`
+```{r}
+
+source("rep_functions.R")
+
+change_here(glue("{project_location}/23-template-method"))
+
+here()
+
+```
+
+______________________________________________
+
+Load packages
+```{r, eval=TRUE}
+
+library(MplusAutomation)
+library(relimp)
+library(tidyverse)
+library(here)
+library(janitor)
+library(gt)
+
+
+```
+
+______________________________________________
+
+## 0. Write the Mplus `template.txt` file 
+
+- This is a special type of Mplus input file that includes the [[/init]] section at the top
+- This section of code provides the instructions for doing “iterations” or “loops” to generate multiple input files
+- Make sure to **UPDATE** the file-path in the template file so that the input files are generated in the correct location.
+
+______________________________________________
+
+## 1. Write Mplus input files
+
+```{r}
+
+createModels(here("PYDI_enumeration_template1.txt"))
+
+```
+
+______________________________________________
+
+## 2. Run models
+
+- `recursive = TRUE` tells R to run all models within a parent folder. The recursive option is useful because when generating large batches of input files we can use the template file to create a nested set of sub-folder to organize models by type.
+
+```{r, eval=FALSE}
+
+runModels(here("mplus_files"), recursive = TRUE) 
+
+```
+
+______________________________________________
+
+## 3. Read models
+
+```{r}
+output_enum <- readModels(here("mplus_files"), quiet = TRUE)
+```
+
+______________________________________________
+
+## 4. Extract fit information from output files
+
+
+- Any information in the ouptut or .gh5 files can be extracted and organized.
+- This includes the summary statistics which are necessary to look at for choosing the number of classes. 
+- The models can be sorted based on a give statistic, such as the BIC.
+
+```{r}
+
+showSummaryTable(output_enum, keepCols=c("Title","Parameters", "LL", "BIC","aBIC","BLRT_PValue"), sortBy="Title")
+
+```
+
+______________________________________________
+
+
+## 5. Mplus Object lists
+
+- Click on the Mplus object in your R environment. This is an object including nested lists. 
+- This code tells R to look inside the object `output_enum` and extract the probabilities from the `.gh5` file associated with the 3-class model
+
+
+```{r}
+
+conditional_probs <- as.data.frame(output_enum[["C3_PYDI_LCA.out"]]
+                           [["gh5"]]
+                           [["means_and_variances_data"]]
+                           [["estimated_probs"]]
+                           [["values"]]
+                           [seq(2, 14, 2),]) # seq("from","to","by")
+
+conditional_probs
+
+```
+
+______________________________________________
+
+## End
+
+______________________________________________
+
+
+## References
+
+Hallquist, M. N., & Wiley, J. F. (2018). MplusAutomation: An R Package for Facilitating Large-Scale Latent Variable Analyses in Mplus. Structural equation modeling: a multidisciplinary journal, 25(4), 621-638.
+
+Muthén, L. K., & Muthén, B. O. (2002). [\textcolor{blue}{How to use a Monte Carlo study to decide on sample size and determine power.}](https://www.tandfonline.com/doi/pdf/10.1207/S15328007SEM0904_8) Structural equation modeling, 9(4), 599-620.
+
+R Core Team (2017). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL http://www.R-project.org/
+
+Wickham et al., (2019). Welcome to the tidyverse. Journal of Open Source Software, 4(43), 1686, https://doi.org/10.21105/joss.01686
+
+
+
+

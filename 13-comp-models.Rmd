@@ -1,0 +1,510 @@
+---
+title: "Competing Path Models"
+author: "Norwegian University of Science and Technology - A Course in `MplusAutomation`"
+subtitle: '*Adam Garber*'
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE)
+library(here);library(glue);library(linguisticsdown)
+```
+
+______________________________________________
+
+## Preparation
+
+______________________________________________
+
+
+Example of competing path models study from [$\color{blue}{\text{Nishina, Juvonen, Witkow (2005)}}$](https://www.tandfonline.com/doi/pdf/10.1207/s15374424jccp3401_4)
+
+```{r, echo=FALSE, eval=TRUE, out.width = "100%", out.height= "100%", fig.pos="h"}
+include_graphics2("https://garberadamc.github.io/project-site/figures/fig1_Nishina.png")
+```
+*figure*. Picture adapted from Nishina, Juvonen, Witkow (2005)
+
+______________________________________________
+
+## Data source: 
+
+This lab exercise utilizes the *California Test Score Data Set 1998-1999* from the California Department of Education (Stock, James, and Watson, 2003) [$\color{blue}{\text{See documentation here}}$](https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/Caschool.html)
+
+This dataset is available via the R-package {`Ecdat`} and can be directly loaded into the R environment. 
+
+**Note:** All models specified in the following exercise are for demonstration only and are **not** theoretically justified or valid. 
+
+______________________________________________
+
+Load packages
+```{r, eval=TRUE}
+
+library(MplusAutomation)
+library(haven)
+library(tidyverse)
+library(here)
+library(corrplot)
+library(reshape2)
+library(janitor)
+library(ggridges)
+library(DiagrammeR)
+library(semPlot)
+library(sjPlot)
+library(Ecdat)
+library(gt)
+library(gtsummary)
+```
+
+______________________________________________
+
+## Change starting location to folder `13-comp-models`
+```{r}
+
+source("rep_functions.R")
+
+change_here(glue("{project_location}/13-comp-models"))
+
+here()
+
+```
+
+______________________________________________
+
+## Begin lab 2 exercise
+
+______________________________________________
+
+Read the dataframe into your R-environment from package {`Ecdat`}
+```{r}
+
+data(Caschool)
+
+ca_schools <- as.data.frame(Caschool)
+
+```
+
+Look at the data with `glimpse`
+
+```{r, eval=FALSE}
+
+glimpse(ca_schools)
+
+```
+
+______________________________________________
+
+Subset variables to use in path model analyses with `select`
+```{r}
+
+path_vars <- ca_schools %>% 
+  select(str, expnstu, compstu, elpct, mealpct,
+         readscr, mathscr, testscr)
+
+```
+
+______________________________________________
+
+## Explore the data
+
+K through 8th grade schools in California ($N = 420$)
+
+Take a look at focal variables, make a `tribble` table
+```{r, eval=TRUE}
+
+var_table <- tribble(
+   ~"Name",    ~"Labels",                                     
+ #-----------|----------------------------------------------|,
+  "str"       , "student teacher ratio"                      ,
+  "expnstu"   , "expenditure per student"                    ,
+  "compstu"   , "computer per student"                       ,
+  "elpct"     , "percent of English learners"                ,
+ "mealpct"    , "percent qualifying for reduced-price lunch" ,
+  "readscr"   , "average reading score"                      ,
+  "mathscr"   , "average math score"                         ,
+  "testscr"   , "average test score (read.scr+math.scr)/2"   )
+
+var_table %>% 
+  gt()
+```
+
+______________________________________________
+
+check some basic descriptives with the {`gtsummary`} package
+```{r}
+
+table1 <- tbl_summary(path_vars,
+                      statistic = list(all_continuous() ~ "{mean} ({sd})"),
+                      missing = "no" ) %>%
+  bold_labels() 
+
+table1
+```
+
+______________________________________________
+
+look at shape of variable distributions
+```{r}
+
+melt(path_vars) %>%                  
+  ggplot(., aes(x=value, label=variable)) +   
+  geom_density(aes(fill = variable),
+               alpha = .5, show.legend = FALSE) + 
+  facet_wrap(~variable, scales = "free")  +
+  theme_minimal()
+
+```
+
+______________________________________________
+
+look at correlation matrix with {`corrplot`}
+
+```{r}
+
+p_cor <- cor(path_vars, use = "pairwise.complete.obs")
+
+corrplot(p_cor, 
+         method = "color",
+         type = "upper", 
+         tl.col="black", 
+         tl.srt=45)
+
+```
+
+______________________________________________
+
+## Specifying path models using {`MplusAutomation`}
+
+recall what the unrestricted variance-covariance matrix **looks** like 
+
+```{r, echo=FALSE, eval=TRUE, out.width = "80%", out.height= "80%", fig.pos="h"}
+
+include_graphics2("https://garberadamc.github.io/project-site/figures/unrestrict_model.png")
+```
+
+*figure*. Unrestricted variance covariance matrix picture from {`openMX`} video tutorial. 
+
+______________________________________________
+
+## Estimate model 1 
+
+Indirect path model:
+
+1. **covariate**: ratio of computers to students (`compstu`)
+2. **mediator**: percent qualifying for reduced-price lunch (`mealpct`)
+3. **outcome**: average math score (`mathscr`)
+
+______________________________________________
+
+Path diagram model 1
+```{r, echo=FALSE, eval=TRUE, out.width = "80%", out.height= "80%", fig.pos="h"}
+
+include_graphics2("https://garberadamc.github.io/project-site/figures/model1_indirect.png")
+```
+
+______________________________________________
+
+```{r, eval=FALSE}
+
+m1_path  <- mplusObject(
+  TITLE = "m1 model indirect - Lab 1", 
+  VARIABLE = 
+   "usevar =
+    compstu         ! covariate
+    mealpct         ! mediator 
+    mathscr;        ! outcome",            
+  
+  ANALYSIS = 
+    "estimator = MLR" ,
+  
+  MODEL = 
+   "mathscr on compstu;         ! direct path (c')
+    mathscr on mealpct;         ! b path
+    mealpct on compstu;         ! a path
+    
+    Model indirect:
+    mathscr ind compstu;" ,
+  
+  OUTPUT = "sampstat standardized modindices (ALL)",
+  
+  usevariables = colnames(path_vars),   
+  rdata = path_vars)                    
+
+m1_path_fit <- mplusModeler(m1_path,
+               dataout=here("mplus_files", "CA_schls.dat"),       
+               modelout=here("mplus_files", "m1_path_indirect.inp"),
+               check=TRUE, run = TRUE, hashfilename = FALSE)
+
+```
+
+______________________________________________
+
+View path diagram for model 1 with standardized estimates (using Diagrammer in Mplus)
+```{r, echo=FALSE, eval=TRUE, out.width = "80%", out.height= "80%", fig.pos="h"}
+
+include_graphics2("https://garberadamc.github.io/project-site/figures/m1_path.png")
+
+```
+
+______________________________________________
+
+## Estimate model 2
+
+change variable status (**switch mediator and covariate variables**)
+
+Indirect path model:
+
+1. covariate: percent qualifying for reduced-price lunch (`mealpct`)
+2.  mediator: ratio of computers to students (`compstu`)
+3.   outcome: average math score (`mathscr`)
+
+______________________________________________
+
+Path diagram model 2
+```{r, echo=FALSE, eval=TRUE, out.width = "80%", out.height= "80%", fig.pos="h"}
+
+include_graphics2("https://garberadamc.github.io/project-site/figures/model2_indirect.png")
+```
+
+______________________________________________
+
+
+```{r, eval=FALSE}
+
+m2_path  <- mplusObject(
+  TITLE = "m2 model indirect", 
+  VARIABLE = 
+   "usevar =
+    mealpct           ! covariate
+    compstu           ! mediator 
+    mathscr;          ! outcome",            
+  
+  ANALYSIS = 
+    "estimator = MLR" ,
+  
+  MODEL = 
+   "mathscr on compstu;         ! direct path (c')
+    mathscr on mealpct;         ! b path
+    mealpct on compstu;         ! a path
+    
+    Model indirect:
+    mathscr ind compstu;" ,
+  
+  OUTPUT = "sampstat standardized modindices (ALL)",
+  
+  usevariables = colnames(path_vars),   
+  rdata = path_vars)                    
+
+m2_path_fit <- mplusModeler(m2_path,
+                     dataout=here("mplus_files", "CA_schls.dat"),       
+                    modelout=here("mplus_files", "m2_path_indirect.inp"),
+                    check=TRUE, run = TRUE, hashfilename = FALSE)
+
+```
+
+______________________________________________
+
+View path diagram for model 2 with standardized estimates (using the Diagrammer in Mplus)
+```{r, echo=FALSE, eval=TRUE, out.width = "80%", out.height= "80%", fig.pos="h"}
+
+include_graphics2("https://garberadamc.github.io/project-site/figures/m2_path.png")
+
+```
+
+______________________________________________
+
+## Estimate model 3 
+
+Path model with interaction (moderation):
+
+1. covariate-moderator: percent qualifying for reduced-price lunch (`mealpct`)
+2. covariate-moderator: ratio of computers to students (`compstu`)
+3. outcome: average math score (`mathscr`)
+
+______________________________________________
+
+Path diagram model 3
+```{r, echo=FALSE, eval=TRUE, out.width = "80%", out.height= "80%", fig.pos="h"}
+
+include_graphics2("https://garberadamc.github.io/project-site/figures/model3_interact.png")
+```
+
+______________________________________________
+
+```{r, eval=FALSE}
+
+m3_path  <- mplusObject(
+  TITLE = "m3 model interact", 
+  VARIABLE = 
+   "usevar =
+    compstu           ! covariate-moderator
+    mealpct           ! covariate-moderator
+    mathscr           ! outcome
+    int_ab;           ! interaction term ", 
+  
+  DEFINE = 
+    "int_ab = compstu*mealpct;  ! create interaction term" ,
+  
+  ANALYSIS = 
+    "estimator = MLR" ,
+  
+  MODEL = 
+   "mathscr on compstu mealpct int_ab; ",
+  
+  OUTPUT = "sampstat standardized modindices (ALL)",
+  
+  usevariables = colnames(path_vars),   
+  rdata = path_vars)                    
+
+m3_path_fit <- mplusModeler(m3_path,
+                    dataout=here("mplus_files", "CA_schls.dat"),       
+                    modelout=here("mplus_files", "m3_path_interact.inp"),
+                    check=TRUE, run = TRUE, hashfilename = FALSE)
+
+```
+
+______________________________________________
+
+View path diagram for model 3 with standardized estimates (using the Diagrammer in Mplus)
+```{r, echo=FALSE, eval=TRUE, out.width = "80%", out.height= "80%", fig.pos="h"}
+
+include_graphics2("https://garberadamc.github.io/project-site/figures/m3_path.png")
+
+```
+
+______________________________________________
+
+## Estimate model 4
+
+______________________________________________
+
+Two indirect paths or "mediators"
+```{r, eval=FALSE}
+
+m4_path  <- mplusObject(
+  TITLE = "m4 model indirect (two mediators)", 
+  VARIABLE = 
+   "usevar =
+    str               ! covariate
+    elpct             ! mediator
+    mealpct           ! mediator
+    mathscr           ! outcome", 
+  
+  DEFINE = 
+    "int_ab = compstu*mealpct;  ! create interaction term" ,
+  
+  ANALYSIS = 
+    "estimator = MLR" ,
+  
+  MODEL = 
+   "mathscr on str;             ! direct path (c')
+    mathscr on elpct mealpct;   ! b paths
+    elpct mealpct on str;       ! a paths
+    
+    Model indirect:
+    mathscr ind str;" ,
+  
+  OUTPUT = "sampstat standardized modindices (ALL)",
+  
+  usevariables = colnames(path_vars),   
+  rdata = path_vars)                    
+
+m4_path_fit <- mplusModeler(m4_path,
+                    dataout=here("mplus_files", "CA_schls.dat"),       
+                    modelout=here("mplus_files", "m4_path_indirect.inp"),
+                    check=TRUE, run = TRUE, hashfilename = FALSE)
+
+```
+
+______________________________________________
+
+View path diagram for model 4 with standardized estimates (using the Diagrammer in Mplus)
+```{r, echo=FALSE, eval=TRUE, out.width = "80%", out.height= "80%", fig.pos="h"}
+
+include_graphics2("https://garberadamc.github.io/project-site/figures/m4_path.png")
+
+```
+
+______________________________________________
+
+## Estimate model 5
+
+______________________________________________
+
+Add modification statement - correlate mediators `mealpct with elpct`
+```{r, eval=FALSE}
+
+m5_path  <- mplusObject(
+  TITLE = "m5 model indirect (correlate mediators)", 
+  VARIABLE = 
+   "usevar =
+    str               ! covariate
+    elpct             ! mediator
+    mealpct           ! mediator
+    mathscr           ! outcome", 
+  
+  DEFINE = 
+    "int_ab = compstu*mealpct;  ! create interaction term" ,
+  
+  ANALYSIS = 
+    "estimator = MLR" ,
+  
+  MODEL = 
+   "mathscr on str;             ! direct path (c')
+    mathscr on elpct mealpct;   ! b paths
+    elpct mealpct on str;       ! a paths
+    
+    mealpct with elpct          ! modification statement 
+    
+    Model indirect:
+    mathscr ind str; " ,
+  
+  OUTPUT = "sampstat standardized modindices (ALL)",
+  
+  usevariables = colnames(path_vars),   
+  rdata = path_vars)                    
+
+m5_path_fit <- mplusModeler(m5_path,
+                    dataout=here("mplus_files", "CA_schls.dat"),       
+                    modelout=here("mplus_files", "m5_path_indirect.inp"),
+                    check=TRUE, run = TRUE, hashfilename = FALSE)
+
+```
+
+______________________________________________
+
+View path diagram for model 5 with standardized estimates (using the Diagrammer in Mplus)
+```{r, echo=FALSE, eval=TRUE, out.width = "80%", out.height= "80%", fig.pos="h"}
+
+include_graphics2("https://garberadamc.github.io/project-site/figures/m5_path.png")
+
+```
+
+
+
+______________________________________________
+
+## End 
+
+______________________________________________
+
+## References
+
+Hallquist, M. N., & Wiley, J. F. (2018). MplusAutomation: An R Package for Facilitating Large-Scale Latent Variable Analyses in Mplus. Structural equation modeling: a multidisciplinary journal, 25(4), 621-638.
+
+Horst, A. (2020). Course & Workshop Materials. GitHub Repositories, https://https://allisonhorst.github.io/
+
+Ingels, S. J., Pratt, D. J., Herget, D. R., Burns, L. J., Dever, J. A., Ottem, R., ... & Leinwand, S. (2011). High School Longitudinal Study of 2009 (HSLS: 09): Base-Year Data File Documentation. NCES 2011-328. National Center for Education Statistics.
+
+Muthén, L.K. and Muthén, B.O. (1998-2017).  Mplus User’s Guide.  Eighth Edition. Los Angeles, CA: Muthén & Muthén
+
+R Core Team (2017). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL http://www.R-project.org/
+
+Wickham et al., (2019). Welcome to the tidyverse. Journal of Open Source Software, 4(43), 1686, https://doi.org/10.21105/joss.01686
+
+
+
+
+

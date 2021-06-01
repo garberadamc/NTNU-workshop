@@ -1,0 +1,15 @@
+TITLE:
+PRACTICE 01 - Explore TYPE = BASIC
+DATA:
+FILE = "/Users/agarber/github/NTNU-workshop/02-run-models/basic_mplus/basic.dat";
+ 
+VARIABLE:
+NAMES = item1 item2 item3 item4 item5 item6 item7 item8 item9 female; 
+ MISSING=.;
+ usevar=
+ item1 item2 item3 item4 item5
+ item6 item7 item8 item9 female; 
+ 
+ ! use exclamation symbol to make comments, reminders, or annotations in Mplus files 
+ANALYSIS:
+type = basic; 

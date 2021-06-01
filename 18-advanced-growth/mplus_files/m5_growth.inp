@@ -1,0 +1,28 @@
+TITLE:
+m05 time-varying covariates
+DATA:
+FILE = "/Users/agarber/github/NTNU-workshop/18-advanced-growth/mplus_files/LSAY.dat";
+ 
+VARIABLE:
+NAMES = rural gender fathed mothed math_07 math_08 math_09 math_10 math_11 math_12
+     sci_07 sci_08 sci_09 sci_10 sci_11 sci_12; 
+ MISSING=.;
+ usevar =
+     sci_07-sci_12
+     math_07-math_12 mothed; 
+ANALYSIS:
+estimator = MLR
+MODEL:
+i s | sci_07@0 sci_08* sci_09* sci_10* sci_11* sci_12@1; 
+    i s on mothed;
+    sci_07 on math_07;
+    sci_08 on math_08;
+    sci_09 on math_09;
+    sci_10 on math_10;
+    sci_11 on math_11;
+    sci_12 on math_12; 
+OUTPUT:
+sampstat standardized;
+PLOT:
+type=plot3;
+          series = sci_07-sci_12(*)

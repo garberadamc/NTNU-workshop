@@ -1,0 +1,919 @@
+Mplus VERSION 8.6 (Mac)
+MUTHEN & MUTHEN
+05/31/2021  11:34 AM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  Class 1
+  DATA:
+  FILE = "/Users/agarber/github/NTNU-workshop/19-intro-mixtures/enum_ksep/lca_ksep.dat";
+
+  VARIABLE:
+  NAMES = id seek_hlp cooperat imp_cntr repeats separate new_activ folw_rul name
+       writes express quantity colors shapes;
+   MISSING=.;
+   categorical = seek_hlp-shapes;
+  usevar = seek_hlp-shapes;
+  classes = c(1);
+  ANALYSIS:
+  estimator = mlr;
+      type = mixture;
+      stseed = 5212020;
+      starts = 200 100;
+      processors = 10;
+  OUTPUT:
+  sampstat residual tech11 tech14;
+  PLOT:
+  type = plot3;
+      series = seek_hlp-shapes(*);
+
+
+
+*** WARNING in VARIABLE command
+  Note that only the first 8 characters of variable names are used in the output.
+  Shorten variable names to avoid any confusion.
+*** WARNING in PLOT command
+  Note that only the first 8 characters of variable names are used in plots.
+  If variable names are not unique within the first 8 characters, problems
+  may occur.
+*** WARNING in OUTPUT command
+  SAMPSTAT option is not available when all outcomes are censored, ordered
+  categorical, unordered categorical (nominal), count or continuous-time
+  survival variables.  Request for SAMPSTAT is ignored.
+*** WARNING in OUTPUT command
+  TECH11 option is not available for TYPE=MIXTURE with only one class.
+  Request for TECH11 is ignored.
+*** WARNING in OUTPUT command
+  TECH14 option is not available for TYPE=MIXTURE with only one class.
+  Request for TECH14 is ignored.
+   5 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+Class 1
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        1457
+
+Number of dependent variables                                   13
+Number of independent variables                                  0
+Number of continuous latent variables                            0
+Number of categorical latent variables                           1
+
+Observed dependent variables
+
+  Binary and ordered categorical (ordinal)
+   SEEK_HLP    COOPERAT    IMP_CNTR    REPEATS     SEPARATE    NEW_ACTI
+   FOLW_RUL    NAME        WRITES      EXPRESS     QUANTITY    COLORS
+   SHAPES
+
+Categorical latent variables
+   C
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-06
+    Relative loglikelihood change                        0.100D-06
+    Derivative                                           0.100D-05
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+Random Starts Specifications
+  Number of initial stage random starts                        200
+  Number of final stage optimizations                          100
+  Number of initial stage iterations                            10
+  Initial stage convergence criterion                    0.100D+01
+  Random starts scale                                    0.500D+01
+  Random seed for generating random starts                 5212020
+Link                                                         LOGIT
+
+Input data file(s)
+  /Users/agarber/github/NTNU-workshop/19-intro-mixtures/enum_ksep/lca_ksep.dat
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             1
+     Number of y missing data patterns           0
+     Number of u missing data patterns           1
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    SEEK_HLP
+      Category 1    0.667          972.000
+      Category 2    0.333          485.000
+    COOPERAT
+      Category 1    0.605          881.000
+      Category 2    0.395          576.000
+    IMP_CNTR
+      Category 1    0.605          881.000
+      Category 2    0.395          576.000
+    REPEATS
+      Category 1    0.570          831.000
+      Category 2    0.430          626.000
+    SEPARATE
+      Category 1    0.280          408.000
+      Category 2    0.720         1049.000
+    NEW_ACTI
+      Category 1    0.605          881.000
+      Category 2    0.395          576.000
+    FOLW_RUL
+      Category 1    0.618          900.000
+      Category 2    0.382          557.000
+    NAME
+      Category 1    0.478          697.000
+      Category 2    0.522          760.000
+    WRITES
+      Category 1    0.845         1231.000
+      Category 2    0.155          226.000
+    EXPRESS
+      Category 1    0.705         1027.000
+      Category 2    0.295          430.000
+    QUANTITY
+      Category 1    0.684          997.000
+      Category 2    0.316          460.000
+    COLORS
+      Category 1    0.732         1067.000
+      Category 2    0.268          390.000
+    SHAPES
+      Category 1    0.708         1032.000
+      Category 2    0.292          425.000
+
+
+RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
+
+Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
+
+          -11844.461  577060           141
+          -11844.461  620971           161
+          -11844.461  244138           81
+          -11844.461  412995           41
+          -11844.461  871562           21
+          -11844.461  563310           181
+          -11844.461  78482            101
+          -11844.461  197516           121
+          -11844.461  479689           61
+          -11844.461  797869           1
+          -11844.461  842290           3
+          -11844.461  780992           15
+          -11844.461  962234           7
+          -11844.461  349272           16
+          -11844.461  469686           8
+          -11844.461  536931           17
+          -11844.461  441167           18
+          -11844.461  278930           4
+          -11844.461  unperturbed      0
+          -11844.461  982849           182
+          -11844.461  773851           90
+          -11844.461  644706           186
+          -11844.461  617686           128
+          -11844.461  28330            64
+          -11844.461  788113           129
+          -11844.461  800364           130
+          -11844.461  908542           32
+          -11844.461  312522           65
+          -11844.461  121445           131
+          -11844.461  143763           132
+          -11844.461  936962           66
+          -11844.461  157123           170
+          -11844.461  316783           169
+          -11844.461  67763            133
+          -11844.461  699949           134
+          -11844.461  232280           166
+          -11844.461  969423           165
+          -11844.461  404908           33
+          -11844.461  702322           67
+          -11844.461  646817           135
+          -11844.461  379475           136
+          -11844.461  942707           68
+          -11844.461  595967           69
+          -11844.461  355607           34
+          -11844.461  990072           70
+          -11844.461  446866           142
+          -11844.461  880473           35
+          -11844.461  466611           71
+          -11844.461  535046           143
+          -11844.461  664163           144
+          -11844.461  818887           72
+          -11844.461  34292            150
+          -11844.461  218371           145
+          -11844.461  629544           146
+          -11844.461  368906           36
+          -11844.461  770987           147
+          -11844.461  681792           148
+          -11844.461  56178            149
+          -11844.461  455568           188
+          -11844.461  199881           37
+          -11844.461  319454           38
+          -11844.461  967388           39
+          -11844.461  741261           162
+          -11844.461  551464           40
+          -11844.461  890057           163
+          -11844.461  879810           164
+          -11844.461  30501            82
+          -11844.461  425444           83
+          -11844.461  406569           167
+          -11844.461  183994           168
+          -11844.461  8425             84
+          -11844.461  861614           42
+          -11844.461  161580           85
+          -11844.461  372836           86
+          -11844.461  350267           43
+          -11844.461  70165            87
+          -11844.461  355486           88
+          -11844.461  794380           89
+          -11844.461  859802           44
+          -11844.461  70100            45
+          -11844.461  48733            183
+          -11844.461  852340           184
+          -11844.461  723629           185
+          -11844.461  314848           46
+          -11844.461  959724           187
+          -11844.461  175658           189
+          -11844.461  28449            47
+          -11844.461  484382           48
+          -11844.461  944197           198
+          -11844.461  786397           49
+          -11844.461  609429           50
+          -11844.461  828119           110
+          -11844.461  366023           102
+          -11844.461  897984           103
+          -11844.461  107190           104
+          -11844.461  416525           105
+          -11844.461  869494           106
+          -11844.461  9098             107
+          -11844.461  316633           108
+          -11844.461  240130           109
+
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       13
+
+Loglikelihood
+
+          H0 Value                      -11844.461
+          H0 Scaling Correction Factor      1.0000
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                   23714.922
+          Bayesian (BIC)                 23783.616
+          Sample-Size Adjusted BIC       23742.319
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit for the Binary and Ordered Categorical
+(Ordinal) Outcomes**
+
+          Pearson Chi-Square
+
+          Value                         106115.156
+          Degrees of Freedom                  8150
+          P-Value                           0.0000
+
+          Likelihood Ratio Chi-Square
+
+          Value                           6461.700
+          Degrees of Freedom                  8150
+          P-Value                           1.0000
+
+** Of the 8192 cells in the latent class indicator table, 28
+   were deleted in the calculation of chi-square due to extreme values.
+
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THE ESTIMATED MODEL
+
+    Latent
+   Classes
+
+       1       1457.00000          1.00000
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+    Latent
+   Classes
+
+       1       1457.00000          1.00000
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THEIR MOST LIKELY LATENT CLASS MEMBERSHIP
+
+Class Counts and Proportions
+
+    Latent
+   Classes
+
+       1             1457          1.00000
+
+
+Average Latent Class Probabilities for Most Likely Latent Class Membership (Row)
+by Latent Class (Column)
+
+           1
+
+    1   1.000
+
+
+Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+           1
+
+    1   1.000
+
+
+Logits for the Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+              1
+
+    1      0.000
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Latent Class 1
+
+ Thresholds
+    SEEK_HLP$1         0.695      0.056     12.505      0.000
+    COOPERAT$1         0.425      0.054      7.931      0.000
+    IMP_CNTR$1         0.425      0.054      7.931      0.000
+    REPEATS$1          0.283      0.053      5.353      0.000
+    SEPARATE$1        -0.944      0.058    -16.185      0.000
+    NEW_ACTI$1         0.425      0.054      7.931      0.000
+    FOLW_RUL$1         0.480      0.054      8.900      0.000
+    NAME$1            -0.087      0.052     -1.650      0.099
+    WRITES$1           1.695      0.072     23.423      0.000
+    EXPRESS$1          0.871      0.057     15.157      0.000
+    QUANTITY$1         0.774      0.056     13.724      0.000
+    COLORS$1           1.006      0.059     17.009      0.000
+    SHAPES$1           0.887      0.058     15.392      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.676E-01
+       (ratio of smallest to largest eigenvalue)
+
+
+RESULTS IN PROBABILITY SCALE
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Latent Class 1
+
+ SEEK_HLP
+    Category 1         0.667      0.012     54.037      0.000
+    Category 2         0.333      0.012     26.963      0.000
+ COOPERAT
+    Category 1         0.605      0.013     47.207      0.000
+    Category 2         0.395      0.013     30.864      0.000
+ IMP_CNTR
+    Category 1         0.605      0.013     47.207      0.000
+    Category 2         0.395      0.013     30.864      0.000
+ REPEATS
+    Category 1         0.570      0.013     43.979      0.000
+    Category 2         0.430      0.013     33.130      0.000
+ SEPARATE
+    Category 1         0.280      0.012     23.805      0.000
+    Category 2         0.720      0.012     61.205      0.000
+ NEW_ACTIV
+    Category 1         0.605      0.013     47.207      0.000
+    Category 2         0.395      0.013     30.864      0.000
+ FOLW_RUL
+    Category 1         0.618      0.013     48.520      0.000
+    Category 2         0.382      0.013     30.029      0.000
+ NAME
+    Category 1         0.478      0.013     36.554      0.000
+    Category 2         0.522      0.013     39.858      0.000
+ WRITES
+    Category 1         0.845      0.009     89.085      0.000
+    Category 2         0.155      0.009     16.355      0.000
+ EXPRESS
+    Category 1         0.705      0.012     58.990      0.000
+    Category 2         0.295      0.012     24.699      0.000
+ QUANTITY
+    Category 1         0.684      0.012     56.195      0.000
+    Category 2         0.316      0.012     25.928      0.000
+ COLORS
+    Category 1         0.732      0.012     63.136      0.000
+    Category 2         0.268      0.012     23.077      0.000
+ SHAPES
+    Category 1         0.708      0.012     59.481      0.000
+    Category 2         0.292      0.012     24.495      0.000
+
+
+RESIDUAL OUTPUT
+
+
+     UNIVARIATE DISTRIBUTION FIT FOR CLASS 1
+
+     Variable          Observed      Estimated      Residual (Obs.-Est.)    Stand. Residual
+     SEEK_HLP
+       Category 1        0.667          0.667                  0.000                0.000
+       Category 2        0.333          0.333                  0.000                0.000
+     COOPERAT
+       Category 1        0.605          0.605                  0.000                0.000
+       Category 2        0.395          0.395                  0.000                0.000
+     IMP_CNTR
+       Category 1        0.605          0.605                  0.000                0.000
+       Category 2        0.395          0.395                  0.000                0.000
+     REPEATS
+       Category 1        0.570          0.570                  0.000                0.000
+       Category 2        0.430          0.430                  0.000                0.000
+     SEPARATE
+       Category 1        0.280          0.280                  0.000                0.000
+       Category 2        0.720          0.720                  0.000                0.000
+     NEW_ACTI
+       Category 1        0.605          0.605                  0.000                0.000
+       Category 2        0.395          0.395                  0.000                0.000
+     FOLW_RUL
+       Category 1        0.618          0.618                  0.000                0.000
+       Category 2        0.382          0.382                  0.000                0.000
+     NAME
+       Category 1        0.478          0.478                  0.000                0.000
+       Category 2        0.522          0.522                  0.000                0.000
+     WRITES
+       Category 1        0.845          0.845                  0.000                0.000
+       Category 2        0.155          0.155                  0.000                0.000
+     EXPRESS
+       Category 1        0.705          0.705                  0.000                0.000
+       Category 2        0.295          0.295                  0.000                0.000
+     QUANTITY
+       Category 1        0.684          0.684                  0.000                0.000
+       Category 2        0.316          0.316                  0.000                0.000
+     COLORS
+       Category 1        0.732          0.732                  0.000                0.000
+       Category 2        0.268          0.268                  0.000                0.000
+     SHAPES
+       Category 1        0.708          0.708                  0.000                0.000
+       Category 2        0.292          0.292                  0.000                0.000
+
+
+     BIVARIATE DISTRIBUTIONS FIT FOR CLASS 1
+
+     Variable       Variable          Observed     Estimated    Residual (Obs.-Est.)  Stand. Residual
+     SEEK_HLP       COOPERAT
+       Category 1     Category 1        0.534       0.403             0.131           10.161
+       Category 1     Category 2        0.133       0.264            -0.131          -11.312
+       Category 2     Category 1        0.071       0.201            -0.131          -12.432
+       Category 2     Category 2        0.262       0.132             0.131           14.745
+     SEEK_HLP       IMP_CNTR
+       Category 1     Category 1        0.492       0.403             0.089            6.903
+       Category 1     Category 2        0.175       0.264            -0.089           -7.685
+       Category 2     Category 1        0.113       0.201            -0.089           -8.446
+       Category 2     Category 2        0.220       0.132             0.089           10.018
+     SEEK_HLP       REPEATS
+       Category 1     Category 1        0.493       0.380             0.113            8.883
+       Category 1     Category 2        0.174       0.287            -0.113           -9.537
+       Category 2     Category 1        0.077       0.190            -0.113          -10.997
+       Category 2     Category 2        0.256       0.143             0.113           12.319
+     SEEK_HLP       SEPARATE
+       Category 1     Category 1        0.247       0.187             0.060            5.902
+       Category 1     Category 2        0.420       0.480            -0.060           -4.605
+       Category 2     Category 1        0.033       0.093            -0.060           -7.913
+       Category 2     Category 2        0.300       0.240             0.060            5.389
+     SEEK_HLP       NEW_ACTI
+       Category 1     Category 1        0.524       0.403             0.121            9.413
+       Category 1     Category 2        0.143       0.264            -0.121          -10.479
+       Category 2     Category 1        0.080       0.201            -0.121          -11.517
+       Category 2     Category 2        0.253       0.132             0.121           13.660
+     SEEK_HLP       FOLW_RUL
+       Category 1     Category 1        0.513       0.412             0.101            7.855
+       Category 1     Category 2        0.154       0.255            -0.101           -8.871
+       Category 2     Category 1        0.104       0.206            -0.101           -9.567
+       Category 2     Category 2        0.229       0.127             0.101           11.602
+     SEEK_HLP       NAME
+       Category 1     Category 1        0.419       0.319             0.100            8.150
+       Category 1     Category 2        0.248       0.348            -0.100           -7.976
+       Category 2     Category 1        0.060       0.159            -0.100          -10.383
+       Category 2     Category 2        0.273       0.174             0.100           10.029
+     SEEK_HLP       WRITES
+       Category 1     Category 1        0.603       0.564             0.040            3.052
+       Category 1     Category 2        0.064       0.103            -0.040           -4.969
+       Category 2     Category 1        0.242       0.281            -0.040           -3.366
+       Category 2     Category 2        0.091       0.052             0.040            6.839
+     SEEK_HLP       EXPRESS
+       Category 1     Category 1        0.583       0.470             0.112            8.601
+       Category 1     Category 2        0.084       0.197            -0.112          -10.796
+       Category 2     Category 1        0.122       0.235            -0.112          -10.130
+       Category 2     Category 2        0.211       0.098             0.112           14.423
+     SEEK_HLP       QUANTITY
+       Category 1     Category 1        0.539       0.457             0.082            6.305
+       Category 1     Category 2        0.128       0.211            -0.082           -7.702
+       Category 2     Category 1        0.146       0.228            -0.082           -7.488
+       Category 2     Category 2        0.187       0.105             0.082           10.241
+     SEEK_HLP       COLORS
+       Category 1     Category 1        0.546       0.489             0.057            4.359
+       Category 1     Category 2        0.121       0.179            -0.057           -5.690
+       Category 2     Category 1        0.187       0.244            -0.057           -5.075
+       Category 2     Category 2        0.146       0.089             0.057            7.649
+     SEEK_HLP       SHAPES
+       Category 1     Category 1        0.529       0.473             0.057            4.331
+       Category 1     Category 2        0.138       0.195            -0.057           -5.461
+       Category 2     Category 1        0.179       0.236            -0.057           -5.093
+       Category 2     Category 2        0.154       0.097             0.057            7.302
+     COOPERAT       IMP_CNTR
+       Category 1     Category 1        0.458       0.366             0.092            7.305
+       Category 1     Category 2        0.147       0.239            -0.092           -8.249
+       Category 2     Category 1        0.147       0.239            -0.092           -8.249
+       Category 2     Category 2        0.248       0.156             0.092            9.688
+     COOPERAT       REPEATS
+       Category 1     Category 1        0.456       0.345             0.112            8.958
+       Category 1     Category 2        0.148       0.260            -0.112           -9.709
+       Category 2     Category 1        0.114       0.225            -0.112          -10.189
+       Category 2     Category 2        0.281       0.170             0.112           11.339
+     COOPERAT       SEPARATE
+       Category 1     Category 1        0.244       0.169             0.074            7.565
+       Category 1     Category 2        0.361       0.435            -0.074           -5.722
+       Category 2     Category 1        0.036       0.111            -0.074           -9.042
+       Category 2     Category 2        0.359       0.285             0.074            6.287
+     COOPERAT       NEW_ACTI
+       Category 1     Category 1        0.485       0.366             0.120            9.481
+       Category 1     Category 2        0.119       0.239            -0.120          -10.706
+       Category 2     Category 1        0.119       0.239            -0.120          -10.706
+       Category 2     Category 2        0.276       0.156             0.120           12.574
+     COOPERAT       FOLW_RUL
+       Category 1     Category 1        0.472       0.374             0.099            7.788
+       Category 1     Category 2        0.132       0.231            -0.099           -8.936
+       Category 2     Category 1        0.146       0.244            -0.099           -8.769
+       Category 2     Category 2        0.250       0.151             0.099           10.518
+     COOPERAT       NAME
+       Category 1     Category 1        0.397       0.289             0.108            9.103
+       Category 1     Category 2        0.207       0.315            -0.108           -8.882
+       Category 2     Category 1        0.081       0.189            -0.108          -10.540
+       Category 2     Category 2        0.314       0.206             0.108           10.202
+     COOPERAT       WRITES
+       Category 1     Category 1        0.557       0.511             0.046            3.493
+       Category 1     Category 2        0.048       0.094            -0.046           -5.990
+       Category 2     Category 1        0.288       0.334            -0.046           -3.702
+       Category 2     Category 2        0.107       0.061             0.046            7.278
+     COOPERAT       EXPRESS
+       Category 1     Category 1        0.537       0.426             0.111            8.530
+       Category 1     Category 2        0.068       0.178            -0.111          -11.016
+       Category 2     Category 1        0.168       0.279            -0.111           -9.408
+       Category 2     Category 2        0.227       0.117             0.111           13.139
+     COOPERAT       QUANTITY
+       Category 1     Category 1        0.489       0.414             0.076            5.859
+       Category 1     Category 2        0.115       0.191            -0.076           -7.342
+       Category 2     Category 1        0.195       0.271            -0.076           -6.496
+       Category 2     Category 2        0.200       0.125             0.076            8.731
+     COOPERAT       COLORS
+       Category 1     Category 1        0.491       0.443             0.049            3.735
+       Category 1     Category 2        0.113       0.162            -0.049           -5.037
+       Category 2     Category 1        0.241       0.290            -0.049           -4.091
+       Category 2     Category 2        0.154       0.106             0.049            6.032
+     COOPERAT       SHAPES
+       Category 1     Category 1        0.477       0.428             0.049            3.758
+       Category 1     Category 2        0.128       0.176            -0.049           -4.879
+       Category 2     Category 1        0.231       0.280            -0.049           -4.142
+       Category 2     Category 2        0.164       0.115             0.049            5.822
+     IMP_CNTR       REPEATS
+       Category 1     Category 1        0.484       0.345             0.139           11.162
+       Category 1     Category 2        0.121       0.260            -0.139          -12.099
+       Category 2     Category 1        0.086       0.225            -0.139          -12.696
+       Category 2     Category 2        0.309       0.170             0.139           14.129
+     IMP_CNTR       SEPARATE
+       Category 1     Category 1        0.231       0.169             0.062            6.308
+       Category 1     Category 2        0.373       0.435            -0.062           -4.771
+       Category 2     Category 1        0.049       0.111            -0.062           -7.539
+       Category 2     Category 2        0.347       0.285             0.062            5.242
+     IMP_CNTR       NEW_ACTI
+       Category 1     Category 1        0.456       0.366             0.091            7.196
+       Category 1     Category 2        0.148       0.239            -0.091           -8.126
+       Category 2     Category 1        0.148       0.239            -0.091           -8.126
+       Category 2     Category 2        0.247       0.156             0.091            9.544
+     IMP_CNTR       FOLW_RUL
+       Category 1     Category 1        0.512       0.374             0.139           10.929
+       Category 1     Category 2        0.093       0.231            -0.139          -12.541
+       Category 2     Category 1        0.106       0.244            -0.139          -12.306
+       Category 2     Category 2        0.290       0.151             0.139           14.760
+     IMP_CNTR       NAME
+       Category 1     Category 1        0.384       0.289             0.094            7.947
+       Category 1     Category 2        0.221       0.315            -0.094           -7.755
+       Category 2     Category 1        0.095       0.189            -0.094           -9.202
+       Category 2     Category 2        0.301       0.206             0.094            8.907
+     IMP_CNTR       WRITES
+       Category 1     Category 1        0.559       0.511             0.048            3.703
+       Category 1     Category 2        0.045       0.094            -0.048           -6.349
+       Category 2     Category 1        0.286       0.334            -0.048           -3.925
+       Category 2     Category 2        0.110       0.061             0.048            7.715
+     IMP_CNTR       EXPRESS
+       Category 1     Category 1        0.489       0.426             0.062            4.821
+       Category 1     Category 2        0.116       0.178            -0.062           -6.227
+       Category 2     Category 1        0.216       0.279            -0.062           -5.318
+       Category 2     Category 2        0.179       0.117             0.062            7.427
+     IMP_CNTR       QUANTITY
+       Category 1     Category 1        0.461       0.414             0.047            3.625
+       Category 1     Category 2        0.144       0.191            -0.047           -4.543
+       Category 2     Category 1        0.224       0.271            -0.047           -4.019
+       Category 2     Category 2        0.172       0.125             0.047            5.402
+     IMP_CNTR       COLORS
+       Category 1     Category 1        0.475       0.443             0.032            2.469
+       Category 1     Category 2        0.130       0.162            -0.032           -3.330
+       Category 2     Category 1        0.257       0.290            -0.032           -2.705
+       Category 2     Category 2        0.138       0.106             0.032            3.988
+     IMP_CNTR       SHAPES
+       Category 1     Category 1        0.458       0.428             0.030            2.329
+       Category 1     Category 2        0.146       0.176            -0.030           -3.023
+       Category 2     Category 1        0.250       0.280            -0.030           -2.566
+       Category 2     Category 2        0.146       0.115             0.030            3.608
+     REPEATS        SEPARATE
+       Category 1     Category 1        0.237       0.160             0.077            8.031
+       Category 1     Category 2        0.334       0.411            -0.077           -5.980
+       Category 2     Category 1        0.043       0.120            -0.077           -9.043
+       Category 2     Category 2        0.386       0.309             0.077            6.365
+     REPEATS        NEW_ACTI
+       Category 1     Category 1        0.467       0.345             0.123            9.839
+       Category 1     Category 2        0.103       0.225            -0.123          -11.192
+       Category 2     Category 1        0.137       0.260            -0.123          -10.665
+       Category 2     Category 2        0.292       0.170             0.123           12.455
+     REPEATS        FOLW_RUL
+       Category 1     Category 1        0.487       0.352             0.134           10.732
+       Category 1     Category 2        0.084       0.218            -0.134          -12.416
+       Category 2     Category 1        0.131       0.265            -0.134          -11.611
+       Category 2     Category 2        0.299       0.164             0.134           13.837
+     REPEATS        NAME
+       Category 1     Category 1        0.380       0.273             0.107            9.203
+       Category 1     Category 2        0.190       0.298            -0.107           -8.966
+       Category 2     Category 1        0.098       0.206            -0.107          -10.144
+       Category 2     Category 2        0.332       0.224             0.107            9.830
+     REPEATS        WRITES
+       Category 1     Category 1        0.535       0.482             0.053            4.032
+       Category 1     Category 2        0.036       0.088            -0.053           -7.094
+       Category 2     Category 1        0.310       0.363            -0.053           -4.190
+       Category 2     Category 2        0.119       0.067             0.053            8.078
+     REPEATS        EXPRESS
+       Category 1     Category 1        0.492       0.402             0.090            7.013
+       Category 1     Category 2        0.078       0.168            -0.090           -9.190
+       Category 2     Category 1        0.213       0.303            -0.090           -7.483
+       Category 2     Category 2        0.217       0.127             0.090           10.334
+     REPEATS        QUANTITY
+       Category 1     Category 1        0.469       0.390             0.078            6.142
+       Category 1     Category 2        0.102       0.180            -0.078           -7.797
+       Category 2     Category 1        0.216       0.294            -0.078           -6.576
+       Category 2     Category 2        0.214       0.136             0.078            8.750
+     REPEATS        COLORS
+       Category 1     Category 1        0.471       0.418             0.053            4.114
+       Category 1     Category 2        0.100       0.153            -0.053           -5.640
+       Category 2     Category 1        0.261       0.315            -0.053           -4.369
+       Category 2     Category 2        0.168       0.115             0.053            6.359
+     REPEATS        SHAPES
+       Category 1     Category 1        0.441       0.404             0.037            2.904
+       Category 1     Category 2        0.129       0.166            -0.037           -3.827
+       Category 2     Category 1        0.267       0.304            -0.037           -3.097
+       Category 2     Category 2        0.163       0.125             0.037            4.304
+     SEPARATE       NEW_ACTI
+       Category 1     Category 1        0.250       0.169             0.081            8.194
+       Category 1     Category 2        0.030       0.111            -0.081           -9.794
+       Category 2     Category 1        0.355       0.435            -0.081           -6.198
+       Category 2     Category 2        0.365       0.285             0.081            6.810
+     SEPARATE       FOLW_RUL
+       Category 1     Category 1        0.235       0.173             0.062            6.232
+       Category 1     Category 2        0.045       0.107            -0.062           -7.624
+       Category 2     Category 1        0.383       0.445            -0.062           -4.743
+       Category 2     Category 2        0.337       0.275             0.062            5.278
+     SEPARATE       NAME
+       Category 1     Category 1        0.209       0.134             0.075            8.370
+       Category 1     Category 2        0.071       0.146            -0.075           -8.072
+       Category 2     Category 1        0.270       0.344            -0.075           -6.000
+       Category 2     Category 2        0.450       0.376             0.075            5.887
+     SEPARATE       WRITES
+       Category 1     Category 1        0.257       0.237             0.020            1.805
+       Category 1     Category 2        0.023       0.043            -0.020           -3.764
+       Category 2     Category 1        0.588       0.608            -0.020           -1.572
+       Category 2     Category 2        0.132       0.112             0.020            2.436
+     SEPARATE       EXPRESS
+       Category 1     Category 1        0.253       0.197             0.055            5.293
+       Category 1     Category 2        0.027       0.083            -0.055           -7.651
+       Category 2     Category 1        0.452       0.507            -0.055           -4.214
+       Category 2     Category 2        0.268       0.212             0.055            5.150
+     SEPARATE       QUANTITY
+       Category 1     Category 1        0.236       0.192             0.044            4.314
+       Category 1     Category 2        0.044       0.088            -0.044           -5.981
+       Category 2     Category 1        0.448       0.493            -0.044           -3.396
+       Category 2     Category 2        0.272       0.227             0.044            4.052
+     SEPARATE       COLORS
+       Category 1     Category 1        0.231       0.205             0.026            2.479
+       Category 1     Category 2        0.049       0.075            -0.026           -3.802
+       Category 2     Category 1        0.501       0.527            -0.026           -2.005
+       Category 2     Category 2        0.219       0.193             0.026            2.538
+     SEPARATE       SHAPES
+       Category 1     Category 1        0.220       0.198             0.021            2.037
+       Category 1     Category 2        0.060       0.082            -0.021           -2.966
+       Category 2     Category 1        0.489       0.510            -0.021           -1.625
+       Category 2     Category 2        0.231       0.210             0.021            1.995
+     NEW_ACTI       FOLW_RUL
+       Category 1     Category 1        0.489       0.374             0.116            9.142
+       Category 1     Category 2        0.115       0.231            -0.116          -10.490
+       Category 2     Category 1        0.128       0.244            -0.116          -10.294
+       Category 2     Category 2        0.267       0.151             0.116           12.346
+     NEW_ACTI       NAME
+       Category 1     Category 1        0.394       0.289             0.105            8.814
+       Category 1     Category 2        0.211       0.315            -0.105           -8.600
+       Category 2     Category 1        0.084       0.189            -0.105          -10.205
+       Category 2     Category 2        0.311       0.206             0.105            9.878
+     NEW_ACTI       WRITES
+       Category 1     Category 1        0.563       0.511             0.052            3.965
+       Category 1     Category 2        0.042       0.094            -0.052           -6.798
+       Category 2     Category 1        0.282       0.334            -0.052           -4.202
+       Category 2     Category 2        0.113       0.061             0.052            8.261
+     NEW_ACTI       EXPRESS
+       Category 1     Category 1        0.524       0.426             0.098            7.576
+       Category 1     Category 2        0.080       0.178            -0.098           -9.785
+       Category 2     Category 1        0.181       0.279            -0.098           -8.356
+       Category 2     Category 2        0.215       0.117             0.098           11.670
+     NEW_ACTI       QUANTITY
+       Category 1     Category 1        0.493       0.414             0.080            6.178
+       Category 1     Category 2        0.111       0.191            -0.080           -7.742
+       Category 2     Category 1        0.191       0.271            -0.080           -6.850
+       Category 2     Category 2        0.205       0.125             0.080            9.207
+     NEW_ACTI       COLORS
+       Category 1     Category 1        0.493       0.443             0.050            3.841
+       Category 1     Category 2        0.112       0.162            -0.050           -5.180
+       Category 2     Category 1        0.240       0.290            -0.050           -4.206
+       Category 2     Category 2        0.156       0.106             0.050            6.202
+     NEW_ACTI       SHAPES
+       Category 1     Category 1        0.465       0.428             0.037            2.858
+       Category 1     Category 2        0.139       0.176            -0.037           -3.711
+       Category 2     Category 1        0.243       0.280            -0.037           -3.150
+       Category 2     Category 2        0.152       0.115             0.037            4.428
+     FOLW_RUL       NAME
+       Category 1     Category 1        0.386       0.295             0.091            7.606
+       Category 1     Category 2        0.231       0.322            -0.091           -7.426
+       Category 2     Category 1        0.092       0.183            -0.091           -8.977
+       Category 2     Category 2        0.290       0.199             0.091            8.685
+     FOLW_RUL       WRITES
+       Category 1     Category 1        0.566       0.522             0.044            3.336
+       Category 1     Category 2        0.052       0.096            -0.044           -5.661
+       Category 2     Category 1        0.279       0.323            -0.044           -3.563
+       Category 2     Category 2        0.103       0.059             0.044            7.055
+     FOLW_RUL       EXPRESS
+       Category 1     Category 1        0.502       0.435             0.067            5.158
+       Category 1     Category 2        0.115       0.182            -0.067           -6.624
+       Category 2     Category 1        0.202       0.269            -0.067           -5.764
+       Category 2     Category 2        0.180       0.113             0.067            8.083
+     FOLW_RUL       QUANTITY
+       Category 1     Category 1        0.485       0.423             0.062            4.781
+       Category 1     Category 2        0.133       0.195            -0.062           -5.960
+       Category 2     Category 1        0.200       0.262            -0.062           -5.373
+       Category 2     Category 2        0.183       0.121             0.062            7.249
+     FOLW_RUL       COLORS
+       Category 1     Category 1        0.496       0.452             0.043            3.311
+       Category 1     Category 2        0.122       0.165            -0.043           -4.436
+       Category 2     Category 1        0.237       0.280            -0.043           -3.671
+       Category 2     Category 2        0.146       0.102             0.043            5.438
+     FOLW_RUL       SHAPES
+       Category 1     Category 1        0.469       0.438             0.031            2.404
+       Category 1     Category 2        0.149       0.180            -0.031           -3.103
+       Category 2     Category 1        0.240       0.271            -0.031           -2.684
+       Category 2     Category 2        0.143       0.112             0.031            3.789
+     NAME           WRITES
+       Category 1     Category 1        0.469       0.404             0.065            5.078
+       Category 1     Category 2        0.009       0.074            -0.065           -9.507
+       Category 2     Category 1        0.375       0.441            -0.065           -5.019
+       Category 2     Category 2        0.146       0.081             0.065            9.138
+     NAME           EXPRESS
+       Category 1     Category 1        0.435       0.337             0.098            7.908
+       Category 1     Category 2        0.043       0.141            -0.098          -10.737
+       Category 2     Category 1        0.270       0.368            -0.098           -7.754
+       Category 2     Category 2        0.252       0.154             0.098           10.359
+     NAME           QUANTITY
+       Category 1     Category 1        0.422       0.327             0.095            7.708
+       Category 1     Category 2        0.056       0.151            -0.095          -10.100
+       Category 2     Category 1        0.262       0.357            -0.095           -7.549
+       Category 2     Category 2        0.259       0.165             0.095            9.751
+     NAME           COLORS
+       Category 1     Category 1        0.409       0.350             0.059            4.699
+       Category 1     Category 2        0.069       0.128            -0.059           -6.709
+       Category 2     Category 1        0.323       0.382            -0.059           -4.614
+       Category 2     Category 2        0.198       0.140             0.059            6.468
+     NAME           SHAPES
+       Category 1     Category 1        0.399       0.339             0.060            4.833
+       Category 1     Category 2        0.080       0.140            -0.060           -6.601
+       Category 2     Category 1        0.310       0.369            -0.060           -4.739
+       Category 2     Category 2        0.212       0.152             0.060            6.369
+     WRITES         EXPRESS
+       Category 1     Category 1        0.656       0.596             0.061            4.714
+       Category 1     Category 2        0.189       0.249            -0.061           -5.347
+       Category 2     Category 1        0.049       0.109            -0.061           -7.413
+       Category 2     Category 2        0.106       0.046             0.061           11.068
+     WRITES         QUANTITY
+       Category 1     Category 1        0.627       0.578             0.048            3.748
+       Category 1     Category 2        0.218       0.267            -0.048           -4.185
+       Category 2     Category 1        0.058       0.106            -0.048           -6.009
+       Category 2     Category 2        0.097       0.049             0.048            8.576
+     WRITES         COLORS
+       Category 1     Category 1        0.656       0.619             0.037            2.940
+       Category 1     Category 2        0.189       0.226            -0.037           -3.413
+       Category 2     Category 1        0.076       0.114            -0.037           -4.500
+       Category 2     Category 2        0.079       0.042             0.037            7.158
+     WRITES         SHAPES
+       Category 1     Category 1        0.640       0.598             0.041            3.211
+       Category 1     Category 2        0.205       0.246            -0.041           -3.652
+       Category 2     Category 1        0.069       0.110            -0.041           -5.033
+       Category 2     Category 2        0.086       0.045             0.041            7.573
+     EXPRESS        QUANTITY
+       Category 1     Category 1        0.590       0.482             0.107            8.192
+       Category 1     Category 2        0.115       0.223            -0.107           -9.841
+       Category 2     Category 1        0.095       0.202            -0.107          -10.196
+       Category 2     Category 2        0.200       0.093             0.107           14.082
+     EXPRESS        COLORS
+       Category 1     Category 1        0.583       0.516             0.067            5.132
+       Category 1     Category 2        0.121       0.189            -0.067           -6.555
+       Category 2     Category 1        0.149       0.216            -0.067           -6.231
+       Category 2     Category 2        0.146       0.079             0.067            9.509
+     EXPRESS        SHAPES
+       Category 1     Category 1        0.563       0.499             0.064            4.903
+       Category 1     Category 2        0.141       0.206            -0.064           -6.066
+       Category 2     Category 1        0.145       0.209            -0.064           -6.029
+       Category 2     Category 2        0.150       0.086             0.064            8.740
+     QUANTITY       COLORS
+       Category 1     Category 1        0.573       0.501             0.072            5.495
+       Category 1     Category 2        0.111       0.183            -0.072           -7.103
+       Category 2     Category 1        0.159       0.231            -0.072           -6.517
+       Category 2     Category 2        0.156       0.085             0.072            9.877
+     QUANTITY       SHAPES
+       Category 1     Category 1        0.546       0.485             0.062            4.708
+       Category 1     Category 2        0.138       0.200            -0.062           -5.887
+       Category 2     Category 1        0.162       0.224            -0.062           -5.647
+       Category 2     Category 2        0.154       0.092             0.062            8.138
+     COLORS         SHAPES
+       Category 1     Category 1        0.601       0.519             0.083            6.304
+       Category 1     Category 2        0.131       0.214            -0.083           -7.686
+       Category 2     Category 1        0.107       0.190            -0.083           -8.036
+       Category 2     Category 2        0.161       0.078             0.083           11.741
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Histograms (sample values)
+  Scatterplots (sample values)
+  Sample proportions and estimated probabilities
+
+     Beginning Time:  11:34:01
+        Ending Time:  11:34:02
+       Elapsed Time:  00:00:01
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen

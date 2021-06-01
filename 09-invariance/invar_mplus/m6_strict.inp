@@ -1,0 +1,38 @@
+TITLE:
+model6 - strict invariance
+DATA:
+FILE = "/Users/agarber/github/NTNU-workshop/09-invariance/invar_mplus/invar_data.dat";
+ 
+VARIABLE:
+NAMES = bystlang freelnch byincome stolen t_hurt p_fight hit damaged bullied unsafe
+     disrupt gangs rac_fght late skipped mth_read mth_test rd_test; 
+ MISSING=.;
+ usevar = stolen-rac_fght;
+    
+     grouping = freelnch (0=freelnch_0 1=freelnch_1); 
+ANALYSIS:
+estimator = mlr;
+MODEL:
+VICTIM by stolen* t_hurt p_fight hit damaged bullied;
+     VICTIM@1; 
+     
+     NEG_CLIM by unsafe* disrupt gangs rac_fght;
+     NEG_CLIM@1;
+     
+     [VICTIM-NEG_CLIM@0]; 
+     
+     stolen-rac_fght(1-10); ! set residuals to be equal across groups
+  
+     MODEL freelnch_1:
+     
+     VICTIM; ! free factor variances for group 2
+     
+     NEG_CLIM;
+     
+     [VICTIM-NEG_CLIM]; ! free factor means
+  
+     stolen-rac_fght(1-10); 
+OUTPUT:
+sampstat standardized residual modindices (3.84);
+PLOT:
+type = plot3;

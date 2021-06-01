@@ -1,0 +1,734 @@
+Mplus VERSION 8.6 (Mac)
+MUTHEN & MUTHEN
+05/29/2021  10:30 AM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  m07 Quadratic Growth (i s q)
+  DATA:
+  FILE = "/Users/agarber/github/NTNU-workshop/18-advanced-growth/mplus_files/LSAY.dat";
+
+  VARIABLE:
+  NAMES = rural gender fathed mothed math_07 math_08 math_09 math_10 math_11 math_12
+       sci_07 sci_08 sci_09 sci_10 sci_11 sci_12;
+   MISSING=.;
+   usevar =
+       sci_07-sci_12
+       math_07-math_12;
+  ANALYSIS:
+  estimator = MLR
+  MODEL:
+  i s q | sci_07@0 sci_08@1 sci_09@2 sci_10@3 sci_11@4 sci_12@5;
+  OUTPUT:
+  sampstat standardized;
+  PLOT:
+  type=plot3;
+            series = sci_07-sci_12(*)
+
+
+
+*** WARNING in MODEL command
+  Variable is uncorrelated with all other variables:  MATH_07
+*** WARNING in MODEL command
+  Variable is uncorrelated with all other variables:  MATH_08
+*** WARNING in MODEL command
+  Variable is uncorrelated with all other variables:  MATH_09
+*** WARNING in MODEL command
+  Variable is uncorrelated with all other variables:  MATH_10
+*** WARNING in MODEL command
+  Variable is uncorrelated with all other variables:  MATH_11
+*** WARNING in MODEL command
+  Variable is uncorrelated with all other variables:  MATH_12
+*** WARNING in MODEL command
+  At least one variable is uncorrelated with all other variables in the model.
+  Check that this is what is intended.
+*** WARNING
+  Data set contains cases with missing on all variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on all variables:  45
+   8 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+m07 Quadratic Growth (i s q)
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        5900
+
+Number of dependent variables                                   12
+Number of independent variables                                  0
+Number of continuous latent variables                            3
+
+Observed dependent variables
+
+  Continuous
+   SCI_07      SCI_08      SCI_09      SCI_10      SCI_11      SCI_12
+   MATH_07     MATH_08     MATH_09     MATH_10     MATH_11     MATH_12
+
+Continuous latent variables
+   I           S           Q
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+
+Input data file(s)
+  /Users/agarber/github/NTNU-workshop/18-advanced-growth/mplus_files/LSAY.dat
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns           120
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              SCI_07        SCI_08        SCI_09        SCI_10        SCI_11
+              ________      ________      ________      ________      ________
+ SCI_07         0.525
+ SCI_08         0.471         0.472
+ SCI_09         0.462         0.462         0.463
+ SCI_10         0.451         0.441         0.441         0.915
+ SCI_11         0.384         0.376         0.376         0.749         0.755
+ SCI_12         0.325         0.318         0.318         0.676         0.676
+ MATH_07        0.523         0.470         0.461         0.450         0.383
+ MATH_08        0.470         0.458         0.449         0.434         0.371
+ MATH_09        0.462         0.449         0.449         0.434         0.371
+ MATH_10        0.450         0.433         0.433         0.891         0.739
+ MATH_11        0.378         0.368         0.368         0.738         0.715
+ MATH_12        0.326         0.318         0.318         0.670         0.653
+
+
+           Covariance Coverage
+              SCI_12        MATH_07       MATH_08       MATH_09       MATH_10
+              ________      ________      ________      ________      ________
+ SCI_12         0.681
+ MATH_07        0.325         0.523
+ MATH_08        0.315         0.470         0.471
+ MATH_09        0.315         0.462         0.462         0.463
+ MATH_10        0.668         0.450         0.440         0.441         0.912
+ MATH_11        0.650         0.377         0.370         0.370         0.741
+ MATH_12        0.638         0.326         0.319         0.320         0.672
+
+
+           Covariance Coverage
+              MATH_11       MATH_12
+              ________      ________
+ MATH_11        0.748
+ MATH_12        0.670         0.677
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           Means
+              SCI_07        SCI_08        SCI_09        SCI_10        SCI_11
+              ________      ________      ________      ________      ________
+               50.157        53.424        57.597        59.802        62.419
+
+
+           Means
+              SCI_12        MATH_07       MATH_08       MATH_09       MATH_10
+              ________      ________      ________      ________      ________
+               63.859        50.105        53.396        57.517        61.515
+
+
+           Means
+              MATH_11       MATH_12
+              ________      ________
+               64.988        66.107
+
+
+           Covariances
+              SCI_07        SCI_08        SCI_09        SCI_10        SCI_11
+              ________      ________      ________      ________      ________
+ SCI_07        98.311
+ SCI_08        85.203       113.649
+ SCI_09        80.676        99.135       115.417
+ SCI_10        81.687        96.430       104.650       120.602
+ SCI_11        83.075        97.848       106.778       112.896       130.883
+ SCI_12        83.679        96.514       104.894       111.057       126.082
+ MATH_07       69.486        73.614        72.089        72.851        76.360
+ MATH_08       72.456        85.442        83.975        83.907        87.981
+ MATH_09       81.920        95.494        99.702        99.889       105.499
+ MATH_10       86.216       101.611       105.114       108.480       113.572
+ MATH_11       86.539       101.595       104.890       107.873       118.463
+ MATH_12       89.115       104.061       107.769       111.180       122.526
+
+
+           Covariances
+              SCI_12        MATH_07       MATH_08       MATH_09       MATH_10
+              ________      ________      ________      ________      ________
+ SCI_12       138.663
+ MATH_07       77.293        99.152
+ MATH_08       87.887        88.837       116.308
+ MATH_09      105.447        97.860       116.181       148.377
+ MATH_10      114.222       103.173       119.994       146.847       172.894
+ MATH_11      120.721        99.376       115.060       140.100       157.042
+ MATH_12      126.974       102.638       118.086       143.001       159.919
+
+
+           Covariances
+              MATH_11       MATH_12
+              ________      ________
+ MATH_11      175.690
+ MATH_12      170.825       186.951
+
+
+           Correlations
+              SCI_07        SCI_08        SCI_09        SCI_10        SCI_11
+              ________      ________      ________      ________      ________
+ SCI_07         1.000
+ SCI_08         0.806         1.000
+ SCI_09         0.757         0.866         1.000
+ SCI_10         0.750         0.824         0.887         1.000
+ SCI_11         0.732         0.802         0.869         0.899         1.000
+ SCI_12         0.717         0.769         0.829         0.859         0.936
+ MATH_07        0.704         0.693         0.674         0.666         0.670
+ MATH_08        0.678         0.743         0.725         0.708         0.713
+ MATH_09        0.678         0.735         0.762         0.747         0.757
+ MATH_10        0.661         0.725         0.744         0.751         0.755
+ MATH_11        0.658         0.719         0.737         0.741         0.781
+ MATH_12        0.657         0.714         0.734         0.740         0.783
+
+
+           Correlations
+              SCI_12        MATH_07       MATH_08       MATH_09       MATH_10
+              ________      ________      ________      ________      ________
+ SCI_12         1.000
+ MATH_07        0.659         1.000
+ MATH_08        0.692         0.827         1.000
+ MATH_09        0.735         0.807         0.884         1.000
+ MATH_10        0.738         0.788         0.846         0.917         1.000
+ MATH_11        0.773         0.753         0.805         0.868         0.901
+ MATH_12        0.789         0.754         0.801         0.859         0.890
+
+
+           Correlations
+              MATH_11       MATH_12
+              ________      ________
+ MATH_11        1.000
+ MATH_12        0.943         1.000
+
+
+     MAXIMUM LOG-LIKELIHOOD VALUE FOR THE UNRESTRICTED (H1) MODEL IS -142136.417
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     SCI_07               50.366       0.193      26.140    0.03%      40.910     47.150     50.020
+            3098.000     104.263      -0.460      88.030    0.03%      52.940     59.270
+     SCI_08               53.927      -0.139      22.820    0.04%      43.720     51.460     54.420
+            2784.000     121.790      -0.648      83.940    0.04%      57.730     63.870
+     SCI_09               58.373      -0.298      27.360    0.04%      48.400     56.650     59.825
+            2730.000     123.150      -0.446      91.210    0.04%      62.480     67.870
+     SCI_10               60.176      -0.118      26.970    0.02%      50.540     57.510     60.650
+            5401.000     118.108      -0.428      91.330    0.02%      63.470     69.780
+     SCI_11               63.567      -0.290      24.440    0.02%      54.130     61.430     64.305
+            4454.000     126.409      -0.263      93.130    0.02%      67.020     73.360
+     SCI_12               65.494      -0.355      25.060    0.02%      56.460     63.340     66.085
+            4018.000     131.306       0.025      95.560    0.02%      68.700     75.280
+     MATH_07              50.381       0.205      27.360    0.03%      40.870     46.940     50.045
+            3088.000     103.684      -0.572      85.070    0.03%      53.150     59.660
+     MATH_08              53.863       0.051      24.560    0.04%      43.800     51.300     54.330
+            2781.000     121.539      -0.384      88.840    0.04%      57.020     62.980
+     MATH_09              58.325      -0.013      26.600    0.04%      46.750     55.130     58.450
+            2729.000     153.813      -0.538      94.270    0.04%      62.320     69.250
+     MATH_10              61.946      -0.183      26.500    0.02%      50.370     59.560     63.080
+            5380.000     170.101      -0.433      95.320    0.02%      66.220     73.130
+     MATH_11              66.114      -0.241      28.260    0.02%      55.400     63.470     66.510
+            4415.000     172.216      -0.331      99.300    0.02%      69.810     77.760
+     MATH_12              67.810      -0.234      27.010    0.03%      56.420     64.880     68.390
+            3992.000     180.834      -0.363     100.160    0.05%      71.770     79.600
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       27
+
+Loglikelihood
+
+          H0 Value                     -160326.241
+          H0 Scaling Correction Factor      1.1779
+            for MLR
+          H1 Value                     -142136.417
+          H1 Scaling Correction Factor      1.2526
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                  320706.481
+          Bayesian (BIC)                320886.914
+          Sample-Size Adjusted BIC      320801.116
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                          28318.912*
+          Degrees of Freedom                    63
+          P-Value                           0.0000
+          Scaling Correction Factor         1.2846
+            for MLR
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.276
+          90 Percent C.I.                    0.273  0.278
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                0.384
+          TLI                                0.355
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                          45927.389
+          Degrees of Freedom                    66
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.573
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ I        |
+    SCI_07             1.000      0.000    999.000    999.000
+    SCI_08             1.000      0.000    999.000    999.000
+    SCI_09             1.000      0.000    999.000    999.000
+    SCI_10             1.000      0.000    999.000    999.000
+    SCI_11             1.000      0.000    999.000    999.000
+    SCI_12             1.000      0.000    999.000    999.000
+
+ S        |
+    SCI_07             0.000      0.000    999.000    999.000
+    SCI_08             1.000      0.000    999.000    999.000
+    SCI_09             2.000      0.000    999.000    999.000
+    SCI_10             3.000      0.000    999.000    999.000
+    SCI_11             4.000      0.000    999.000    999.000
+    SCI_12             5.000      0.000    999.000    999.000
+
+ Q        |
+    SCI_07             0.000      0.000    999.000    999.000
+    SCI_08             1.000      0.000    999.000    999.000
+    SCI_09             4.000      0.000    999.000    999.000
+    SCI_10             9.000      0.000    999.000    999.000
+    SCI_11            16.000      0.000    999.000    999.000
+    SCI_12            25.000      0.000    999.000    999.000
+
+ S        WITH
+    I                 -0.563      0.909     -0.620      0.536
+
+ Q        WITH
+    I                  0.118      0.153      0.769      0.442
+    S                 -1.641      0.123    -13.362      0.000
+
+ Means
+    MATH_07           50.381      0.183    274.949      0.000
+    MATH_08           53.863      0.209    257.652      0.000
+    MATH_09           58.325      0.237    245.676      0.000
+    MATH_10           61.946      0.178    348.377      0.000
+    MATH_11           66.114      0.198    334.749      0.000
+    MATH_12           67.810      0.213    318.604      0.000
+    I                 49.997      0.153    327.751      0.000
+    S                  4.184      0.077     54.179      0.000
+    Q                 -0.275      0.013    -20.964      0.000
+
+ Intercepts
+    SCI_07             0.000      0.000    999.000    999.000
+    SCI_08             0.000      0.000    999.000    999.000
+    SCI_09             0.000      0.000    999.000    999.000
+    SCI_10             0.000      0.000    999.000    999.000
+    SCI_11             0.000      0.000    999.000    999.000
+    SCI_12             0.000      0.000    999.000    999.000
+
+ Variances
+    MATH_07          103.684      2.230     46.500      0.000
+    MATH_08          121.539      2.930     41.485      0.000
+    MATH_09          153.813      3.560     43.205      0.000
+    MATH_10          170.101      2.903     58.590      0.000
+    MATH_11          172.216      3.348     51.436      0.000
+    MATH_12          180.834      3.662     49.385      0.000
+    I                 82.735      2.084     39.697      0.000
+    S                  9.996      0.723     13.826      0.000
+    Q                  0.341      0.024     14.181      0.000
+
+ Residual Variances
+    SCI_07            16.902      1.277     13.239      0.000
+    SCI_08            18.128      0.786     23.054      0.000
+    SCI_09            12.541      0.684     18.340      0.000
+    SCI_10            12.848      0.646     19.885      0.000
+    SCI_11             9.098      0.424     21.447      0.000
+    SCI_12             0.625      0.890      0.703      0.482
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.428E-05
+       (ratio of smallest to largest eigenvalue)
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ I        |
+    SCI_07             0.911      0.007    134.195      0.000
+    SCI_08             0.879      0.007    121.433      0.000
+    SCI_09             0.855      0.009     93.561      0.000
+    SCI_10             0.819      0.010     82.453      0.000
+    SCI_11             0.803      0.010     77.784      0.000
+    SCI_12             0.779      0.011     73.944      0.000
+
+ S        |
+    SCI_07             0.000      0.000    999.000    999.000
+    SCI_08             0.306      0.011     26.829      0.000
+    SCI_09             0.594      0.022     27.085      0.000
+    SCI_10             0.854      0.031     27.646      0.000
+    SCI_11             1.117      0.040     27.745      0.000
+    SCI_12             1.354      0.050     26.820      0.000
+
+ Q        |
+    SCI_07             0.000      0.000    999.000    999.000
+    SCI_08             0.056      0.002     27.547      0.000
+    SCI_09             0.220      0.008     27.575      0.000
+    SCI_10             0.473      0.017     27.556      0.000
+    SCI_11             0.825      0.029     28.139      0.000
+    SCI_12             1.250      0.046     27.227      0.000
+
+ S        WITH
+    I                 -0.020      0.031     -0.631      0.528
+
+ Q        WITH
+    I                  0.022      0.028      0.779      0.436
+    S                 -0.889      0.008   -114.039      0.000
+
+ Means
+    MATH_07            4.948      0.053     93.067      0.000
+    MATH_08            4.886      0.061     79.923      0.000
+    MATH_09            4.703      0.058     81.239      0.000
+    MATH_10            4.750      0.045    106.470      0.000
+    MATH_11            5.038      0.054     93.550      0.000
+    MATH_12            5.043      0.056     89.818      0.000
+    I                  5.497      0.069     79.124      0.000
+    S                  1.323      0.058     22.862      0.000
+    Q                 -0.470      0.030    -15.506      0.000
+
+ Intercepts
+    SCI_07             0.000      0.000    999.000    999.000
+    SCI_08             0.000      0.000    999.000    999.000
+    SCI_09             0.000      0.000    999.000    999.000
+    SCI_10             0.000      0.000    999.000    999.000
+    SCI_11             0.000      0.000    999.000    999.000
+    SCI_12             0.000      0.000    999.000    999.000
+
+ Variances
+    MATH_07            1.000      0.000    999.000    999.000
+    MATH_08            1.000      0.000    999.000    999.000
+    MATH_09            1.000      0.000    999.000    999.000
+    MATH_10            1.000      0.000    999.000    999.000
+    MATH_11            1.000      0.000    999.000    999.000
+    MATH_12            1.000      0.000    999.000    999.000
+    I                  1.000      0.000    999.000    999.000
+    S                  1.000      0.000    999.000    999.000
+    Q                  1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SCI_07             0.170      0.012     13.707      0.000
+    SCI_08             0.169      0.007     24.245      0.000
+    SCI_09             0.111      0.006     18.965      0.000
+    SCI_10             0.104      0.005     20.287      0.000
+    SCI_11             0.071      0.003     20.916      0.000
+    SCI_12             0.005      0.007      0.703      0.482
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ I        |
+    SCI_07             0.911      0.007    134.195      0.000
+    SCI_08             0.879      0.007    121.433      0.000
+    SCI_09             0.855      0.009     93.561      0.000
+    SCI_10             0.819      0.010     82.453      0.000
+    SCI_11             0.803      0.010     77.784      0.000
+    SCI_12             0.779      0.011     73.944      0.000
+
+ S        |
+    SCI_07             0.000      0.000    999.000    999.000
+    SCI_08             0.306      0.011     26.829      0.000
+    SCI_09             0.594      0.022     27.085      0.000
+    SCI_10             0.854      0.031     27.646      0.000
+    SCI_11             1.117      0.040     27.745      0.000
+    SCI_12             1.354      0.050     26.820      0.000
+
+ Q        |
+    SCI_07             0.000      0.000    999.000    999.000
+    SCI_08             0.056      0.002     27.547      0.000
+    SCI_09             0.220      0.008     27.575      0.000
+    SCI_10             0.473      0.017     27.556      0.000
+    SCI_11             0.825      0.029     28.139      0.000
+    SCI_12             1.250      0.046     27.227      0.000
+
+ S        WITH
+    I                 -0.020      0.031     -0.631      0.528
+
+ Q        WITH
+    I                  0.022      0.028      0.779      0.436
+    S                 -0.889      0.008   -114.039      0.000
+
+ Means
+    MATH_07            4.948      0.053     93.067      0.000
+    MATH_08            4.886      0.061     79.923      0.000
+    MATH_09            4.703      0.058     81.239      0.000
+    MATH_10            4.750      0.045    106.470      0.000
+    MATH_11            5.038      0.054     93.550      0.000
+    MATH_12            5.043      0.056     89.818      0.000
+    I                  5.497      0.069     79.124      0.000
+    S                  1.323      0.058     22.862      0.000
+    Q                 -0.470      0.030    -15.506      0.000
+
+ Intercepts
+    SCI_07             0.000      0.000    999.000    999.000
+    SCI_08             0.000      0.000    999.000    999.000
+    SCI_09             0.000      0.000    999.000    999.000
+    SCI_10             0.000      0.000    999.000    999.000
+    SCI_11             0.000      0.000    999.000    999.000
+    SCI_12             0.000      0.000    999.000    999.000
+
+ Variances
+    MATH_07            1.000      0.000    999.000    999.000
+    MATH_08            1.000      0.000    999.000    999.000
+    MATH_09            1.000      0.000    999.000    999.000
+    MATH_10            1.000      0.000    999.000    999.000
+    MATH_11            1.000      0.000    999.000    999.000
+    MATH_12            1.000      0.000    999.000    999.000
+    I                  1.000      0.000    999.000    999.000
+    S                  1.000      0.000    999.000    999.000
+    Q                  1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SCI_07             0.170      0.012     13.707      0.000
+    SCI_08             0.169      0.007     24.245      0.000
+    SCI_09             0.111      0.006     18.965      0.000
+    SCI_10             0.104      0.005     20.287      0.000
+    SCI_11             0.071      0.003     20.916      0.000
+    SCI_12             0.005      0.007      0.703      0.482
+
+
+STD Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ I        |
+    SCI_07             9.096      0.115     79.394      0.000
+    SCI_08             9.096      0.115     79.394      0.000
+    SCI_09             9.096      0.115     79.394      0.000
+    SCI_10             9.096      0.115     79.394      0.000
+    SCI_11             9.096      0.115     79.394      0.000
+    SCI_12             9.096      0.115     79.394      0.000
+
+ S        |
+    SCI_07             0.000      0.000    999.000    999.000
+    SCI_08             3.162      0.114     27.653      0.000
+    SCI_09             6.323      0.229     27.653      0.000
+    SCI_10             9.485      0.343     27.653      0.000
+    SCI_11            12.647      0.457     27.653      0.000
+    SCI_12            15.808      0.572     27.653      0.000
+
+ Q        |
+    SCI_07             0.000      0.000    999.000    999.000
+    SCI_08             0.584      0.021     28.363      0.000
+    SCI_09             2.335      0.082     28.363      0.000
+    SCI_10             5.255      0.185     28.363      0.000
+    SCI_11             9.342      0.329     28.363      0.000
+    SCI_12            14.596      0.515     28.363      0.000
+
+ S        WITH
+    I                 -0.020      0.031     -0.631      0.528
+
+ Q        WITH
+    I                  0.022      0.028      0.779      0.436
+    S                 -0.889      0.008   -114.039      0.000
+
+ Means
+    MATH_07           50.381      0.183    274.949      0.000
+    MATH_08           53.863      0.209    257.652      0.000
+    MATH_09           58.325      0.237    245.676      0.000
+    MATH_10           61.946      0.178    348.377      0.000
+    MATH_11           66.114      0.198    334.749      0.000
+    MATH_12           67.810      0.213    318.604      0.000
+    I                  5.497      0.069     79.124      0.000
+    S                  1.323      0.058     22.862      0.000
+    Q                 -0.470      0.030    -15.506      0.000
+
+ Intercepts
+    SCI_07             0.000      0.000    999.000    999.000
+    SCI_08             0.000      0.000    999.000    999.000
+    SCI_09             0.000      0.000    999.000    999.000
+    SCI_10             0.000      0.000    999.000    999.000
+    SCI_11             0.000      0.000    999.000    999.000
+    SCI_12             0.000      0.000    999.000    999.000
+
+ Variances
+    MATH_07          103.684      2.230     46.500      0.000
+    MATH_08          121.539      2.930     41.485      0.000
+    MATH_09          153.813      3.560     43.205      0.000
+    MATH_10          170.101      2.903     58.590      0.000
+    MATH_11          172.216      3.348     51.436      0.000
+    MATH_12          180.834      3.662     49.385      0.000
+    I                  1.000      0.000    999.000    999.000
+    S                  1.000      0.000    999.000    999.000
+    Q                  1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SCI_07            16.902      1.277     13.239      0.000
+    SCI_08            18.128      0.786     23.054      0.000
+    SCI_09            12.541      0.684     18.340      0.000
+    SCI_10            12.848      0.646     19.885      0.000
+    SCI_11             9.098      0.424     21.447      0.000
+    SCI_12             0.625      0.890      0.703      0.482
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    SCI_07             0.830      0.012     67.098      0.000
+    SCI_08             0.831      0.007    118.897      0.000
+    SCI_09             0.889      0.006    152.154      0.000
+    SCI_10             0.896      0.005    174.412      0.000
+    SCI_11             0.929      0.003    274.034      0.000
+    SCI_12             0.995      0.007    152.722      0.000
+
+
+SAMPLE STATISTICS FOR ESTIMATED FACTOR SCORES
+
+
+     SAMPLE STATISTICS
+
+
+           Means
+              I             I_SE          S             S_SE          Q
+              ________      ________      ________      ________      ________
+               49.997         3.990         4.184         2.477        -0.275
+
+
+           Means
+              Q_SE
+              ________
+                0.434
+
+
+           Covariances
+              I             I_SE          S             S_SE          Q
+              ________      ________      ________      ________      ________
+ I             65.435
+ I_SE          -0.362         1.380
+ S              6.091        -0.193         3.762
+ S_SE          -0.317         0.290        -0.075         0.098
+ Q             -0.612         0.058        -0.631         0.017         0.147
+ Q_SE          -0.128         0.030        -0.020         0.018         0.003
+
+
+           Covariances
+              Q_SE
+              ________
+ Q_SE           0.006
+
+
+           Correlations
+              I             I_SE          S             S_SE          Q
+              ________      ________      ________      ________      ________
+ I              1.000
+ I_SE          -0.038         1.000
+ S              0.388        -0.085         1.000
+ S_SE          -0.125         0.789        -0.123         1.000
+ Q             -0.198         0.128        -0.849         0.143         1.000
+ Q_SE          -0.206         0.329        -0.136         0.737         0.109
+
+
+           Correlations
+              Q_SE
+              ________
+ Q_SE           1.000
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Histograms (sample values, estimated factor scores, estimated values, residuals)
+  Scatterplots (sample values, estimated factor scores, estimated values, residuals)
+  Sample means
+  Estimated means
+  Sample and estimated means
+  Latent variable distribution plots
+  Observed individual values
+  Estimated individual values
+
+     Beginning Time:  10:30:27
+        Ending Time:  10:30:27
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen

@@ -1,0 +1,15 @@
+TITLE:
+PRACTICE 02 - Explore female observations only
+DATA:
+FILE = "/Users/agarber/github/NTNU-workshop/02-run-models/basic_mplus/fem_basic.dat";
+ 
+VARIABLE:
+NAMES = item1 item2 item3 item4 item5 item6 item7 item8 item9 female; 
+ MISSING=.;
+ usevar=
+ item1 item2 item3 item4 item5
+ item6 item7 item8 item9; 
+ 
+ useobs = female == 1; !include observations that report female in analysis
+ANALYSIS:
+type = basic;

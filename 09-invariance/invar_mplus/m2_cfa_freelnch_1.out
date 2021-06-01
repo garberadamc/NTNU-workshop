@@ -1,0 +1,790 @@
+Mplus VERSION 8.6 (Mac)
+MUTHEN & MUTHEN
+05/26/2021  11:08 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  CFA model2 - group is 1 for freelnch
+  DATA:
+  FILE = "/Users/agarber/github/NTNU-workshop/09-invariance/invar_mplus/invar_data.dat";
+
+  VARIABLE:
+  NAMES = bystlang freelnch byincome stolen t_hurt p_fight hit damaged bullied unsafe
+       disrupt gangs rac_fght late skipped mth_read mth_test rd_test;
+   MISSING=.;
+   usevar = stolen-rac_fght;
+
+       !freelnch (1 = school proportion is greater than or equal to 11 percent)
+       USEOBS = freelnch == 1;
+  ANALYSIS:
+  estimator = mlr;
+  MODEL:
+  VICTIM by stolen* t_hurt p_fight hit damaged bullied;
+       VICTIM@1; ! UVI identification
+
+       NEG_CLIM by unsafe* disrupt gangs rac_fght;
+       NEG_CLIM@1;
+  OUTPUT:
+  sampstat standardized residual modindices (3.84);
+  PLOT:
+  type = plot3;
+
+
+
+*** WARNING
+  Data set contains cases with missing on all variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on all variables:  35
+   1 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+CFA model2 - group is 1 for freelnch
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         353
+
+Number of dependent variables                                   10
+Number of independent variables                                  0
+Number of continuous latent variables                            2
+
+Observed dependent variables
+
+  Continuous
+   STOLEN      T_HURT      P_FIGHT     HIT         DAMAGED     BULLIED
+   UNSAFE      DISRUPT     GANGS       RAC_FGHT
+
+Continuous latent variables
+   VICTIM      NEG_CLIM
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+
+Input data file(s)
+  /Users/agarber/github/NTNU-workshop/09-invariance/invar_mplus/invar_data.dat
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns            13
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              STOLEN        T_HURT        P_FIGHT       HIT           DAMAGED
+              ________      ________      ________      ________      ________
+ STOLEN         1.000
+ T_HURT         0.994         0.994
+ P_FIGHT        0.992         0.989         0.992
+ HIT            0.986         0.983         0.977         0.986
+ DAMAGED        0.994         0.992         0.986         0.986         0.994
+ BULLIED        0.989         0.989         0.983         0.980         0.989
+ UNSAFE         0.986         0.980         0.977         0.972         0.980
+ DISRUPT        0.994         0.989         0.986         0.983         0.989
+ GANGS          0.975         0.969         0.966         0.960         0.969
+ RAC_FGHT       0.997         0.992         0.989         0.983         0.992
+
+
+           Covariance Coverage
+              BULLIED       UNSAFE        DISRUPT       GANGS         RAC_FGHT
+              ________      ________      ________      ________      ________
+ BULLIED        0.989
+ UNSAFE         0.975         0.986
+ DISRUPT        0.983         0.980         0.994
+ GANGS          0.963         0.963         0.969         0.975
+ RAC_FGHT       0.986         0.986         0.992         0.972         0.997
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           Means
+              STOLEN        T_HURT        P_FIGHT       HIT           DAMAGED
+              ________      ________      ________      ________      ________
+                1.513         1.274         1.164         1.254         1.163
+
+
+           Means
+              BULLIED       UNSAFE        DISRUPT       GANGS         RAC_FGHT
+              ________      ________      ________      ________      ________
+                1.239         1.772         2.510         2.187         2.090
+
+
+           Covariances
+              STOLEN        T_HURT        P_FIGHT       HIT           DAMAGED
+              ________      ________      ________      ________      ________
+ STOLEN         0.408
+ T_HURT         0.141         0.329
+ P_FIGHT        0.083         0.097         0.212
+ HIT            0.115         0.143         0.110         0.304
+ DAMAGED        0.125         0.106         0.060         0.098         0.181
+ BULLIED        0.065         0.135         0.020         0.090         0.069
+ UNSAFE         0.074         0.071         0.045         0.095         0.046
+ DISRUPT        0.079         0.027         0.013         0.016         0.000
+ GANGS          0.121         0.073         0.048         0.033         0.082
+ RAC_FGHT       0.064         0.122         0.042         0.054         0.045
+
+
+           Covariances
+              BULLIED       UNSAFE        DISRUPT       GANGS         RAC_FGHT
+              ________      ________      ________      ________      ________
+ BULLIED        0.296
+ UNSAFE         0.043         0.548
+ DISRUPT        0.059         0.243         0.774
+ GANGS          0.006         0.198         0.180         0.758
+ RAC_FGHT       0.061         0.209         0.174         0.283         0.719
+
+
+           Correlations
+              STOLEN        T_HURT        P_FIGHT       HIT           DAMAGED
+              ________      ________      ________      ________      ________
+ STOLEN         1.000
+ T_HURT         0.384         1.000
+ P_FIGHT        0.282         0.367         1.000
+ HIT            0.326         0.453         0.435         1.000
+ DAMAGED        0.458         0.434         0.307         0.417         1.000
+ BULLIED        0.188         0.434         0.081         0.300         0.299
+ UNSAFE         0.156         0.167         0.133         0.232         0.145
+ DISRUPT        0.140         0.054         0.031         0.034         0.001
+ GANGS          0.218         0.146         0.120         0.070         0.220
+ RAC_FGHT       0.118         0.250         0.107         0.116         0.125
+
+
+           Correlations
+              BULLIED       UNSAFE        DISRUPT       GANGS         RAC_FGHT
+              ________      ________      ________      ________      ________
+ BULLIED        1.000
+ UNSAFE         0.107         1.000
+ DISRUPT        0.124         0.372         1.000
+ GANGS          0.013         0.307         0.235         1.000
+ RAC_FGHT       0.132         0.333         0.234         0.384         1.000
+
+
+     MAXIMUM LOG-LIKELIHOOD VALUE FOR THE UNRESTRICTED (H1) MODEL IS -3003.047
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     STOLEN                1.513       0.864       1.000   56.66%       1.000      1.000      1.000
+             353.000       0.408      -0.320       3.000    7.93%       2.000      2.000
+     T_HURT                1.274       1.984       1.000   79.20%       1.000      1.000      1.000
+             351.000       0.330       2.760       3.000    6.55%       1.000      2.000
+     P_FIGHT               1.163       2.881       1.000   87.43%       1.000      1.000      1.000
+             350.000       0.211       7.532       3.000    3.71%       1.000      1.000
+     HIT                   1.256       2.073       1.000   80.17%       1.000      1.000      1.000
+             348.000       0.305       3.208       3.000    5.75%       1.000      1.000
+     DAMAGED               1.162       2.667       1.000   86.04%       1.000      1.000      1.000
+             351.000       0.182       6.642       3.000    2.28%       1.000      1.000
+     BULLIED               1.238       2.219       1.000   81.95%       1.000      1.000      1.000
+             349.000       0.296       3.817       3.000    5.73%       1.000      1.000
+     UNSAFE                1.773       0.898       1.000   37.93%       1.000      2.000      2.000
+             348.000       0.549       0.894       4.000    3.45%       2.000      2.000
+     DISRUPT               2.510      -0.005       1.000   12.82%       2.000      2.000      3.000
+             351.000       0.774      -0.709       4.000   13.39%       3.000      3.000
+     GANGS                 2.186       0.391       1.000   22.09%       1.000      2.000      2.000
+             344.000       0.762      -0.493       4.000    8.43%       2.000      3.000
+     RAC_FGHT              2.091       0.525       1.000   24.72%       1.000      2.000      2.000
+             352.000       0.719      -0.239       4.000    7.10%       2.000      3.000
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       31
+
+Loglikelihood
+
+          H0 Value                       -3056.610
+          H0 Scaling Correction Factor      1.7080
+            for MLR
+          H1 Value                       -3003.047
+          H1 Scaling Correction Factor      1.4958
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                    6175.220
+          Bayesian (BIC)                  6295.081
+          Sample-Size Adjusted BIC        6196.736
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                             82.253*
+          Degrees of Freedom                    34
+          P-Value                           0.0000
+          Scaling Correction Factor         1.3024
+            for MLR
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.063
+          90 Percent C.I.                    0.046  0.081
+          Probability RMSEA <= .05           0.098
+
+CFI/TLI
+
+          CFI                                0.893
+          TLI                                0.858
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                            494.942
+          Degrees of Freedom                    45
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.049
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ VICTIM   BY
+    STOLEN             0.361      0.039      9.297      0.000
+    T_HURT             0.411      0.051      8.128      0.000
+    P_FIGHT            0.232      0.049      4.707      0.000
+    HIT                0.360      0.045      7.973      0.000
+    DAMAGED            0.277      0.041      6.801      0.000
+    BULLIED            0.248      0.049      5.054      0.000
+
+ NEG_CLIM BY
+    UNSAFE             0.462      0.061      7.540      0.000
+    DISRUPT            0.410      0.064      6.389      0.000
+    GANGS              0.491      0.070      6.967      0.000
+    RAC_FGHT           0.491      0.060      8.165      0.000
+
+ NEG_CLIM WITH
+    VICTIM             0.384      0.095      4.046      0.000
+
+ Intercepts
+    STOLEN             1.513      0.034     44.470      0.000
+    T_HURT             1.273      0.031     41.606      0.000
+    P_FIGHT            1.164      0.025     47.237      0.000
+    HIT                1.255      0.029     42.568      0.000
+    DAMAGED            1.163      0.023     51.073      0.000
+    BULLIED            1.238      0.029     42.505      0.000
+    UNSAFE             1.773      0.040     44.814      0.000
+    DISRUPT            2.510      0.047     53.497      0.000
+    GANGS              2.188      0.047     46.613      0.000
+    RAC_FGHT           2.090      0.045     46.283      0.000
+
+ Variances
+    VICTIM             1.000      0.000    999.000    999.000
+    NEG_CLIM           1.000      0.000    999.000    999.000
+
+ Residual Variances
+    STOLEN             0.278      0.027     10.351      0.000
+    T_HURT             0.160      0.029      5.468      0.000
+    P_FIGHT            0.157      0.026      6.106      0.000
+    HIT                0.175      0.029      5.977      0.000
+    DAMAGED            0.105      0.017      6.233      0.000
+    BULLIED            0.234      0.033      7.130      0.000
+    UNSAFE             0.334      0.052      6.479      0.000
+    DISRUPT            0.606      0.060     10.053      0.000
+    GANGS              0.520      0.069      7.533      0.000
+    RAC_FGHT           0.478      0.056      8.458      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.137E-01
+       (ratio of smallest to largest eigenvalue)
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ VICTIM   BY
+    STOLEN             0.565      0.053     10.707      0.000
+    T_HURT             0.717      0.064     11.176      0.000
+    P_FIGHT            0.506      0.085      5.944      0.000
+    HIT                0.652      0.063     10.295      0.000
+    DAMAGED            0.650      0.062     10.444      0.000
+    BULLIED            0.457      0.079      5.778      0.000
+
+ NEG_CLIM BY
+    UNSAFE             0.625      0.072      8.716      0.000
+    DISRUPT            0.466      0.070      6.619      0.000
+    GANGS              0.563      0.076      7.407      0.000
+    RAC_FGHT           0.579      0.064      9.096      0.000
+
+ NEG_CLIM WITH
+    VICTIM             0.384      0.095      4.046      0.000
+
+ Intercepts
+    STOLEN             2.367      0.061     38.875      0.000
+    T_HURT             2.219      0.084     26.542      0.000
+    P_FIGHT            2.534      0.160     15.813      0.000
+    HIT                2.274      0.093     24.404      0.000
+    DAMAGED            2.730      0.167     16.349      0.000
+    BULLIED            2.278      0.100     22.810      0.000
+    UNSAFE             2.395      0.093     25.821      0.000
+    DISRUPT            2.853      0.102     28.027      0.000
+    GANGS              2.508      0.083     30.196      0.000
+    RAC_FGHT           2.466      0.082     29.979      0.000
+
+ Variances
+    VICTIM             1.000      0.000    999.000    999.000
+    NEG_CLIM           1.000      0.000    999.000    999.000
+
+ Residual Variances
+    STOLEN             0.681      0.060     11.410      0.000
+    T_HURT             0.486      0.092      5.290      0.000
+    P_FIGHT            0.744      0.086      8.655      0.000
+    HIT                0.575      0.083      6.960      0.000
+    DAMAGED            0.577      0.081      7.138      0.000
+    BULLIED            0.791      0.072     10.957      0.000
+    UNSAFE             0.610      0.090      6.813      0.000
+    DISRUPT            0.782      0.066     11.902      0.000
+    GANGS              0.684      0.085      8.000      0.000
+    RAC_FGHT           0.664      0.074      9.002      0.000
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ VICTIM   BY
+    STOLEN             0.565      0.053     10.707      0.000
+    T_HURT             0.717      0.064     11.176      0.000
+    P_FIGHT            0.506      0.085      5.944      0.000
+    HIT                0.652      0.063     10.295      0.000
+    DAMAGED            0.650      0.062     10.444      0.000
+    BULLIED            0.457      0.079      5.778      0.000
+
+ NEG_CLIM BY
+    UNSAFE             0.625      0.072      8.716      0.000
+    DISRUPT            0.466      0.070      6.619      0.000
+    GANGS              0.563      0.076      7.407      0.000
+    RAC_FGHT           0.579      0.064      9.096      0.000
+
+ NEG_CLIM WITH
+    VICTIM             0.384      0.095      4.046      0.000
+
+ Intercepts
+    STOLEN             2.367      0.061     38.875      0.000
+    T_HURT             2.219      0.084     26.542      0.000
+    P_FIGHT            2.534      0.160     15.813      0.000
+    HIT                2.274      0.093     24.404      0.000
+    DAMAGED            2.730      0.167     16.349      0.000
+    BULLIED            2.278      0.100     22.810      0.000
+    UNSAFE             2.395      0.093     25.821      0.000
+    DISRUPT            2.853      0.102     28.027      0.000
+    GANGS              2.508      0.083     30.196      0.000
+    RAC_FGHT           2.466      0.082     29.979      0.000
+
+ Variances
+    VICTIM             1.000      0.000    999.000    999.000
+    NEG_CLIM           1.000      0.000    999.000    999.000
+
+ Residual Variances
+    STOLEN             0.681      0.060     11.410      0.000
+    T_HURT             0.486      0.092      5.290      0.000
+    P_FIGHT            0.744      0.086      8.655      0.000
+    HIT                0.575      0.083      6.960      0.000
+    DAMAGED            0.577      0.081      7.138      0.000
+    BULLIED            0.791      0.072     10.957      0.000
+    UNSAFE             0.610      0.090      6.813      0.000
+    DISRUPT            0.782      0.066     11.902      0.000
+    GANGS              0.684      0.085      8.000      0.000
+    RAC_FGHT           0.664      0.074      9.002      0.000
+
+
+STD Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ VICTIM   BY
+    STOLEN             0.361      0.039      9.297      0.000
+    T_HURT             0.411      0.051      8.128      0.000
+    P_FIGHT            0.232      0.049      4.707      0.000
+    HIT                0.360      0.045      7.973      0.000
+    DAMAGED            0.277      0.041      6.801      0.000
+    BULLIED            0.248      0.049      5.054      0.000
+
+ NEG_CLIM BY
+    UNSAFE             0.462      0.061      7.540      0.000
+    DISRUPT            0.410      0.064      6.389      0.000
+    GANGS              0.491      0.070      6.967      0.000
+    RAC_FGHT           0.491      0.060      8.165      0.000
+
+ NEG_CLIM WITH
+    VICTIM             0.384      0.095      4.046      0.000
+
+ Intercepts
+    STOLEN             1.513      0.034     44.470      0.000
+    T_HURT             1.273      0.031     41.606      0.000
+    P_FIGHT            1.164      0.025     47.237      0.000
+    HIT                1.255      0.029     42.568      0.000
+    DAMAGED            1.163      0.023     51.073      0.000
+    BULLIED            1.238      0.029     42.505      0.000
+    UNSAFE             1.773      0.040     44.814      0.000
+    DISRUPT            2.510      0.047     53.497      0.000
+    GANGS              2.188      0.047     46.613      0.000
+    RAC_FGHT           2.090      0.045     46.283      0.000
+
+ Variances
+    VICTIM             1.000      0.000    999.000    999.000
+    NEG_CLIM           1.000      0.000    999.000    999.000
+
+ Residual Variances
+    STOLEN             0.278      0.027     10.351      0.000
+    T_HURT             0.160      0.029      5.468      0.000
+    P_FIGHT            0.157      0.026      6.106      0.000
+    HIT                0.175      0.029      5.977      0.000
+    DAMAGED            0.105      0.017      6.233      0.000
+    BULLIED            0.234      0.033      7.130      0.000
+    UNSAFE             0.334      0.052      6.479      0.000
+    DISRUPT            0.606      0.060     10.053      0.000
+    GANGS              0.520      0.069      7.533      0.000
+    RAC_FGHT           0.478      0.056      8.458      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    STOLEN             0.319      0.060      5.353      0.000
+    T_HURT             0.514      0.092      5.588      0.000
+    P_FIGHT            0.256      0.086      2.972      0.003
+    HIT                0.425      0.083      5.147      0.000
+    DAMAGED            0.423      0.081      5.222      0.000
+    BULLIED            0.209      0.072      2.889      0.004
+    UNSAFE             0.390      0.090      4.358      0.000
+    DISRUPT            0.218      0.066      3.309      0.001
+    GANGS              0.316      0.085      3.703      0.000
+    RAC_FGHT           0.336      0.074      4.548      0.000
+
+
+RESIDUAL OUTPUT
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED)
+
+
+           Model Estimated Means
+              STOLEN        T_HURT        P_FIGHT       HIT           DAMAGED
+              ________      ________      ________      ________      ________
+                1.513         1.273         1.164         1.255         1.163
+
+
+           Model Estimated Means
+              BULLIED       UNSAFE        DISRUPT       GANGS         RAC_FGHT
+              ________      ________      ________      ________      ________
+                1.238         1.773         2.510         2.188         2.090
+
+
+           Residuals for Means
+              STOLEN        T_HURT        P_FIGHT       HIT           DAMAGED
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Residuals for Means
+              BULLIED       UNSAFE        DISRUPT       GANGS         RAC_FGHT
+              ________      ________      ________      ________      ________
+                0.001        -0.001        -0.001        -0.001         0.000
+
+
+           Standardized Residuals (z-scores) for Means
+              STOLEN        T_HURT        P_FIGHT       HIT           DAMAGED
+              ________      ________      ________      ________      ________
+                0.000       999.000         0.187       999.000         0.368
+
+
+           Standardized Residuals (z-scores) for Means
+              BULLIED       UNSAFE        DISRUPT       GANGS         RAC_FGHT
+              ________      ________      ________      ________      ________
+                0.493       999.000       999.000       999.000       999.000
+
+
+           Normalized Residuals for Means
+              STOLEN        T_HURT        P_FIGHT       HIT           DAMAGED
+              ________      ________      ________      ________      ________
+                0.000         0.012         0.016        -0.009         0.005
+
+
+           Normalized Residuals for Means
+              BULLIED       UNSAFE        DISRUPT       GANGS         RAC_FGHT
+              ________      ________      ________      ________      ________
+                0.030        -0.035        -0.011        -0.012        -0.005
+
+
+           Model Estimated Covariances
+              STOLEN        T_HURT        P_FIGHT       HIT           DAMAGED
+              ________      ________      ________      ________      ________
+ STOLEN         0.408
+ T_HURT         0.149         0.329
+ P_FIGHT        0.084         0.096         0.211
+ HIT            0.130         0.148         0.084         0.304
+ DAMAGED        0.100         0.114         0.064         0.100         0.181
+ BULLIED        0.090         0.102         0.058         0.089         0.069
+ UNSAFE         0.064         0.073         0.041         0.064         0.049
+ DISRUPT        0.057         0.065         0.037         0.057         0.044
+ GANGS          0.068         0.077         0.044         0.068         0.052
+ RAC_FGHT       0.068         0.078         0.044         0.068         0.052
+
+
+           Model Estimated Covariances
+              BULLIED       UNSAFE        DISRUPT       GANGS         RAC_FGHT
+              ________      ________      ________      ________      ________
+ BULLIED        0.296
+ UNSAFE         0.044         0.548
+ DISRUPT        0.039         0.190         0.774
+ GANGS          0.047         0.227         0.201         0.761
+ RAC_FGHT       0.047         0.227         0.202         0.241         0.719
+
+
+           Model Estimated Correlations
+              STOLEN        T_HURT        P_FIGHT       HIT           DAMAGED
+              ________      ________      ________      ________      ________
+ STOLEN         1.000
+ T_HURT         0.405         1.000
+ P_FIGHT        0.286         0.362         1.000
+ HIT            0.368         0.467         0.330         1.000
+ DAMAGED        0.367         0.466         0.329         0.424         1.000
+ BULLIED        0.258         0.327         0.231         0.298         0.297
+ UNSAFE         0.135         0.172         0.121         0.156         0.156
+ DISRUPT        0.101         0.128         0.091         0.117         0.116
+ GANGS          0.122         0.155         0.109         0.141         0.140
+ RAC_FGHT       0.126         0.159         0.112         0.145         0.145
+
+
+           Model Estimated Correlations
+              BULLIED       UNSAFE        DISRUPT       GANGS         RAC_FGHT
+              ________      ________      ________      ________      ________
+ BULLIED        1.000
+ UNSAFE         0.109         1.000
+ DISRUPT        0.082         0.291         1.000
+ GANGS          0.099         0.351         0.262         1.000
+ RAC_FGHT       0.102         0.362         0.270         0.326         1.000
+
+
+           Residuals for Covariances
+              STOLEN        T_HURT        P_FIGHT       HIT           DAMAGED
+              ________      ________      ________      ________      ________
+ STOLEN         0.000
+ T_HURT        -0.008         0.000
+ P_FIGHT       -0.001         0.001         0.001
+ HIT           -0.015        -0.005         0.027         0.000
+ DAMAGED        0.025        -0.008        -0.004        -0.002         0.000
+ BULLIED       -0.024         0.033        -0.037         0.001         0.001
+ UNSAFE         0.010        -0.002         0.004         0.031        -0.004
+ DISRUPT        0.022        -0.037        -0.024        -0.040        -0.043
+ GANGS          0.053        -0.004         0.004        -0.034         0.030
+ RAC_FGHT      -0.004         0.044        -0.002        -0.014        -0.007
+
+
+           Residuals for Covariances
+              BULLIED       UNSAFE        DISRUPT       GANGS         RAC_FGHT
+              ________      ________      ________      ________      ________
+ BULLIED        0.000
+ UNSAFE        -0.001         0.000
+ DISRUPT        0.020         0.053         0.000
+ GANGS         -0.041        -0.029        -0.021        -0.003
+ RAC_FGHT       0.014        -0.018        -0.027         0.042         0.000
+
+
+           Residuals for Correlations
+              STOLEN        T_HURT        P_FIGHT       HIT           DAMAGED
+              ________      ________      ________      ________      ________
+ STOLEN         0.000
+ T_HURT        -0.021         0.000
+ P_FIGHT       -0.004         0.004         0.000
+ HIT           -0.042        -0.015         0.105         0.000
+ DAMAGED        0.091        -0.032        -0.021        -0.007         0.000
+ BULLIED       -0.070         0.106        -0.150         0.002         0.002
+ UNSAFE         0.020        -0.005         0.012         0.076        -0.011
+ DISRUPT        0.039        -0.074        -0.059        -0.083        -0.115
+ GANGS          0.096        -0.009         0.010        -0.071         0.080
+ RAC_FGHT      -0.008         0.091        -0.005        -0.029        -0.019
+
+
+           Residuals for Correlations
+              BULLIED       UNSAFE        DISRUPT       GANGS         RAC_FGHT
+              ________      ________      ________      ________      ________
+ BULLIED        0.000
+ UNSAFE        -0.002         0.000
+ DISRUPT        0.042         0.081         0.000
+ GANGS         -0.086        -0.044        -0.027         0.000
+ RAC_FGHT       0.030        -0.029        -0.037         0.058         0.000
+
+
+           Standardized Residuals (z-scores) for Covariances
+              STOLEN        T_HURT        P_FIGHT       HIT           DAMAGED
+              ________      ________      ________      ________      ________
+ STOLEN         0.000
+ T_HURT        -1.089       999.000
+ P_FIGHT       -0.457         0.140         0.171
+ HIT           -2.061        -0.602         2.186       999.000
+ DAMAGED        4.294        -1.237        -0.372        -0.179       999.000
+ BULLIED       -3.520       999.000        -5.011         0.075         0.047
+ UNSAFE         0.442        -0.143         0.195         1.749        -0.186
+ DISRUPT        0.751        -1.734        -1.077        -2.070        -2.411
+ GANGS          2.177        -0.259         0.168        -1.737         1.372
+ RAC_FGHT      -0.181         2.406        -0.076        -0.558        -0.400
+
+
+           Standardized Residuals (z-scores) for Covariances
+              BULLIED       UNSAFE        DISRUPT       GANGS         RAC_FGHT
+              ________      ________      ________      ________      ________
+ BULLIED      999.000
+ UNSAFE        -0.054         0.054
+ DISRUPT        0.922       999.000       999.000
+ GANGS         -1.805        -1.541        -0.750       999.000
+ RAC_FGHT       0.581        -1.046        -1.108       999.000         0.000
+
+
+           Normalized Residuals for Covariances
+              STOLEN        T_HURT        P_FIGHT       HIT           DAMAGED
+              ________      ________      ________      ________      ________
+ STOLEN         0.000
+ T_HURT        -0.294        -0.003
+ P_FIGHT       -0.050         0.047         0.016
+ HIT           -0.631        -0.162         0.999        -0.008
+ DAMAGED        1.039        -0.345        -0.197        -0.072        -0.001
+ BULLIED       -1.145         1.260        -2.460         0.026         0.026
+ UNSAFE         0.320        -0.079         0.161         1.115        -0.139
+ DISRUPT        0.652        -1.298        -0.956        -1.574        -1.942
+ GANGS          1.614        -0.146         0.143        -1.178         1.042
+ RAC_FGHT      -0.133         1.387        -0.065        -0.418        -0.279
+
+
+           Normalized Residuals for Covariances
+              BULLIED       UNSAFE        DISRUPT       GANGS         RAC_FGHT
+              ________      ________      ________      ________      ________
+ BULLIED        0.000
+ UNSAFE        -0.041         0.002
+ DISRUPT        0.805         1.445        -0.002
+ GANGS         -1.505        -0.733        -0.464        -0.057
+ RAC_FGHT       0.491        -0.458        -0.642         0.903         0.000
+
+
+MODEL MODIFICATION INDICES
+
+NOTE:  Modification indices for direct effects of observed dependent variables
+regressed on covariates may not be included.  To include these, request
+MODINDICES (ALL).
+
+Minimum M.I. value for printing the modification index     3.840
+
+                                   M.I.     E.P.C.  Std E.P.C.  StdYX E.P.C.
+
+WITH Statements
+
+HIT      WITH P_FIGHT             10.120     0.040      0.040        0.241
+DAMAGED  WITH STOLEN               9.304     0.041      0.041        0.238
+BULLIED  WITH T_HURT              13.320     0.056      0.056        0.290
+BULLIED  WITH P_FIGHT             12.639    -0.046     -0.046       -0.241
+UNSAFE   WITH HIT                  6.806     0.048      0.048        0.199
+DISRUPT  WITH UNSAFE               8.559     0.124      0.124        0.275
+GANGS    WITH HIT                  4.268    -0.046     -0.046       -0.153
+GANGS    WITH DAMAGED              6.501     0.044      0.044        0.187
+GANGS    WITH BULLIED              4.333    -0.050     -0.050       -0.145
+RAC_FGHT WITH T_HURT               6.934     0.056      0.056        0.202
+RAC_FGHT WITH GANGS                4.949     0.114      0.114        0.230
+
+
+SAMPLE STATISTICS FOR ESTIMATED FACTOR SCORES
+
+
+     SAMPLE STATISTICS
+
+
+           Means
+              VICTIM        VICTIM_S      NEG_CLIM      NEG_CLIM
+              ________      ________      ________      ________
+                0.000         0.463         0.000         0.579
+
+
+           Covariances
+              VICTIM        VICTIM_S      NEG_CLIM      NEG_CLIM
+              ________      ________      ________      ________
+ VICTIM         0.786
+ VICTIM_S       0.000         0.000
+ NEG_CLIM       0.352         0.001         0.665
+ NEG_CLIM      -0.001         0.000         0.000         0.000
+
+
+           Correlations
+              VICTIM        VICTIM_S      NEG_CLIM      NEG_CLIM
+              ________      ________      ________      ________
+ VICTIM         1.000
+ VICTIM_S       0.002         1.000
+ NEG_CLIM       0.487         0.068         1.000
+ NEG_CLIM      -0.059         0.027         0.011         1.000
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Histograms (sample values, estimated factor scores, estimated values, residuals)
+  Scatterplots (sample values, estimated factor scores, estimated values, residuals)
+  Latent variable distribution plots
+
+     Beginning Time:  23:08:51
+        Ending Time:  23:08:51
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen

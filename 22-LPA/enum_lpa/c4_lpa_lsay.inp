@@ -1,0 +1,20 @@
+TITLE:
+Class 4
+DATA:
+FILE = "/Users/agarber/github/NTNU-workshop/22-LPA/enum_lpa/lpa_lsay.dat";
+ 
+VARIABLE:
+NAMES = rural gender fathed mothed mth_scor sci_scor phy_scor bio_scor; 
+ MISSING=.;
+ usevar = mth_scor-bio_scor;
+classes = c(4); 
+ANALYSIS:
+estimator = mlr; 
+    type = mixture;
+    starts = 200 50; 
+    processors = 10;
+OUTPUT:
+sampstat residual tech11 tech14;
+PLOT:
+type = plot3; 
+     series = mth_scor-bio_scor(*);
