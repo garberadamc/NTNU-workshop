@@ -28,16 +28,6 @@ library(reshape2)
 library(semPlot)
 ```
 
-## Change starting location to folder `09-invariance`
-```{r}
-
-source("rep_functions.R")
-
-change_here(glue("{project_location}/09-invariance"))
-
-here()
-```
-
 ______________________________________________
 
 ## Lab 9 - Begin 
@@ -145,8 +135,8 @@ cfa_m0  <- mplusObject(
   rdata = invar_data)
 
 cfa_m0_fit <- mplusModeler(cfa_m0, 
-              dataout=here("invar_mplus", "invar_data.dat"),
-              modelout=here("invar_mplus", "m0_cfa_fullsample.inp"),
+              dataout=here("09-invariance", "invar_mplus", "invar_data.dat"),
+              modelout=here("09-invariance", "invar_mplus", "m0_cfa_fullsample.inp"),
               check=TRUE, run = TRUE, hashfilename = FALSE)
 ```
 
@@ -185,8 +175,8 @@ cfa_m1  <- mplusObject(
   rdata = invar_data)
 
 cfa_m1_fit <- mplusModeler(cfa_m1, 
-              dataout=here("invar_mplus", "invar_data.dat"),
-              modelout=here("invar_mplus", "m1_cfa_freelnch_0.inp"),
+              dataout=here("09-invariance", "invar_mplus", "invar_data.dat"),
+              modelout=here("09-invariance", "invar_mplus", "m1_cfa_freelnch_0.inp"),
               check=TRUE, run = TRUE, hashfilename = FALSE)
 ```
 
@@ -221,8 +211,8 @@ cfa_m2  <- mplusObject(
   rdata = invar_data)
 
 cfa_m2_fit <- mplusModeler(cfa_m2, 
-              dataout=here("invar_mplus", "invar_data.dat"),
-              modelout=here("invar_mplus", "m2_cfa_freelnch_1.inp"),
+              dataout=here("09-invariance", "invar_mplus", "invar_data.dat"),
+              modelout=here("09-invariance", "invar_mplus", "m2_cfa_freelnch_1.inp"),
               check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```
@@ -297,8 +287,8 @@ cfa_m3  <- mplusObject(
   rdata = invar_data)
 
 cfa_m3_fit <- mplusModeler(cfa_m3, 
-              dataout=here("invar_mplus", "invar_data.dat"),
-              modelout=here("invar_mplus", "m3_configural.inp"),
+              dataout=here("09-invariance", "invar_mplus", "invar_data.dat"),
+              modelout=here("09-invariance", "invar_mplus", "m3_configural.inp"),
               check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```
@@ -365,8 +355,8 @@ cfa_m4  <- mplusObject(
   rdata = invar_data)
 
 cfa_m4_fit <- mplusModeler(cfa_m4, 
-              dataout=here("invar_mplus", "invar_data.dat"),
-              modelout=here("invar_mplus", "m4_metric.inp"),
+              dataout=here("09-invariance", "invar_mplus", "invar_data.dat"),
+              modelout=here("09-invariance", "invar_mplus", "m4_metric.inp"),
               check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```
@@ -429,8 +419,8 @@ cfa_m5  <- mplusObject(
   rdata = invar_data)
 
 cfa_m5_fit <- mplusModeler(cfa_m5, 
-              dataout=here("invar_mplus", "invar_data.dat"),
-              modelout=here("invar_mplus", "m5_scalar.inp"),
+              dataout=here("09-invariance", "invar_mplus", "invar_data.dat"),
+              modelout=here("09-invariance", "invar_mplus", "m5_scalar.inp"),
               check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```
@@ -497,8 +487,8 @@ cfa_m6  <- mplusObject(
   rdata = invar_data)
 
 cfa_m6_fit <- mplusModeler(cfa_m6, 
-              dataout=here("invar_mplus", "invar_data.dat"),
-              modelout=here("invar_mplus", "m6_strict.inp"),
+              dataout=here("09-invariance", "invar_mplus", "invar_data.dat"),
+              modelout=here("09-invariance", "invar_mplus", "m6_strict.inp"),
               check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```
@@ -566,8 +556,8 @@ cfa_m7  <- mplusObject(
   rdata = invar_data)
 
 cfa_m7_fit <- mplusModeler(cfa_m7, 
-              dataout=here("invar_mplus", "invar_data.dat"),
-              modelout=here("invar_mplus", "m7_structuralA.inp"),
+              dataout=here("09-invariance", "invar_mplus", "invar_data.dat"),
+              modelout=here("09-invariance", "invar_mplus", "m7_structuralA.inp"),
               check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```
@@ -638,8 +628,8 @@ cfa_m8  <- mplusObject(
   rdata = invar_data)
 
 cfa_m8_fit <- mplusModeler(cfa_m8, 
-              dataout=here("invar_mplus", "invar_data.dat"),
-              modelout=here("invar_mplus", "m8_structuralB.inp"),
+              dataout=here("09-invariance", "invar_mplus", "invar_data.dat"),
+              modelout=here("09-invariance", "invar_mplus", "m8_structuralB.inp"),
               check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```
@@ -675,7 +665,7 @@ ______________________________________________
 
 Read into R summary of all models
 ```{r}
-all_models <- readModels(here("invar_mplus"), quiet = TRUE)
+all_models <- readModels(here("09-invariance", "invar_mplus"), quiet = TRUE)
 ```
 
 ______________________________________________
@@ -797,8 +787,8 @@ mx  <- mplusObject(
   rdata = invar_data)
 
 mx_fit <- mplusModeler(mx, 
-          dataout=here("invar_short", "invar_short_cut.dat"),
-          modelout=here("invar_short", "invar_short_cut.inp"),
+          dataout=here("09-invariance", "invar_short", "invar_short_cut.dat"),
+          modelout=here("09-invariance", "invar_short", "invar_short_cut.inp"),
           check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```

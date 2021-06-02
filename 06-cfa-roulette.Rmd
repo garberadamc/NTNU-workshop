@@ -81,15 +81,6 @@ library(praise)
 beep(2)
 ```
 
-## Change starting location to folder `06-cfa-roulette`
-```{r}
-
-source("rep_functions.R")
-
-change_here(glue("{project_location}/06-cfa-roulette"))
-
-here()
-```
 
 #### read in data
 ```{r}
@@ -261,8 +252,8 @@ cfa_ULI  <- mplusObject(
   rdata = order_data)
 
 cfa_ULI_fit <- mplusModeler(cfa_ULI, 
-               dataout=here("cfa_mplus", "cfa_ULI.dat"),
-               modelout=here("cfa_mplus", "cfa_ULI.inp"),
+               dataout=here("06-cfa-roulette", "cfa_mplus", "cfa_ULI.dat"),
+               modelout=here("06-cfa-roulette", "cfa_mplus", "cfa_ULI.inp"),
                check=TRUE, run = TRUE, hashfilename = FALSE)
 
 beep(1)
@@ -318,8 +309,8 @@ cfa_UVI  <- mplusObject(
   rdata = order_data)
 
 cfa_UVI_fit <- mplusModeler(cfa_UVI, 
-               dataout=here("cfa_mplus", "cfa_UVI.dat"),
-               modelout=here("cfa_mplus", "cfa_UVI.inp"),
+               dataout=here("06-cfa-roulette", "cfa_mplus", "cfa_UVI.dat"),
+               modelout=here("06-cfa-roulette", "cfa_mplus", "cfa_UVI.inp"),
                check=TRUE, run = TRUE, hashfilename = FALSE)
 
 beep(1)
@@ -465,8 +456,8 @@ cfa_mod1  <- mplusObject(
   rdata = order_data)
 
 cfa_mod1_fit <- mplusModeler(cfa_mod1, 
-                            dataout=here("cfa_mplus", "cfa_mod1.dat"),
-                            modelout=here("cfa_mplus", "cfa_mod1.inp"),
+                            dataout=here("06-cfa-roulette", "cfa_mplus", "cfa_mod1.dat"),
+                            modelout=here("06-cfa-roulette", "cfa_mplus", "cfa_mod1.inp"),
                             check=TRUE, run = TRUE, hashfilename = FALSE)
 
 beep(1)
@@ -529,8 +520,8 @@ cfa_mod2  <- mplusObject(
   rdata = order_data)
 
 cfa_mod2_fit <- mplusModeler(cfa_mod2, 
-                            dataout=here("cfa_mplus", "cfa_mod2.dat"),
-                            modelout=here("cfa_mplus", "cfa_mod2.inp"),
+                            dataout=here("06-cfa-roulette", "cfa_mplus", "cfa_mod2.dat"),
+                            modelout=here("06-cfa-roulette", "cfa_mplus", "cfa_mod2.inp"),
                             check=TRUE, run = TRUE, hashfilename = FALSE)
 
 beep(1)
@@ -548,7 +539,7 @@ ______________________________________________
 
 ```{r}
 
-best_models <- readModels(here("cfa_mplus"), quiet = TRUE)
+best_models <- readModels(here("06-cfa-roulette", "cfa_mplus"), quiet = TRUE)
 
 
 best_table <- LatexSummaryTable(best_models, 
@@ -577,7 +568,7 @@ praise("${EXCLAMATION}!")
 ```{r}
 
 # Identifying all the necessary variables 
-cfa_models <-readModels(here("cfa_mplus"), quiet = TRUE)
+cfa_models <-readModels(here("06-cfa-roulette", "cfa_mplus"), quiet = TRUE)
 
 SB0 <- cfa_models[["cfa_UVI.out"]][["summaries"]][["ChiSqM_Value"]]
 SB1 <- cfa_models[["cfa_mod1.out"]][["summaries"]][["ChiSqM_Value"]]

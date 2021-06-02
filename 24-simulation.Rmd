@@ -20,19 +20,6 @@ library(here);library(glue)
 
 ______________________________________________
 
-## Change starting location to folder `24-simulation`
-```{r, eval=TRUE}
-
-source("rep_functions.R")
-
-change_here(glue("{project_location}/24-simulation"))
-
-here()
-
-```
-
-______________________________________________
-
 ## This tutorial closely follows the concepts and model syntax presented here:
 
 Muthén, L. K., & Muthén, B. O. (2002). [\textcolor{blue}{How to use a Monte Carlo study to decide on sample size and determine power.}](https://www.tandfonline.com/doi/pdf/10.1207/S15328007SEM0904_8) Structural equation modeling, 9(4), 599-620.
@@ -90,7 +77,7 @@ ______________________________________________
 - reliability of factor = 0.64 = .8^2(1) /.8^2(1 + 0.36)
 
 ```{r, echo=FALSE, eval=TRUE, out.width = "50%", out.height= "50%", fig.pos="h"}
-knitr::include_graphics(here("figures", "cfa_path_diagram.png"))
+knitr::include_graphics(here("24-simulation", "figures", "cfa_path_diagram.png"))
 ```
 
 *Figure 1.* CFA model example. Picture adapted from, Muthen & Muthen 2002
@@ -130,7 +117,7 @@ Muthen & Muthen (2002):
 ______________________________________________
 
 ```{r, echo=FALSE, eval=TRUE, out.width = "50%", out.height= "50%", fig.pos="h"}
-knitr::include_graphics(here("figures", "skew.png"))
+knitr::include_graphics(here("24-simulation", "figures", "skew.png"))
 ```
 
 *Figure 2.* Two class model. What are the data generating processes that might result in skew?
@@ -194,9 +181,9 @@ cfa_tune  <- lapply(1:5, function(k) {
   OUTPUT = " SAMPSTAT TECH9;")
 
 cfa_0_fit <- mplusModeler(cfa_0, 
-                            dataout=here("mplus_tune", "cfa0_demo_sim.dat"),
-                            modelout=sprintf(here("mplus_tune", "%d_cfa0_demo_sim.inp"), k),
-                            check=TRUE, run = TRUE, hashfilename = FALSE)
+             dataout=here("24-simulation", "mplus_tune", "cfa0_demo_sim.dat"),
+             modelout=sprintf(here("24-simulation", "mplus_tune", "%d_cfa0_demo_sim.inp"), k),
+             check=TRUE, run = TRUE, hashfilename = FALSE)
 })
 ```
 
@@ -204,11 +191,11 @@ Read in simulated data, tabulate, plot distribution shape
 ```{r, eval=TRUE}
 
 
-data0_1 <- read.delim(here("mplus_tune", "cfa0_1.sav"), sep = "",
+data0_1 <- read.delim(here("24-simulation", "mplus_tune", "cfa0_1.sav"), sep = "",
                    header = FALSE,
                    na.strings = "999.000000")
 
-data0_2 <- read.delim(here("mplus_tune", "cfa0_5.sav"), sep = "",
+data0_2 <- read.delim(here("24-simulation", "mplus_tune", "cfa0_5.sav"), sep = "",
                    header = FALSE,
                    na.strings = "999.000000")
 
@@ -281,9 +268,9 @@ cfa_1  <- mplusObject(
   OUTPUT = "TECH9;")
 
 cfa_1_fit <- mplusModeler(cfa_1, 
-                            dataout=here("mplus_files", "cfa1_demo_sim.dat"),
-                            modelout=here("mplus_files", "cfa1_demo_sim.inp"),
-                            check=TRUE, run = TRUE, hashfilename = FALSE)
+             dataout=here("24-simulation", "mplus_files", "cfa1_demo_sim.dat"),
+             modelout=here("24-simulation", "mplus_files", "cfa1_demo_sim.inp"),
+             check=TRUE, run = TRUE, hashfilename = FALSE)
 ```
 
 ______________________________________________
@@ -342,9 +329,9 @@ cfa_2  <- mplusObject(
   OUTPUT = "PATTERNS TECH9;")
 
 cfa_2_fit <- mplusModeler(cfa_2, 
-                            dataout=here("mplus_files", "cfa2_demo_sim.dat"),
-                            modelout=here("mplus_files", "cfa2_demo_sim.inp"),
-                            check=TRUE, run = TRUE, hashfilename = FALSE)
+             dataout=here("24-simulation", "mplus_files", "cfa2_demo_sim.dat"),
+             modelout=here("24-simulation", "mplus_files", "cfa2_demo_sim.inp"),
+             check=TRUE, run = TRUE, hashfilename = FALSE)
 ```
 
 ______________________________________________
@@ -404,9 +391,9 @@ cfa_3  <- mplusObject(
   OUTPUT = "TECH9;")
 
 cfa_3_fit <- mplusModeler(cfa_3, 
-                            dataout=here("mplus_files", "cfa3_demo_sim.dat"),
-                            modelout=here("mplus_files", "cfa3_demo_sim.inp"),
-                            check=TRUE, run = TRUE, hashfilename = FALSE)
+             dataout=here("24-simulation", "mplus_files", "cfa3_demo_sim.dat"),
+             modelout=here("24-simulation", "mplus_files", "cfa3_demo_sim.inp"),
+             check=TRUE, run = TRUE, hashfilename = FALSE)
 ```
 
 ______________________________________________
@@ -464,14 +451,14 @@ cfa_4  <- mplusObject(
   OUTPUT = "PATTERNS TECH9;")
 
 cfa_4_fit <- mplusModeler(cfa_4,
-                          dataout=here("mplus_files", "cfa4_demo_sim.dat"),
-                          modelout=here("mplus_files", "cfa4_demo_sim.inp"),
-                          check=TRUE, run = TRUE, hashfilename = FALSE)
+             dataout=here("24-simulation", "mplus_files", "cfa4_demo_sim.dat"),
+             modelout=here("24-simulation", "mplus_files", "cfa4_demo_sim.inp"),
+             check=TRUE, run = TRUE, hashfilename = FALSE)
 ```
 
 #### view characteristics of simulated data
 ```{r,eval=TRUE}
-cfa4 <- read.delim(here("mplus_files", "cfa4.sav"), sep = "",
+cfa4 <- read.delim(here("24-simulation", "mplus_files", "cfa4.sav"), sep = "",
                    header = FALSE,
                    na.strings = "999.000000")
 
@@ -542,9 +529,9 @@ cfa_bias  <- lapply(1:5, function(k) {
   OUTPUT = " SAMPSTAT TECH9;")
 
 cfa_004_fit <- mplusModeler(cfa_004, 
-                            dataout=here("mplus_bias", "cfa004_demo_sim.dat"),
-                            modelout=sprintf(here("mplus_bias", "%d_cfa004_demo_sim.inp"), k),
-                            check=TRUE, run = TRUE, hashfilename = FALSE)
+               dataout=here("24-simulation", "mplus_bias", "cfa004_demo_sim.dat"),
+               modelout=sprintf(here("24-simulation", "mplus_bias", "%d_cfa004_demo_sim.inp"), k),
+               check=TRUE, run = TRUE, hashfilename = FALSE)
 })
 ```
 

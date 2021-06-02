@@ -19,19 +19,6 @@ ______________________________________________
 
 ______________________________________________
 
-## Change starting location to folder `20-three-step`
-```{r}
-
-source("rep_functions.R")
-
-change_here(glue("{project_location}/20-three-step"))
-
-here()
-
-```
-
-______________________________________________
-
 ## Data source:
 
 1. The first example utilizes a dataset on undergraduate *Cheating* available from the `poLCA` package (Dayton, 1998): [$\color{blue}{\text{See documentation here}}$](https://cran.r-project.org/web/packages/poLCA/poLCA.pdf)
@@ -118,8 +105,8 @@ m_stepdu  <- mplusObject(
   rdata = df_cheat)
 
 m_stepdu_fit <- mplusModeler(m_stepdu, 
-                dataout=here("du3step_mplus", "lca_du3step.dat"),
-                modelout=here("du3step_mplus", "c2_lca_du3step.inp") ,
+                dataout=here("20-three-step", "du3step_mplus", "lca_du3step.dat"),
+                modelout=here("20-three-step", "du3step_mplus", "c2_lca_du3step.inp") ,
                 check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```
@@ -198,8 +185,8 @@ step1  <- mplusObject(
   rdata = lsay_data)
 
 step1_fit <- mplusModeler(step1,
-                            dataout=here("3step_mplus", "Step1_3step_LSAY.dat"),
-                            modelout=here("3step_mplus", "Step1_3step_LSAY.inp") ,
+                            dataout=here("20-three-step", "3step_mplus", "Step1_3step_LSAY.dat"),
+                            modelout=here("20-three-step", "3step_mplus", "Step1_3step_LSAY.inp") ,
                             check=TRUE, run = TRUE, hashfilename = FALSE)
 ```
 
@@ -274,8 +261,8 @@ step2  <- mplusObject(
   rdata = savedata)
 
 step2_fit <- mplusModeler(step2, 
-                            dataout=here("3step_mplus", "Step2_3step_LSAY.dat"), 
-                            modelout=here("3step_mplus", "Step2_3step_LSAY.inp"), 
+                            dataout=here("20-three-step", "3step_mplus", "Step2_3step_LSAY.dat"), 
+                            modelout=here("20-three-step", "3step_mplus", "Step2_3step_LSAY.inp"), 
                             check=TRUE, run = TRUE, hashfilename = FALSE)
 ```
 
@@ -361,8 +348,8 @@ step3  <- mplusObject(
   rdata = savedata)
 
 step3_fit <- mplusModeler(step3,
-               dataout=here("3step_mplus", "Step3_3step_LSAY.dat"), 
-               modelout=here("3step_mplus", "Step3_3step_LSAY.inp"), 
+               dataout=here("20-three-step", "3step_mplus", "Step3_3step_LSAY.dat"), 
+               modelout=here("20-three-step", "3step_mplus", "Step3_3step_LSAY.inp"), 
                check=TRUE, run = TRUE, hashfilename = FALSE)
 ```
 
@@ -457,8 +444,8 @@ step3mod  <- mplusObject(
   rdata = savedata)
 
 step3mod_fit <- mplusModeler(step3mod,
-               dataout=here("3step_mplus", "Step3_moderation_LSAY.dat"), 
-               modelout=here("3step_mplus", "Step3_moderation_LSAY.inp"), 
+               dataout=here("20-three-step", "3step_mplus", "Step3_moderation_LSAY.dat"), 
+               modelout=here("20-three-step", "3step_mplus", "Step3_moderation_LSAY.inp"), 
                check=TRUE, run = TRUE, hashfilename = FALSE)
 ```
 

@@ -32,19 +32,6 @@ ______________________________________________
 
 ______________________________________________
 
-## Change starting location to folder `19-intro-mixtures`
-```{r}
-
-source("rep_functions.R")
-
-change_here(glue("{project_location}/19-intro-mixtures"))
-
-here()
-
-```
-
-______________________________________________
-
 ## Data source:
 
 1. The first example utilizes a dataset on undergraduate *Cheating* available from the `poLCA` package (Dayton, 1998): [$\color{blue}{\text{See documentation here}}$](https://cran.r-project.org/web/packages/poLCA/poLCA.pdf)
@@ -159,8 +146,8 @@ lca_k1_4  <- lapply(1:4, function(k) {
   rdata = df_cheat)
 
 lca_enum_fit <- mplusModeler(lca_enum, 
-                            dataout=glue(here("enum_cheat", "lca_cheat.dat")),
-                            modelout=glue(here("enum_cheat", "c{k}_lca_cheat.inp")) ,
+                            dataout=glue(here("19-intro-mixtures", "enum_cheat", "lca_cheat.dat")),
+                            modelout=glue(here("19-intro-mixtures", "enum_cheat", "c{k}_lca_cheat.inp")) ,
                             check=TRUE, run = TRUE, hashfilename = FALSE)
 })
 
@@ -169,7 +156,7 @@ lca_enum_fit <- mplusModeler(lca_enum,
 View model fit statistics with `mixtureSummaryTable()`
 ```{r}
 
-output_cheat <- readModels(here("enum_cheat"), quiet = TRUE)
+output_cheat <- readModels(here("19-intro-mixtures", "enum_cheat"), quiet = TRUE)
 
 enum_summary <- LatexSummaryTable(output_cheat,                                          
                 keepCols=c("Title", "LL", "BIC", "aBIC",                               
@@ -242,7 +229,7 @@ ggplot(pd_long1, aes(Var, value, shape = variable,
 save figure
 ```{r}
 
-ggsave(here("figures", "C4_Cheat_LCA_Plot.png"), dpi="retina", height=5, width=7, units="in")
+ggsave(here("19-intro-mixtures", "figures", "C4_Cheat_LCA_Plot.png"), dpi="retina", height=5, width=7, units="in")
 ```
 
 
@@ -324,8 +311,8 @@ lca_k1_6  <- lapply(1:6, function(k) {
   rdata = lsay_data)
 
 lca_enum_fit <- mplusModeler(lca_enum, 
-                            dataout=glue(here("enum_lsay", "lca_lsay.dat")),
-                            modelout=glue(here("enum_lsay", "c{k}_lca.inp")) ,
+                            dataout=glue(here("19-intro-mixtures", "enum_lsay", "lca_lsay.dat")),
+                            modelout=glue(here("19-intro-mixtures", "enum_lsay", "c{k}_lca.inp")) ,
                             check=TRUE, run = TRUE, hashfilename = FALSE)
 })
 
@@ -334,7 +321,7 @@ lca_enum_fit <- mplusModeler(lca_enum,
 Compare model fit for series of enumerated models
 ```{r}
 
-all_output <- readModels(here("enum_lsay"),  quiet = TRUE)
+all_output <- readModels(here("19-intro-mixtures", "enum_lsay"),  quiet = TRUE)
 
 enum_summary <- LatexSummaryTable(all_output,                                          
                 keepCols=c("Title", "LL", "BIC", "aBIC",                               
@@ -460,8 +447,8 @@ lca_k1_6  <- lapply(1:6, function(k) {
   rdata = ksep)
 
 lca_enum_fit <- mplusModeler(lca_enum, 
-                            dataout=glue(here("enum_ksep", "lca_ksep.dat")),
-                            modelout=glue(here("enum_ksep", "c{k}_lca_ksep.inp")) ,
+                            dataout=glue(here("19-intro-mixtures", "enum_ksep", "lca_ksep.dat")),
+                            modelout=glue(here("19-intro-mixtures", "enum_ksep", "c{k}_lca_ksep.inp")) ,
                             check=TRUE, run = TRUE, hashfilename = FALSE)
 })
 
@@ -470,7 +457,7 @@ lca_enum_fit <- mplusModeler(lca_enum,
 Compare model fit for series of enumerated models
 ```{r}
 
-all_output <- readModels(here("enum_ksep"), quiet = TRUE)
+all_output <- readModels(here("19-intro-mixtures", "enum_ksep"), quiet = TRUE)
 
 enum_summary <- LatexSummaryTable(all_output,                                              
                 keepCols=c("Title", "LL", "BIC", "aBIC",                                   
@@ -577,7 +564,7 @@ ggplot(pd_long1, aes(Var, value, shape = variable,
 ```
 
 ```{r, eval=FALSE}
-ggsave(here("figures","Class4_KSEP_LCA_plot.png"),    
+ggsave(here("19-intro-mixtures", "figures","Class4_KSEP_LCA_plot.png"),    
        dpi=300, height=4, width=6, units="in")    
 ```
 

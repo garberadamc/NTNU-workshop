@@ -42,16 +42,6 @@ library(gt)
 library(DiagrammeR)
 ```
 
-## Change starting location to folder `11-higher-order`
-```{r}
-
-source("rep_functions.R")
-
-change_here(glue("{project_location}/11-higher-order"))
-
-here()
-
-```
 
 ______________________________________________
 
@@ -121,8 +111,8 @@ m.cfa0  <- mplusObject(
   rdata = hsls_data)
 
 m.cfa0.fit <- mplusModeler(m.cfa0, 
-              dataout=here("2nd_order_FA", "cfa_baseline.dat"),
-              modelout=here("2nd_order_FA", "cfa_baseline.inp"),
+              dataout=here("11-higher-order", "2nd_order_FA", "cfa_baseline.dat"),
+              modelout=here("11-higher-order", "2nd_order_FA", "cfa_baseline.inp"),
               check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```
@@ -225,8 +215,8 @@ m.cfa1  <- mplusObject(
   rdata = hsls_data)
 
 m.cfa1.fit <- mplusModeler(m.cfa1, 
-              dataout=here("2nd_order_FA", "cfa_baseline.dat"),
-              modelout=here("2nd_order_FA", "cfa_2nd_order.inp"),
+              dataout=here("11-higher-order", "2nd_order_FA", "cfa_baseline.dat"),
+              modelout=here("11-higher-order", "2nd_order_FA", "cfa_2nd_order.inp"),
               check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```
@@ -239,7 +229,7 @@ ______________________________________________
 
 
 ```{r}
-order2_model <- readModels(here("2nd_order_FA",
+order2_model <- readModels(here("11-higher-order", "2nd_order_FA",
                                 "cfa_2nd_order.out"))
 
 # plot model:
@@ -256,7 +246,7 @@ ______________________________________________
 ## Read into R summary of all models
 ```{r}
 
-models_2 <- readModels(here("2nd_order_FA"), quiet = TRUE)
+models_2 <- readModels(here("11-higher-order", "2nd_order_FA"), quiet = TRUE)
 
 ```
 

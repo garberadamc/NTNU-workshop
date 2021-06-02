@@ -33,22 +33,11 @@ library(plotly)
 library(viridis)
 ```
 
-## Change starting location to folder `16-cond-mediation`
-```{r}
-
-source("rep_functions.R")
-
-change_here(glue("{project_location}/16-cond-mediation"))
-
-here()
-
-```
-
 ## Upload list of `mplus.R` functions 
 
 http://www.statmodel.com/mplus-R/mplus.R
 ```{r}
-source(here("mplus.R.txt"))
+source(here("16-cond-mediation","mplus.R.txt"))
 ```
 
 
@@ -160,8 +149,8 @@ m1_lev2mod  <- mplusObject(
   rdata = vocab2)                    
 
 m1_lev2mod_fit <- mplusModeler(m1_lev2mod,
-                     dataout=here("mplus_files", "vocab.dat"),       
-                     modelout=here("mplus_files", "m1_lev2mod_vocab.inp"),
+                     dataout=here("16-cond-mediation", "mplus_files", "vocab.dat"),       
+                     modelout=here("16-cond-mediation", "mplus_files", "m1_lev2mod_vocab.inp"),
                      check=TRUE, run = TRUE, hashfilename = FALSE)
 ```
 
@@ -175,11 +164,11 @@ ______________________________________________
 4. Plot with `ggplot`
 
 ```{r, eval=FALSE}
-mplus.view.plots(here("mplus_files", "m1_lev2mod_vocab.gh5"))
+mplus.view.plots(here("16-cond-mediation","mplus_files", "m1_lev2mod_vocab.gh5"))
 ```
 
 ```{r, eval=FALSE}
-mplus.plot.loop(here("mplus_files", "m1_lev2mod_vocab.gh5"),label =1)
+mplus.plot.loop(here("16-cond-mediation","mplus_files", "m1_lev2mod_vocab.gh5"),label =1)
 ```
 
 ______________________________________________
@@ -187,10 +176,10 @@ ______________________________________________
 Prepare plot data - 
 ```{r}
 loop_data <- lapply(1:2, function(k) {
-  y_val <- mplus.get.loop.estimates(here("mplus_files", "m1_lev2mod_vocab.gh5"),label=k)
-  lower <-   mplus.get.loop.lowerci(here("mplus_files", "m1_lev2mod_vocab.gh5"),label=k)
-  upper <-   mplus.get.loop.upperci(here("mplus_files", "m1_lev2mod_vocab.gh5"),label=k)
-  x_val <-   mplus.get.loop.xvalues(here("mplus_files", "m1_lev2mod_vocab.gh5")) 
+  y_val <- mplus.get.loop.estimates(here("16-cond-mediation","mplus_files", "m1_lev2mod_vocab.gh5"),label=k)
+  lower <-   mplus.get.loop.lowerci(here("16-cond-mediation","mplus_files", "m1_lev2mod_vocab.gh5"),label=k)
+  upper <-   mplus.get.loop.upperci(here("16-cond-mediation","mplus_files", "m1_lev2mod_vocab.gh5"),label=k)
+  x_val <-   mplus.get.loop.xvalues(here("16-cond-mediation","mplus_files", "m1_lev2mod_vocab.gh5")) 
   
   loop_data <- as.data.frame(cbind(y_val, x_val, lower, upper)) %>%
     mutate(group = factor(k)) 
@@ -260,8 +249,8 @@ m2_contmod  <- mplusObject(
   rdata = vocab)                    
 
 m2_contmod_fit <- mplusModeler(m2_contmod,
-                  dataout=here("mplus_files", "vocab.dat"),       
-                  modelout=here("mplus_files", "m2_contmod_vocab.inp"),
+                  dataout=here("16-cond-mediation", "mplus_files", "vocab.dat"),       
+                  modelout=here("16-cond-mediation", "mplus_files", "m2_contmod_vocab.inp"),
                   check=TRUE, run = TRUE, hashfilename = FALSE)
 ```
 
@@ -270,10 +259,10 @@ ______________________________________________
 Prepare plot data 
 ```{r}
 loop_data2 <- lapply(1:5, function(k) {
-  y_val <- mplus.get.loop.estimates(here("mplus_files", "m2_contmod_vocab.gh5"),label=k)
-  lower <-   mplus.get.loop.lowerci(here("mplus_files", "m2_contmod_vocab.gh5"),label=k)
-  upper <-   mplus.get.loop.upperci(here("mplus_files", "m2_contmod_vocab.gh5"),label=k)
-  x_val <-   mplus.get.loop.xvalues(here("mplus_files", "m2_contmod_vocab.gh5")) 
+  y_val <- mplus.get.loop.estimates(here("16-cond-mediation","mplus_files", "m2_contmod_vocab.gh5"),label=k)
+  lower <-   mplus.get.loop.lowerci(here("16-cond-mediation","mplus_files", "m2_contmod_vocab.gh5"),label=k)
+  upper <-   mplus.get.loop.upperci(here("16-cond-mediation","mplus_files", "m2_contmod_vocab.gh5"),label=k)
+  x_val <-   mplus.get.loop.xvalues(here("16-cond-mediation","mplus_files", "m2_contmod_vocab.gh5")) 
   
   loop_data2 <- as.data.frame(cbind(y_val, x_val, lower, upper)) %>%
     mutate(group = factor(k)) 
@@ -331,7 +320,7 @@ include_graphics2("https://garberadamc.github.io/project-site/figures/Mediate_MZ
 Read in data
 ```{r}
 
-teams <- read_table(here("data", "teams.txt"), col_names = FALSE) 
+teams <- read_table(here("16-cond-mediation","data", "teams.txt"), col_names = FALSE) 
 
 colnames(teams) <- c("dysfunc", "negtone", "negexp", "perform")
 
@@ -372,8 +361,8 @@ m3_teams  <- mplusObject(
   rdata = teams)                    
 
 m3_teams_fit <- mplusModeler(m3_teams,
-                dataout=here("mplus_files", "teams.dat"),       
-                modelout=here("mplus_files", "m3_teams.inp"),
+                dataout=here("16-cond-mediation", "mplus_files", "teams.dat"),       
+                modelout=here("16-cond-mediation", "mplus_files", "m3_teams.inp"),
                 check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```
@@ -404,12 +393,12 @@ ______________________________________________
 
 View available plots from the `Mplus` model
 ```{r, eval=FALSE}
-mplus.view.plots(here("mplus_files", "m3_teams.gh5"))
+mplus.view.plots(here("16-cond-mediation", "mplus_files", "m3_teams.gh5"))
 ```
 
 Take a look at bootstrap distribution of the indirect effect to view asymptotic shape.
 ```{r}
-mplus.plot.bootstrap.distribution(here("mplus_files", "m3_teams.gh5"), parameter = 38)
+mplus.plot.bootstrap.distribution(here("16-cond-mediation", "mplus_files", "m3_teams.gh5"), parameter = 38)
 ```
 
 ______________________________________________
@@ -425,10 +414,10 @@ Create plot of moderated direct and indirect effects
 label <- c('Total natural DE', 'Total natural IE')
 
 mod_data <- lapply(1:2, function(k) {
-  y_val <- mplus.get.moderation.estimates(here("mplus_files", "m3_teams.gh5"),label[k])
-  lower <- mplus.get.moderation.lowerci(here("mplus_files"  , "m3_teams.gh5"),label[k])
-  upper <- mplus.get.moderation.upperci(here("mplus_files"  , "m3_teams.gh5"),label[k])
-  x_val <- mplus.get.moderation.xvalues(here("mplus_files"  , "m3_teams.gh5"))
+  y_val <- mplus.get.moderation.estimates(here("16-cond-mediation","mplus_files", "m3_teams.gh5"),label[k])
+  lower <- mplus.get.moderation.lowerci(here("16-cond-mediation","mplus_files"  , "m3_teams.gh5"),label[k])
+  upper <- mplus.get.moderation.upperci(here("16-cond-mediation","mplus_files"  , "m3_teams.gh5"),label[k])
+  x_val <- mplus.get.moderation.xvalues(here("16-cond-mediation","mplus_files"  , "m3_teams.gh5"))
   
   mod_data <- as.data.frame(cbind(y_val, x_val, lower, upper)) %>%
     mutate(group = factor(k)) 

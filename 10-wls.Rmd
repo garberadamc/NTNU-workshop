@@ -63,16 +63,6 @@ library(semPlot)
 library(gt)
 ```
 
-## Change starting location to folder `10-wls`
-```{r}
-
-source("rep_functions.R")
-
-change_here(glue("{project_location}/10-wls"))
-
-here()
-```
-
 ______________________________________________
 
 ## Prepare data
@@ -150,8 +140,8 @@ m.step0  <- mplusObject(
   rdata = hsls_data)
 
 m.step0.fit <- mplusModeler(m.step0, 
-               dataout=here("wls_efa", "efa_sci_HSLS_wls.dat"),
-               modelout=here("wls_efa", "efa_sci_HSLS_wls.inp"),
+               dataout=here("10-wls", "wls_efa", "efa_sci_HSLS_wls.dat"),
+               modelout=here("10-wls", "wls_efa", "efa_sci_HSLS_wls.inp"),
                check=TRUE, run = TRUE, hashfilename = FALSE)
 
 
@@ -206,8 +196,8 @@ m.step1  <- mplusObject(
   rdata = hsls_data)
 
 m.step1.fit <- mplusModeler(m.step1, 
-               dataout=here("wls_invar", "m1_cfa_wls.dat"),
-               modelout=here("wls_invar", "m1_cfa_wls.inp"),
+               dataout=here("10-wls", "wls_invar", "m1_cfa_wls.dat"),
+               modelout=here("10-wls", "wls_invar", "m1_cfa_wls.inp"),
                check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ## END: CONFIRMATORY FACTOR ANALYSIS OF SCIENCE INDICATORS
@@ -261,8 +251,8 @@ m.step2  <- mplusObject(
   rdata = hsls_data)
 
 m.step2.fit <- mplusModeler(m.step2, 
-               dataout=here("wls_invar", "m2_cfa_males_wls.dat"),
-               modelout=here("wls_invar", "m2_cfa_males_wls.inp"),
+               dataout=here("10-wls", "wls_invar", "m2_cfa_males_wls.dat"),
+               modelout=here("10-wls", "wls_invar", "m2_cfa_males_wls.inp"),
                check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```
@@ -313,8 +303,8 @@ m.step3  <- mplusObject(
   rdata = hsls_data)
 
 m.step3.fit <- mplusModeler(m.step3, 
-               dataout=here("wls_invar", "m3_cfa_females_wls.dat"),
-               modelout=here("wls_invar", "m3_cfa_females_wls.inp"),
+               dataout=here("10-wls", "wls_invar", "m3_cfa_females_wls.dat"),
+               modelout=here("10-wls", "wls_invar", "m3_cfa_females_wls.inp"),
                check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```
@@ -431,8 +421,8 @@ savedata: DIFFTEST=diff_1_2.dat;",
   rdata = hsls_data) 
 
 m.step4.fit <- mplusModeler(m.step4, 
-               dataout=here("wls_invar", "m4_configural_wls.dat"),
-               modelout=here("wls_invar", "m4_configural_wls.inp"),
+               dataout=here("10-wls", "wls_invar", "m4_configural_wls.dat"),
+               modelout=here("10-wls", "wls_invar", "m4_configural_wls.inp"),
                check=TRUE, run = TRUE, hashfilename = FALSE)
 ```
 
@@ -532,8 +522,8 @@ savedata: DIFFTEST=diff_2_3.dat;",
   rdata = hsls_data) 
 
 m.step5.fit <- mplusModeler(m.step5, 
-               dataout=here("wls_invar", "m5_metric_wls.dat"),
-               modelout=here("wls_invar", "m5_metric_wls.inp"),
+               dataout=here("10-wls", "wls_invar", "m5_metric_wls.dat"),
+               modelout=here("10-wls", "wls_invar", "m5_metric_wls.inp"),
                check=TRUE, run = TRUE, hashfilename = FALSE)
 ```
 
@@ -632,8 +622,8 @@ savedata: DIFFTEST=diff_3_4.dat;",
   rdata = hsls_data) 
 
 m.step6.fit <- mplusModeler(m.step6, 
-               dataout=here("wls_invar", "m6_scalar_wls.dat"),
-               modelout=here("wls_invar", "m6_scalar_wls.inp"),
+               dataout=here("10-wls", "wls_invar", "m6_scalar_wls.dat"),
+               modelout=here("10-wls", "wls_invar", "m6_scalar_wls.inp"),
                check=TRUE, run = TRUE, hashfilename = FALSE)
 ```
 
@@ -731,8 +721,8 @@ savedata: DIFFTEST=diff_4_5.dat;",
   rdata = hsls_data) 
 
 m.step7.fit <- mplusModeler(m.step7, 
-               dataout=here("wls_invar", "m7_strict_wls.dat"),
-               modelout=here("wls_invar", "m7_strict_wls.inp"),
+               dataout=here("10-wls", "wls_invar", "m7_strict_wls.dat"),
+               modelout=here("10-wls", "wls_invar", "m7_strict_wls.inp"),
                check=TRUE, run = TRUE, hashfilename = FALSE)
 ```
 
@@ -836,8 +826,8 @@ m.step8  <- mplusObject(
   rdata = hsls_data) 
 
 m.step8.fit <- mplusModeler(m.step8, 
-               dataout=here("wls_invar", "m8_structural_wls.dat"),
-               modelout=here("wls_invar", "m8_structural_wls.inp"),
+               dataout=here("10-wls", "wls_invar", "m8_structural_wls.dat"),
+               modelout=here("10-wls", "wls_invar", "m8_structural_wls.inp"),
                check=TRUE, run = TRUE, hashfilename = FALSE)
 ```
 
@@ -859,7 +849,7 @@ ______________________________________________
 
 ## Read into R summary of all models
 ```{r}
-all_models <- readModels(here("wls_invar"), quiet = TRUE)
+all_models <- readModels(here("10-wls", "wls_invar"), quiet = TRUE)
 ```
 
 ______________________________________________
@@ -913,7 +903,7 @@ ______________________________________________
 ## Save table  
 ```{r, eval=FALSE}
       
-model_table %>% gtsave("model_fit_table_wls.png", path = here("figures"))
+model_table %>% gtsave("model_fit_table_wls.png", path = here("10-wls", "figures"))
 
 ```
 

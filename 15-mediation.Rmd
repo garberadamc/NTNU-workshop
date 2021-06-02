@@ -33,19 +33,6 @@ library(gtsummary)
 
 ______________________________________________
 
-## Change starting location to folder `15-mediation`
-```{r}
-
-source("rep_functions.R")
-
-change_here(glue("{project_location}/15-mediation"))
-
-here()
-
-```
-
-______________________________________________
-
 ## Lab outline
 
 1. Estimate a mediation model using the {`mediation`} package
@@ -209,8 +196,8 @@ m1_mediate  <- mplusObject(
   rdata = framing)                    
 
 m1_mediate_fit <- mplusModeler(m1_mediate,
-                    dataout=here("mplus_files", "framing.dat"),       
-                    modelout=here("mplus_files", "m1_mediate_framing.inp"),
+                    dataout=here("15-mediation", "mplus_files", "framing.dat"),       
+                    modelout=here("15-mediation", "mplus_files", "m1_mediate_framing.inp"),
                     check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```
@@ -370,8 +357,8 @@ m2_jmediate  <- mplusObject(
   rdata = jobs)                    
 
 m2_jmediate_fit <- mplusModeler(m2_jmediate,
-                    dataout=here("mplus_files", "jobs.dat"),       
-                    modelout=here("mplus_files", "m2_mediate_jobs.inp"),
+                    dataout=here("15-mediation", "mplus_files", "jobs.dat"),       
+                    modelout=here("15-mediation", "mplus_files", "m2_mediate_jobs.inp"),
                     check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```
@@ -440,8 +427,8 @@ m3_jmed  <- mplusObject(
   rdata = jobs)                    
 
 m3_jmed_fit <- mplusModeler(m3_jmed,
-                    dataout=here("mplus_files", "jobs.dat"),       
-                    modelout=here("mplus_files", "m3_mediate_jobs.inp"),
+                    dataout=here("15-mediation", "mplus_files", "jobs.dat"),       
+                    modelout=here("15-mediation", "mplus_files", "m3_mediate_jobs.inp"),
                     check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```

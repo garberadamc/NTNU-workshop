@@ -37,13 +37,6 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
  
 ```
 
-## How to install packages?
-```{r,eval=FALSE}
-
-install.packages("tidyverse")
-
-```
-
 ## Load packages
 ```{r,eval=TRUE}
 library(tidyverse)
@@ -107,43 +100,29 @@ NOTE: default directory in an `Rproject` is the "top-most" project folder
 
 here()
 
-project_location <- here()
-
 ```
 
-## Change starting location within the Rproject (`.Rproj`)
-
-1. save stem 
-2. `glue()` stem into subsequent labs
-```{r}
-
-source("rep_functions.R")
-
-change_here(glue("{project_location}/02-run-models"))
-
-here()
-```
 
 Prepare datasets, **remove SPSS labeling**
 ```{r,eval=FALSE}
 
 # write a CSV datafile (preferable format for reading into R; !! removes labels !!)
-write_csv(exp_data, here("data", "exp_lab1_data.csv"))
+write_csv(exp_data, here("02-run-models", "data", "exp_lab1_data.csv"))
 
 # write a SPSS datafile (preferable format for reading into SPSS, labels are preserved)
-write_sav(exp_data, here("data", "exp_lab1_data.sav"))
+write_sav(exp_data, here("02-run-models", "data", "exp_lab1_data.sav"))
 
 ```
 
 ```{r}
 # read the unlabeled data back into R
-nolabel_data <- read_csv(here("data", "exp_lab1_data.csv"))
+nolabel_data <- read_csv(here("02-run-models", "data", "exp_lab1_data.csv"))
 ```
 
 ```{r,eval=FALSE}
 
 # write a DAT datafile (this function removes header row & converts missing values to non-string)
-prepareMplusData(nolabel_data, here("data", "exp_lab1_data.dat"))
+prepareMplusData(nolabel_data, here("02-run-models", "data", "exp_lab1_data.dat"))
 
 ```
 
@@ -247,8 +226,8 @@ m_basic  <- mplusObject(
   rdata = nolabel_data)
 
 m_basic_fit <- mplusModeler(m_basic, 
-               dataout=here("basic_mplus", "basic.dat"),
-               modelout=here("basic_mplus", "basic.inp"),
+               dataout=here("02-run-models", "basic_mplus", "basic.dat"),
+               modelout=here("02-run-models", "basic_mplus", "basic.inp"),
                check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```
@@ -283,8 +262,8 @@ fem_basic  <- mplusObject(
   rdata = nolabel_data)
 
 fem_basic_fit <- mplusModeler(fem_basic, 
-                 dataout=here("basic_mplus", "fem_basic.dat"),
-                 modelout=here("basic_mplus", "fem_basic.inp"),
+                 dataout=here("02-run-models", "basic_mplus", "fem_basic.dat"),
+                 modelout=here("02-run-models", "basic_mplus", "fem_basic.inp"),
                  check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```
@@ -321,8 +300,8 @@ efa_demo  <- mplusObject(
   rdata = nolabel_data)
 
 efa_demo_fit <- mplusModeler(efa_demo, 
-  dataout=here("basic_mplus", "EFA_Lab_DEMO.dat"),
-  modelout=here("basic_mplus", "EFA_Lab_DEMO.inp"),
+  dataout=here("02-run-models", "basic_mplus", "EFA_Lab_DEMO.dat"),
+  modelout=here("02-run-models", "basic_mplus", "EFA_Lab_DEMO.inp"),
   check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```

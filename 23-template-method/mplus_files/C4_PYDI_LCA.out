@@ -1,6 +1,6 @@
 Mplus VERSION 8.6 (Mac)
 MUTHEN & MUTHEN
-05/31/2021   2:51 PM
+06/01/2021   3:13 PM
 
 INPUT INSTRUCTIONS
 
@@ -236,10 +236,10 @@ BASED ON THE ESTIMATED MODEL
     Latent
    Classes
 
-       1        354.73633          0.21776
-       2       1057.90479          0.64942
-       3        128.75640          0.07904
-       4         87.60248          0.05378
+       1        354.73592          0.21776
+       2       1057.90520          0.64942
+       3        128.75629          0.07904
+       4         87.60258          0.05378
 
 
 FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
@@ -248,10 +248,10 @@ BASED ON ESTIMATED POSTERIOR PROBABILITIES
     Latent
    Classes
 
-       1        354.73633          0.21776
-       2       1057.90479          0.64942
-       3        128.75640          0.07904
-       4         87.60248          0.05378
+       1        354.73592          0.21776
+       2       1057.90520          0.64942
+       3        128.75629          0.07904
+       4         87.60258          0.05378
 
 
 FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
@@ -408,7 +408,7 @@ Latent Class 2
     Category 2         0.994      0.006    153.788      0.000
  PYDI3AB
     Category 1         0.017      0.015      1.163      0.245
-    Category 2         0.983      0.015     67.646      0.000
+    Category 2         0.983      0.015     67.647      0.000
  PYDI4AB
     Category 1         0.000      0.000      0.000      1.000
     Category 2         1.000      0.000      0.000      1.000
@@ -420,7 +420,7 @@ Latent Class 2
     Category 2         0.994      0.004    260.651      0.000
  PYDI7AB
     Category 1         0.004      0.005      0.877      0.380
-    Category 2         0.996      0.005    218.355      0.000
+    Category 2         0.996      0.005    218.356      0.000
 
 Latent Class 3
 
@@ -523,7 +523,7 @@ Latent Class 1 Compared to Latent Class 4
  PYDI5AB
     Category > 1   *********      0.000  *********  *********
  PYDI6AB
-    Category > 1      69.347     65.060     11.026    436.139
+    Category > 1      69.346     65.059     11.026    436.132
  PYDI7AB
     Category > 1      29.948     12.429     13.277     67.550
 
@@ -532,9 +532,9 @@ Latent Class 2 Compared to Latent Class 3
  PYDI1AB
     Category > 1      21.677      8.258     10.274     45.737
  PYDI2AB
-    Category > 1      22.671     24.962      2.619    196.210
+    Category > 1      22.671     24.962      2.619    196.209
  PYDI3AB
-    Category > 1      16.857     15.892      2.657    106.968
+    Category > 1      16.857     15.892      2.657    106.966
  PYDI4AB
     Category > 1   *********      0.000  *********  *********
  PYDI5AB
@@ -542,24 +542,24 @@ Latent Class 2 Compared to Latent Class 3
  PYDI6AB
     Category > 1       0.000      0.000      0.000      0.000
  PYDI7AB
-    Category > 1      61.212     76.796      5.235    715.771
+    Category > 1      61.211     76.795      5.235    715.754
 
 Latent Class 2 Compared to Latent Class 4
 
  PYDI1AB
     Category > 1      17.699      6.293      8.816     35.531
  PYDI2AB
-    Category > 1     124.454    134.195     15.037   1030.023
+    Category > 1     124.454    134.194     15.037   1030.016
  PYDI3AB
-    Category > 1      52.923     48.063      8.925    313.831
+    Category > 1      52.923     48.063      8.925    313.824
  PYDI4AB
     Category > 1   *********      0.000  *********  *********
  PYDI5AB
-    Category > 1     299.538    196.406     82.854   1082.906
+    Category > 1     299.539    196.406     82.854   1082.909
  PYDI6AB
-    Category > 1     387.385    355.741     64.041   2343.298
+    Category > 1     387.384    355.739     64.041   2343.278
  PYDI7AB
-    Category > 1     628.816    736.390     63.341   6242.553
+    Category > 1     628.813    736.381     63.342   6242.416
 
 Latent Class 3 Compared to Latent Class 4
 
@@ -587,9 +587,9 @@ The following plots are available:
   Scatterplots (sample values)
   Sample proportions and estimated probabilities
 
-     Beginning Time:  14:51:16
-        Ending Time:  14:51:18
-       Elapsed Time:  00:00:02
+     Beginning Time:  15:13:58
+        Ending Time:  15:13:59
+       Elapsed Time:  00:00:01
 
 
 

@@ -50,19 +50,6 @@ library(Ecdat)
 
 ______________________________________________
 
-## Change starting location to folder `14-moderation`
-```{r}
-
-source("rep_functions.R")
-
-change_here(glue("{project_location}/14-moderation"))
-
-here()
-
-```
-
-______________________________________________
-
 ## Begin lab 2 exercise
 
 ______________________________________________
@@ -167,8 +154,8 @@ m1_model  <- mplusObject(
   rdata = vocab2)                    
 
 m1_model_fit <- mplusModeler(m1_model,
-                    dataout=here("mplus_files", "vocab.dat"),       
-                    modelout=here("mplus_files", "model1_vocab.inp"),
+                    dataout=here("14-moderation", "mplus_files", "vocab.dat"),       
+                    modelout=here("14-moderation", "mplus_files", "model1_vocab.inp"),
                     check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```
@@ -215,7 +202,7 @@ ggplot(plot_data, aes(x=education, y=est, color=year, group=year)) +
 
 
 ```{r, eval=FALSE}
-ggsave(here("figures", "m1_simple_slope.png"), height = 6, width = 8)
+ggsave(here("14-moderation", "figures", "m1_simple_slope.png"), height = 6, width = 8)
 ```
 
 ```{r, echo=FALSE, eval=TRUE, out.width = "80%", out.height= "80%", fig.pos="h"}
@@ -335,8 +322,8 @@ m2_model  <- mplusObject(
   rdata = mod_data)                    
 
 m2_model_fit <- mplusModeler(m2_model,
-                    dataout=here("mplus_files", "caschools.dat"),       
-                    modelout=here("mplus_files", "model2_caschools.inp"),
+                    dataout=here("14-moderation", "mplus_files", "caschools.dat"),       
+                    modelout=here("14-moderation", "mplus_files", "model2_caschools.inp"),
                     check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```
@@ -378,7 +365,7 @@ ggplot(plot_data2, aes(x=experience, y=est, color=size, group=size)) +
            y = "Math test score") +
   theme_minimal()
 
-ggsave(here("figures", "m2_simple_slope.png"), height = 6, width = 8)
+ggsave(here("14-moderation", "figures", "m2_simple_slope.png"), height = 6, width = 8)
 ```
 
 ```{r, echo=FALSE, eval=TRUE, out.width = "80%", out.height= "80%", fig.pos="h"}

@@ -67,16 +67,6 @@ library(corrplot)
 library(glue)
 ```
 
-## Change starting location to folder `04-splits-iterators`
-```{r}
-
-source("rep_functions.R")
-
-change_here(glue("{project_location}/04-splits-iterators"))
-
-here()
-```
-
 ### read in the raw dataset 
 
 ```{r}
@@ -96,12 +86,12 @@ sjPlot::view_df(school_trouble)
 
 ### write a `CSV` datafile
 ```{r, eval=FALSE}
-write_csv(school_trouble, here("data", "school_trouble_data.csv"))
+write_csv(school_trouble, here("04-splits-iterators", "data", "school_trouble_data.csv"))
 ```
 
 ### read the unlabeled data back into R
 ```{r}
-trouble_data <- read_csv(here("data", "school_trouble_data.csv"))
+trouble_data <- read_csv(here("04-splits-iterators", "data", "school_trouble_data.csv"))
 ```
 
 ### check items to see if reverse coding is needed 
@@ -163,8 +153,8 @@ m_efa_1  <- mplusObject(
   rdata = calibrate)
 
 m_efa_1_fit <- mplusModeler(m_efa_1, 
-               dataout=here("efa_mplus", "efa1_trouble.dat"),
-               modelout=here("efa_mplus", "efa1_trouble.inp"),
+               dataout=here("04-splits-iterators", "efa_mplus", "efa1_trouble.dat"),
+               modelout=here("04-splits-iterators", "efa_mplus", "efa1_trouble.inp"),
                check=TRUE, run = TRUE, hashfilename = FALSE)
 ```
 
@@ -172,7 +162,7 @@ m_efa_1_fit <- mplusModeler(m_efa_1,
 
 ### read into R an Mplus output file
 ```{r}
-efa_summary <- readModels(here("efa_mplus", "efa1_trouble.out"), quiet = TRUE)
+efa_summary <- readModels(here("04-splits-iterators", "efa_mplus", "efa1_trouble.out"), quiet = TRUE)
 ``` 
 
 ### extract relavent data & prepare dataframe for plot
@@ -206,7 +196,7 @@ plot_data_long %>%
 
 ### save figure to the designated folder
 ```{r, eval=FALSE}
-ggsave(here("figures", "eigenvalue_elbow_rplot.png"), dpi=300, height=5, width=7, units="in")
+ggsave(here("04-splits-iterators", "figures", "eigenvalue_elbow_rplot.png"), dpi=300, height=5, width=7, units="in")
 ```
 
 ____________________________________
@@ -236,8 +226,8 @@ m_efa_k15  <- lapply(1:5, function(k) {
     rdata = calibrate)
   
   m_efa_fit <- mplusModeler(m_efa, 
-               dataout=sprintf(here("efa_mplus2", "efa_trouble.dat"), k),
-               modelout=sprintf(here("efa_mplus2", "efa_%d_trouble.inp"), k),
+               dataout=sprintf(here("04-splits-iterators", "efa_mplus2", "efa_trouble.dat"), k),
+               modelout=sprintf(here("04-splits-iterators", "efa_mplus2", "efa_%d_trouble.inp"), k),
                check=TRUE, run = TRUE, hashfilename = FALSE)
   
 })

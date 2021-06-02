@@ -60,19 +60,6 @@ library(gtsummary)
 
 ______________________________________________
 
-## Change starting location to folder `13-comp-models`
-```{r}
-
-source("rep_functions.R")
-
-change_here(glue("{project_location}/13-comp-models"))
-
-here()
-
-```
-
-______________________________________________
-
 ## Begin lab 2 exercise
 
 ______________________________________________
@@ -233,8 +220,8 @@ m1_path  <- mplusObject(
   rdata = path_vars)                    
 
 m1_path_fit <- mplusModeler(m1_path,
-               dataout=here("mplus_files", "CA_schls.dat"),       
-               modelout=here("mplus_files", "m1_path_indirect.inp"),
+               dataout=here("13-comp-models", "mplus_files", "CA_schls.dat"),       
+               modelout=here("13-comp-models", "mplus_files", "m1_path_indirect.inp"),
                check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```
@@ -298,8 +285,8 @@ m2_path  <- mplusObject(
   rdata = path_vars)                    
 
 m2_path_fit <- mplusModeler(m2_path,
-                     dataout=here("mplus_files", "CA_schls.dat"),       
-                    modelout=here("mplus_files", "m2_path_indirect.inp"),
+                     dataout=here("13-comp-models", "mplus_files", "CA_schls.dat"),       
+                    modelout=here("13-comp-models", "mplus_files", "m2_path_indirect.inp"),
                     check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```
@@ -359,8 +346,8 @@ m3_path  <- mplusObject(
   rdata = path_vars)                    
 
 m3_path_fit <- mplusModeler(m3_path,
-                    dataout=here("mplus_files", "CA_schls.dat"),       
-                    modelout=here("mplus_files", "m3_path_interact.inp"),
+                    dataout=here("13-comp-models", "mplus_files", "CA_schls.dat"),       
+                    modelout=here("13-comp-models", "mplus_files", "m3_path_interact.inp"),
                     check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```
@@ -412,8 +399,8 @@ m4_path  <- mplusObject(
   rdata = path_vars)                    
 
 m4_path_fit <- mplusModeler(m4_path,
-                    dataout=here("mplus_files", "CA_schls.dat"),       
-                    modelout=here("mplus_files", "m4_path_indirect.inp"),
+                    dataout=here("13-comp-models", "mplus_files", "CA_schls.dat"),       
+                    modelout=here("13-comp-models", "mplus_files", "m4_path_indirect.inp"),
                     check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```
@@ -467,8 +454,8 @@ m5_path  <- mplusObject(
   rdata = path_vars)                    
 
 m5_path_fit <- mplusModeler(m5_path,
-                    dataout=here("mplus_files", "CA_schls.dat"),       
-                    modelout=here("mplus_files", "m5_path_indirect.inp"),
+                    dataout=here("13-comp-models", "mplus_files", "CA_schls.dat"),       
+                    modelout=here("13-comp-models", "mplus_files", "m5_path_indirect.inp"),
                     check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```

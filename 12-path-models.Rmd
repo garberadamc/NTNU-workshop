@@ -61,18 +61,6 @@ library(sjPlot)
 library(gt)
 ```
 
-______________________________________________
-
-## Change starting location to folder `12-path-models`
-```{r}
-
-source("rep_functions.R")
-
-change_here(glue("{project_location}/12-path-models"))
-
-here()
-
-```
 
 ______________________________________________
 
@@ -177,21 +165,21 @@ ______________________________________________
 Write a CSV datafile (preferable format for reading into R, with SPSS labels removed)
 ```{r, eval=FALSE}
 
-write_csv(spss_sub2, here("data", "els_sub6_data.csv"))
+write_csv(spss_sub2, here("12-path-models", "data", "els_sub6_data.csv"))
 
 ```
 
 Read the unlabeled data back into R
 ```{r,eval=TRUE}
 
-tidy_data <- read_csv(here("data", "els_sub6_data.csv"))
+tidy_data <- read_csv(here("12-path-models", "data", "els_sub6_data.csv"))
 
 ```
 
 Write a DAT datafile for Mplus (this function removes header row & converts missing values to non-string)
 ```{r, eval=FALSE}
 
-prepareMplusData(tidy_data, here("data", "els_sub6_data.dat"))
+prepareMplusData(tidy_data, here("12-path-models", "data", "els_sub6_data.dat"))
 
 ```
 
@@ -342,8 +330,8 @@ m_basic  <- mplusObject(
   rdata = tidy_data)                    # this is the data object used (must be un-label)
 
 m_basic_fit <- mplusModeler(m_basic,
-               dataout=here("mplus_files", "nces.dat"),
-               modelout=here("mplus_files", "m0_basic_nces.inp"),
+               dataout=here("12-path-models", "mplus_files", "nces.dat"),
+               modelout=here("12-path-models", "mplus_files", "m0_basic_nces.inp"),
                check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```
@@ -409,8 +397,8 @@ m1_ind  <- mplusObject(
   rdata = tidy_data)                    
 
 m1_ind_fit <- mplusModeler(m1_ind,
-              dataout=here("mplus_files", "nces.dat"),       
-              modelout=here("mplus_files", "m1_indirect_nces.inp"),
+              dataout=here("12-path-models", "mplus_files", "nces.dat"),       
+              modelout=here("12-path-models", "mplus_files", "m1_indirect_nces.inp"),
               check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```
@@ -420,7 +408,7 @@ ______________________________________________
 Generate a path diagram from Mplus output with {`semPlot`}
 
 ```{r}
-order2_model <- readModels(here("mplus_files",
+order2_model <- readModels(here("12-path-models", "mplus_files",
                                 "m1_indirect_nces.out"))
 
 # plot model:
@@ -514,8 +502,8 @@ m2_sif  <- mplusObject(
   rdata = tidy_data2)                    
 
 m2_sif_fit <- mplusModeler(m2_sif,
-                    dataout=here("mplus_files", "nces.dat"),       
-                    modelout=here("mplus_files", "m2_sif_nces.inp"),
+                    dataout=here("12-path-models", "mplus_files", "nces.dat"),       
+                    modelout=here("12-path-models", "mplus_files", "m2_sif_nces.inp"),
                     check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ```
@@ -525,7 +513,7 @@ ______________________________________________
 Generate a path diagram from Mplus output with {`semPlot`}
 
 ```{r}
-order2_model <- readModels(here("mplus_files",
+order2_model <- readModels(here("12-path-models", "mplus_files",
                                 "m2_sif_nces.out"))
 
 # plot model:

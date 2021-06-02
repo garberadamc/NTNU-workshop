@@ -60,15 +60,6 @@ library(semPlot)
 library(stargazer)
 ```
 
-## Change starting location to folder `05-cfa`
-```{r}
-
-source("rep_functions.R")
-
-change_here(glue("{project_location}/05-cfa"))
-
-here()
-```
 
 read in data
 ```{r, eval=TRUE}
@@ -147,8 +138,8 @@ efa_geomin  <- mplusObject(
   rdata = calibrate)
 
 efa_geomin_fit <- mplusModeler(efa_geomin, 
-                  dataout=here("efa_mplus", "efa_geomin_oblique.dat"),
-                  modelout=here("efa_mplus", "efa_geomin_oblique.inp"),
+                  dataout=here("05-cfa", "efa_mplus", "efa_geomin_oblique.dat"),
+                  modelout=here("05-cfa", "efa_mplus", "efa_geomin_oblique.inp"),
                   check=TRUE, run = TRUE, hashfilename = FALSE)
 ```
 
@@ -175,8 +166,8 @@ efa_varimax  <- mplusObject(
   rdata = calibrate)
 
 efa_varimax_fit <- mplusModeler(efa_varimax, 
-                            dataout=here("efa_mplus", "efa_varimax_orthogonal.dat"),
-                            modelout=here("efa_mplus", "efa_varimax_orthogonal.inp"),
+                            dataout=here("05-cfa", "efa_mplus", "efa_varimax_orthogonal.dat"),
+                            modelout=here("05-cfa", "efa_mplus", "efa_varimax_orthogonal.inp"),
                             check=TRUE, run = TRUE, hashfilename = FALSE)
 ```
 
@@ -205,8 +196,8 @@ cfa_validate  <- mplusObject(
   rdata = validate)
 
 cfa_val_fit <- mplusModeler(cfa_validate, 
-                            dataout=here("cfa_mplus", "lab5_cfa_validate.dat"),
-                            modelout=here("cfa_mplus", "lab5_cfa_validate.inp"),
+                            dataout=here("05-cfa", "cfa_mplus", "lab5_cfa_validate.dat"),
+                            modelout=here("05-cfa", "cfa_mplus", "lab5_cfa_validate.inp"),
                             check=TRUE, run = TRUE, hashfilename = FALSE)
 ```
 
@@ -214,7 +205,7 @@ cfa_val_fit <- mplusModeler(cfa_validate,
 
 Read in the model to R within the `cfa_mplus` folder
 ```{r}
-cfa_output <- readModels(here("cfa_mplus"), quiet = TRUE)
+cfa_output <- readModels(here("05-cfa", "cfa_mplus"), quiet = TRUE)
 ```
 
 Plot model

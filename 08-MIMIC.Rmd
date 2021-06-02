@@ -37,22 +37,12 @@ library(here)
 library(semPlot)
 library(DiagrammeR)
 library(MplusAutomation) 
-#library(texreg)  
 library(stargazer)
 library(gtsummary) 
 library(gt)
 library(glue)
 ```
 
-## Change starting location to folder `08-MIMIC`
-```{r}
-
-source("rep_functions.R")
-
-change_here(glue("{project_location}/08-MIMIC"))
-
-here()
-```
 
 -----------------------------------------------
 
@@ -168,15 +158,15 @@ cfa_m0  <- mplusObject(
   rdata = mimic_data)
 
 cfa_m0_fit <- mplusModeler(cfa_m0, 
-              dataout=here("mimic_mplus", "mimic_data.dat"),
-              modelout=here("mimic_mplus", "cfa_model0.inp"),
+              dataout=here("08-MIMIC", "mimic_mplus", "mimic_data.dat"),
+              modelout=here("08-MIMIC", "mimic_mplus", "cfa_model0.inp"),
               check=TRUE, run = TRUE, hashfilename = FALSE)
 ```
 
 ```{r} 
 
 # Read in the model to R within the "mimic_mplus" folder
-mimic_output1 <- readModels(here("mimic_mplus", "cfa_model0.out"), quiet = TRUE)
+mimic_output1 <- readModels(here("08-MIMIC", "mimic_mplus", "cfa_model0.out"), quiet = TRUE)
 
 # Plot model:
 semPaths(mimic_output1,
@@ -268,8 +258,8 @@ mimic_m1  <- mplusObject(
   rdata = mimic_data)
 
 mimic_m1_fit <- mplusModeler(mimic_m1, 
-                dataout=here("mimic_mplus", "mimic_data.dat"),
-                modelout=here("mimic_mplus", "mimic_model1.inp"),
+                dataout=here("08-MIMIC", "mimic_mplus", "mimic_data.dat"),
+                modelout=here("08-MIMIC", "mimic_mplus", "mimic_model1.inp"),
                 check=TRUE, run = TRUE, hashfilename = FALSE)
 ```
 
@@ -311,14 +301,14 @@ mimic_m2  <- mplusObject(
   rdata = mimic_data)
 
 mimic_m2_fit <- mplusModeler(mimic_m2, 
-                dataout=here("mimic_mplus", "mimic_data.dat"),
-                modelout=here("mimic_mplus", "mimic_model2.inp"),
+                dataout=here("08-MIMIC", "mimic_mplus", "mimic_data.dat"),
+                modelout=here("08-MIMIC", "mimic_mplus", "mimic_model2.inp"),
                 check=TRUE, run = TRUE, hashfilename = FALSE)
 ```
 
 ```{r}
 
-mimic_output2 <- readModels(here("mimic_mplus", "mimic_model2.out"), quiet = TRUE)
+mimic_output2 <- readModels(here("08-MIMIC", "mimic_mplus", "mimic_model2.out"), quiet = TRUE)
 
 # Plot model:
 semPaths(mimic_output2,
@@ -399,8 +389,8 @@ mimic_m3  <- mplusObject(
   rdata = mimic_data)
 
 mimic_m3_fit <- mplusModeler(mimic_m3, 
-                dataout=here("mimic_mplus", "mimic_data.dat"),
-                modelout=here("mimic_mplus", "mimic_model3.inp"),
+                dataout=here("08-MIMIC", "mimic_mplus", "mimic_data.dat"),
+                modelout=here("08-MIMIC", "mimic_mplus", "mimic_model3.inp"),
                 check=TRUE, run = TRUE, hashfilename = FALSE)
 ```
 
@@ -443,8 +433,8 @@ mimic_m4  <- mplusObject(
   rdata = mimic_data)
 
 mimic_m4_fit <- mplusModeler(mimic_m4, 
-                dataout=here("mimic_mplus", "mimic_data.dat"),
-                modelout=here("mimic_mplus", "mimic_model4.inp"),
+                dataout=here("08-MIMIC", "mimic_mplus", "mimic_data.dat"),
+                modelout=here("08-MIMIC", "mimic_mplus", "mimic_model4.inp"),
                 check=TRUE, run = TRUE, hashfilename = FALSE)
 ```
 
@@ -454,7 +444,7 @@ mimic_m4_fit <- mplusModeler(mimic_m4,
 ```{r}
 
 # Read in the model to R within the "cfa_mplus" folder
-mimic_output4 <- readModels(here("mimic_mplus", "mimic_model4.out"), quiet = TRUE)
+mimic_output4 <- readModels(here("08-MIMIC", "mimic_mplus", "mimic_model4.out"), quiet = TRUE)
 
 # Plot model:
 semPaths(mimic_output4,
@@ -496,8 +486,8 @@ mimic_m5  <- mplusObject(
   rdata = mimic_data)
 
 mimic_m5_fit <- mplusModeler(mimic_m5, 
-                dataout=here("mimic_mplus", "mimic_data.dat"),
-                modelout=here("mimic_mplus", "mimic_model5.inp"),
+                dataout=here("08-MIMIC", "mimic_mplus", "mimic_data.dat"),
+                modelout=here("08-MIMIC", "mimic_mplus", "mimic_model5.inp"),
                 check=TRUE, run = TRUE, hashfilename = FALSE)
 ```
 
@@ -508,7 +498,7 @@ mimic_m5_fit <- mplusModeler(mimic_m5,
 ```{r}
 
 # Read in the model to R 
-mimic_output5 <- readModels(here("mimic_mplus", "mimic_model5.out"), quiet = TRUE)
+mimic_output5 <- readModels(here("08-MIMIC", "mimic_mplus", "mimic_model5.out"), quiet = TRUE)
 ```
 
 ```{r}
@@ -541,7 +531,7 @@ semPaths(mimic_output5,
 
 ## read all models and create table 
 ```{r}
-all_models <- readModels(here("mimic_mplus"), quiet = TRUE)
+all_models <- readModels(here("08-MIMIC", "mimic_mplus"), quiet = TRUE)
 
 table <- LatexSummaryTable(all_models,
                            keepCols=c(

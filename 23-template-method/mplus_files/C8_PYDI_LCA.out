@@ -1,6 +1,6 @@
 Mplus VERSION 8.6 (Mac)
 MUTHEN & MUTHEN
-05/31/2021   2:51 PM
+06/01/2021   3:14 PM
 
 INPUT INSTRUCTIONS
 
@@ -671,7 +671,7 @@ Latent Class 1 Compared to Latent Class 3
  PYDI3AB
     Category > 1   *********      0.000  *********  *********
  PYDI4AB
-    Category > 1       0.021      0.111      0.000    687.229
+    Category > 1       0.021      0.111      0.000    687.228
  PYDI5AB
     Category > 1       0.000      0.000      0.000      0.000
  PYDI6AB
@@ -722,7 +722,7 @@ Latent Class 1 Compared to Latent Class 6
  PYDI3AB
     Category > 1   *********      0.000  *********  *********
  PYDI4AB
-    Category > 1       0.128      0.647      0.000   2608.639
+    Category > 1       0.128      0.647      0.000   2608.636
  PYDI5AB
     Category > 1       4.687     10.168      0.067    329.367
  PYDI6AB
@@ -739,7 +739,7 @@ Latent Class 1 Compared to Latent Class 7
  PYDI3AB
     Category > 1   *********      0.000  *********  *********
  PYDI4AB
-    Category > 1       0.053      0.270      0.000   1145.742
+    Category > 1       0.053      0.270      0.000   1145.740
  PYDI5AB
     Category > 1   *********      0.000  *********  *********
  PYDI6AB
@@ -979,7 +979,7 @@ Latent Class 4 Compared to Latent Class 6
  PYDI4AB
     Category > 1      38.450    239.490      0.000  *********
  PYDI5AB
-    Category > 1      24.216     42.667      0.766    765.391
+    Category > 1      24.216     42.667      0.766    765.390
  PYDI6AB
     Category > 1   *********      0.000  *********  *********
  PYDI7AB
@@ -1130,9 +1130,9 @@ The following plots are available:
   Scatterplots (sample values)
   Sample proportions and estimated probabilities
 
-     Beginning Time:  14:51:24
-        Ending Time:  14:51:25
-       Elapsed Time:  00:00:01
+     Beginning Time:  15:14:04
+        Ending Time:  15:14:06
+       Elapsed Time:  00:00:02
 
 
 

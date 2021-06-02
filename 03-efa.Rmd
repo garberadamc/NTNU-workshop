@@ -13,19 +13,6 @@ knitr::opts_chunk$set(echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE
 library(here);library(glue)
 ```
 
-______________________________________________
-
-
-## Change starting location to folder `03-efa`
-```{r}
-
-source("rep_functions.R")
-
-change_here(glue("{project_location}/03-efa"))
-
-here()
-```
-
 ____________________________________
 
 
@@ -136,10 +123,10 @@ Prepare dataset for `mplusObject()` by removing SPSS labels
 ```{r, eval=FALSE}
 
 # write a CSV datafile (preferable format for reading into R, without labels)
-write_csv(schl_safe, here("data", "els_fa_ready_sub2.csv"))
+write_csv(schl_safe, here("03-efa", "data", "els_fa_ready_sub2.csv"))
 
 # read the unlabeled data back into R
-fa_data <- read_csv(here("data", "els_fa_ready_sub2.csv"))
+fa_data <- read_csv(here("03-efa", "data", "els_fa_ready_sub2.csv"))
 
 ```
 
@@ -177,8 +164,8 @@ m_basic  <- mplusObject(
   rdata = fa_data)                    # this is the data object used (must be un-label)
 
 m_basic_fit <- mplusModeler(m_basic, 
-               dataout=here("efa_mplus", "basic_els.dat"),
-               modelout=here("efa_mplus", "basic_els.inp"),
+               dataout=here("03-efa", "efa_mplus", "basic_els.dat"),
+               modelout=here("03-efa", "efa_mplus", "basic_els.inp"),
                check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ## END: TYPE = BASIC ANALYSIS 
@@ -216,8 +203,8 @@ m_efa_1  <- mplusObject(
   rdata = fa_data)
 
 m_efa_1_fit <- mplusModeler(m_efa_1, 
-               dataout=here("efa_mplus", "efa_els.dat"),
-               modelout=here("efa_mplus", "efa_els.inp"),
+               dataout=here("03-efa", "efa_mplus", "efa_els.dat"),
+               modelout=here("03-efa", "efa_mplus", "efa_els.inp"),
                check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ## END: EXPLORATORY FACTOR ANALYSIS
@@ -277,8 +264,8 @@ m.step1  <- mplusObject(
   rdata = fa_data)
 
 m.step1.fit <- mplusModeler(m.step1, 
-               dataout=here("efa_mplus", "efa_reduced.dat"),
-               modelout=here("efa_mplus", "efa_reduced.inp"),
+               dataout=here("03-efa", "efa_mplus", "efa_reduced.dat"),
+               modelout=here("03-efa", "efa_mplus", "efa_reduced.inp"),
                check=TRUE, run = TRUE, hashfilename = FALSE)
 
 ## END: EXPLORATORY FACTOR ANALYSIS OF - REDUCED SET

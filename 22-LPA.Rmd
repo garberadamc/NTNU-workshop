@@ -28,19 +28,6 @@ ______________________________________________
 
 ______________________________________________
 
-## Change starting location to folder `22-LPA`
-```{r}
-
-source("rep_functions.R")
-
-change_here(glue("{project_location}/22-LPA"))
-
-here()
-
-```
-
-______________________________________________
-
 ## Data source:
 
 1. The first example closely follows the vignette used to demonstrate the `tidyLPA` package (Rosenberg, 2019): [$\color{blue}{\text{See detailed documentation of this model here}}$](https://data-edu.github.io/tidyLPA/articles/Introduction_to_tidyLPA.html)
@@ -191,8 +178,8 @@ lpa_k14  <- lapply(1:4, function(k) {
   rdata = lsay_data)
 
 lpa_enum_fit <- mplusModeler(lpa_enum, 
-                dataout=glue(here("enum_lpa", "lpa_lsay.dat")),
-                modelout=glue(here("enum_lpa", "c{k}_lpa_lsay.inp")) ,
+                dataout=glue(here("22-LPA", "enum_lpa", "lpa_lsay.dat")),
+                modelout=glue(here("22-LPA", "enum_lpa", "c{k}_lpa_lsay.inp")) ,
                 check=TRUE, run = TRUE, hashfilename = FALSE)
 })
 
@@ -214,7 +201,7 @@ ___________________________________
 
 Compare model fit.
 ```{r}
-all_output <- readModels(here("enum_lpa"), quiet = TRUE)
+all_output <- readModels(here("22-LPA", "enum_lpa"), quiet = TRUE)
 
 enum_extract <- LatexSummaryTable(all_output,                         
                 keepCols=c("Title","Parameters", "LL", "BIC",         

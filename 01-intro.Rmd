@@ -104,21 +104,6 @@ ______________________________________________
 
 ______________________________________________
 
-## Large repository procedure: 
-
-- Typically a project will have a single script containing all of the code (e.g., `.R` or `.Rmd`)
-- Due to the number of scripts in this repository we will change the starting file-path at the beginning of each exercise to the folder associated with that script.
-- To make this work each course participant must manually copy the file-path of their project folder location into the file named `rep_functions.R`. 
-
-```{r, eval=FALSE}
-project_location <- "/your/unique/file-path-stem/NTNU-start" # NOTE manual change required
-```
-
-- This can easily be done by loading the `here` package, running `here()`, and copying the path. 
-- This procedure is unique to this large repository structure & will generally not be a necessary step.
-
-______________________________________________
-
 ## Packages to install & load before the beginning of the workshop:
 
 ## Install the `rhdf5` package to read `gh5` files 

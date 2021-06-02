@@ -19,19 +19,6 @@ library(here);library(glue);library(linguisticsdown)
 
 ***
 
-## Change starting location to folder `21-response-patterns`
-```{r}
-
-source("rep_functions.R")
-
-change_here(glue("{project_location}/21-response-patterns"))
-
-here()
-
-```
-
-***
-
 ## Data source: Longitudinal Study of American Youth, **Science Attitudes** 
 
 [$\color{blue}{\text{See documentation about the LSAY here.}}$](https://www.lsay.org/)
@@ -124,15 +111,15 @@ patterns  <- mplusObject(
   rdata = lsay_data)
 
 patterns_fit <- mplusModeler(patterns,
-                dataout=here("resp_pattrn", "LSAY.dat"),
-                modelout=here("resp_pattrn", "patterns.inp") ,
+                dataout=here("21-response-patterns", "resp_pattrn", "LSAY.dat"),
+                modelout=here("21-response-patterns", "resp_pattrn", "patterns.inp") ,
                 check=TRUE, run = TRUE, hashfilename = FALSE)
 ```
 
 Read in observed respnse pattern data
 ```{r}
 
-patterns <- read_table2(here("resp_pattrn", "resp_patterns.dat"),
+patterns <- read_table2(here("21-response-patterns", "resp_pattrn", "resp_patterns.dat"),
                         col_names=FALSE, na = "*")                                                   
 
 colnames(patterns) <- c("Frequency", "ENJOY", "USEFUL", "LOGICAL", "JOB", "ADULT",                   
@@ -244,7 +231,7 @@ p1_long <- order_modal %>%
   select(-pat_num, -C_MODAL)
 
 # must first run LCA enumeration (code is out of sequential order)
-out_c4 <- readModels(here("resp_pattrn"), filefilter = "patterns", quiet = TRUE)
+out_c4 <- readModels(here("21-response-patterns", "resp_pattrn"), filefilter = "patterns", quiet = TRUE)
 
 # extract posterior probabilities 
 probs_c4 <- as.data.frame(
@@ -317,7 +304,7 @@ animate(resp3d, fps = 2)
 ```
 
 ```{r, eval=FALSE}
-anim_save(here("figures", "responses_3d_anim.gif"), height = 6, width = 8, dpi = "retina")
+anim_save(here("21-response-patterns", "figures", "responses_3d_anim.gif"), height = 6, width = 8, dpi = "retina")
 ```
 
 ______________________________________________
@@ -364,8 +351,8 @@ lca_k1_6  <- lapply(1:6, function(k) {
   rdata = lsay_data)
 
 lca_enum_fit <- mplusModeler(lca_enum, 
-    dataout=glue(here("enum_mplus", "lsay.dat")),
-    modelout=glue(here("enum_mplus", "c{k}_lca.inp")) ,
+    dataout=glue(here("21-response-patterns", "enum_mplus", "lsay.dat")),
+    modelout=glue(here("21-response-patterns", "enum_mplus", "c{k}_lca.inp")) ,
     check=TRUE, run = TRUE, hashfilename = FALSE)
 })
 
@@ -380,7 +367,7 @@ ______________________________________________
 Extract data and calculate indices derived from the Log Likelihood
 ```{r}
 
-all_output <- readModels(here("enum_mplus"), quiet = TRUE)
+all_output <- readModels(here("21-response-patterns", "enum_mplus"), quiet = TRUE)
 
 n_size <- all_output[["c1_lca.out"]][["summaries"]][["Observations"]]
 
