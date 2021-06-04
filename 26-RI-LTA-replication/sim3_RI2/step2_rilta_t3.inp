@@ -1,0 +1,81 @@
+TITLE:
+m01_step2_ri_lta_t2
+DATA:
+FILE = "/Users/agarber/Desktop/RI-LTA_Muthen20/sim2_RI1/1_t3n500replist.dat";
+type = montecarlo;
+VARIABLE:
+NAMES = u11-u15 u21-u25 u31-u35
+      class1 class2 class3;
+      usev = u11-u35;
+    	CATEGORICAL = u11-u15 u21-u25 u31-u35;
+    	CLASSES = c1(2) c2(2) c3(2); 
+ANALYSIS:
+TYPE = MIXTURE;
+       algorithm = integration;
+    	 processors = 8;
+MODEL:
+%OVERALL%
+      [c1#1-c3#1*0] (par1-par3);
+  	  c2#1 on c1#1*0.5 (par11);
+      c3#1 on c2#1*0.5;
+     
+  MODEL c1:
+
+      %c1#1%
+    	[u11$1*1] (p111);
+    	[u12$1*1] (p211);
+    	[u13$1*1] (p311);
+    	[u14$1*1] (p411);
+      [u15$1*1] (p511);
+
+    	%c1#2%
+    	[u11$1*-1] (p121);
+    	[u12$1*-1] (p221);
+    	[u13$1*-1] (p321);
+    	[u14$1*-1] (p421);
+      [u15$1*-1] (p521);
+
+  MODEL c2: 	
+      %c2#1%
+    	[u21$1*1] (p111);
+    	[u22$1*1] (p211);
+    	[u23$1*1] (p311);
+    	[u24$1*1] (p411);
+      [u25$1*1] (p511);
+
+    	%c2#2%
+    	[u21$1*-1] (p121);
+    	[u22$1*-1] (p221);
+    	[u23$1*-1] (p321);
+    	[u24$1*-1] (p421);
+      [u25$1*-1] (p521);
+  
+  MODEL c3: 	
+    	%c3#1%
+    	[u31$1*1] (p111);
+    	[u32$1*1] (p211);
+    	[u33$1*1] (p311);
+    	[u34$1*1] (p411);
+      [u35$1*1] (p511);
+
+    	%c3#2%
+    	[u31$1*-1] (p121);
+    	[u32$1*-1] (p221);
+    	[u33$1*-1] (p321);
+    	[u34$1*-1] (p421);
+      [u35$1*-1] (p521);
+MODEL CONSTRAINT:
+! Compute joint and marginal probabilities:
+        New(
+        trans11*.622 trans12*.378 trans21*.5 trans22*.5
+        prob11*.5 prob12*.5 prob21*.561 prob22*.439);
+
+        trans11 = 1/(1+exp(-(par2+par11)));
+        trans12 = 1-trans11;
+        trans21 = 1/(1+exp(-par2));
+        trans22 = 1- trans21;
+        !marginal probabilities at T1 and T2:
+        prob11 = 1/(1+exp(-par1));
+        prob12 = 1 - prob11;
+        prob21 = prob11*trans11+prob12*trans21;
+        prob22 = 1- prob21;

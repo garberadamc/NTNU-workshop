@@ -1,0 +1,749 @@
+Mplus VERSION 8.4 (Mac)
+MUTHEN & MUTHEN
+04/05/2020  12:40 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  model01_regular_lta
+  MONTECARLO:
+  NAMES = u11-u15 u21-u25;
+      	GENERATE = u11-u15 u21-u25(1);
+      	CATEGORICAL = u11-u15 u21-u25;
+      	GENCLASSES = c1(2) c2(2);
+      	CLASSES = c1(2) c2(2);
+      	NOBSERVATIONS = 500;
+       	NREPS = 500;
+  MODEL POPULATION:
+  %OVERALL%
+        [c1#1-c2#1*0];      !
+    	  c2#1 on c1#1*0.5;   ! transition probability at .5
+
+
+    MODEL POPULATION-c1:
+
+        %c1#1%
+        [u11$1*1] (p111); [u12$1*1] (p211); [u13$1*1] (p311);
+        [u14$1*1] (p411); [u15$1*1] (p511);
+
+      	%c1#2%
+      	[u11$1*-1] (p121); [u12$1*-1] (p221); [u13$1*-1] (p321);
+      	[u14$1*-1] (p421); [u15$1*-1] (p521);
+
+    MODEL POPULATION-c2:	
+        %c2#1%
+        [u21$1*1] (p111); [u22$1*1] (p211); [u23$1*1] (p311);
+        [u24$1*1] (p411); [u25$1*1] (p511);
+
+      	%c2#2%
+        [u21$1*-1] (p121); [u22$1*-1] (p221); [u23$1*-1] (p321);
+        [u24$1*-1] (p421); [u25$1*-1] (p521);
+  ANALYSIS:
+  TYPE = MIXTURE;
+         ESTIMATOR = ML;
+      	 processors = 8;
+  MODEL:
+  %OVERALL%
+       [c1#1-c2#1*0] (par1-par2);
+    	 c2#1 on c1#1*0.5 (par11);
+
+    MODEL c1:
+
+        %c1#1%
+        [u11$1*1] (p111); [u12$1*1] (p211); [u13$1*1] (p311);
+        [u14$1*1] (p411); [u15$1*1] (p511);
+
+      	%c1#2%
+      	[u11$1*-1] (p121); [u12$1*-1] (p221); [u13$1*-1] (p321);
+      	[u14$1*-1] (p421); [u15$1*-1] (p521);
+
+    MODEL c2: 	
+        %c2#1%
+        [u21$1*1] (p111); [u22$1*1] (p211); [u23$1*1] (p311);
+        [u24$1*1] (p411); [u25$1*1] (p511);
+
+      	%c2#2%
+        [u21$1*-1] (p121); [u22$1*-1] (p221); [u23$1*-1] (p321);
+        [u24$1*-1] (p421); [u25$1*-1] (p521);
+  MODEL CONSTRAINT:
+  ! Compute joint and marginal probabilities:
+          New(
+          trans11*.622 trans12*.378 trans21*.5 trans22*.5
+          prob11*.5 prob12*.5 prob21*.561 prob22*.439);
+
+          trans11 = 1/(1+exp(-(par2+par11)));
+          trans12 = 1-trans11;
+          trans21 = 1/(1+exp(-par2));
+          trans22 = 1- trans21;
+          ! marginal probabilities at T1 and T2:
+          prob11 = 1/(1+exp(-par1));
+          prob12 = 1 - prob11;
+          prob21 = prob11*trans11+prob12*trans21;
+          prob22 = 1- prob21;
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+
+model01_regular_lta
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         500
+
+Number of replications
+    Requested                                                  500
+    Completed                                                  500
+Value of seed                                                    0
+
+Number of dependent variables                                   10
+Number of independent variables                                  0
+Number of continuous latent variables                            0
+Number of categorical latent variables                           2
+
+Observed dependent variables
+
+  Binary and ordered categorical (ordinal)
+   U11         U12         U13         U14         U15         U21
+   U22         U23         U24         U25
+
+Categorical latent variables
+   C1          C2
+
+
+Estimator                                                       ML
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-06
+    Relative loglikelihood change                        0.100D-06
+    Derivative                                           0.100D-05
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Optimization algorithm                                         EMA
+Parameterization                                             LOGIT
+Link                                                         LOGIT
+
+
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       13
+
+Loglikelihood
+
+    H0 Value
+
+        Mean                             -3281.999
+        Std Dev                             21.241
+        Number of successful computations      500
+
+             Proportions                   Percentiles
+        Expected    Observed         Expected       Observed
+           0.990       0.988        -3331.412      -3333.316
+           0.980       0.978        -3325.622      -3328.680
+           0.950       0.946        -3316.938      -3317.554
+           0.900       0.902        -3309.221      -3309.609
+           0.800       0.806        -3299.875      -3299.779
+           0.700       0.690        -3293.137      -3293.345
+           0.500       0.514        -3281.999      -3281.515
+           0.300       0.300        -3270.860      -3270.876
+           0.200       0.198        -3264.122      -3264.237
+           0.100       0.100        -3254.776      -3254.890
+           0.050       0.056        -3247.059      -3246.158
+           0.020       0.020        -3238.375      -3238.547
+           0.010       0.012        -3232.585      -3229.725
+
+Information Criteria
+
+    Akaike (AIC)
+
+        Mean                              6589.997
+        Std Dev                             42.483
+        Number of successful computations      500
+
+             Proportions                   Percentiles
+        Expected    Observed         Expected       Observed
+           0.990       0.988         6491.170       6484.937
+           0.980       0.980         6502.750       6501.584
+           0.950       0.944         6520.117       6518.242
+           0.900       0.900         6535.551       6534.634
+           0.800       0.802         6554.244       6554.020
+           0.700       0.700         6567.719       6567.528
+           0.500       0.486         6589.997       6589.016
+           0.300       0.310         6612.275       6612.631
+           0.200       0.194         6625.750       6624.643
+           0.100       0.098         6644.443       6643.076
+           0.050       0.054         6659.877       6660.554
+           0.020       0.022         6677.244       6679.289
+           0.010       0.012         6688.824       6689.824
+
+    Bayesian (BIC)
+
+        Mean                              6644.787
+        Std Dev                             42.483
+        Number of successful computations      500
+
+             Proportions                   Percentiles
+        Expected    Observed         Expected       Observed
+           0.990       0.988         6545.960       6539.727
+           0.980       0.980         6557.540       6556.374
+           0.950       0.944         6574.907       6573.032
+           0.900       0.900         6590.341       6589.424
+           0.800       0.802         6609.034       6608.810
+           0.700       0.700         6622.509       6622.318
+           0.500       0.486         6644.787       6643.806
+           0.300       0.310         6667.065       6667.421
+           0.200       0.194         6680.540       6679.433
+           0.100       0.098         6699.233       6697.866
+           0.050       0.054         6714.667       6715.344
+           0.020       0.022         6732.033       6734.079
+           0.010       0.012         6743.614       6744.614
+
+    Sample-Size Adjusted BIC (n* = (n + 2) / 24)
+
+        Mean                              6603.524
+        Std Dev                             42.483
+        Number of successful computations      500
+
+             Proportions                   Percentiles
+        Expected    Observed         Expected       Observed
+           0.990       0.988         6504.697       6498.464
+           0.980       0.980         6516.278       6515.111
+           0.950       0.944         6533.644       6531.769
+           0.900       0.900         6549.078       6548.161
+           0.800       0.802         6567.771       6567.547
+           0.700       0.700         6581.246       6581.055
+           0.500       0.486         6603.524       6602.543
+           0.300       0.310         6625.802       6626.158
+           0.200       0.194         6639.277       6638.170
+           0.100       0.098         6657.970       6656.603
+           0.050       0.054         6673.404       6674.081
+           0.020       0.022         6690.771       6692.816
+           0.010       0.012         6702.351       6703.351
+
+Chi-Square Test of Model Fit for the Binary and Ordered Categorical
+(Ordinal) Outcomes
+
+    Pearson Chi-Square
+
+        Mean                              1010.880
+        Std Dev                             46.226
+        Degrees of freedom                    1010
+        Number of successful computations      500
+
+             Proportions                   Percentiles
+        Expected    Observed         Expected       Observed
+           0.990       0.996          908.394        913.915
+           0.980       0.984          919.855        922.858
+           0.950       0.962          937.227        942.759
+           0.900       0.904          952.847        952.988
+           0.800       0.786          971.993        969.786
+           0.700       0.666          985.957        980.083
+           0.500       0.488         1009.333       1006.884
+           0.300       0.306         1033.077       1033.484
+           0.200       0.234         1047.619       1052.116
+           0.100       0.130         1068.010       1072.765
+           0.050       0.056         1085.046       1089.906
+           0.020       0.022         1104.435       1105.094
+           0.010       0.010         1117.488       1117.174
+
+    Likelihood Ratio Chi-Square
+
+        Mean                               878.729
+        Std Dev                             27.404
+        Degrees of freedom                    1010
+        Number of successful computations      500
+
+             Proportions                   Percentiles
+        Expected    Observed         Expected       Observed
+           0.990       0.144          908.394        815.881
+           0.980       0.072          919.855        821.218
+           0.950       0.016          937.227        831.053
+           0.900       0.004          952.847        843.402
+           0.800       0.000          971.993        855.751
+           0.700       0.000          985.957        863.230
+           0.500       0.000         1009.333        878.548
+           0.300       0.000         1033.077        893.704
+           0.200       0.000         1047.619        902.118
+           0.100       0.000         1068.010        913.783
+           0.050       0.000         1085.046        925.280
+           0.020       0.000         1104.435        934.789
+           0.010       0.000         1117.488        939.590
+
+
+
+MODEL RESULTS USE THE LATENT CLASS VARIABLE ORDER
+
+   C1  C2
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASS PATTERNS
+BASED ON THE ESTIMATED MODEL
+
+  Latent Class
+    Pattern
+
+    1  1        156.44046          0.31288
+    1  2         93.46584          0.18693
+    2  1        125.07545          0.25015
+    2  2        125.01825          0.25004
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR EACH LATENT CLASS VARIABLE
+BASED ON THE ESTIMATED MODEL
+
+  Latent Class
+    Variable    Class
+
+    C1             1       249.90630          0.49981
+                   2       250.09370          0.50019
+    C2             1       281.51590          0.56303
+                   2       218.48409          0.43697
+
+
+LATENT TRANSITION PROBABILITIES BASED ON THE ESTIMATED MODEL
+
+  C1 Classes (Rows) by C2 Classes (Columns)
+
+            1        2
+
+   1     0.625    0.375
+   2     0.501    0.499
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASS PATTERNS
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+  Latent Class
+    Pattern
+
+    1  1        156.44046          0.31288
+    1  2         93.46583          0.18693
+    2  1        125.07547          0.25015
+    2  2        125.01825          0.25004
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR EACH LATENT CLASS VARIABLE
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+  Latent Class
+    Variable    Class
+
+    C1             1       249.90628          0.49981
+                   2       250.09372          0.50019
+    C2             1       281.51593          0.56303
+                   2       218.48409          0.43697
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASS PATTERNS
+BASED ON THEIR MOST LIKELY LATENT CLASS PATTERN
+
+Class Counts and Proportions
+
+  Latent Class
+    Pattern
+
+    1  1              150          0.29985
+    1  2               99          0.19834
+    2  1              128          0.25516
+    2  2              123          0.24665
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR EACH LATENT CLASS VARIABLE
+BASED ON THEIR MOST LIKELY LATENT CLASS PATTERN
+
+  Latent Class
+    Variable    Class
+
+    C1             1             249          0.49819
+                   2             250          0.50181
+    C2             1             277          0.55501
+                   2             222          0.44499
+
+
+CLASSIFICATION QUALITY
+
+     Entropy                         0.570
+
+
+MODEL RESULTS
+
+                              ESTIMATES              S. E.     M. S. E.  95%  % Sig
+                 Population   Average   Std. Dev.   Average             Cover Coeff
+
+Parameters for Class-specific Model Parts of C1
+
+Latent Class C1#1
+
+ Thresholds
+  U11$1               1.000     1.0070     0.1462     0.1385     0.0214 0.934 1.000
+  U12$1               1.000     1.0047     0.1431     0.1388     0.0205 0.946 1.000
+  U13$1               1.000     1.0013     0.1405     0.1381     0.0197 0.952 1.000
+  U14$1               1.000     1.0136     0.1361     0.1386     0.0187 0.968 1.000
+  U15$1               1.000     0.9946     0.1341     0.1375     0.0180 0.956 1.000
+
+Latent Class C1#2
+
+ Thresholds
+  U11$1              -1.000    -1.0223     0.1535     0.1525     0.0240 0.938 1.000
+  U12$1              -1.000    -1.0136     0.1477     0.1511     0.0220 0.954 1.000
+  U13$1              -1.000    -1.0192     0.1546     0.1521     0.0242 0.964 1.000
+  U14$1              -1.000    -1.0160     0.1554     0.1525     0.0243 0.956 1.000
+  U15$1              -1.000    -1.0098     0.1501     0.1514     0.0226 0.964 1.000
+
+Parameters for Class-specific Model Parts of C2
+
+Latent Class C2#1
+
+ Thresholds
+  U21$1               1.000     1.0070     0.1462     0.1385     0.0214 0.934 1.000
+  U22$1               1.000     1.0047     0.1431     0.1388     0.0205 0.946 1.000
+  U23$1               1.000     1.0013     0.1405     0.1381     0.0197 0.952 1.000
+  U24$1               1.000     1.0136     0.1361     0.1386     0.0187 0.968 1.000
+  U25$1               1.000     0.9946     0.1341     0.1375     0.0180 0.956 1.000
+
+Latent Class C2#2
+
+ Thresholds
+  U21$1              -1.000    -1.0223     0.1535     0.1525     0.0240 0.938 1.000
+  U22$1              -1.000    -1.0136     0.1477     0.1511     0.0220 0.954 1.000
+  U23$1              -1.000    -1.0192     0.1546     0.1521     0.0242 0.964 1.000
+  U24$1              -1.000    -1.0160     0.1554     0.1525     0.0243 0.956 1.000
+  U25$1              -1.000    -1.0098     0.1501     0.1514     0.0226 0.964 1.000
+
+Categorical Latent Variables
+
+ C2#1     ON
+  C1#1                0.500     0.5101     0.3112     0.2998     0.0967 0.956 0.418
+
+ Means
+  C1#1                0.000    -0.0008     0.1579     0.1607     0.0249 0.956 0.044
+  C2#1                0.000     0.0058     0.2186     0.2127     0.0477 0.952 0.048
+
+New/Additional Parameters
+  TRANS11             0.622     0.6247     0.0522     0.0510     0.0027 0.942 1.000
+  TRANS12             0.378     0.3753     0.0522     0.0510     0.0027 0.942 1.000
+  TRANS21             0.500     0.5014     0.0540     0.0525     0.0029 0.946 1.000
+  TRANS22             0.500     0.4986     0.0540     0.0525     0.0029 0.946 1.000
+  PROB11              0.500     0.4998     0.0392     0.0399     0.0015 0.956 1.000
+  PROB12              0.500     0.5002     0.0392     0.0399     0.0015 0.956 1.000
+  PROB21              0.561     0.5630     0.0402     0.0397     0.0016 0.944 1.000
+  PROB22              0.439     0.4370     0.0402     0.0397     0.0016 0.944 1.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Average Condition Number for the Information Matrix      0.723E-02
+       (ratio of smallest to largest eigenvalue)
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS INDICATOR MODEL PART
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1
+              U11$1         U12$1         U13$1         U14$1         U15$1
+              ________      ________      ________      ________      ________
+                    1             2             3             4             5
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1
+              U21$1         U22$1         U23$1         U24$1         U25$1
+              ________      ________      ________      ________      ________
+                    1             2             3             4             5
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2
+              U11$1         U12$1         U13$1         U14$1         U15$1
+              ________      ________      ________      ________      ________
+                    1             2             3             4             5
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2
+              U21$1         U22$1         U23$1         U24$1         U25$1
+              ________      ________      ________      ________      ________
+                    6             7             8             9            10
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1
+              U11$1         U12$1         U13$1         U14$1         U15$1
+              ________      ________      ________      ________      ________
+                    6             7             8             9            10
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1
+              U21$1         U22$1         U23$1         U24$1         U25$1
+              ________      ________      ________      ________      ________
+                    1             2             3             4             5
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2
+              U11$1         U12$1         U13$1         U14$1         U15$1
+              ________      ________      ________      ________      ________
+                    6             7             8             9            10
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2
+              U21$1         U22$1         U23$1         U24$1         U25$1
+              ________      ________      ________      ________      ________
+                    6             7             8             9            10
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              C1#1          C1#2          C2#1          C2#2
+              ________      ________      ________      ________
+                   11             0            12             0
+
+
+           BETA(C)
+              C1#1          C1#2
+              ________      ________
+ C2#1              13             0
+ C2#2               0             0
+
+
+     PARAMETER SPECIFICATION FOR THE ADDITIONAL PARAMETERS
+
+
+           NEW/ADDITIONAL PARAMETERS
+              TRANS11       TRANS12       TRANS21       TRANS22       PROB11
+              ________      ________      ________      ________      ________
+                   14            15            16            17            18
+
+
+           NEW/ADDITIONAL PARAMETERS
+              PROB12        PROB21        PROB22
+              ________      ________      ________
+                   19            20            21
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 2
+
+
+     STARTING VALUES FOR LATENT CLASS INDICATOR MODEL PART
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1
+              U11$1         U12$1         U13$1         U14$1         U15$1
+              ________      ________      ________      ________      ________
+                1.000         1.000         1.000         1.000         1.000
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1
+              U21$1         U22$1         U23$1         U24$1         U25$1
+              ________      ________      ________      ________      ________
+                1.000         1.000         1.000         1.000         1.000
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2
+              U11$1         U12$1         U13$1         U14$1         U15$1
+              ________      ________      ________      ________      ________
+                1.000         1.000         1.000         1.000         1.000
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2
+              U21$1         U22$1         U23$1         U24$1         U25$1
+              ________      ________      ________      ________      ________
+               -1.000        -1.000        -1.000        -1.000        -1.000
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1
+              U11$1         U12$1         U13$1         U14$1         U15$1
+              ________      ________      ________      ________      ________
+               -1.000        -1.000        -1.000        -1.000        -1.000
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1
+              U21$1         U22$1         U23$1         U24$1         U25$1
+              ________      ________      ________      ________      ________
+                1.000         1.000         1.000         1.000         1.000
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2
+              U11$1         U12$1         U13$1         U14$1         U15$1
+              ________      ________      ________      ________      ________
+               -1.000        -1.000        -1.000        -1.000        -1.000
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2
+              U21$1         U22$1         U23$1         U24$1         U25$1
+              ________      ________      ________      ________      ________
+               -1.000        -1.000        -1.000        -1.000        -1.000
+
+
+     STARTING VALUES FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              C1#1          C1#2          C2#1          C2#2
+              ________      ________      ________      ________
+                0.000         0.000         0.000         0.000
+
+
+           BETA(C)
+              C1#1          C1#2
+              ________      ________
+ C2#1           0.500         0.000
+ C2#2           0.000         0.000
+
+
+     STARTING VALUES FOR THE ADDITIONAL PARAMETERS
+
+
+           NEW/ADDITIONAL PARAMETERS
+              TRANS11       TRANS12       TRANS21       TRANS22       PROB11
+              ________      ________      ________      ________      ________
+                0.622         0.378         0.500         0.500         0.500
+
+
+           NEW/ADDITIONAL PARAMETERS
+              PROB12        PROB21        PROB22
+              ________      ________      ________
+                0.500         0.561         0.439
+
+
+     POPULATION VALUES FOR LATENT CLASS PATTERN 1 1
+
+
+     POPULATION VALUES FOR LATENT CLASS PATTERN 1 2
+
+
+     POPULATION VALUES FOR LATENT CLASS PATTERN 2 1
+
+
+     POPULATION VALUES FOR LATENT CLASS PATTERN 2 2
+
+
+     POPULATION VALUES FOR LATENT CLASS INDICATOR MODEL PART
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1
+              U11$1         U12$1         U13$1         U14$1         U15$1
+              ________      ________      ________      ________      ________
+                1.000         1.000         1.000         1.000         1.000
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1
+              U21$1         U22$1         U23$1         U24$1         U25$1
+              ________      ________      ________      ________      ________
+                1.000         1.000         1.000         1.000         1.000
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2
+              U11$1         U12$1         U13$1         U14$1         U15$1
+              ________      ________      ________      ________      ________
+                1.000         1.000         1.000         1.000         1.000
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2
+              U21$1         U22$1         U23$1         U24$1         U25$1
+              ________      ________      ________      ________      ________
+               -1.000        -1.000        -1.000        -1.000        -1.000
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1
+              U11$1         U12$1         U13$1         U14$1         U15$1
+              ________      ________      ________      ________      ________
+               -1.000        -1.000        -1.000        -1.000        -1.000
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1
+              U21$1         U22$1         U23$1         U24$1         U25$1
+              ________      ________      ________      ________      ________
+                1.000         1.000         1.000         1.000         1.000
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2
+              U11$1         U12$1         U13$1         U14$1         U15$1
+              ________      ________      ________      ________      ________
+               -1.000        -1.000        -1.000        -1.000        -1.000
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2
+              U21$1         U22$1         U23$1         U24$1         U25$1
+              ________      ________      ________      ________      ________
+               -1.000        -1.000        -1.000        -1.000        -1.000
+
+
+     POPULATION VALUES FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              C1#1          C1#2          C2#1          C2#2
+              ________      ________      ________      ________
+                0.000         0.000         0.000         0.000
+
+
+           BETA(C)
+              C1#1          C1#2
+              ________      ________
+ C2#1           0.500         0.000
+ C2#2           0.000         0.000
+
+
+     Beginning Time:  12:40:07
+        Ending Time:  12:40:15
+       Elapsed Time:  00:00:08
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen

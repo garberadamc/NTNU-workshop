@@ -1,0 +1,84 @@
+TITLE:
+T2RILTA - vary n-size
+MONTECARLO:
+NAMES = u11-u15 u21-u25;
+GENERATE = u11-u15 u21-u25(1);
+CATEGORICAL = u11-u15 u21-u25;
+GENCLASSES = c1(2) c2(2);
+CLASSES = c1(2) c2(2);
+NOBSERVATIONS = 1500;
+SEED = 3252020;
+	NREPS = 5; !rep number reduced for demo (real sim use 500,1000)
+ repsave = all;
+ save = 3_t2n500rep*.dat;
+ RESULTS = t2results3.csv;
+MODEL POPULATION:
+%OVERALL%
+
+      [c1#1-c2#1*0];
+      c2#1 on c1#1*0.5;
+
+      f by u11-u15*2 (p1-p5)
+           u21-u25*2 (p1-p5);
+           
+    	f@1; [f@0]; ! set factor variance to 1 and mean to 0
+ 
+  MODEL POPULATION-c1:
+      %c1#1% 
+      [u11$1*1] (p111); [u12$1*1] (p211); [u13$1*1] (p311);
+      [u14$1*1] (p411); [u15$1*1] (p511);
+    	%c1#2% 
+    	[u11$1*-1] (p121); [u12$1*-1] (p221); [u13$1*-1] (p321);
+    	[u14$1*-1] (p421); [u15$1*-1] (p521);
+
+  MODEL POPULATION-c2:	
+      %c2#1% 
+      [u21$1*1] (p111); [u22$1*1] (p211); [u23$1*1] (p311);
+      [u24$1*1] (p411); [u25$1*1] (p511);
+    	%c2#2% 
+      [u21$1*-1] (p121); [u22$1*-1] (p221); [u23$1*-1] (p321);
+      [u24$1*-1] (p421); [u25$1*-1] (p521); 
+ANALYSIS:
+TYPE = MIXTURE;
+       algorithm = integration;
+    	 processors = 8;
+MODEL:
+%OVERALL%
+
+    [c1#1-c2#1*0] (par1-par2);
+  	c2#1 on c1#1*0.5 (par11);
+
+    f by u11-u15*2 (p1-p5)
+         u21-u25*2 (p1-p5);
+         
+    f@1; [f@0];
+     
+  MODEL c1:
+      %c1#1%
+      [u11$1*1] (p111); [u12$1*1] (p211); [u13$1*1] (p311);
+      [u14$1*1] (p411); [u15$1*1] (p511);
+    	%c1#2% 
+    	[u11$1*-1] (p121); [u12$1*-1] (p221); [u13$1*-1] (p321);
+    	[u14$1*-1] (p421); [u15$1*-1] (p521);
+
+  MODEL c2: 	
+      %c2#1% 
+      [u21$1*1] (p111); [u22$1*1] (p211); [u23$1*1] (p311);
+      [u24$1*1] (p411); [u25$1*1] (p511);
+    	%c2#2% 
+      [u21$1*-1] (p121); [u22$1*-1] (p221); [u23$1*-1] (p321);
+      [u24$1*-1] (p421); [u25$1*-1] (p521);
+MODEL CONSTRAINT:
+! Compute joint and marginal probabilities:
+        New(
+        trans11*.622 trans12*.378 trans21*.5 trans22*.5
+        prob11*.5 prob12*.5 prob21*.561 prob22*.439);
+        trans11 = 1/(1+exp(-(par2+par11)));
+        trans12 = 1-trans11;
+        trans21 = 1/(1+exp(-par2));
+        trans22 = 1- trans21;
+        !marginal probabilities at T1 and T2:
+        prob11 = 1/(1+exp(-par1));
+        prob12 = 1 - prob11;
+        prob21 = prob11*trans11+prob12*trans21;
+        prob22 = 1- prob21;

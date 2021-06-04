@@ -1,0 +1,95 @@
+ TITLE: 
+ Continuous random intercept latent transition analysis
+         
+ DATA:   
+    FILE = dp.analytic.dat;
+              FORMAT IS f1.0, 20f2.0;
+
+VARIABLE: 
+    NAMES = pov
+      letrec1 begin1 ending1 sight1 wic1
+      letrec2 begin2 ending2 sight2 wic2
+      letrec3 begin3 ending3 sight3 wic3
+      letrec4 begin4 ending4 sight4 wic4;
+
+      USEVARIABLES = letrec1 begin1 ending1 sight1 wic1
+                          letrec2 begin2 ending2 sight2 wic2
+                          letrec3 begin3 ending3 sight3 wic3
+                          letrec4 begin4 ending4 sight4 wic4;
+
+      CATEGORICAL =   letrec1 begin1 ending1 sight1 wic1
+                        letrec2 begin2 ending2 sight2 wic2
+                        letrec3 begin3 ending3 sight3 wic3
+                        letrec4 begin4 ending4 sight4 wic4;
+
+    classes = c1(3) c2(3) c3(3) c4(3);
+
+       missing are .;
+
+
+
+ANALYSIS:
+              TYPE =  mixture;
+              starts = 80 16;
+              processors = 8;
+           
+              algorithm = integration;
+              integration = 30;
+
+MODEL:
+                  %OVERALL%
+
+                  f by letrec1-wic1* (p1-p5)
+                    letrec2-wic2* (p1-p5)
+                    letrec3-wic3* (p1-p5)
+                    letrec4-wic4* (p1-p5);
+
+                    f@1; [f@0];
+               
+			c2 on c1;
+			c3 on c2;
+			c4 on c3;
+					
+
+      MODEL c1:
+          %c1#1%
+          [letrec1$1-wic1$1] (1-5) ;
+          %c1#2%
+          [letrec1$1-wic1$1] (6-10);
+          %c1#3%
+          [letrec1$1-wic1$1] (11-15);
+
+      MODEL c2:
+          %c2#1%
+          [letrec2$1-wic2$1] (1-5);
+          %c2#2%
+          [letrec2$1-wic2$1] (6-10);
+          %c2#3%
+          [letrec2$1-wic2$1] (11-15);
+
+
+
+      MODEL c3:
+          %c3#1%
+          [letrec3$1-wic3$1] (1-5) ;
+          %c3#2%
+          [letrec3$1-wic3$1] (6-10);
+          %c3#3%
+          [letrec3$1-wic3$1] (11-15);
+
+
+
+      MODEL c4:
+          %c4#1%
+          [letrec4$1-wic4$1] (1-5);
+          %c4#2%
+          [letrec4$1-wic4$1] (6-10);
+          %c4#3%
+          [letrec4$1-wic4$1] (11-15);
+
+
+
+  output: tech1 tech15;
+
+
+

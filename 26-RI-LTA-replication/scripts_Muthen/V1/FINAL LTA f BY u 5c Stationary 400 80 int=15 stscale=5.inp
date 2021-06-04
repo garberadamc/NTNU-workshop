@@ -1,0 +1,120 @@
+Title:  
+	Lanza-Collins 2008 Developmental Psychology
+	N=2937, T=3, P=4, C=5
+
+! Past-year number of dating partners: datepar_alt_98 datepar_alt_99 datepar_alt_00
+! Past-year sex: sex_yr_98 sex_yr_99 sex_yr_00 
+! Past-year number of sexual partners:  part_98 part_99 part_00 
+! Exposed to STD in past year:  expos_98 expos_99 expos_00
+! Covariates:
+! Past-year cigarette use:  cig_yr_98 cig_yr_99 cig_yr_00 
+! (So not: cig_mf_98 cig_mf_99 cig_mf_00 or cig_mi_98 cig_mi_99 cig_mi_00)
+! Past-year drunkenness: drunk_98 drunk_99 drunk_00
+! Past-year marijuana use: mar_yr_98 mar_yr_99 mar_yr_00
+! Gender:  gender
+
+Data:
+	file = LanzaCollinsLTANoLabelsblanks-filled.csv;
+
+Variable:
+
+	NAMES =  id gender male 
+ dates_yr_98 dates_yr_99 dates_yr_00
+ datepar_yr_98 datepar_yr_99 datepar_yr_00
+! datepar_alt_98 datepar_alt_99 datepar_alt_00: 
+	u11 u21 u31  ! time point, item. 3 categories 
+ age_fd
+! sex_yr_98 sex_yr_99 sex_yr_00:
+	u12 u22 u32 ! 2 categories
+! part_98 part_99 part_00:
+	u13 u23 u33 ! 3 categories
+! expos_98 expos_99 expos_00:
+	u14 u24 u34 ! 2 categories
+safesex_98 safesex_99 safesex_00 alc_yr_98 alc_yr_99 alc_yr_00 
+alc_mf_98 alc_mf_99 alc_mf_00 alc_mi_98	alc_mi_99 alc_mi_00 
+! drunk_98 drunk_99 drunk_00:
+	x12 x22 x32 
+! cig_yr_98 cig_yr_99 cig_yr_00:
+	x11 x21 x31 
+cig_mf_98 cig_mf_99 cig_mf_00 cig_mi_98 cig_mi_99 cig_mi_00 
+! mar_yr_98 mar_yr_99 mar_yr_00:
+	x13 x23 x33 
+PeerSex hisp white logsibs 
+weight1 weight2 weight3 logHHsz urban1 urban2 urban3;
+
+	usev = u11 u12 u13 u14
+			u21 u22 u23 u24
+			u31 u32 u33 u34;
+!		x11 x21 x31 ! cigs at t1, t2, t3
+!		x12 x22 x32 ! drunk
+!		x13 x23 x33 ! marijuana
+
+	categorical = u11-u34;
+	missing = all(999);
+
+
+	classes = c1(5) c2(5) c3(5);
+
+Analysis:
+	type = mixture;
+	starts = 400 80;
+	proc = 8;
+    algorithm = integration;
+    integration = 15;
+    stscale = 5;
+
+Model:
+    %Overall%
+    [c2#1 c3#1] (int1);
+    [c2#2 c3#2] (int2);
+    [c2#3 c3#3] (int3);
+    [c2#4 c3#4] (int4);
+  	c2 on c1 (trans1-trans16);
+  	c3 on c2 (trans1-trans16);
+
+
+f by u11-u14* (lam1-lam4)
+	u21-u24* (lam1-lam4)
+	u31-u34* (lam1-lam4);
+	f@1; [f@0];
+
+Model c1:
+	%c1#1%
+	[u11$1 u11$2 u12$1 u13$1 u13$2 u14$1] (p11-p16);
+	%c1#2%
+	[u11$1 u11$2 u12$1 u13$1 u13$2 u14$1] (p21-p26);
+	%c1#3%
+	[u11$1 u11$2 u12$1 u13$1 u13$2 u14$1] (p31-p36);
+	%c1#4%
+	[u11$1 u11$2 u12$1 u13$1 u13$2 u14$1] (p41-p46);
+	%c1#5%
+	[u11$1 u11$2 u12$1 u13$1 u13$2 u14$1] (p51-p56);
+
+Model c2:
+	%c2#1%
+	[u21$1 u21$2 u22$1 u23$1 u23$2 u24$1] (p11-p16);
+	%c2#2%
+	[u21$1 u21$2 u22$1 u23$1 u23$2 u24$1] (p21-p26);
+	%c2#3%
+	[u21$1 u21$2 u22$1 u23$1 u23$2 u24$1] (p31-p36);
+	%c2#4%
+	[u21$1 u21$2 u22$1 u23$1 u23$2 u24$1] (p41-p46);
+	%c2#5%
+	[u21$1 u21$2 u22$1 u23$1 u23$2 u24$1] (p51-p56);
+
+Model c3:
+	%c3#1%
+	[u31$1 u31$2 u32$1 u33$1 u33$2 u34$1] (p11-p16);
+	%c3#2%
+	[u31$1 u31$2 u32$1 u33$1 u33$2 u34$1] (p21-p26);
+	%c3#3%
+	[u31$1 u31$2 u32$1 u33$1 u33$2 u34$1] (p31-p36);
+	%c3#4%
+	[u31$1 u31$2 u32$1 u33$1 u33$2 u34$1] (p41-p46);
+	%c3#5%
+	[u31$1 u31$2 u32$1 u33$1 u33$2 u34$1] (p51-p56);
+	
+		
+output: tech1 tech15;
+	
+

@@ -1,0 +1,4336 @@
+Mplus DEVELOPMENT (Mpdev 2/5/2020)
+MUTHEN & MUTHEN
+02/17/2020   9:31 AM
+
+INPUT INSTRUCTIONS
+
+  Title:
+      Eid 2003 data: T=4, N=494, P=2, C=2
+      LTA with f BY u, stationary
+
+  Data:
+      file = Eid-Langeheine-table1-mod2-NOlabels.csv;
+
+  Variable:
+      names = u11 u12 u21 u22 u31 u32 u41 u42 freq est sd;
+      usev = u11-u42;
+      freqweight = freq;
+      categorical = u11-u42;
+      classes = c1(2) c2(2) c3(2) c4(2);
+
+
+  Analysis:
+      type = mixture;
+      algorithm = integration;
+      integration = 30;
+      proc = 8;
+      starts = 160 40;
+
+  MODEL:
+      %OVERALL%
+
+      ! Stationarity imposed:
+
+      [c2#1 - c4#1] (p0);
+
+    	c4#1 on c3#1 (pt);
+      c3#1 on c2#1 (pt);
+    	c2#1 on c1#1 (pt);
+
+    	f by u11-u12* (p1-p2)
+            u21-u22* (p1-p2)
+            u31-u32* (p1-p2)
+            u41-u42* (p1-p2);
+    	f@1; [f@0];
+
+
+    MODEL c1:
+      	%c1#1%
+      	[u11$1] (1);
+      	[u12$1] (2);
+
+      	%c1#2%
+      	[u11$1] (11);
+      	[u12$1] (12);
+      	
+    MODEL c2: 	
+      	%c2#1%
+      	[u21$1] (1);
+      	[u22$1] (2);
+
+      	%c2#2%
+      	[u21$1] (11);
+      	[u22$1] (12);
+      	
+
+    MODEL c3:
+        %c3#1%
+      	[u31$1] (1);
+      	[u32$1] (2);
+
+      	%c3#2%
+      	[u31$1] (11);
+      	[u32$1] (12);
+
+    MODEL c4:
+        %c4#1%
+      	[u41$1] (1);
+      	[u42$1] (2);
+
+      	%c4#2%
+      	[u41$1] (11);
+      	[u42$1] (12);
+
+
+  Output:
+      tech1 tech8 tech15;
+
+  savedata:
+      save = fscores;
+      file = fbyuscores;
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+
+Eid 2003 data: T=4, N=494, P=2, C=2
+LTA with f BY u, stationary
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         494
+Number of patterns                                             256
+
+Number of dependent variables                                    8
+Number of independent variables                                  0
+Number of continuous latent variables                            1
+Number of categorical latent variables                           4
+
+Observed dependent variables
+
+  Binary and ordered categorical (ordinal)
+   U11         U12         U21         U22         U31         U32
+   U41         U42
+
+Continuous latent variables
+   F
+
+Categorical latent variables
+   C1          C2          C3          C4
+
+Variables with special functions
+
+  Weight variable       FREQ
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-02
+    Relative loglikelihood change                        0.100D-05
+    Derivative                                           0.100D-02
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Optimization algorithm                                         EMA
+Integration Specifications
+  Type                                                    STANDARD
+  Number of integration points                                  30
+  Dimensions of numerical integration                            1
+  Adaptive quadrature                                           ON
+Random Starts Specifications
+  Number of initial stage random starts                        160
+  Number of final stage optimizations                           40
+  Number of initial stage iterations                            10
+  Initial stage convergence criterion                    0.100D+01
+  Random starts scale                                    0.500D+01
+  Random seed for generating random starts                       0
+Parameterization                                             LOGIT
+Link                                                         LOGIT
+Cholesky                                                        ON
+
+Input data file(s)
+  Eid-Langeheine-table1-mod2-NOlabels.csv
+Input data format  FREE
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    U11
+      Category 1    0.543          268.000
+      Category 2    0.457          226.000
+    U12
+      Category 1    0.540          267.000
+      Category 2    0.460          227.000
+    U21
+      Category 1    0.508          251.000
+      Category 2    0.492          243.000
+    U22
+      Category 1    0.569          281.000
+      Category 2    0.431          213.000
+    U31
+      Category 1    0.492          243.000
+      Category 2    0.508          251.000
+    U32
+      Category 1    0.561          277.000
+      Category 2    0.439          217.000
+    U41
+      Category 1    0.559          276.000
+      Category 2    0.441          218.000
+    U42
+      Category 1    0.626          309.000
+      Category 2    0.374          185.000
+
+
+RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
+
+Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
+
+           -2018.555  402224           91
+           -2018.555  371246           101
+           -2018.555  788796           145
+           -2018.555  569131           26
+           -2018.555  789985           67
+           -2018.555  247224           94
+           -2018.555  407168           44
+           -2018.556  813779           92
+           -2018.556  76974            16
+           -2018.557  575700           100
+           -2018.558  153942           31
+           -2018.559  587946           120
+           -2018.559  715561           125
+           -2018.561  253358           2
+           -2019.287  931874           141
+           -2019.287  957392           79
+           -2019.288  576220           115
+           -2019.288  784664           75
+           -2019.288  120506           45
+           -2019.288  192071           142
+           -2019.288  27071            15
+           -2019.288  260601           36
+           -2019.288  268896           124
+           -2019.288  802779           122
+           -2019.291  366706           29
+           -2019.291  685657           69
+           -2019.291  164305           128
+           -2019.291  972873           157
+           -2019.291  592219           119
+           -2019.291  440841           118
+           -2019.291  443917           60
+           -2019.291  573096           20
+           -2019.291  565819           65
+           -2019.291  794236           127
+           -2019.291  804561           59
+           -2019.292  246261           38
+           -2019.297  570908           98
+           -2019.299  318230           46
+           -2019.301  414284           158
+           -2019.311  415931           10
+
+
+
+THE BEST LOGLIKELIHOOD VALUE HAS BEEN REPLICATED.  RERUN WITH AT LEAST TWICE THE
+RANDOM STARTS TO CHECK THAT THE BEST LOGLIKELIHOOD IS STILL OBTAINED AND REPLICATED.
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                        9
+
+Loglikelihood
+
+          H0 Value                       -2018.555
+          H0 Scaling Correction Factor      1.1364
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                    4055.110
+          Bayesian (BIC)                  4092.933
+          Sample-Size Adjusted BIC        4064.367
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit for the Binary and Ordered Categorical
+(Ordinal) Outcomes
+
+          Pearson Chi-Square
+
+          Value                            332.284
+          Degrees of Freedom                   246
+          P-Value                           0.0002
+
+          Likelihood Ratio Chi-Square
+
+          Value                            247.418
+          Degrees of Freedom                   246
+          P-Value                           0.4626
+
+
+
+MODEL RESULTS USE THE LATENT CLASS VARIABLE ORDER
+
+   C1  C2  C3  C4
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASS PATTERNS
+BASED ON THE ESTIMATED MODEL
+
+  Latent Class
+    Pattern
+
+    1  1  1  1         90.53946          0.18328
+    1  1  1  2         40.57702          0.08214
+    1  1  2  1         28.55314          0.05780
+    1  1  2  2         30.20926          0.06115
+    1  2  1  1         28.55314          0.05780
+    1  2  1  2         12.79665          0.02590
+    1  2  2  1         21.25758          0.04303
+    1  2  2  2         22.49055          0.04553
+    2  1  1  1         50.74645          0.10273
+    2  1  1  2         22.74301          0.04604
+    2  1  2  1         16.00375          0.03240
+    2  1  2  2         16.93199          0.03428
+    2  2  1  1         37.78032          0.07648
+    2  2  1  2         16.93199          0.03428
+    2  2  2  1         28.12714          0.05694
+    2  2  2  2         29.75856          0.06024
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR EACH LATENT CLASS VARIABLE
+BASED ON THE ESTIMATED MODEL
+
+  Latent Class
+    Variable    Class
+
+    C1             1       274.97681          0.55663
+                   2       219.02319          0.44337
+    C2             1       296.30408          0.59981
+                   2       197.69592          0.40019
+    C3             1       300.66803          0.60864
+                   2       193.33197          0.39136
+    C4             1       301.56094          0.61045
+                   2       192.43904          0.38955
+
+
+LATENT TRANSITION PROBABILITIES BASED ON THE ESTIMATED MODEL
+
+  C1 Classes (Rows) by C2 Classes (Columns)
+
+            1        2
+
+   1     0.691    0.309
+   2     0.486    0.514
+
+  C2 Classes (Rows) by C3 Classes (Columns)
+
+            1        2
+
+   1     0.691    0.309
+   2     0.486    0.514
+
+  C3 Classes (Rows) by C4 Classes (Columns)
+
+            1        2
+
+   1     0.691    0.309
+   2     0.486    0.514
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASS PATTERNS
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+  Latent Class
+    Pattern
+
+    1  1  1  1         88.42075          0.17899
+    1  1  1  2         32.98387          0.06677
+    1  1  2  1         29.85649          0.06044
+    1  1  2  2         26.38139          0.05340
+    1  2  1  1         32.22951          0.06524
+    1  2  1  2         11.92950          0.02415
+    1  2  2  1         24.49765          0.04959
+    1  2  2  2         28.67294          0.05804
+    2  1  1  1         59.25834          0.11996
+    2  1  1  2         15.41242          0.03120
+    2  1  2  1         20.97366          0.04246
+    2  1  2  2         17.49781          0.03542
+    2  2  1  1         34.17034          0.06917
+    2  2  1  2         11.07631          0.02242
+    2  2  2  1         28.60805          0.05791
+    2  2  2  2         32.03097          0.06484
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR EACH LATENT CLASS VARIABLE
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+  Latent Class
+    Variable    Class
+
+    C1             1       274.97208          0.55662
+                   2       219.02791          0.44338
+    C2             1       290.78473          0.58863
+                   2       203.21527          0.41137
+    C3             1       285.48105          0.57790
+                   2       208.51895          0.42210
+    C4             1       318.01480          0.64375
+                   2       175.98520          0.35625
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASS PATTERNS
+BASED ON THEIR MOST LIKELY LATENT CLASS PATTERN
+
+Class Counts and Proportions
+
+  Latent Class
+    Pattern
+
+    1  1  1  1              106          0.21457
+    1  1  1  2               26          0.05263
+    1  1  2  1               31          0.06275
+    1  1  2  2               17          0.03441
+    1  2  1  1               30          0.06073
+    1  2  1  2               12          0.02429
+    1  2  2  1               20          0.04049
+    1  2  2  2               31          0.06275
+    2  1  1  1               50          0.10121
+    2  1  1  2                9          0.01822
+    2  1  2  1               20          0.04049
+    2  1  2  2               19          0.03846
+    2  2  1  1               26          0.05263
+    2  2  1  2                6          0.01215
+    2  2  2  1               24          0.04858
+    2  2  2  2               67          0.13563
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR EACH LATENT CLASS VARIABLE
+BASED ON THEIR MOST LIKELY LATENT CLASS PATTERN
+
+  Latent Class
+    Variable    Class
+
+    C1             1             273          0.55263
+                   2             221          0.44737
+    C2             1             278          0.56275
+                   2             216          0.43725
+    C3             1             265          0.53644
+                   2             229          0.46356
+    C4             1             307          0.62146
+                   2             187          0.37854
+
+
+CLASSIFICATION QUALITY
+
+     Entropy                         0.523
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Parameters in the Overall Part of the Model (Parameters Equal in All of the Classes)
+
+ F        BY
+    U11                2.805      0.251     11.180      0.000
+    U12                6.775      2.135      3.173      0.002
+    U21                2.805      0.251     11.180      0.000
+    U22                6.775      2.135      3.173      0.002
+    U31                2.805      0.251     11.180      0.000
+    U32                6.775      2.135      3.173      0.002
+    U41                2.805      0.251     11.180      0.000
+    U42                6.775      2.135      3.173      0.002
+
+ Means
+    F                  0.000      0.000    999.000    999.000
+
+ Variances
+    F                  1.000      0.000    999.000    999.000
+
+Parameters for Class-specific Model Parts of C1
+
+Latent Class C1#1
+
+ Thresholds
+    U11$1              1.871      0.244      7.663      0.000
+    U12$1              6.857      2.607      2.631      0.009
+
+Latent Class C1#2
+
+ Thresholds
+    U11$1             -2.211      0.474     -4.669      0.000
+    U12$1             -5.991      1.617     -3.706      0.000
+
+Parameters for Class-specific Model Parts of C2
+
+Latent Class C2#1
+
+ Thresholds
+    U21$1              1.871      0.244      7.663      0.000
+    U22$1              6.857      2.607      2.631      0.009
+
+Latent Class C2#2
+
+ Thresholds
+    U21$1             -2.211      0.474     -4.669      0.000
+    U22$1             -5.991      1.617     -3.706      0.000
+
+Parameters for Class-specific Model Parts of C3
+
+Latent Class C3#1
+
+ Thresholds
+    U31$1              1.871      0.244      7.663      0.000
+    U32$1              6.857      2.607      2.631      0.009
+
+Latent Class C3#2
+
+ Thresholds
+    U31$1             -2.211      0.474     -4.669      0.000
+    U32$1             -5.991      1.617     -3.706      0.000
+
+Parameters for Class-specific Model Parts of C4
+
+Latent Class C4#1
+
+ Thresholds
+    U41$1              1.871      0.244      7.663      0.000
+    U42$1              6.857      2.607      2.631      0.009
+
+Latent Class C4#2
+
+ Thresholds
+    U41$1             -2.211      0.474     -4.669      0.000
+    U42$1             -5.991      1.617     -3.706      0.000
+
+Categorical Latent Variables
+
+ C4#1     ON
+    C3#1               0.859      0.283      3.037      0.002
+
+ C3#1     ON
+    C2#1               0.859      0.283      3.037      0.002
+
+ C2#1     ON
+    C1#1               0.859      0.283      3.037      0.002
+
+ Means
+    C1#1               0.228      0.226      1.008      0.313
+    C2#1              -0.056      0.204     -0.276      0.783
+    C3#1              -0.056      0.204     -0.276      0.783
+    C4#1              -0.056      0.204     -0.276      0.783
+
+
+IRT PARAMETERIZATION
+
+Latent Class Pattern 1 1 1 1
+
+ Item Discriminations
+
+ F        BY
+    U11                2.805      0.251     11.180      0.000
+    U12                6.775      2.135      3.173      0.002
+    U21                2.805      0.251     11.180      0.000
+    U22                6.775      2.135      3.173      0.002
+    U31                2.805      0.251     11.180      0.000
+    U32                6.775      2.135      3.173      0.002
+    U41                2.805      0.251     11.180      0.000
+    U42                6.775      2.135      3.173      0.002
+
+ Means
+    F                  0.000      0.000      0.000      1.000
+
+ Item Difficulties
+    U11                0.667      0.078      8.501      0.000
+    U12                1.012      0.131      7.716      0.000
+    U21                0.667      0.078      8.501      0.000
+    U22                1.012      0.131      7.716      0.000
+    U31                0.667      0.078      8.501      0.000
+    U32                1.012      0.131      7.716      0.000
+    U41                0.667      0.078      8.501      0.000
+    U42                1.012      0.131      7.716      0.000
+
+ Variances
+    F                  1.000      0.000      0.000      1.000
+
+Latent Class Pattern 1 1 1 2
+
+ Item Discriminations
+
+ F        BY
+    U11                2.805      0.251     11.180      0.000
+    U12                6.775      2.135      3.173      0.002
+    U21                2.805      0.251     11.180      0.000
+    U22                6.775      2.135      3.173      0.002
+    U31                2.805      0.251     11.180      0.000
+    U32                6.775      2.135      3.173      0.002
+    U41                2.805      0.251     11.180      0.000
+    U42                6.775      2.135      3.173      0.002
+
+ Means
+    F                  0.000      0.000      0.000      1.000
+
+ Item Difficulties
+    U11                0.667      0.078      8.501      0.000
+    U12                1.012      0.131      7.716      0.000
+    U21                0.667      0.078      8.501      0.000
+    U22                1.012      0.131      7.716      0.000
+    U31                0.667      0.078      8.501      0.000
+    U32                1.012      0.131      7.716      0.000
+    U41               -0.788      0.174     -4.526      0.000
+    U42               -0.884      0.169     -5.235      0.000
+
+ Variances
+    F                  1.000      0.000      0.000      1.000
+
+Latent Class Pattern 1 1 2 1
+
+ Item Discriminations
+
+ F        BY
+    U11                2.805      0.251     11.180      0.000
+    U12                6.775      2.135      3.173      0.002
+    U21                2.805      0.251     11.180      0.000
+    U22                6.775      2.135      3.173      0.002
+    U31                2.805      0.251     11.180      0.000
+    U32                6.775      2.135      3.173      0.002
+    U41                2.805      0.251     11.180      0.000
+    U42                6.775      2.135      3.173      0.002
+
+ Means
+    F                  0.000      0.000      0.000      1.000
+
+ Item Difficulties
+    U11                0.667      0.078      8.501      0.000
+    U12                1.012      0.131      7.716      0.000
+    U21                0.667      0.078      8.501      0.000
+    U22                1.012      0.131      7.716      0.000
+    U31               -0.788      0.174     -4.526      0.000
+    U32               -0.884      0.169     -5.235      0.000
+    U41                0.667      0.078      8.501      0.000
+    U42                1.012      0.131      7.716      0.000
+
+ Variances
+    F                  1.000      0.000      0.000      1.000
+
+Latent Class Pattern 1 1 2 2
+
+ Item Discriminations
+
+ F        BY
+    U11                2.805      0.251     11.180      0.000
+    U12                6.775      2.135      3.173      0.002
+    U21                2.805      0.251     11.180      0.000
+    U22                6.775      2.135      3.173      0.002
+    U31                2.805      0.251     11.180      0.000
+    U32                6.775      2.135      3.173      0.002
+    U41                2.805      0.251     11.180      0.000
+    U42                6.775      2.135      3.173      0.002
+
+ Means
+    F                  0.000      0.000      0.000      1.000
+
+ Item Difficulties
+    U11                0.667      0.078      8.501      0.000
+    U12                1.012      0.131      7.716      0.000
+    U21                0.667      0.078      8.501      0.000
+    U22                1.012      0.131      7.716      0.000
+    U31               -0.788      0.174     -4.526      0.000
+    U32               -0.884      0.169     -5.235      0.000
+    U41               -0.788      0.174     -4.526      0.000
+    U42               -0.884      0.169     -5.235      0.000
+
+ Variances
+    F                  1.000      0.000      0.000      1.000
+
+Latent Class Pattern 1 2 1 1
+
+ Item Discriminations
+
+ F        BY
+    U11                2.805      0.251     11.180      0.000
+    U12                6.775      2.135      3.173      0.002
+    U21                2.805      0.251     11.180      0.000
+    U22                6.775      2.135      3.173      0.002
+    U31                2.805      0.251     11.180      0.000
+    U32                6.775      2.135      3.173      0.002
+    U41                2.805      0.251     11.180      0.000
+    U42                6.775      2.135      3.173      0.002
+
+ Means
+    F                  0.000      0.000      0.000      1.000
+
+ Item Difficulties
+    U11                0.667      0.078      8.501      0.000
+    U12                1.012      0.131      7.716      0.000
+    U21               -0.788      0.174     -4.526      0.000
+    U22               -0.884      0.169     -5.235      0.000
+    U31                0.667      0.078      8.501      0.000
+    U32                1.012      0.131      7.716      0.000
+    U41                0.667      0.078      8.501      0.000
+    U42                1.012      0.131      7.716      0.000
+
+ Variances
+    F                  1.000      0.000      0.000      1.000
+
+Latent Class Pattern 1 2 1 2
+
+ Item Discriminations
+
+ F        BY
+    U11                2.805      0.251     11.180      0.000
+    U12                6.775      2.135      3.173      0.002
+    U21                2.805      0.251     11.180      0.000
+    U22                6.775      2.135      3.173      0.002
+    U31                2.805      0.251     11.180      0.000
+    U32                6.775      2.135      3.173      0.002
+    U41                2.805      0.251     11.180      0.000
+    U42                6.775      2.135      3.173      0.002
+
+ Means
+    F                  0.000      0.000      0.000      1.000
+
+ Item Difficulties
+    U11                0.667      0.078      8.501      0.000
+    U12                1.012      0.131      7.716      0.000
+    U21               -0.788      0.174     -4.526      0.000
+    U22               -0.884      0.169     -5.235      0.000
+    U31                0.667      0.078      8.501      0.000
+    U32                1.012      0.131      7.716      0.000
+    U41               -0.788      0.174     -4.526      0.000
+    U42               -0.884      0.169     -5.235      0.000
+
+ Variances
+    F                  1.000      0.000      0.000      1.000
+
+Latent Class Pattern 1 2 2 1
+
+ Item Discriminations
+
+ F        BY
+    U11                2.805      0.251     11.180      0.000
+    U12                6.775      2.135      3.173      0.002
+    U21                2.805      0.251     11.180      0.000
+    U22                6.775      2.135      3.173      0.002
+    U31                2.805      0.251     11.180      0.000
+    U32                6.775      2.135      3.173      0.002
+    U41                2.805      0.251     11.180      0.000
+    U42                6.775      2.135      3.173      0.002
+
+ Means
+    F                  0.000      0.000      0.000      1.000
+
+ Item Difficulties
+    U11                0.667      0.078      8.501      0.000
+    U12                1.012      0.131      7.716      0.000
+    U21               -0.788      0.174     -4.526      0.000
+    U22               -0.884      0.169     -5.235      0.000
+    U31               -0.788      0.174     -4.526      0.000
+    U32               -0.884      0.169     -5.235      0.000
+    U41                0.667      0.078      8.501      0.000
+    U42                1.012      0.131      7.716      0.000
+
+ Variances
+    F                  1.000      0.000      0.000      1.000
+
+Latent Class Pattern 1 2 2 2
+
+ Item Discriminations
+
+ F        BY
+    U11                2.805      0.251     11.180      0.000
+    U12                6.775      2.135      3.173      0.002
+    U21                2.805      0.251     11.180      0.000
+    U22                6.775      2.135      3.173      0.002
+    U31                2.805      0.251     11.180      0.000
+    U32                6.775      2.135      3.173      0.002
+    U41                2.805      0.251     11.180      0.000
+    U42                6.775      2.135      3.173      0.002
+
+ Means
+    F                  0.000      0.000      0.000      1.000
+
+ Item Difficulties
+    U11                0.667      0.078      8.501      0.000
+    U12                1.012      0.131      7.716      0.000
+    U21               -0.788      0.174     -4.526      0.000
+    U22               -0.884      0.169     -5.235      0.000
+    U31               -0.788      0.174     -4.526      0.000
+    U32               -0.884      0.169     -5.235      0.000
+    U41               -0.788      0.174     -4.526      0.000
+    U42               -0.884      0.169     -5.235      0.000
+
+ Variances
+    F                  1.000      0.000      0.000      1.000
+
+Latent Class Pattern 2 1 1 1
+
+ Item Discriminations
+
+ F        BY
+    U11                2.805      0.251     11.180      0.000
+    U12                6.775      2.135      3.173      0.002
+    U21                2.805      0.251     11.180      0.000
+    U22                6.775      2.135      3.173      0.002
+    U31                2.805      0.251     11.180      0.000
+    U32                6.775      2.135      3.173      0.002
+    U41                2.805      0.251     11.180      0.000
+    U42                6.775      2.135      3.173      0.002
+
+ Means
+    F                  0.000      0.000      0.000      1.000
+
+ Item Difficulties
+    U11               -0.788      0.174     -4.526      0.000
+    U12               -0.884      0.169     -5.235      0.000
+    U21                0.667      0.078      8.501      0.000
+    U22                1.012      0.131      7.716      0.000
+    U31                0.667      0.078      8.501      0.000
+    U32                1.012      0.131      7.716      0.000
+    U41                0.667      0.078      8.501      0.000
+    U42                1.012      0.131      7.716      0.000
+
+ Variances
+    F                  1.000      0.000      0.000      1.000
+
+Latent Class Pattern 2 1 1 2
+
+ Item Discriminations
+
+ F        BY
+    U11                2.805      0.251     11.180      0.000
+    U12                6.775      2.135      3.173      0.002
+    U21                2.805      0.251     11.180      0.000
+    U22                6.775      2.135      3.173      0.002
+    U31                2.805      0.251     11.180      0.000
+    U32                6.775      2.135      3.173      0.002
+    U41                2.805      0.251     11.180      0.000
+    U42                6.775      2.135      3.173      0.002
+
+ Means
+    F                  0.000      0.000      0.000      1.000
+
+ Item Difficulties
+    U11               -0.788      0.174     -4.526      0.000
+    U12               -0.884      0.169     -5.235      0.000
+    U21                0.667      0.078      8.501      0.000
+    U22                1.012      0.131      7.716      0.000
+    U31                0.667      0.078      8.501      0.000
+    U32                1.012      0.131      7.716      0.000
+    U41               -0.788      0.174     -4.526      0.000
+    U42               -0.884      0.169     -5.235      0.000
+
+ Variances
+    F                  1.000      0.000      0.000      1.000
+
+Latent Class Pattern 2 1 2 1
+
+ Item Discriminations
+
+ F        BY
+    U11                2.805      0.251     11.180      0.000
+    U12                6.775      2.135      3.173      0.002
+    U21                2.805      0.251     11.180      0.000
+    U22                6.775      2.135      3.173      0.002
+    U31                2.805      0.251     11.180      0.000
+    U32                6.775      2.135      3.173      0.002
+    U41                2.805      0.251     11.180      0.000
+    U42                6.775      2.135      3.173      0.002
+
+ Means
+    F                  0.000      0.000      0.000      1.000
+
+ Item Difficulties
+    U11               -0.788      0.174     -4.526      0.000
+    U12               -0.884      0.169     -5.235      0.000
+    U21                0.667      0.078      8.501      0.000
+    U22                1.012      0.131      7.716      0.000
+    U31               -0.788      0.174     -4.526      0.000
+    U32               -0.884      0.169     -5.235      0.000
+    U41                0.667      0.078      8.501      0.000
+    U42                1.012      0.131      7.716      0.000
+
+ Variances
+    F                  1.000      0.000      0.000      1.000
+
+Latent Class Pattern 2 1 2 2
+
+ Item Discriminations
+
+ F        BY
+    U11                2.805      0.251     11.180      0.000
+    U12                6.775      2.135      3.173      0.002
+    U21                2.805      0.251     11.180      0.000
+    U22                6.775      2.135      3.173      0.002
+    U31                2.805      0.251     11.180      0.000
+    U32                6.775      2.135      3.173      0.002
+    U41                2.805      0.251     11.180      0.000
+    U42                6.775      2.135      3.173      0.002
+
+ Means
+    F                  0.000      0.000      0.000      1.000
+
+ Item Difficulties
+    U11               -0.788      0.174     -4.526      0.000
+    U12               -0.884      0.169     -5.235      0.000
+    U21                0.667      0.078      8.501      0.000
+    U22                1.012      0.131      7.716      0.000
+    U31               -0.788      0.174     -4.526      0.000
+    U32               -0.884      0.169     -5.235      0.000
+    U41               -0.788      0.174     -4.526      0.000
+    U42               -0.884      0.169     -5.235      0.000
+
+ Variances
+    F                  1.000      0.000      0.000      1.000
+
+Latent Class Pattern 2 2 1 1
+
+ Item Discriminations
+
+ F        BY
+    U11                2.805      0.251     11.180      0.000
+    U12                6.775      2.135      3.173      0.002
+    U21                2.805      0.251     11.180      0.000
+    U22                6.775      2.135      3.173      0.002
+    U31                2.805      0.251     11.180      0.000
+    U32                6.775      2.135      3.173      0.002
+    U41                2.805      0.251     11.180      0.000
+    U42                6.775      2.135      3.173      0.002
+
+ Means
+    F                  0.000      0.000      0.000      1.000
+
+ Item Difficulties
+    U11               -0.788      0.174     -4.526      0.000
+    U12               -0.884      0.169     -5.235      0.000
+    U21               -0.788      0.174     -4.526      0.000
+    U22               -0.884      0.169     -5.235      0.000
+    U31                0.667      0.078      8.501      0.000
+    U32                1.012      0.131      7.716      0.000
+    U41                0.667      0.078      8.501      0.000
+    U42                1.012      0.131      7.716      0.000
+
+ Variances
+    F                  1.000      0.000      0.000      1.000
+
+Latent Class Pattern 2 2 1 2
+
+ Item Discriminations
+
+ F        BY
+    U11                2.805      0.251     11.180      0.000
+    U12                6.775      2.135      3.173      0.002
+    U21                2.805      0.251     11.180      0.000
+    U22                6.775      2.135      3.173      0.002
+    U31                2.805      0.251     11.180      0.000
+    U32                6.775      2.135      3.173      0.002
+    U41                2.805      0.251     11.180      0.000
+    U42                6.775      2.135      3.173      0.002
+
+ Means
+    F                  0.000      0.000      0.000      1.000
+
+ Item Difficulties
+    U11               -0.788      0.174     -4.526      0.000
+    U12               -0.884      0.169     -5.235      0.000
+    U21               -0.788      0.174     -4.526      0.000
+    U22               -0.884      0.169     -5.235      0.000
+    U31                0.667      0.078      8.501      0.000
+    U32                1.012      0.131      7.716      0.000
+    U41               -0.788      0.174     -4.526      0.000
+    U42               -0.884      0.169     -5.235      0.000
+
+ Variances
+    F                  1.000      0.000      0.000      1.000
+
+Latent Class Pattern 2 2 2 1
+
+ Item Discriminations
+
+ F        BY
+    U11                2.805      0.251     11.180      0.000
+    U12                6.775      2.135      3.173      0.002
+    U21                2.805      0.251     11.180      0.000
+    U22                6.775      2.135      3.173      0.002
+    U31                2.805      0.251     11.180      0.000
+    U32                6.775      2.135      3.173      0.002
+    U41                2.805      0.251     11.180      0.000
+    U42                6.775      2.135      3.173      0.002
+
+ Means
+    F                  0.000      0.000      0.000      1.000
+
+ Item Difficulties
+    U11               -0.788      0.174     -4.526      0.000
+    U12               -0.884      0.169     -5.235      0.000
+    U21               -0.788      0.174     -4.526      0.000
+    U22               -0.884      0.169     -5.235      0.000
+    U31               -0.788      0.174     -4.526      0.000
+    U32               -0.884      0.169     -5.235      0.000
+    U41                0.667      0.078      8.501      0.000
+    U42                1.012      0.131      7.716      0.000
+
+ Variances
+    F                  1.000      0.000      0.000      1.000
+
+Latent Class Pattern 2 2 2 2
+
+ Item Discriminations
+
+ F        BY
+    U11                2.805      0.251     11.180      0.000
+    U12                6.775      2.135      3.173      0.002
+    U21                2.805      0.251     11.180      0.000
+    U22                6.775      2.135      3.173      0.002
+    U31                2.805      0.251     11.180      0.000
+    U32                6.775      2.135      3.173      0.002
+    U41                2.805      0.251     11.180      0.000
+    U42                6.775      2.135      3.173      0.002
+
+ Means
+    F                  0.000      0.000      0.000      1.000
+
+ Item Difficulties
+    U11               -0.788      0.174     -4.526      0.000
+    U12               -0.884      0.169     -5.235      0.000
+    U21               -0.788      0.174     -4.526      0.000
+    U22               -0.884      0.169     -5.235      0.000
+    U31               -0.788      0.174     -4.526      0.000
+    U32               -0.884      0.169     -5.235      0.000
+    U41               -0.788      0.174     -4.526      0.000
+    U42               -0.884      0.169     -5.235      0.000
+
+ Variances
+    F                  1.000      0.000      0.000      1.000
+
+
+RESULTS IN PROBABILITY SCALE
+
+                    Estimate
+
+Results for Class-specific Model Parts of C1
+
+Latent Class C1#1
+
+ U11
+    Category 1         0.714
+    Category 2         0.286
+ U12
+    Category 1         0.836
+    Category 2         0.164
+
+Latent Class C1#2
+
+ U11
+    Category 1         0.252
+    Category 2         0.748
+ U12
+    Category 1         0.196
+    Category 2         0.804
+
+Results for Class-specific Model Parts of C2
+
+Latent Class C2#1
+
+ U21
+    Category 1         0.714
+    Category 2         0.286
+ U22
+    Category 1         0.836
+    Category 2         0.164
+
+Latent Class C2#2
+
+ U21
+    Category 1         0.252
+    Category 2         0.748
+ U22
+    Category 1         0.196
+    Category 2         0.804
+
+Results for Class-specific Model Parts of C3
+
+Latent Class C3#1
+
+ U31
+    Category 1         0.714
+    Category 2         0.286
+ U32
+    Category 1         0.836
+    Category 2         0.164
+
+Latent Class C3#2
+
+ U31
+    Category 1         0.252
+    Category 2         0.748
+ U32
+    Category 1         0.196
+    Category 2         0.804
+
+Results for Class-specific Model Parts of C4
+
+Latent Class C4#1
+
+ U41
+    Category 1         0.714
+    Category 2         0.286
+ U42
+    Category 1         0.836
+    Category 2         0.164
+
+Latent Class C4#2
+
+ U41
+    Category 1         0.252
+    Category 2         0.748
+ U42
+    Category 1         0.196
+    Category 2         0.804
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.564E-03
+       (ratio of smallest to largest eigenvalue)
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 1 1 1
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                    0             0             0
+
+
+           LAMBDA
+              F
+              ________
+ U11                1
+ U12                2
+ U21                1
+ U22                2
+ U31                1
+ U32                2
+ U41                1
+ U42                2
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11                0
+ U12                0             0
+ U21                0             0             0
+ U22                0             0             0             0
+ U31                0             0             0             0             0
+ U32                0             0             0             0             0
+ U41                0             0             0             0             0
+ U42                0             0             0             0             0
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32                0
+ U41                0             0
+ U42                0             0             0
+
+
+           ALPHA
+              F
+              ________
+                    0
+
+
+           BETA
+              F
+              ________
+ F                  0
+
+
+           PSI
+              F
+              ________
+ F                  0
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 1 1 2
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                    0             0             0
+
+
+           LAMBDA
+              F
+              ________
+ U11                1
+ U12                2
+ U21                1
+ U22                2
+ U31                1
+ U32                2
+ U41                1
+ U42                2
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11                0
+ U12                0             0
+ U21                0             0             0
+ U22                0             0             0             0
+ U31                0             0             0             0             0
+ U32                0             0             0             0             0
+ U41                0             0             0             0             0
+ U42                0             0             0             0             0
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32                0
+ U41                0             0
+ U42                0             0             0
+
+
+           ALPHA
+              F
+              ________
+                    0
+
+
+           BETA
+              F
+              ________
+ F                  0
+
+
+           PSI
+              F
+              ________
+ F                  0
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 1 2 1
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                    0             0             0
+
+
+           LAMBDA
+              F
+              ________
+ U11                1
+ U12                2
+ U21                1
+ U22                2
+ U31                1
+ U32                2
+ U41                1
+ U42                2
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11                0
+ U12                0             0
+ U21                0             0             0
+ U22                0             0             0             0
+ U31                0             0             0             0             0
+ U32                0             0             0             0             0
+ U41                0             0             0             0             0
+ U42                0             0             0             0             0
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32                0
+ U41                0             0
+ U42                0             0             0
+
+
+           ALPHA
+              F
+              ________
+                    0
+
+
+           BETA
+              F
+              ________
+ F                  0
+
+
+           PSI
+              F
+              ________
+ F                  0
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 1 2 2
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                    0             0             0
+
+
+           LAMBDA
+              F
+              ________
+ U11                1
+ U12                2
+ U21                1
+ U22                2
+ U31                1
+ U32                2
+ U41                1
+ U42                2
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11                0
+ U12                0             0
+ U21                0             0             0
+ U22                0             0             0             0
+ U31                0             0             0             0             0
+ U32                0             0             0             0             0
+ U41                0             0             0             0             0
+ U42                0             0             0             0             0
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32                0
+ U41                0             0
+ U42                0             0             0
+
+
+           ALPHA
+              F
+              ________
+                    0
+
+
+           BETA
+              F
+              ________
+ F                  0
+
+
+           PSI
+              F
+              ________
+ F                  0
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 2 1 1
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                    0             0             0
+
+
+           LAMBDA
+              F
+              ________
+ U11                1
+ U12                2
+ U21                1
+ U22                2
+ U31                1
+ U32                2
+ U41                1
+ U42                2
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11                0
+ U12                0             0
+ U21                0             0             0
+ U22                0             0             0             0
+ U31                0             0             0             0             0
+ U32                0             0             0             0             0
+ U41                0             0             0             0             0
+ U42                0             0             0             0             0
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32                0
+ U41                0             0
+ U42                0             0             0
+
+
+           ALPHA
+              F
+              ________
+                    0
+
+
+           BETA
+              F
+              ________
+ F                  0
+
+
+           PSI
+              F
+              ________
+ F                  0
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 2 1 2
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                    0             0             0
+
+
+           LAMBDA
+              F
+              ________
+ U11                1
+ U12                2
+ U21                1
+ U22                2
+ U31                1
+ U32                2
+ U41                1
+ U42                2
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11                0
+ U12                0             0
+ U21                0             0             0
+ U22                0             0             0             0
+ U31                0             0             0             0             0
+ U32                0             0             0             0             0
+ U41                0             0             0             0             0
+ U42                0             0             0             0             0
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32                0
+ U41                0             0
+ U42                0             0             0
+
+
+           ALPHA
+              F
+              ________
+                    0
+
+
+           BETA
+              F
+              ________
+ F                  0
+
+
+           PSI
+              F
+              ________
+ F                  0
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 2 2 1
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                    0             0             0
+
+
+           LAMBDA
+              F
+              ________
+ U11                1
+ U12                2
+ U21                1
+ U22                2
+ U31                1
+ U32                2
+ U41                1
+ U42                2
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11                0
+ U12                0             0
+ U21                0             0             0
+ U22                0             0             0             0
+ U31                0             0             0             0             0
+ U32                0             0             0             0             0
+ U41                0             0             0             0             0
+ U42                0             0             0             0             0
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32                0
+ U41                0             0
+ U42                0             0             0
+
+
+           ALPHA
+              F
+              ________
+                    0
+
+
+           BETA
+              F
+              ________
+ F                  0
+
+
+           PSI
+              F
+              ________
+ F                  0
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 2 2 2
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                    0             0             0
+
+
+           LAMBDA
+              F
+              ________
+ U11                1
+ U12                2
+ U21                1
+ U22                2
+ U31                1
+ U32                2
+ U41                1
+ U42                2
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11                0
+ U12                0             0
+ U21                0             0             0
+ U22                0             0             0             0
+ U31                0             0             0             0             0
+ U32                0             0             0             0             0
+ U41                0             0             0             0             0
+ U42                0             0             0             0             0
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32                0
+ U41                0             0
+ U42                0             0             0
+
+
+           ALPHA
+              F
+              ________
+                    0
+
+
+           BETA
+              F
+              ________
+ F                  0
+
+
+           PSI
+              F
+              ________
+ F                  0
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 1 1 1
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                    0             0             0
+
+
+           LAMBDA
+              F
+              ________
+ U11                1
+ U12                2
+ U21                1
+ U22                2
+ U31                1
+ U32                2
+ U41                1
+ U42                2
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11                0
+ U12                0             0
+ U21                0             0             0
+ U22                0             0             0             0
+ U31                0             0             0             0             0
+ U32                0             0             0             0             0
+ U41                0             0             0             0             0
+ U42                0             0             0             0             0
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32                0
+ U41                0             0
+ U42                0             0             0
+
+
+           ALPHA
+              F
+              ________
+                    0
+
+
+           BETA
+              F
+              ________
+ F                  0
+
+
+           PSI
+              F
+              ________
+ F                  0
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 1 1 2
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                    0             0             0
+
+
+           LAMBDA
+              F
+              ________
+ U11                1
+ U12                2
+ U21                1
+ U22                2
+ U31                1
+ U32                2
+ U41                1
+ U42                2
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11                0
+ U12                0             0
+ U21                0             0             0
+ U22                0             0             0             0
+ U31                0             0             0             0             0
+ U32                0             0             0             0             0
+ U41                0             0             0             0             0
+ U42                0             0             0             0             0
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32                0
+ U41                0             0
+ U42                0             0             0
+
+
+           ALPHA
+              F
+              ________
+                    0
+
+
+           BETA
+              F
+              ________
+ F                  0
+
+
+           PSI
+              F
+              ________
+ F                  0
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 1 2 1
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                    0             0             0
+
+
+           LAMBDA
+              F
+              ________
+ U11                1
+ U12                2
+ U21                1
+ U22                2
+ U31                1
+ U32                2
+ U41                1
+ U42                2
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11                0
+ U12                0             0
+ U21                0             0             0
+ U22                0             0             0             0
+ U31                0             0             0             0             0
+ U32                0             0             0             0             0
+ U41                0             0             0             0             0
+ U42                0             0             0             0             0
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32                0
+ U41                0             0
+ U42                0             0             0
+
+
+           ALPHA
+              F
+              ________
+                    0
+
+
+           BETA
+              F
+              ________
+ F                  0
+
+
+           PSI
+              F
+              ________
+ F                  0
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 1 2 2
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                    0             0             0
+
+
+           LAMBDA
+              F
+              ________
+ U11                1
+ U12                2
+ U21                1
+ U22                2
+ U31                1
+ U32                2
+ U41                1
+ U42                2
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11                0
+ U12                0             0
+ U21                0             0             0
+ U22                0             0             0             0
+ U31                0             0             0             0             0
+ U32                0             0             0             0             0
+ U41                0             0             0             0             0
+ U42                0             0             0             0             0
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32                0
+ U41                0             0
+ U42                0             0             0
+
+
+           ALPHA
+              F
+              ________
+                    0
+
+
+           BETA
+              F
+              ________
+ F                  0
+
+
+           PSI
+              F
+              ________
+ F                  0
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 2 1 1
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                    0             0             0
+
+
+           LAMBDA
+              F
+              ________
+ U11                1
+ U12                2
+ U21                1
+ U22                2
+ U31                1
+ U32                2
+ U41                1
+ U42                2
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11                0
+ U12                0             0
+ U21                0             0             0
+ U22                0             0             0             0
+ U31                0             0             0             0             0
+ U32                0             0             0             0             0
+ U41                0             0             0             0             0
+ U42                0             0             0             0             0
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32                0
+ U41                0             0
+ U42                0             0             0
+
+
+           ALPHA
+              F
+              ________
+                    0
+
+
+           BETA
+              F
+              ________
+ F                  0
+
+
+           PSI
+              F
+              ________
+ F                  0
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 2 1 2
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                    0             0             0
+
+
+           LAMBDA
+              F
+              ________
+ U11                1
+ U12                2
+ U21                1
+ U22                2
+ U31                1
+ U32                2
+ U41                1
+ U42                2
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11                0
+ U12                0             0
+ U21                0             0             0
+ U22                0             0             0             0
+ U31                0             0             0             0             0
+ U32                0             0             0             0             0
+ U41                0             0             0             0             0
+ U42                0             0             0             0             0
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32                0
+ U41                0             0
+ U42                0             0             0
+
+
+           ALPHA
+              F
+              ________
+                    0
+
+
+           BETA
+              F
+              ________
+ F                  0
+
+
+           PSI
+              F
+              ________
+ F                  0
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 2 2 1
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                    0             0             0
+
+
+           LAMBDA
+              F
+              ________
+ U11                1
+ U12                2
+ U21                1
+ U22                2
+ U31                1
+ U32                2
+ U41                1
+ U42                2
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11                0
+ U12                0             0
+ U21                0             0             0
+ U22                0             0             0             0
+ U31                0             0             0             0             0
+ U32                0             0             0             0             0
+ U41                0             0             0             0             0
+ U42                0             0             0             0             0
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32                0
+ U41                0             0
+ U42                0             0             0
+
+
+           ALPHA
+              F
+              ________
+                    0
+
+
+           BETA
+              F
+              ________
+ F                  0
+
+
+           PSI
+              F
+              ________
+ F                  0
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 2 2 2
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                    0             0             0
+
+
+           LAMBDA
+              F
+              ________
+ U11                1
+ U12                2
+ U21                1
+ U22                2
+ U31                1
+ U32                2
+ U41                1
+ U42                2
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11                0
+ U12                0             0
+ U21                0             0             0
+ U22                0             0             0             0
+ U31                0             0             0             0             0
+ U32                0             0             0             0             0
+ U41                0             0             0             0             0
+ U42                0             0             0             0             0
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32                0
+ U41                0             0
+ U42                0             0             0
+
+
+           ALPHA
+              F
+              ________
+                    0
+
+
+           BETA
+              F
+              ________
+ F                  0
+
+
+           PSI
+              F
+              ________
+ F                  0
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS INDICATOR MODEL PART
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             3             4             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             3             4             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             5             6
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             3             4             5
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    6             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             3             4             5
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    6             5             6
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             5             6             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             5             6             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             5             6
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             5             6             5
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    6             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             5             6             5
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    6             5             6
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    5             6             3             4             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    5             6             3             4             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             5             6
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    5             6             3             4             5
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    6             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    5             6             3             4             5
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    6             5             6
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    5             6             5             6             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    5             6             5             6             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             5             6
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    5             6             5             6             5
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    6             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    5             6             5             6             5
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    6             5             6
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              C1#1          C1#2          C2#1          C2#2          C3#1
+              ________      ________      ________      ________      ________
+                    7             0             8             0             8
+
+
+           ALPHA(C)
+              C3#2          C4#1          C4#2
+              ________      ________      ________
+                    0             8             0
+
+
+           GAMMA(C)
+              F
+              ________
+ C1#1               0
+ C1#2               0
+ C2#1               0
+ C2#2               0
+ C3#1               0
+ C3#2               0
+ C4#1               0
+ C4#2               0
+
+
+           BETA(C)
+              C3#1          C3#2
+              ________      ________
+ C4#1               9             0
+ C4#2               0             0
+
+
+           BETA(C)
+              C2#1          C2#2
+              ________      ________
+ C3#1               9             0
+ C3#2               0             0
+
+
+           BETA(C)
+              C1#1          C1#2
+              ________      ________
+ C2#1               9             0
+ C2#2               0             0
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 1 1 1
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                0.000         0.000         0.000
+
+
+           LAMBDA
+              F
+              ________
+ U11            1.000
+ U12            1.000
+ U21            1.000
+ U22            1.000
+ U31            1.000
+ U32            1.000
+ U41            1.000
+ U42            1.000
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11            1.000
+ U12            0.000         1.000
+ U21            0.000         0.000         1.000
+ U22            0.000         0.000         0.000         1.000
+ U31            0.000         0.000         0.000         0.000         1.000
+ U32            0.000         0.000         0.000         0.000         0.000
+ U41            0.000         0.000         0.000         0.000         0.000
+ U42            0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32            1.000
+ U41            0.000         1.000
+ U42            0.000         0.000         1.000
+
+
+           ALPHA
+              F
+              ________
+                0.000
+
+
+           BETA
+              F
+              ________
+ F              0.000
+
+
+           PSI
+              F
+              ________
+ F              1.000
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 1 1 2
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                0.000         0.000         0.000
+
+
+           LAMBDA
+              F
+              ________
+ U11            1.000
+ U12            1.000
+ U21            1.000
+ U22            1.000
+ U31            1.000
+ U32            1.000
+ U41            1.000
+ U42            1.000
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11            1.000
+ U12            0.000         1.000
+ U21            0.000         0.000         1.000
+ U22            0.000         0.000         0.000         1.000
+ U31            0.000         0.000         0.000         0.000         1.000
+ U32            0.000         0.000         0.000         0.000         0.000
+ U41            0.000         0.000         0.000         0.000         0.000
+ U42            0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32            1.000
+ U41            0.000         1.000
+ U42            0.000         0.000         1.000
+
+
+           ALPHA
+              F
+              ________
+                0.000
+
+
+           BETA
+              F
+              ________
+ F              0.000
+
+
+           PSI
+              F
+              ________
+ F              1.000
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 1 2 1
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                0.000         0.000         0.000
+
+
+           LAMBDA
+              F
+              ________
+ U11            1.000
+ U12            1.000
+ U21            1.000
+ U22            1.000
+ U31            1.000
+ U32            1.000
+ U41            1.000
+ U42            1.000
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11            1.000
+ U12            0.000         1.000
+ U21            0.000         0.000         1.000
+ U22            0.000         0.000         0.000         1.000
+ U31            0.000         0.000         0.000         0.000         1.000
+ U32            0.000         0.000         0.000         0.000         0.000
+ U41            0.000         0.000         0.000         0.000         0.000
+ U42            0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32            1.000
+ U41            0.000         1.000
+ U42            0.000         0.000         1.000
+
+
+           ALPHA
+              F
+              ________
+                0.000
+
+
+           BETA
+              F
+              ________
+ F              0.000
+
+
+           PSI
+              F
+              ________
+ F              1.000
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 1 2 2
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                0.000         0.000         0.000
+
+
+           LAMBDA
+              F
+              ________
+ U11            1.000
+ U12            1.000
+ U21            1.000
+ U22            1.000
+ U31            1.000
+ U32            1.000
+ U41            1.000
+ U42            1.000
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11            1.000
+ U12            0.000         1.000
+ U21            0.000         0.000         1.000
+ U22            0.000         0.000         0.000         1.000
+ U31            0.000         0.000         0.000         0.000         1.000
+ U32            0.000         0.000         0.000         0.000         0.000
+ U41            0.000         0.000         0.000         0.000         0.000
+ U42            0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32            1.000
+ U41            0.000         1.000
+ U42            0.000         0.000         1.000
+
+
+           ALPHA
+              F
+              ________
+                0.000
+
+
+           BETA
+              F
+              ________
+ F              0.000
+
+
+           PSI
+              F
+              ________
+ F              1.000
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 2 1 1
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                0.000         0.000         0.000
+
+
+           LAMBDA
+              F
+              ________
+ U11            1.000
+ U12            1.000
+ U21            1.000
+ U22            1.000
+ U31            1.000
+ U32            1.000
+ U41            1.000
+ U42            1.000
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11            1.000
+ U12            0.000         1.000
+ U21            0.000         0.000         1.000
+ U22            0.000         0.000         0.000         1.000
+ U31            0.000         0.000         0.000         0.000         1.000
+ U32            0.000         0.000         0.000         0.000         0.000
+ U41            0.000         0.000         0.000         0.000         0.000
+ U42            0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32            1.000
+ U41            0.000         1.000
+ U42            0.000         0.000         1.000
+
+
+           ALPHA
+              F
+              ________
+                0.000
+
+
+           BETA
+              F
+              ________
+ F              0.000
+
+
+           PSI
+              F
+              ________
+ F              1.000
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 2 1 2
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                0.000         0.000         0.000
+
+
+           LAMBDA
+              F
+              ________
+ U11            1.000
+ U12            1.000
+ U21            1.000
+ U22            1.000
+ U31            1.000
+ U32            1.000
+ U41            1.000
+ U42            1.000
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11            1.000
+ U12            0.000         1.000
+ U21            0.000         0.000         1.000
+ U22            0.000         0.000         0.000         1.000
+ U31            0.000         0.000         0.000         0.000         1.000
+ U32            0.000         0.000         0.000         0.000         0.000
+ U41            0.000         0.000         0.000         0.000         0.000
+ U42            0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32            1.000
+ U41            0.000         1.000
+ U42            0.000         0.000         1.000
+
+
+           ALPHA
+              F
+              ________
+                0.000
+
+
+           BETA
+              F
+              ________
+ F              0.000
+
+
+           PSI
+              F
+              ________
+ F              1.000
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 2 2 1
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                0.000         0.000         0.000
+
+
+           LAMBDA
+              F
+              ________
+ U11            1.000
+ U12            1.000
+ U21            1.000
+ U22            1.000
+ U31            1.000
+ U32            1.000
+ U41            1.000
+ U42            1.000
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11            1.000
+ U12            0.000         1.000
+ U21            0.000         0.000         1.000
+ U22            0.000         0.000         0.000         1.000
+ U31            0.000         0.000         0.000         0.000         1.000
+ U32            0.000         0.000         0.000         0.000         0.000
+ U41            0.000         0.000         0.000         0.000         0.000
+ U42            0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32            1.000
+ U41            0.000         1.000
+ U42            0.000         0.000         1.000
+
+
+           ALPHA
+              F
+              ________
+                0.000
+
+
+           BETA
+              F
+              ________
+ F              0.000
+
+
+           PSI
+              F
+              ________
+ F              1.000
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 2 2 2
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                0.000         0.000         0.000
+
+
+           LAMBDA
+              F
+              ________
+ U11            1.000
+ U12            1.000
+ U21            1.000
+ U22            1.000
+ U31            1.000
+ U32            1.000
+ U41            1.000
+ U42            1.000
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11            1.000
+ U12            0.000         1.000
+ U21            0.000         0.000         1.000
+ U22            0.000         0.000         0.000         1.000
+ U31            0.000         0.000         0.000         0.000         1.000
+ U32            0.000         0.000         0.000         0.000         0.000
+ U41            0.000         0.000         0.000         0.000         0.000
+ U42            0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32            1.000
+ U41            0.000         1.000
+ U42            0.000         0.000         1.000
+
+
+           ALPHA
+              F
+              ________
+                0.000
+
+
+           BETA
+              F
+              ________
+ F              0.000
+
+
+           PSI
+              F
+              ________
+ F              1.000
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 1 1 1
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                0.000         0.000         0.000
+
+
+           LAMBDA
+              F
+              ________
+ U11            1.000
+ U12            1.000
+ U21            1.000
+ U22            1.000
+ U31            1.000
+ U32            1.000
+ U41            1.000
+ U42            1.000
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11            1.000
+ U12            0.000         1.000
+ U21            0.000         0.000         1.000
+ U22            0.000         0.000         0.000         1.000
+ U31            0.000         0.000         0.000         0.000         1.000
+ U32            0.000         0.000         0.000         0.000         0.000
+ U41            0.000         0.000         0.000         0.000         0.000
+ U42            0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32            1.000
+ U41            0.000         1.000
+ U42            0.000         0.000         1.000
+
+
+           ALPHA
+              F
+              ________
+                0.000
+
+
+           BETA
+              F
+              ________
+ F              0.000
+
+
+           PSI
+              F
+              ________
+ F              1.000
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 1 1 2
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                0.000         0.000         0.000
+
+
+           LAMBDA
+              F
+              ________
+ U11            1.000
+ U12            1.000
+ U21            1.000
+ U22            1.000
+ U31            1.000
+ U32            1.000
+ U41            1.000
+ U42            1.000
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11            1.000
+ U12            0.000         1.000
+ U21            0.000         0.000         1.000
+ U22            0.000         0.000         0.000         1.000
+ U31            0.000         0.000         0.000         0.000         1.000
+ U32            0.000         0.000         0.000         0.000         0.000
+ U41            0.000         0.000         0.000         0.000         0.000
+ U42            0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32            1.000
+ U41            0.000         1.000
+ U42            0.000         0.000         1.000
+
+
+           ALPHA
+              F
+              ________
+                0.000
+
+
+           BETA
+              F
+              ________
+ F              0.000
+
+
+           PSI
+              F
+              ________
+ F              1.000
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 1 2 1
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                0.000         0.000         0.000
+
+
+           LAMBDA
+              F
+              ________
+ U11            1.000
+ U12            1.000
+ U21            1.000
+ U22            1.000
+ U31            1.000
+ U32            1.000
+ U41            1.000
+ U42            1.000
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11            1.000
+ U12            0.000         1.000
+ U21            0.000         0.000         1.000
+ U22            0.000         0.000         0.000         1.000
+ U31            0.000         0.000         0.000         0.000         1.000
+ U32            0.000         0.000         0.000         0.000         0.000
+ U41            0.000         0.000         0.000         0.000         0.000
+ U42            0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32            1.000
+ U41            0.000         1.000
+ U42            0.000         0.000         1.000
+
+
+           ALPHA
+              F
+              ________
+                0.000
+
+
+           BETA
+              F
+              ________
+ F              0.000
+
+
+           PSI
+              F
+              ________
+ F              1.000
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 1 2 2
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                0.000         0.000         0.000
+
+
+           LAMBDA
+              F
+              ________
+ U11            1.000
+ U12            1.000
+ U21            1.000
+ U22            1.000
+ U31            1.000
+ U32            1.000
+ U41            1.000
+ U42            1.000
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11            1.000
+ U12            0.000         1.000
+ U21            0.000         0.000         1.000
+ U22            0.000         0.000         0.000         1.000
+ U31            0.000         0.000         0.000         0.000         1.000
+ U32            0.000         0.000         0.000         0.000         0.000
+ U41            0.000         0.000         0.000         0.000         0.000
+ U42            0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32            1.000
+ U41            0.000         1.000
+ U42            0.000         0.000         1.000
+
+
+           ALPHA
+              F
+              ________
+                0.000
+
+
+           BETA
+              F
+              ________
+ F              0.000
+
+
+           PSI
+              F
+              ________
+ F              1.000
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 2 1 1
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                0.000         0.000         0.000
+
+
+           LAMBDA
+              F
+              ________
+ U11            1.000
+ U12            1.000
+ U21            1.000
+ U22            1.000
+ U31            1.000
+ U32            1.000
+ U41            1.000
+ U42            1.000
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11            1.000
+ U12            0.000         1.000
+ U21            0.000         0.000         1.000
+ U22            0.000         0.000         0.000         1.000
+ U31            0.000         0.000         0.000         0.000         1.000
+ U32            0.000         0.000         0.000         0.000         0.000
+ U41            0.000         0.000         0.000         0.000         0.000
+ U42            0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32            1.000
+ U41            0.000         1.000
+ U42            0.000         0.000         1.000
+
+
+           ALPHA
+              F
+              ________
+                0.000
+
+
+           BETA
+              F
+              ________
+ F              0.000
+
+
+           PSI
+              F
+              ________
+ F              1.000
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 2 1 2
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                0.000         0.000         0.000
+
+
+           LAMBDA
+              F
+              ________
+ U11            1.000
+ U12            1.000
+ U21            1.000
+ U22            1.000
+ U31            1.000
+ U32            1.000
+ U41            1.000
+ U42            1.000
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11            1.000
+ U12            0.000         1.000
+ U21            0.000         0.000         1.000
+ U22            0.000         0.000         0.000         1.000
+ U31            0.000         0.000         0.000         0.000         1.000
+ U32            0.000         0.000         0.000         0.000         0.000
+ U41            0.000         0.000         0.000         0.000         0.000
+ U42            0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32            1.000
+ U41            0.000         1.000
+ U42            0.000         0.000         1.000
+
+
+           ALPHA
+              F
+              ________
+                0.000
+
+
+           BETA
+              F
+              ________
+ F              0.000
+
+
+           PSI
+              F
+              ________
+ F              1.000
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 2 2 1
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                0.000         0.000         0.000
+
+
+           LAMBDA
+              F
+              ________
+ U11            1.000
+ U12            1.000
+ U21            1.000
+ U22            1.000
+ U31            1.000
+ U32            1.000
+ U41            1.000
+ U42            1.000
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11            1.000
+ U12            0.000         1.000
+ U21            0.000         0.000         1.000
+ U22            0.000         0.000         0.000         1.000
+ U31            0.000         0.000         0.000         0.000         1.000
+ U32            0.000         0.000         0.000         0.000         0.000
+ U41            0.000         0.000         0.000         0.000         0.000
+ U42            0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32            1.000
+ U41            0.000         1.000
+ U42            0.000         0.000         1.000
+
+
+           ALPHA
+              F
+              ________
+                0.000
+
+
+           BETA
+              F
+              ________
+ F              0.000
+
+
+           PSI
+              F
+              ________
+ F              1.000
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 2 2 2
+
+
+           NU
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              U32           U41           U42
+              ________      ________      ________
+                0.000         0.000         0.000
+
+
+           LAMBDA
+              F
+              ________
+ U11            1.000
+ U12            1.000
+ U21            1.000
+ U22            1.000
+ U31            1.000
+ U32            1.000
+ U41            1.000
+ U42            1.000
+
+
+           THETA
+              U11           U12           U21           U22           U31
+              ________      ________      ________      ________      ________
+ U11            1.000
+ U12            0.000         1.000
+ U21            0.000         0.000         1.000
+ U22            0.000         0.000         0.000         1.000
+ U31            0.000         0.000         0.000         0.000         1.000
+ U32            0.000         0.000         0.000         0.000         0.000
+ U41            0.000         0.000         0.000         0.000         0.000
+ U42            0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              U32           U41           U42
+              ________      ________      ________
+ U32            1.000
+ U41            0.000         1.000
+ U42            0.000         0.000         1.000
+
+
+           ALPHA
+              F
+              ________
+                0.000
+
+
+           BETA
+              F
+              ________
+ F              0.000
+
+
+           PSI
+              F
+              ________
+ F              1.000
+
+
+     STARTING VALUES FOR LATENT CLASS INDICATOR MODEL PART
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.273        -0.076        -0.273        -0.076        -0.273
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.076        -0.273        -0.076
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.273        -0.076        -0.273        -0.076        -0.273
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.076         0.477         0.674
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.273        -0.076        -0.273        -0.076         0.477
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.674        -0.273        -0.076
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.273        -0.076        -0.273        -0.076         0.477
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.674         0.477         0.674
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.273        -0.076         0.477         0.674        -0.273
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.076        -0.273        -0.076
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.273        -0.076         0.477         0.674        -0.273
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.076         0.477         0.674
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.273        -0.076         0.477         0.674         0.477
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.674        -0.273        -0.076
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.273        -0.076         0.477         0.674         0.477
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.674         0.477         0.674
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.477         0.674        -0.273        -0.076        -0.273
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.076        -0.273        -0.076
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.477         0.674        -0.273        -0.076        -0.273
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.076         0.477         0.674
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.477         0.674        -0.273        -0.076         0.477
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.674        -0.273        -0.076
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.477         0.674        -0.273        -0.076         0.477
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.674         0.477         0.674
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.477         0.674         0.477         0.674        -0.273
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.076        -0.273        -0.076
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.477         0.674         0.477         0.674        -0.273
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.076         0.477         0.674
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.477         0.674         0.477         0.674         0.477
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.674        -0.273        -0.076
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.477         0.674         0.477         0.674         0.477
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.674         0.477         0.674
+
+
+     STARTING VALUES FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              C1#1          C1#2          C2#1          C2#2          C3#1
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           ALPHA(C)
+              C3#2          C4#1          C4#2
+              ________      ________      ________
+                0.000         0.000         0.000
+
+
+           GAMMA(C)
+              F
+              ________
+ C1#1           0.000
+ C1#2           0.000
+ C2#1           0.000
+ C2#2           0.000
+ C3#1           0.000
+ C3#2           0.000
+ C4#1           0.000
+ C4#2           0.000
+
+
+           BETA(C)
+              C3#1          C3#2
+              ________      ________
+ C4#1           0.000         0.000
+ C4#2           0.000         0.000
+
+
+           BETA(C)
+              C2#1          C2#2
+              ________      ________
+ C3#1           0.000         0.000
+ C3#2           0.000         0.000
+
+
+           BETA(C)
+              C1#1          C1#2
+              ________      ________
+ C2#1           0.000         0.000
+ C2#2           0.000         0.000
+
+
+TECHNICAL 15 OUTPUT
+
+
+     ESTIMATED CONDITIONAL PROBABILITIES FOR THE CLASS VARIABLES
+
+     P(C1=1)=0.557
+     P(C1=2)=0.443
+
+
+     P(C2=1|C1=1)=0.691
+     P(C2=2|C1=1)=0.309
+
+
+     P(C2=1|C1=2)=0.486
+     P(C2=2|C1=2)=0.514
+
+
+     P(C3=1|C1=1,C2=1)=0.691
+     P(C3=2|C1=1,C2=1)=0.309
+
+
+     P(C3=1|C1=1,C2=2)=0.486
+     P(C3=2|C1=1,C2=2)=0.514
+
+
+     P(C3=1|C1=2,C2=1)=0.691
+     P(C3=2|C1=2,C2=1)=0.309
+
+
+     P(C3=1|C1=2,C2=2)=0.486
+     P(C3=2|C1=2,C2=2)=0.514
+
+
+     P(C4=1|C1=1,C2=1,C3=1)=0.691
+     P(C4=2|C1=1,C2=1,C3=1)=0.309
+
+
+     P(C4=1|C1=1,C2=1,C3=2)=0.486
+     P(C4=2|C1=1,C2=1,C3=2)=0.514
+
+
+     P(C4=1|C1=1,C2=2,C3=1)=0.691
+     P(C4=2|C1=1,C2=2,C3=1)=0.309
+
+
+     P(C4=1|C1=1,C2=2,C3=2)=0.486
+     P(C4=2|C1=1,C2=2,C3=2)=0.514
+
+
+     P(C4=1|C1=2,C2=1,C3=1)=0.691
+     P(C4=2|C1=2,C2=1,C3=1)=0.309
+
+
+     P(C4=1|C1=2,C2=1,C3=2)=0.486
+     P(C4=2|C1=2,C2=1,C3=2)=0.514
+
+
+     P(C4=1|C1=2,C2=2,C3=1)=0.691
+     P(C4=2|C1=2,C2=2,C3=1)=0.309
+
+
+     P(C4=1|C1=2,C2=2,C3=2)=0.486
+     P(C4=2|C1=2,C2=2,C3=2)=0.514
+
+
+
+TECHNICAL 8 OUTPUT
+
+
+  INITIAL STAGE ITERATIONS
+
+
+  TECHNICAL 8 OUTPUT FOR UNPERTURBED STARTING VALUE SET
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.22902442D+04    0.0000000    0.0000000  EM
+              2 -0.22159154D+04   74.3287307    0.0324545  EM
+              3 -0.21707033D+04   45.2121166    0.0204034  EM
+              4 -0.21322046D+04   38.4987212    0.0177356  EM
+              5 -0.20980794D+04   34.1251692    0.0160046  EM
+              6 -0.20715417D+04   26.5377588    0.0126486  EM
+              7 -0.20535805D+04   17.9611399    0.0086704  EM
+              8 -0.20424529D+04   11.1276643    0.0054187  EM
+              9 -0.20358148D+04    6.6381131    0.0032501  EM
+             10 -0.20318710D+04    3.9438024    0.0019372  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 1
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.26439657D+04    0.0000000    0.0000000  EM
+              2 -0.23404871D+04  303.4785738    0.1147816  EM
+              3 -0.22464327D+04   94.0543629    0.0401858  EM
+              4 -0.21990604D+04   47.3723502    0.0210878  EM
+              5 -0.21631644D+04   35.8959462    0.0163233  EM
+              6 -0.21296213D+04   33.5431105    0.0155065  EM
+              7 -0.20996719D+04   29.9494200    0.0140633  EM
+              8 -0.20762516D+04   23.4203162    0.0111543  EM
+              9 -0.20598307D+04   16.4208451    0.0079089  EM
+             10 -0.20489901D+04   10.8406214    0.0052629  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 2
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.47846512D+04    0.0000000    0.0000000  EM
+              2 -0.22558230D+04 2528.8281958    0.5285293  EM
+              3 -0.21574798D+04   98.3431642    0.0435952  EM
+              4 -0.21146582D+04   42.8215716    0.0198480  EM
+              5 -0.20861283D+04   28.5299385    0.0134915  EM
+              6 -0.20665603D+04   19.5679637    0.0093800  EM
+              7 -0.20336301D+04   32.9302646    0.0159348  FS
+              8 -0.20217503D+04   11.8797475    0.0058416  FS
+              9 -0.20186235D+04    3.1267790    0.0015466  FS
+             10 -0.20185427D+04    0.0808599    0.0000401  FS
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 3
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.31795199D+04    0.0000000    0.0000000  EM
+              2 -0.22347724D+04  944.7475244    0.2971353  EM
+              3 -0.21071016D+04  127.6708334    0.0571292  EM
+              4 -0.20608097D+04   46.2919198    0.0219695  EM
+              5 -0.20447400D+04   16.0696489    0.0077977  EM
+              6 -0.20388756D+04    5.8644163    0.0028680  EM
+              7 -0.20363775D+04    2.4980505    0.0012252  EM
+              8 -0.20350630D+04    1.3145069    0.0006455  EM
+              9 -0.20342167D+04    0.8463609    0.0004159  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 4
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.26219820D+04    0.0000000    0.0000000  EM
+              2 -0.21477992D+04  474.1828549    0.1808490  EM
+              3 -0.20915058D+04   56.2933667    0.0262098  EM
+              4 -0.20636020D+04   27.9038428    0.0133415  EM
+              5 -0.20474145D+04   16.1874787    0.0078443  EM
+              6 -0.20379759D+04    9.4386425    0.0046100  EM
+              7 -0.20325325D+04    5.4433724    0.0026710  EM
+              8 -0.20293959D+04    3.1365743    0.0015432  EM
+              9 -0.20275621D+04    1.8337620    0.0009036  EM
+             10 -0.20264536D+04    1.1085510    0.0005467  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 5
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.33364002D+04    0.0000000    0.0000000  EM
+              2 -0.23003950D+04 1036.0051486    0.3105159  EM
+              3 -0.21254320D+04  174.9629970    0.0760578  EM
+              4 -0.20641019D+04   61.3300716    0.0288553  EM
+              5 -0.20452001D+04   18.9018285    0.0091574  EM
+              6 -0.20395294D+04    5.6706780    0.0027727  EM
+              7 -0.20373002D+04    2.2292742    0.0010930  EM
+              8 -0.20359685D+04    1.3316668    0.0006536  EM
+              9 -0.20349591D+04    1.0093894    0.0004958  EM
+             10 -0.20300010D+04    4.9581080    0.0024365  FS
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 6
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.24950176D+04    0.0000000    0.0000000  EM
+              2 -0.21490047D+04  346.0128491    0.1386815  EM
+              3 -0.21062635D+04   42.7412421    0.0198889  EM
+              4 -0.20821452D+04   24.1183000    0.0114508  EM
+              5 -0.20677518D+04   14.3934014    0.0069128  EM
+              6 -0.20559985D+04   11.7533036    0.0056841  FS
+              7 -0.20248366D+04   31.1619037    0.0151566  FS
+              8 -0.20196686D+04    5.1679813    0.0025523  FS
+              9 -0.20194426D+04    0.2259558    0.0001119  FS
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 7
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.36709402D+04    0.0000000    0.0000000  EM
+              2 -0.25549368D+04 1116.0033872    0.3040102  EM
+              3 -0.22713727D+04  283.5640928    0.1109867  EM
+              4 -0.21540855D+04  117.2871576    0.0516371  EM
+              5 -0.20922959D+04   61.7896173    0.0286848  EM
+              6 -0.20587654D+04   33.5304766    0.0160257  EM
+              7 -0.20261435D+04   32.6218793    0.0158454  FS
+              8 -0.20205801D+04    5.5634433    0.0027458  FS
+              9 -0.20199955D+04    0.5846513    0.0002893  FS
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 8
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.31747130D+04    0.0000000    0.0000000  EM
+              2 -0.26984613D+04  476.2517760    0.1500141  EM
+              3 -0.24243298D+04  274.1314572    0.1015881  EM
+              4 -0.22865731D+04  137.7567242    0.0568226  EM
+              5 -0.22361971D+04   50.3759382    0.0220312  EM
+              6 -0.22150498D+04   21.1473268    0.0094568  EM
+              7 -0.22023864D+04   12.6634687    0.0057170  EM
+              8 -0.21894548D+04   12.9315678    0.0058716  EM
+              9 -0.21720286D+04   17.4262102    0.0079592  EM
+             10 -0.21493089D+04   22.7196458    0.0104601  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 9
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.25363705D+04    0.0000000    0.0000000  EM
+              2 -0.22697767D+04  266.5938621    0.1051084  EM
+              3 -0.22212148D+04   48.5618542    0.0213950  EM
+              4 -0.21966498D+04   24.5650163    0.0110593  EM
+              5 -0.21719415D+04   24.7082598    0.0112482  EM
+              6 -0.21399938D+04   31.9477697    0.0147093  EM
+              7 -0.21044457D+04   35.5480211    0.0166113  EM
+              8 -0.20740812D+04   30.3645367    0.0144288  EM
+              9 -0.20534304D+04   20.6507881    0.0099566  EM
+             10 -0.20411370D+04   12.2933657    0.0059867  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 10
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.25129807D+04    0.0000000    0.0000000  EM
+              2 -0.21469267D+04  366.0540657    0.1456653  EM
+              3 -0.20867563D+04   60.1703338    0.0280263  EM
+              4 -0.20566557D+04   30.1006185    0.0144246  EM
+              5 -0.20402884D+04   16.3673610    0.0079582  EM
+              6 -0.20231732D+04   17.1151233    0.0083886  FS
+              7 -0.20194381D+04    3.7351018    0.0018462  FS
+              8 -0.20192979D+04    0.1401948    0.0000694  FS
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 11
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.32584924D+04    0.0000000    0.0000000  EM
+              2 -0.22770256D+04  981.4668018    0.3012027  EM
+              3 -0.22282759D+04   48.7496976    0.0214094  EM
+              4 -0.22079723D+04   20.3035980    0.0091118  EM
+              5 -0.21824442D+04   25.5281507    0.0115618  EM
+              6 -0.21498695D+04   32.5746149    0.0149257  EM
+              7 -0.20706657D+04   79.2038599    0.0368412  FS
+              8 -0.20519191D+04   18.7465361    0.0090534  EM
+              9 -0.20422036D+04    9.7155729    0.0047349  EM
+             10 -0.20361107D+04    6.0928609    0.0029835  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 12
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.24179095D+04    0.0000000    0.0000000  EM
+              2 -0.22949037D+04  123.0057764    0.0508728  EM
+              3 -0.22530241D+04   41.8795963    0.0182490  EM
+              4 -0.22266391D+04   26.3849433    0.0117109  EM
+              5 -0.22024908D+04   24.1483778    0.0108452  EM
+              6 -0.21739904D+04   28.5003541    0.0129401  EM
+              7 -0.21393873D+04   34.6031545    0.0159169  EM
+              8 -0.21033895D+04   35.9977437    0.0168262  EM
+              9 -0.20735674D+04   29.8220911    0.0141781  EM
+             10 -0.20533115D+04   20.2559143    0.0097686  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 13
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.37362896D+04    0.0000000    0.0000000  EM
+              2 -0.25975364D+04 1138.7531479    0.3047818  EM
+              3 -0.22766051D+04  320.9313122    0.1235522  EM
+              4 -0.22236596D+04   52.9455672    0.0232564  EM
+              5 -0.22005709D+04   23.0886942    0.0103832  EM
+              6 -0.21833977D+04   17.1732018    0.0078040  EM
+              7 -0.21648188D+04   18.5788264    0.0085091  EM
+              8 -0.21427586D+04   22.0601956    0.0101903  EM
+              9 -0.21181365D+04   24.6221169    0.0114908  EM
+             10 -0.20937618D+04   24.3747079    0.0115076  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 14
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.37914762D+04    0.0000000    0.0000000  EM
+              2 -0.24489135D+04 1342.5627706    0.3541003  EM
+              3 -0.23374754D+04  111.4381152    0.0455051  EM
+              4 -0.22899932D+04   47.4821097    0.0203134  EM
+              5 -0.22566379D+04   33.3553810    0.0145657  EM
+              6 -0.22283488D+04   28.2890929    0.0125359  EM
+              7 -0.21993436D+04   29.0051921    0.0130165  EM
+              8 -0.21663140D+04   33.0296007    0.0150179  EM
+              9 -0.21301792D+04   36.1347848    0.0166803  EM
+             10 -0.20961728D+04   34.0064261    0.0159641  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 15
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.30891437D+04    0.0000000    0.0000000  EM
+              2 -0.21945286D+04  894.6150212    0.2895997  EM
+              3 -0.21037976D+04   90.7310062    0.0413442  EM
+              4 -0.20631784D+04   40.6191867    0.0193076  EM
+              5 -0.20426999D+04   20.4785017    0.0099257  EM
+              6 -0.20323355D+04   10.3644045    0.0050739  EM
+              7 -0.20227573D+04    9.5782493    0.0047129  FS
+              8 -0.20196290D+04    3.1282439    0.0015465  FS
+              9 -0.20193418D+04    0.2872065    0.0001422  FS
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 16
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.34185167D+04    0.0000000    0.0000000  EM
+              2 -0.22692021D+04 1149.3146001    0.3362027  EM
+              3 -0.22044627D+04   64.7394220    0.0285296  EM
+              4 -0.21724187D+04   32.0439475    0.0145359  EM
+              5 -0.21417935D+04   30.6252500    0.0140973  EM
+              6 -0.21096900D+04   32.1035144    0.0149891  EM
+              7 -0.21069788D+04    2.7111738    0.0012851  FS
+              8 -0.20556091D+04   51.3696634    0.0243807  FS
+              9 -0.20336258D+04   21.9832803    0.0106943  FS
+             10 -0.20192567D+04   14.3691403    0.0070658  FS
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 17
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.22374822D+04    0.0000000    0.0000000  EM
+              2 -0.20607233D+04  176.7589586    0.0789990  EM
+              3 -0.20377877D+04   22.9355574    0.0111299  EM
+              4 -0.20299905D+04    7.7972131    0.0038263  EM
+              5 -0.20268965D+04    3.0940166    0.0015242  EM
+              6 -0.20255687D+04    1.3278124    0.0006551  EM
+              7 -0.20249265D+04    0.6421568    0.0003170  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 18
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.25785565D+04    0.0000000    0.0000000  EM
+              2 -0.21252029D+04  453.3535937    0.1758168  EM
+              3 -0.20629857D+04   62.2172663    0.0292759  EM
+              4 -0.20430604D+04   19.9252814    0.0096585  EM
+              5 -0.20364062D+04    6.6541288    0.0032569  EM
+              6 -0.20340271D+04    2.3791656    0.0011683  EM
+              7 -0.20330688D+04    0.9582360    0.0004711  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 19
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.31326033D+04    0.0000000    0.0000000  EM
+              2 -0.22294686D+04  903.1346717    0.2883016  EM
+              3 -0.20805601D+04  148.9085093    0.0667910  EM
+              4 -0.20529567D+04   27.6034546    0.0132673  EM
+              5 -0.20446162D+04    8.3404307    0.0040626  EM
+              6 -0.20413325D+04    3.2837567    0.0016061  EM
+              7 -0.20395959D+04    1.7365485    0.0008507  EM
+              8 -0.20384325D+04    1.1633815    0.0005704  EM
+              9 -0.20327878D+04    5.6447464    0.0027692  FS
+             10 -0.20261168D+04    6.6709568    0.0032817  FS
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 20
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.34197696D+04    0.0000000    0.0000000  EM
+              2 -0.21729585D+04 1246.8111115    0.3645892  EM
+              3 -0.21276233D+04   45.3351633    0.0208633  EM
+              4 -0.20974163D+04   30.2070376    0.0141975  EM
+              5 -0.20740754D+04   23.3408810    0.0111284  EM
+              6 -0.20388637D+04   35.2116630    0.0169770  FS
+              7 -0.20274259D+04   11.4377830    0.0056099  FS
+              8 -0.20197469D+04    7.6790461    0.0037876  FS
+              9 -0.20194407D+04    0.3062225    0.0001516  FS
+
+
+  FINAL STAGE ITERATIONS
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 2
+
+
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.47846512D+04    0.0000000    0.0000000  EM
+              2 -0.22558230D+04 2528.8281958    0.5285293  EM
+              3 -0.21574798D+04   98.3431642    0.0435952  EM
+              4 -0.21146582D+04   42.8215716    0.0198480  EM
+              5 -0.20861283D+04   28.5299385    0.0134915  EM
+              6 -0.20665603D+04   19.5679637    0.0093800  EM
+              7 -0.20336301D+04   32.9302646    0.0159348  FS
+              8 -0.20217503D+04   11.8797475    0.0058416  FS
+              9 -0.20186235D+04    3.1267790    0.0015466  FS
+             10 -0.20185427D+04    0.0808599    0.0000401  FS
+             11 -0.20185612D+04   -0.0185814   -0.0000092  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 16
+
+
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.34185167D+04    0.0000000    0.0000000  EM
+              2 -0.22692021D+04 1149.3146001    0.3362027  EM
+              3 -0.22044627D+04   64.7394220    0.0285296  EM
+              4 -0.21724187D+04   32.0439475    0.0145359  EM
+              5 -0.21417935D+04   30.6252500    0.0140973  EM
+              6 -0.21096900D+04   32.1035144    0.0149891  EM
+              7 -0.21069788D+04    2.7111738    0.0012851  FS
+              8 -0.20556091D+04   51.3696634    0.0243807  FS
+              9 -0.20336258D+04   21.9832803    0.0106943  FS
+             10 -0.20192567D+04   14.3691403    0.0070658  FS
+             11 -0.20185579D+04    0.6987749    0.0003461  FS
+             12 -0.20185505D+04    0.0074281    0.0000037  FS
+             13 -0.20185561D+04   -0.0055969   -0.0000028  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 10
+
+
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.25129807D+04    0.0000000    0.0000000  EM
+              2 -0.21469267D+04  366.0540657    0.1456653  EM
+              3 -0.20867563D+04   60.1703338    0.0280263  EM
+              4 -0.20566557D+04   30.1006185    0.0144246  EM
+              5 -0.20402884D+04   16.3673610    0.0079582  EM
+              6 -0.20231732D+04   17.1151233    0.0083886  FS
+              7 -0.20194381D+04    3.7351018    0.0018462  FS
+              8 -0.20192979D+04    0.1401948    0.0000694  FS
+              9 -0.20193113D+04   -0.0133764   -0.0000066  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 15
+
+
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.30891437D+04    0.0000000    0.0000000  EM
+              2 -0.21945286D+04  894.6150212    0.2895997  EM
+              3 -0.21037976D+04   90.7310062    0.0413442  EM
+              4 -0.20631784D+04   40.6191867    0.0193076  EM
+              5 -0.20426999D+04   20.4785017    0.0099257  EM
+              6 -0.20323355D+04   10.3644045    0.0050739  EM
+              7 -0.20227573D+04    9.5782493    0.0047129  FS
+              8 -0.20196290D+04    3.1282439    0.0015465  FS
+              9 -0.20193418D+04    0.2872065    0.0001422  FS
+             10 -0.20193043D+04    0.0375595    0.0000186  FS
+             11 -0.20192984D+04    0.0058733    0.0000029  FS
+             12 -0.20192926D+04    0.0058089    0.0000029  FS
+             13 -0.20192903D+04    0.0023338    0.0000012  FS
+             14 -0.20192887D+04    0.0015628    0.0000008  FS
+             15 -0.20192880D+04    0.0006474    0.0000003  FS
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 20
+
+
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.34197696D+04    0.0000000    0.0000000  EM
+              2 -0.21729585D+04 1246.8111115    0.3645892  EM
+              3 -0.21276233D+04   45.3351633    0.0208633  EM
+              4 -0.20974163D+04   30.2070376    0.0141975  EM
+              5 -0.20740754D+04   23.3408810    0.0111284  EM
+              6 -0.20388637D+04   35.2116630    0.0169770  FS
+              7 -0.20274259D+04   11.4377830    0.0056099  FS
+              8 -0.20197469D+04    7.6790461    0.0037876  FS
+              9 -0.20194407D+04    0.3062225    0.0001516  FS
+             10 -0.20193684D+04    0.0722224    0.0000358  FS
+             11 -0.20193427D+04    0.0257165    0.0000127  FS
+             12 -0.20193257D+04    0.0170397    0.0000084  FS
+             13 -0.20193165D+04    0.0091734    0.0000045  FS
+             14 -0.20193086D+04    0.0078797    0.0000039  FS
+             15 -0.20193035D+04    0.0051223    0.0000025  FS
+             16 -0.20192995D+04    0.0040568    0.0000020  FS
+             17 -0.20192966D+04    0.0028223    0.0000014  FS
+             18 -0.20192945D+04    0.0021474    0.0000011  FS
+             19 -0.20192929D+04    0.0015484    0.0000008  FS
+             20 -0.20192918D+04    0.0011579    0.0000006  FS
+             21 -0.20192909D+04    0.0008469    0.0000004  FS
+
+
+SAMPLE STATISTICS FOR ESTIMATED FACTOR SCORES
+
+
+     SAMPLE STATISTICS
+
+
+           Means
+              F             C_F
+              ________      ________
+                0.099         0.114
+
+
+           Covariances
+              F             C_F
+              ________      ________
+ F              0.214
+ C_F            0.250         0.359
+
+
+           Correlations
+              F             C_F
+              ________      ________
+ F              1.000
+ C_F            0.902         1.000
+
+
+SAVEDATA INFORMATION
+
+
+  Save file
+    fbyuscores
+
+  Order and format of variables
+
+    U11            F10.3
+    U12            F10.3
+    U21            F10.3
+    U22            F10.3
+    U31            F10.3
+    U32            F10.3
+    U41            F10.3
+    U42            F10.3
+    F              F10.3
+    C_F            F10.3
+    FREQ           F10.3
+
+  Save file format
+    11F10.3
+
+  Save file record length    10000
+
+
+DIAGRAM INFORMATION
+
+  Mplus diagrams are currently not available for Mixture analysis.
+  No diagram output was produced.
+
+
+     Beginning Time:  09:31:07
+        Ending Time:  09:31:19
+       Elapsed Time:  00:00:12
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2020 Muthen & Muthen

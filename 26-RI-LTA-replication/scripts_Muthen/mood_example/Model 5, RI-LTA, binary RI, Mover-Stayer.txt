@@ -1,0 +1,3374 @@
+Mplus DEVELOPMENT (Mpdev 11/12/2019, Build 1, Intel 19)
+MUTHEN & MUTHEN
+01/25/2020   2:55 PM
+
+INPUT INSTRUCTIONS
+
+  Title:
+      Eid 2003 data: T=4, N=494, P=2, C=2
+      Model 2
+
+  Data:
+      file = Eid-Langeheine-table1-mod2-NOlabels.csv;
+
+  Variable:
+      names = u11 u12 u21 u22 u31 u32 u41 u42 freq est sd;
+      !satisf1 happy1 satisf2 happy2 satisf3 happy3 satisf4 happy4;
+      usev = u11-u42;
+      categorical = u11-u42;
+      classes = t(2) cb(2) c1(2) c2(2) c3(2) c4(2);
+      freqweight = freq;
+
+  Analysis:
+      type = mixture;
+      proc = 8;
+      starts = 320 80;
+
+        parameterization = probability;
+
+     MODEL:
+        %OVERALL%
+
+    !    c1 on cb;  ! not included in Eid's Model 5
+
+    Model cb:
+        %cb#1% ! Stationary movers
+        c4 on c3 (pt1-pt2);
+        c3 on c2 (pt1-pt2);
+        c2 on c1 (pt1-pt2);
+
+        %cb#2% ! Stayers
+        c2#1 on c1#1@1; c2#1 on c1#2@0;
+        c3#1 on c2#1@1; c3#1 on c2#2@0;
+        c4#1 on c3#1@1; c4#1 on c3#2@0;
+
+
+  MODEL t.c1:
+      	%t#1.c1#1%
+      	[u11$1] (p111); ! (item,t class, c class): 8 tau's total
+      	[u12$1] (p211);
+
+      	%t#1.c1#2%
+      	[u11$1] (p112);
+      	[u12$1] (p212);
+
+          %t#2.c1#1%
+          [u11$1] (p121);
+      	[u12$1] (p221);
+
+      	%t#2.c1#2%
+      	[u11$1] (p122);
+      	[u12$1] (p222);
+      	
+  MODEL t.c2:
+      	%t#1.c2#1%
+      	[u21$1] (p111);
+      	[u22$1] (p211);
+
+      	%t#1.c2#2%
+      	[u21$1] (p112);
+      	[u22$1] (p212);
+
+          %t#2.c2#1%
+          [u21$1] (p121);
+      	[u22$1] (p221);
+
+      	%t#2.c2#2%
+          [u21$1] (p122);
+      	[u22$1] (p222);
+      	
+
+   MODEL t.c3:
+      	%t#1.c3#1%
+      	[u31$1] (p111);
+      	[u32$1] (p211);
+
+      	%t#1.c3#2%
+      	[u31$1] (p112);
+      	[u32$1] (p212);
+
+          %t#2.c3#1%
+          [u31$1] (p121);
+      	[u32$1] (p221);
+
+      	%t#2.c3#2%
+      	[u31$1] (p122);
+      	[u32$1] (p222);
+
+  MODEL t.c4:
+      	%t#1.c4#1%
+      	[u41$1] (p111);
+      	[u42$1] (p211);
+
+      	%t#1.c4#2%
+      	[u41$1] (p112);
+      	[u42$1] (p212);
+
+          %t#2.c4#1%
+          [u41$1] (p121);
+      	[u42$1] (p221);
+
+      	%t#2.c4#2%
+      	[u41$1] (p122);
+      	[u42$1] (p222);
+
+  Model constraint:
+      ! each item has intercept, loading on trait, loading on occasion
+      ! so no trait-occasion interaction
+          New(i1 i2 lt1 lt2 lo1 lo2);
+          p111 = i1;
+          p112 = i1 + lo1;
+          p121 = i1 + lt1;
+          p122 = i1 + lo1 + lt1;
+          p211 = i2;
+          p212 = i2 + lo2;
+          p221 = i2 + lt2;
+          p222 = i2 + lo2 + lt2;
+
+
+
+  Output:
+      tech1 tech15;
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+
+Eid 2003 data: T=4, N=494, P=2, C=2
+Model 2
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         494
+Number of patterns                                             256
+
+Number of dependent variables                                    8
+Number of independent variables                                  0
+Number of continuous latent variables                            0
+Number of categorical latent variables                           6
+
+Observed dependent variables
+
+  Binary and ordered categorical (ordinal)
+   U11         U12         U21         U22         U31         U32
+   U41         U42
+
+Categorical latent variables
+   T           CB          C1          C2          C3          C4
+
+Variables with special functions
+
+  Weight variable       FREQ
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-03
+    Relative loglikelihood change                        0.100D-05
+    Derivative                                           0.100D-03
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-03
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-03
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Optimization algorithm                                         EMA
+Random Starts Specifications
+  Number of initial stage random starts                        320
+  Number of final stage optimizations                           80
+  Number of initial stage iterations                            10
+  Initial stage convergence criterion                    0.100D+01
+  Random starts scale                                    0.500D+01
+  Random seed for generating random starts                       0
+Parameterization                                       PROBABILITY
+Link                                                         LOGIT
+
+Input data file(s)
+  Eid-Langeheine-table1-mod2-NOlabels.csv
+Input data format  FREE
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    U11
+      Category 1    0.543          268.000
+      Category 2    0.457          226.000
+    U12
+      Category 1    0.540          267.000
+      Category 2    0.460          227.000
+    U21
+      Category 1    0.508          251.000
+      Category 2    0.492          243.000
+    U22
+      Category 1    0.569          281.000
+      Category 2    0.431          213.000
+    U31
+      Category 1    0.492          243.000
+      Category 2    0.508          251.000
+    U32
+      Category 1    0.561          277.000
+      Category 2    0.439          217.000
+    U41
+      Category 1    0.559          276.000
+      Category 2    0.441          218.000
+    U42
+      Category 1    0.626          309.000
+      Category 2    0.374          185.000
+
+
+RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
+
+Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
+
+           -2016.512  370466           41
+           -2016.512  354559           73
+           -2016.512  268896           124
+           -2016.512  471398           74
+           -2016.512  686482           215
+           -2016.512  637095           207
+           -2016.512  967237           48
+           -2016.512  723775           97
+           -2016.512  170118           238
+           -2016.512  496881           192
+           -2016.512  499150           216
+           -2016.512  414284           158
+           -2016.513  471438           252
+           -2016.513  285380           1
+           -2016.513  188498           258
+           -2016.513  692169           308
+           -2016.513  835767           210
+           -2016.514  124999           96
+           -2016.514  626087           314
+           -2016.515  732596           320
+           -2016.515  392418           28
+           -2016.515  92689            304
+           -2016.515  840031           276
+           -2016.516  567165           319
+           -2016.516  170954           86
+           -2016.516  57226            208
+           -2016.516  344422           296
+           -2016.516  264935           281
+           -2019.094  814975           129
+           -2019.094  636396           168
+           -2019.094  752769           253
+           -2019.094  521575           313
+           -2019.094  415502           194
+           -2019.094  903420           5
+           -2019.094  650371           14
+           -2019.094  715561           125
+           -2019.094  464179           106
+           -2019.094  297518           166
+           -2019.094  534864           307
+           -2019.094  466971           109
+           -2019.094  65651            214
+           -2019.094  635245           121
+           -2019.094  544048           87
+           -2019.094  12477            155
+           -2019.094  642909           251
+           -2019.094  314084           81
+           -2019.094  468036           131
+           -2019.094  438144           271
+           -2019.094  215353           164
+           -2019.094  637345           19
+           -2019.094  573096           20
+           -2019.094  891531           206
+           -2019.094  405079           68
+           -2019.094  391179           78
+           -2019.094  341041           34
+           -2019.094  793035           187
+           -2019.094  118421           139
+           -2019.094  467339           66
+           -2019.094  383986           159
+           -2019.094  804561           59
+           -2019.094  928287           197
+           -2019.094  913639           162
+           -2019.094  551639           55
+           -2019.094  526324           178
+           -2019.094  576220           115
+           -2019.094  181293           212
+           -2019.094  848890           95
+           -2019.094  399671           13
+           -2019.094  311214           64
+           -2019.094  926283           269
+           -2019.095  345070           114
+           -2021.713  804660           260
+           -2021.713  618000           190
+           -2021.713  66276            217
+           -2021.713  164305           128
+
+5 perturbed starting value run(s) did not converge or were rejected in the third stage.
+
+
+
+THE BEST LOGLIKELIHOOD VALUE HAS BEEN REPLICATED.  RERUN WITH AT LEAST TWICE THE
+RANDOM STARTS TO CHECK THAT THE BEST LOGLIKELIHOOD IS STILL OBTAINED AND REPLICATED.
+
+     IN THE OPTIMIZATION, ONE OR MORE LOGIT THRESHOLDS APPROACHED EXTREME VALUES
+     OF -15.000 AND 15.000 AND WERE FIXED TO STABILIZE MODEL ESTIMATION.  THESE
+     VALUES IMPLY PROBABILITIES OF 0 AND 1.  IN THE MODEL RESULTS SECTION, THESE
+     PARAMETERS HAVE 0 STANDARD ERRORS AND 999 IN THE Z-SCORE AND P-VALUE COLUMNS.
+
+
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       11
+
+Loglikelihood
+
+          H0 Value                       -2016.512
+          H0 Scaling Correction Factor      1.1487
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                    4055.024
+          Bayesian (BIC)                  4101.252
+          Sample-Size Adjusted BIC        4066.338
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit for the Binary and Ordered Categorical
+(Ordinal) Outcomes
+
+          Pearson Chi-Square
+
+          Value                            259.681
+          Degrees of Freedom                   244
+          P-Value                           0.2342
+
+          Likelihood Ratio Chi-Square
+
+          Value                            243.325
+          Degrees of Freedom                   244
+          P-Value                           0.5002
+
+
+
+MODEL RESULTS USE THE LATENT CLASS VARIABLE ORDER
+
+   T  CB  C1  C2  C3  C4
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASS PATTERNS
+BASED ON THE ESTIMATED MODEL
+
+  Latent Class
+    Pattern
+
+    1  1  1  1  1  1         40.24099          0.08146
+    1  1  1  1  1  2         17.13327          0.03468
+    1  1  1  1  2  1         11.04259          0.02235
+    1  1  1  1  2  2         13.38545          0.02710
+    1  1  1  2  1  1         11.04259          0.02235
+    1  1  1  2  1  2          4.70157          0.00952
+    1  1  1  2  2  1          8.62708          0.01746
+    1  1  1  2  2  2         10.45744          0.02117
+    1  1  2  1  1  1         19.77769          0.04004
+    1  1  2  1  1  2          8.42068          0.01705
+    1  1  2  1  2  1          5.42723          0.01099
+    1  1  2  1  2  2          6.57870          0.01332
+    1  1  2  2  1  1         15.45142          0.03128
+    1  1  2  2  1  2          6.57870          0.01332
+    1  1  2  2  2  1         12.07149          0.02444
+    1  1  2  2  2  2         14.63264          0.02962
+    1  2  1  1  1  1         64.79679          0.13117
+    1  2  1  1  1  2          0.00000          0.00000
+    1  2  1  1  2  1          0.00000          0.00000
+    1  2  1  1  2  2          0.00000          0.00000
+    1  2  1  2  1  1          0.00000          0.00000
+    1  2  1  2  1  2          0.00000          0.00000
+    1  2  1  2  2  1          0.00000          0.00000
+    1  2  1  2  2  2          0.00000          0.00000
+    1  2  2  1  1  1          0.00000          0.00000
+    1  2  2  1  1  2          0.00000          0.00000
+    1  2  2  1  2  1          0.00000          0.00000
+    1  2  2  1  2  2          0.00000          0.00000
+    1  2  2  2  1  1          0.00000          0.00000
+    1  2  2  2  1  2          0.00000          0.00000
+    1  2  2  2  2  1          0.00000          0.00000
+    1  2  2  2  2  2         49.41168          0.10002
+    2  1  1  1  1  1         21.92417          0.04438
+    2  1  1  1  1  2          9.33458          0.01890
+    2  1  1  1  2  1          6.01624          0.01218
+    2  1  1  1  2  2          7.29268          0.01476
+    2  1  1  2  1  1          6.01624          0.01218
+    2  1  1  2  1  2          2.56152          0.00519
+    2  1  1  2  2  1          4.70022          0.00951
+    2  1  1  2  2  2          5.69744          0.01153
+    2  1  2  1  1  1         10.77532          0.02181
+    2  1  2  1  1  2          4.58777          0.00929
+    2  1  2  1  2  1          2.95687          0.00599
+    2  1  2  1  2  2          3.58422          0.00726
+    2  1  2  2  1  1          8.41827          0.01704
+    2  1  2  2  1  2          3.58422          0.00726
+    2  1  2  2  2  1          6.57681          0.01331
+    2  1  2  2  2  2          7.97218          0.01614
+    2  2  1  1  1  1         35.30270          0.07146
+    2  2  1  1  1  2          0.00000          0.00000
+    2  2  1  1  2  1          0.00000          0.00000
+    2  2  1  1  2  2          0.00000          0.00000
+    2  2  1  2  1  1          0.00000          0.00000
+    2  2  1  2  1  2          0.00000          0.00000
+    2  2  1  2  2  1          0.00000          0.00000
+    2  2  1  2  2  2          0.00000          0.00000
+    2  2  2  1  1  1          0.00000          0.00000
+    2  2  2  1  1  2          0.00000          0.00000
+    2  2  2  1  2  1          0.00000          0.00000
+    2  2  2  1  2  2          0.00000          0.00000
+    2  2  2  2  1  1          0.00000          0.00000
+    2  2  2  2  1  2          0.00000          0.00000
+    2  2  2  2  2  1          0.00000          0.00000
+    2  2  2  2  2  2         26.92056          0.05450
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR EACH LATENT CLASS VARIABLE
+BASED ON THE ESTIMATED MODEL
+
+  Latent Class
+    Variable    Class
+
+    T              1       319.77798          0.64732
+                   2       174.22202          0.35268
+    CB             1       317.56830          0.64285
+                   2       176.43173          0.35715
+    C1             1       280.27359          0.56736
+                   2       213.72646          0.43264
+    C2             1       288.57791          0.58417
+                   2       205.42210          0.41583
+    C3             1       290.64847          0.58836
+                   2       203.35156          0.41164
+    C4             1       291.16473          0.58940
+                   2       202.83530          0.41060
+
+
+LATENT TRANSITION PROBABILITIES BASED ON THE ESTIMATED MODEL
+
+  T Classes (Rows) by CB Classes (Columns)
+
+            1        2
+
+   1     0.643    0.357
+   2     0.643    0.357
+
+  CB Classes (Rows) by C1 Classes (Columns)
+
+            1        2
+
+   1     0.567    0.433
+   2     0.567    0.433
+
+  C1 Classes (Rows) by C2 Classes (Columns)
+
+            1        2
+
+   1     0.808    0.192
+   2     0.291    0.709
+
+  C2 Classes (Rows) by C3 Classes (Columns)
+
+            1        2
+
+   1     0.805    0.195
+   2     0.284    0.716
+
+  C3 Classes (Rows) by C4 Classes (Columns)
+
+            1        2
+
+   1     0.804    0.196
+   2     0.282    0.718
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASS PATTERNS
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+  Latent Class
+    Pattern
+
+    1  1  1  1  1  1         40.07519          0.08112
+    1  1  1  1  1  2         12.52536          0.02535
+    1  1  1  1  2  1         11.53668          0.02335
+    1  1  1  1  2  2          9.59760          0.01943
+    1  1  1  2  1  1         13.83373          0.02800
+    1  1  1  2  1  2          4.95907          0.01004
+    1  1  1  2  2  1          9.54514          0.01932
+    1  1  1  2  2  2         14.77998          0.02992
+    1  1  2  1  1  1         25.49192          0.05160
+    1  1  2  1  1  2          4.71700          0.00955
+    1  1  2  1  2  1          7.37692          0.01493
+    1  1  2  1  2  2          6.09335          0.01233
+    1  1  2  2  1  1         15.90733          0.03220
+    1  1  2  2  1  2          4.17314          0.00845
+    1  1  2  2  2  1         11.82938          0.02395
+    1  1  2  2  2  2         14.34978          0.02905
+    1  2  1  1  1  1         64.52981          0.13063
+    1  2  1  1  1  2          0.00000          0.00000
+    1  2  1  1  2  1          0.00000          0.00000
+    1  2  1  1  2  2          0.00000          0.00000
+    1  2  1  2  1  1          0.00000          0.00000
+    1  2  1  2  1  2          0.00000          0.00000
+    1  2  1  2  2  1          0.00000          0.00000
+    1  2  1  2  2  2          0.00000          0.00000
+    1  2  2  1  1  1          0.00000          0.00000
+    1  2  2  1  1  2          0.00000          0.00000
+    1  2  2  1  2  1          0.00000          0.00000
+    1  2  2  1  2  2          0.00000          0.00000
+    1  2  2  2  1  1          0.00000          0.00000
+    1  2  2  2  1  2          0.00000          0.00000
+    1  2  2  2  2  1          0.00000          0.00000
+    1  2  2  2  2  2         48.45651          0.09809
+    2  1  1  1  1  1         20.32995          0.04115
+    2  1  1  1  1  2          6.75920          0.01368
+    2  1  1  1  2  1          8.26420          0.01673
+    2  1  1  1  2  2          6.34012          0.01283
+    2  1  1  2  1  1          7.59168          0.01537
+    2  1  1  2  1  2          2.75904          0.00559
+    2  1  1  2  2  1          3.66593          0.00742
+    2  1  1  2  2  2         10.44524          0.02114
+    2  1  2  1  1  1         12.67920          0.02567
+    2  1  2  1  1  2          2.44392          0.00495
+    2  1  2  1  2  1          3.19926          0.00648
+    2  1  2  1  2  2          3.55134          0.00719
+    2  1  2  2  1  1          6.59526          0.01335
+    2  1  2  2  1  2          1.17295          0.00237
+    2  1  2  2  2  1          5.88496          0.01191
+    2  1  2  2  2  2          9.09434          0.01841
+    2  2  1  1  1  1         32.73566          0.06627
+    2  2  1  1  1  2          0.00000          0.00000
+    2  2  1  1  2  1          0.00000          0.00000
+    2  2  1  1  2  2          0.00000          0.00000
+    2  2  1  2  1  1          0.00000          0.00000
+    2  2  1  2  1  2          0.00000          0.00000
+    2  2  1  2  2  1          0.00000          0.00000
+    2  2  1  2  2  2          0.00000          0.00000
+    2  2  2  1  1  1          0.00000          0.00000
+    2  2  2  1  1  2          0.00000          0.00000
+    2  2  2  1  2  1          0.00000          0.00000
+    2  2  2  1  2  2          0.00000          0.00000
+    2  2  2  2  1  1          0.00000          0.00000
+    2  2  2  2  1  2          0.00000          0.00000
+    2  2  2  2  2  1          0.00000          0.00000
+    2  2  2  2  2  2         30.70986          0.06217
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR EACH LATENT CLASS VARIABLE
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+  Latent Class
+    Variable    Class
+
+    T              1       319.77789          0.64732
+                   2       174.22211          0.35268
+    CB             1       317.56812          0.64285
+                   2       176.43182          0.35715
+    C1             1       280.27359          0.56736
+                   2       213.72644          0.43264
+    C2             1       278.24667          0.56325
+                   2       215.75336          0.43675
+    C3             1       279.27942          0.56534
+                   2       214.72061          0.43466
+    C4             1       301.07220          0.60946
+                   2       192.92781          0.39054
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASS PATTERNS
+BASED ON THEIR MOST LIKELY LATENT CLASS PATTERN
+
+Class Counts and Proportions
+
+  Latent Class
+    Pattern
+
+    1  1  1  1  1  1               33          0.06680
+    1  1  1  1  1  2               10          0.02024
+    1  1  1  1  2  1                8          0.01619
+    1  1  1  1  2  2               13          0.02632
+    1  1  1  2  1  1               16          0.03239
+    1  1  1  2  1  2                3          0.00607
+    1  1  1  2  2  1               11          0.02227
+    1  1  1  2  2  2               25          0.05061
+    1  1  2  1  1  1               26          0.05263
+    1  1  2  1  1  2                7          0.01417
+    1  1  2  1  2  1                6          0.01215
+    1  1  2  1  2  2                9          0.01822
+    1  1  2  2  1  1               21          0.04251
+    1  1  2  2  1  2                5          0.01012
+    1  1  2  2  2  1               16          0.03239
+    1  1  2  2  2  2                3          0.00607
+    1  2  1  1  1  1               96          0.19433
+    1  2  1  1  1  2                0          0.00000
+    1  2  1  1  2  1                0          0.00000
+    1  2  1  1  2  2                0          0.00000
+    1  2  1  2  1  1                0          0.00000
+    1  2  1  2  1  2                0          0.00000
+    1  2  1  2  2  1                0          0.00000
+    1  2  1  2  2  2                0          0.00000
+    1  2  2  1  1  1                0          0.00000
+    1  2  2  1  1  2                0          0.00000
+    1  2  2  1  2  1                0          0.00000
+    1  2  2  1  2  2                0          0.00000
+    1  2  2  2  1  1                0          0.00000
+    1  2  2  2  1  2                0          0.00000
+    1  2  2  2  2  1                0          0.00000
+    1  2  2  2  2  2               39          0.07895
+    2  1  1  1  1  1               10          0.02024
+    2  1  1  1  1  2                5          0.01012
+    2  1  1  1  2  1               12          0.02429
+    2  1  1  1  2  2                3          0.00607
+    2  1  1  2  1  1                9          0.01822
+    2  1  1  2  1  2                2          0.00405
+    2  1  1  2  2  1                0          0.00000
+    2  1  1  2  2  2                8          0.01619
+    2  1  2  1  1  1               10          0.02024
+    2  1  2  1  1  2                1          0.00202
+    2  1  2  1  2  1                2          0.00405
+    2  1  2  1  2  2                2          0.00405
+    2  1  2  2  1  1                3          0.00607
+    2  1  2  2  1  2                0          0.00000
+    2  1  2  2  2  1                3          0.00607
+    2  1  2  2  2  2                0          0.00000
+    2  2  1  1  1  1               15          0.03036
+    2  2  1  1  1  2                0          0.00000
+    2  2  1  1  2  1                0          0.00000
+    2  2  1  1  2  2                0          0.00000
+    2  2  1  2  1  1                0          0.00000
+    2  2  1  2  1  2                0          0.00000
+    2  2  1  2  2  1                0          0.00000
+    2  2  1  2  2  2                0          0.00000
+    2  2  2  1  1  1                0          0.00000
+    2  2  2  1  1  2                0          0.00000
+    2  2  2  1  2  1                0          0.00000
+    2  2  2  1  2  2                0          0.00000
+    2  2  2  2  1  1                0          0.00000
+    2  2  2  2  1  2                0          0.00000
+    2  2  2  2  2  1                0          0.00000
+    2  2  2  2  2  2               62          0.12551
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR EACH LATENT CLASS VARIABLE
+BASED ON THEIR MOST LIKELY LATENT CLASS PATTERN
+
+  Latent Class
+    Variable    Class
+
+    T              1             347          0.70243
+                   2             147          0.29757
+    CB             1             282          0.57085
+                   2             212          0.42915
+    C1             1             279          0.56478
+                   2             215          0.43522
+    C2             1             268          0.54251
+                   2             226          0.45749
+    C3             1             272          0.55061
+                   2             222          0.44939
+    C4             1             297          0.60121
+                   2             197          0.39879
+
+
+CLASSIFICATION QUALITY
+
+     Entropy                         0.728
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Parameters for Class-specific Model Parts of T.C1
+
+Latent Class Pattern T#1 C1#1
+
+ Thresholds
+    U11$1              3.353      0.630      5.324      0.000
+    U12$1             19.176      0.000    999.000    999.000
+
+Latent Class Pattern T#1 C1#2
+
+ Thresholds
+    U11$1             -2.946      0.530     -5.554      0.000
+    U12$1             -1.203      0.277     -4.345      0.000
+
+Latent Class Pattern T#2 C1#1
+
+ Thresholds
+    U11$1              1.015      0.247      4.115      0.000
+    U12$1              0.724      0.284      2.548      0.011
+
+Latent Class Pattern T#2 C1#2
+
+ Thresholds
+    U11$1             -5.284      0.846     -6.247      0.000
+    U12$1            -19.655      0.000    999.000    999.000
+
+Parameters for Class-specific Model Parts of T.C2
+
+Latent Class Pattern T#1 C2#1
+
+ Thresholds
+    U21$1              3.353      0.630      5.324      0.000
+    U22$1             19.176      0.000    999.000    999.000
+
+Latent Class Pattern T#1 C2#2
+
+ Thresholds
+    U21$1             -2.946      0.530     -5.554      0.000
+    U22$1             -1.203      0.277     -4.345      0.000
+
+Latent Class Pattern T#2 C2#1
+
+ Thresholds
+    U21$1              1.015      0.247      4.115      0.000
+    U22$1              0.724      0.284      2.548      0.011
+
+Latent Class Pattern T#2 C2#2
+
+ Thresholds
+    U21$1             -5.284      0.846     -6.247      0.000
+    U22$1            -19.655      0.000    999.000    999.000
+
+Parameters for Class-specific Model Parts of T.C3
+
+Latent Class Pattern T#1 C3#1
+
+ Thresholds
+    U31$1              3.353      0.630      5.324      0.000
+    U32$1             19.176      0.000    999.000    999.000
+
+Latent Class Pattern T#1 C3#2
+
+ Thresholds
+    U31$1             -2.946      0.530     -5.554      0.000
+    U32$1             -1.203      0.277     -4.345      0.000
+
+Latent Class Pattern T#2 C3#1
+
+ Thresholds
+    U31$1              1.015      0.247      4.115      0.000
+    U32$1              0.724      0.284      2.548      0.011
+
+Latent Class Pattern T#2 C3#2
+
+ Thresholds
+    U31$1             -5.284      0.846     -6.247      0.000
+    U32$1            -19.655      0.000    999.000    999.000
+
+Parameters for Class-specific Model Parts of T.C4
+
+Latent Class Pattern T#1 C4#1
+
+ Thresholds
+    U41$1              3.353      0.630      5.324      0.000
+    U42$1             19.176      0.000    999.000    999.000
+
+Latent Class Pattern T#1 C4#2
+
+ Thresholds
+    U41$1             -2.946      0.530     -5.554      0.000
+    U42$1             -1.203      0.277     -4.345      0.000
+
+Latent Class Pattern T#2 C4#1
+
+ Thresholds
+    U41$1              1.015      0.247      4.115      0.000
+    U42$1              0.724      0.284      2.548      0.011
+
+Latent Class Pattern T#2 C4#2
+
+ Thresholds
+    U41$1             -5.284      0.846     -6.247      0.000
+    U42$1            -19.655      0.000    999.000    999.000
+
+Categorical Latent Variables
+
+ Means
+    T#1                0.647      0.065      9.946      0.000
+    CB#1               0.643      0.052     12.433      0.000
+    C1#1               0.567      0.031     18.545      0.000
+
+Latent Class CB#1
+
+ C4#1     ON
+    C3#1               0.701      0.040     17.605      0.000
+    C3#2               0.452      0.051      8.809      0.000
+
+ C3#1     ON
+    C2#1               0.701      0.040     17.605      0.000
+    C2#2               0.452      0.051      8.809      0.000
+
+ C2#1     ON
+    C1#1               0.701      0.040     17.605      0.000
+    C1#2               0.452      0.051      8.809      0.000
+
+Latent Class CB#2
+
+ C2#1     ON
+    C1#1               1.000      0.000    999.000    999.000
+    C1#2               0.000      0.000    999.000    999.000
+
+ C3#1     ON
+    C2#1               1.000      0.000    999.000    999.000
+    C2#2               0.000      0.000    999.000    999.000
+
+ C4#1     ON
+    C3#1               1.000      0.000    999.000    999.000
+    C3#2               0.000      0.000    999.000    999.000
+
+New/Additional Parameters
+    I1                 3.353      0.630      5.324      0.000
+    I2                19.176      0.736     26.069      0.000
+    LT1               -2.338      0.643     -3.634      0.000
+    LT2              -18.452      0.733    -25.166      0.000
+    LO1               -6.299      0.869     -7.250      0.000
+    LO2              -20.379      0.733    -27.794      0.000
+
+
+RESULTS IN PROBABILITY SCALE
+
+Results for Class-specific Model Parts of T.C1
+
+Latent Class Pattern T#1 C1#1
+
+ U11
+    Category 1         0.966      0.021     46.993      0.000
+    Category 2         0.034      0.021      1.643      0.100
+ U12
+    Category 1         1.000      0.000      0.000      1.000
+    Category 2         0.000      0.000      0.000      1.000
+
+Latent Class Pattern T#1 C1#2
+
+ U11
+    Category 1         0.050      0.025      1.985      0.047
+    Category 2         0.950      0.025     37.764      0.000
+ U12
+    Category 1         0.231      0.049      4.695      0.000
+    Category 2         0.769      0.049     15.641      0.000
+
+Latent Class Pattern T#2 C1#1
+
+ U11
+    Category 1         0.734      0.048     15.241      0.000
+    Category 2         0.266      0.048      5.523      0.000
+ U12
+    Category 1         0.673      0.062     10.780      0.000
+    Category 2         0.327      0.062      5.228      0.000
+
+Latent Class Pattern T#2 C1#2
+
+ U11
+    Category 1         0.005      0.004      1.188      0.235
+    Category 2         0.995      0.004    234.340      0.000
+ U12
+    Category 1         0.000      0.000      0.000      1.000
+    Category 2         1.000      0.000      0.000      1.000
+
+Results for Class-specific Model Parts of T.C2
+
+Latent Class Pattern T#1 C2#1
+
+ U21
+    Category 1         0.966      0.021     46.993      0.000
+    Category 2         0.034      0.021      1.643      0.100
+ U22
+    Category 1         1.000      0.000      0.000      1.000
+    Category 2         0.000      0.000      0.000      1.000
+
+Latent Class Pattern T#1 C2#2
+
+ U21
+    Category 1         0.050      0.025      1.985      0.047
+    Category 2         0.950      0.025     37.764      0.000
+ U22
+    Category 1         0.231      0.049      4.695      0.000
+    Category 2         0.769      0.049     15.641      0.000
+
+Latent Class Pattern T#2 C2#1
+
+ U21
+    Category 1         0.734      0.048     15.241      0.000
+    Category 2         0.266      0.048      5.523      0.000
+ U22
+    Category 1         0.673      0.062     10.780      0.000
+    Category 2         0.327      0.062      5.228      0.000
+
+Latent Class Pattern T#2 C2#2
+
+ U21
+    Category 1         0.005      0.004      1.188      0.235
+    Category 2         0.995      0.004    234.340      0.000
+ U22
+    Category 1         0.000      0.000      0.000      1.000
+    Category 2         1.000      0.000      0.000      1.000
+
+Results for Class-specific Model Parts of T.C3
+
+Latent Class Pattern T#1 C3#1
+
+ U31
+    Category 1         0.966      0.021     46.993      0.000
+    Category 2         0.034      0.021      1.643      0.100
+ U32
+    Category 1         1.000      0.000      0.000      1.000
+    Category 2         0.000      0.000      0.000      1.000
+
+Latent Class Pattern T#1 C3#2
+
+ U31
+    Category 1         0.050      0.025      1.985      0.047
+    Category 2         0.950      0.025     37.764      0.000
+ U32
+    Category 1         0.231      0.049      4.695      0.000
+    Category 2         0.769      0.049     15.641      0.000
+
+Latent Class Pattern T#2 C3#1
+
+ U31
+    Category 1         0.734      0.048     15.241      0.000
+    Category 2         0.266      0.048      5.523      0.000
+ U32
+    Category 1         0.673      0.062     10.780      0.000
+    Category 2         0.327      0.062      5.228      0.000
+
+Latent Class Pattern T#2 C3#2
+
+ U31
+    Category 1         0.005      0.004      1.188      0.235
+    Category 2         0.995      0.004    234.340      0.000
+ U32
+    Category 1         0.000      0.000      0.000      1.000
+    Category 2         1.000      0.000      0.000      1.000
+
+Results for Class-specific Model Parts of T.C4
+
+Latent Class Pattern T#1 C4#1
+
+ U41
+    Category 1         0.966      0.021     46.993      0.000
+    Category 2         0.034      0.021      1.643      0.100
+ U42
+    Category 1         1.000      0.000      0.000      1.000
+    Category 2         0.000      0.000      0.000      1.000
+
+Latent Class Pattern T#1 C4#2
+
+ U41
+    Category 1         0.050      0.025      1.985      0.047
+    Category 2         0.950      0.025     37.764      0.000
+ U42
+    Category 1         0.231      0.049      4.695      0.000
+    Category 2         0.769      0.049     15.641      0.000
+
+Latent Class Pattern T#2 C4#1
+
+ U41
+    Category 1         0.734      0.048     15.241      0.000
+    Category 2         0.266      0.048      5.523      0.000
+ U42
+    Category 1         0.673      0.062     10.780      0.000
+    Category 2         0.327      0.062      5.228      0.000
+
+Latent Class Pattern T#2 C4#2
+
+ U41
+    Category 1         0.005      0.004      1.188      0.235
+    Category 2         0.995      0.004    234.340      0.000
+ U42
+    Category 1         0.000      0.000      0.000      1.000
+    Category 2         1.000      0.000      0.000      1.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.372E-03
+       (ratio of smallest to largest eigenvalue)
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 1 1 1 1 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 1 1 1 1 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 1 1 1 2 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 1 1 1 2 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 1 1 2 1 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 1 1 2 1 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 1 1 2 2 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 1 1 2 2 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 1 2 1 1 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 1 2 1 1 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 1 2 1 2 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 1 2 1 2 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 1 2 2 1 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 1 2 2 1 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 1 2 2 2 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 1 2 2 2 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 2 1 1 1 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 2 1 1 1 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 2 1 1 2 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 2 1 1 2 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 2 1 2 1 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 2 1 2 1 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 2 1 2 2 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 2 1 2 2 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 2 2 1 1 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 2 2 1 1 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 2 2 1 2 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 2 2 1 2 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 2 2 2 1 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 2 2 2 1 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 2 2 2 2 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 2 2 2 2 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 1 1 1 1 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 1 1 1 1 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 1 1 1 2 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 1 1 1 2 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 1 1 2 1 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 1 1 2 1 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 1 1 2 2 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 1 1 2 2 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 1 2 1 1 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 1 2 1 1 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 1 2 1 2 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 1 2 1 2 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 1 2 2 1 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 1 2 2 1 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 1 2 2 2 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 1 2 2 2 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 2 1 1 1 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 2 1 1 1 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 2 1 1 2 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 2 1 1 2 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 2 1 2 1 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 2 1 2 1 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 2 1 2 2 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 2 1 2 2 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 2 2 1 1 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 2 2 1 1 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 2 2 1 2 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 2 2 1 2 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 2 2 2 1 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 2 2 2 1 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 2 2 2 2 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 2 2 2 2 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS INDICATOR MODEL PART
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 1 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             1             2             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 1 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 1 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             1             2             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 1 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 1 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             1             2             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 1 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 1 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             1             2             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 1 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 2 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             3             4             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 2 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 2 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             3             4             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 2 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 2 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             3             4             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 2 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 2 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             3             4             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 2 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 1 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             1             2             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 1 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 1 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             1             2             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 1 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 1 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             1             2             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 1 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 1 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             1             2             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 1 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 2 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             3             4             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 2 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 2 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             3             4             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 2 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 2 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             3             4             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 2 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 2 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             3             4             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 2 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 1 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             1             2             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 1 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 1 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             1             2             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 1 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 1 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             1             2             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 1 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 1 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             1             2             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 1 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 2 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             3             4             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 2 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 2 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             3             4             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 2 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 2 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             3             4             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 2 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 2 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             3             4             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 2 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 1 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             1             2             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 1 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 1 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             1             2             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 1 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 1 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             1             2             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 1 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 1 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             1             2             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 1 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 2 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             3             4             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 2 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 2 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             3             4             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 2 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 2 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             3             4             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 2 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 2 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             3             4             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 2 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 1 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    5             6             5             6             5
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 1 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    6             5             6
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 1 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    5             6             5             6             5
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 1 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    6             7             8
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 1 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    5             6             5             6             7
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 1 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    8             5             6
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 1 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    5             6             5             6             7
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 1 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    8             7             8
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 2 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    5             6             7             8             5
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 2 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    6             5             6
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 2 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    5             6             7             8             5
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 2 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    6             7             8
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 2 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    5             6             7             8             7
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 2 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    8             5             6
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 2 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    5             6             7             8             7
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 2 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    8             7             8
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 1 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    7             8             5             6             5
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 1 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    6             5             6
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 1 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    7             8             5             6             5
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 1 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    6             7             8
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 1 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    7             8             5             6             7
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 1 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    8             5             6
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 1 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    7             8             5             6             7
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 1 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    8             7             8
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 2 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    7             8             7             8             5
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 2 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    6             5             6
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 2 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    7             8             7             8             5
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 2 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    6             7             8
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 2 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    7             8             7             8             7
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 2 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    8             5             6
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 2 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    7             8             7             8             7
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 2 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    8             7             8
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 1 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    5             6             5             6             5
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 1 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    6             5             6
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 1 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    5             6             5             6             5
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 1 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    6             7             8
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 1 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    5             6             5             6             7
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 1 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    8             5             6
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 1 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    5             6             5             6             7
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 1 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    8             7             8
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 2 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    5             6             7             8             5
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 2 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    6             5             6
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 2 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    5             6             7             8             5
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 2 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    6             7             8
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 2 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    5             6             7             8             7
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 2 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    8             5             6
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 2 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    5             6             7             8             7
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 2 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    8             7             8
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 1 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    7             8             5             6             5
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 1 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    6             5             6
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 1 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    7             8             5             6             5
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 1 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    6             7             8
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 1 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    7             8             5             6             7
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 1 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    8             5             6
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 1 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    7             8             5             6             7
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 1 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    8             7             8
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 2 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    7             8             7             8             5
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 2 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    6             5             6
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 2 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    7             8             7             8             5
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 2 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    6             7             8
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 2 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    7             8             7             8             7
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 2 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    8             5             6
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 2 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    7             8             7             8             7
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 2 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    8             7             8
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              T#1           T#2           CB#1          CB#2          C1#1
+              ________      ________      ________      ________      ________
+                    9             0            10             0            11
+
+
+           ALPHA(C)
+              C1#2          C2#1          C2#2          C3#1          C3#2
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           ALPHA(C)
+              C4#1          C4#2
+              ________      ________
+                    0             0
+
+
+           BETA(CC) FOR CB#1
+              C3#1          C3#2
+              ________      ________
+ C4#1              12            13
+ C4#2               0             0
+
+
+           BETA(CC) FOR CB#2
+              C3#1          C3#2
+              ________      ________
+ C4#1               0             0
+ C4#2               0             0
+
+
+           BETA(CC) FOR CB#1
+              C2#1          C2#2
+              ________      ________
+ C3#1              12            13
+ C3#2               0             0
+
+
+           BETA(CC) FOR CB#2
+              C2#1          C2#2
+              ________      ________
+ C3#1               0             0
+ C3#2               0             0
+
+
+           BETA(CC) FOR CB#1
+              C1#1          C1#2
+              ________      ________
+ C2#1              12            13
+ C2#2               0             0
+
+
+           BETA(CC) FOR CB#2
+              C1#1          C1#2
+              ________      ________
+ C2#1               0             0
+ C2#2               0             0
+
+
+     PARAMETER SPECIFICATION FOR THE ADDITIONAL PARAMETERS
+
+
+           NEW/ADDITIONAL PARAMETERS
+              I1            I2            LT1           LT2           LO1
+              ________      ________      ________      ________      ________
+                   14            15            16            17            18
+
+
+           NEW/ADDITIONAL PARAMETERS
+              LO2
+              ________
+                   19
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 1 1 1 1 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 1 1 1 1 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 1 1 1 2 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 1 1 1 2 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 1 1 2 1 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 1 1 2 1 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 1 1 2 2 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 1 1 2 2 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 1 2 1 1 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 1 2 1 1 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 1 2 1 2 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 1 2 1 2 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 1 2 2 1 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 1 2 2 1 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 1 2 2 2 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 1 2 2 2 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 2 1 1 1 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 2 1 1 1 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 2 1 1 2 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 2 1 1 2 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 2 1 2 1 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 2 1 2 1 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 2 1 2 2 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 2 1 2 2 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 2 2 1 1 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 2 2 1 1 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 2 2 1 2 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 2 2 1 2 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 2 2 2 1 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 2 2 2 1 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 2 2 2 2 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 2 2 2 2 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 1 1 1 1 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 1 1 1 1 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 1 1 1 2 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 1 1 1 2 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 1 1 2 1 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 1 1 2 1 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 1 1 2 2 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 1 1 2 2 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 1 2 1 1 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 1 2 1 1 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 1 2 1 2 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 1 2 1 2 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 1 2 2 1 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 1 2 2 1 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 1 2 2 2 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 1 2 2 2 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 2 1 1 1 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 2 1 1 1 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 2 1 1 2 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 2 1 1 2 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 2 1 2 1 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 2 1 2 1 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 2 1 2 2 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 2 1 2 2 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 2 2 1 1 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 2 2 1 1 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 2 2 1 2 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 2 2 1 2 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 2 2 2 1 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 2 2 2 1 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 2 2 2 2 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 2 2 2 2 2
+
+
+     STARTING VALUES FOR LATENT CLASS INDICATOR MODEL PART
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 1 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.461        -0.263        -0.461        -0.263        -0.461
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 1 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.263        -0.461        -0.263
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 1 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.461        -0.263        -0.461        -0.263        -0.461
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 1 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.263        -0.398        -0.201
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 1 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.461        -0.263        -0.461        -0.263        -0.398
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 1 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.201        -0.461        -0.263
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 1 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.461        -0.263        -0.461        -0.263        -0.398
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 1 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.201        -0.398        -0.201
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 2 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.461        -0.263        -0.398        -0.201        -0.461
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 2 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.263        -0.461        -0.263
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 2 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.461        -0.263        -0.398        -0.201        -0.461
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 2 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.263        -0.398        -0.201
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 2 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.461        -0.263        -0.398        -0.201        -0.398
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 2 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.201        -0.461        -0.263
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 2 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.461        -0.263        -0.398        -0.201        -0.398
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 2 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.201        -0.398        -0.201
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 1 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.398        -0.201        -0.461        -0.263        -0.461
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 1 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.263        -0.461        -0.263
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 1 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.398        -0.201        -0.461        -0.263        -0.461
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 1 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.263        -0.398        -0.201
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 1 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.398        -0.201        -0.461        -0.263        -0.398
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 1 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.201        -0.461        -0.263
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 1 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.398        -0.201        -0.461        -0.263        -0.398
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 1 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.201        -0.398        -0.201
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 2 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.398        -0.201        -0.398        -0.201        -0.461
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 2 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.263        -0.461        -0.263
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 2 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.398        -0.201        -0.398        -0.201        -0.461
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 2 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.263        -0.398        -0.201
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 2 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.398        -0.201        -0.398        -0.201        -0.398
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 2 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.201        -0.461        -0.263
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 2 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.398        -0.201        -0.398        -0.201        -0.398
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 2 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.201        -0.398        -0.201
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 1 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.461        -0.263        -0.461        -0.263        -0.461
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 1 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.263        -0.461        -0.263
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 1 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.461        -0.263        -0.461        -0.263        -0.461
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 1 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.263        -0.398        -0.201
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 1 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.461        -0.263        -0.461        -0.263        -0.398
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 1 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.201        -0.461        -0.263
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 1 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.461        -0.263        -0.461        -0.263        -0.398
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 1 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.201        -0.398        -0.201
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 2 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.461        -0.263        -0.398        -0.201        -0.461
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 2 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.263        -0.461        -0.263
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 2 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.461        -0.263        -0.398        -0.201        -0.461
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 2 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.263        -0.398        -0.201
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 2 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.461        -0.263        -0.398        -0.201        -0.398
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 2 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.201        -0.461        -0.263
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 2 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.461        -0.263        -0.398        -0.201        -0.398
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 2 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.201        -0.398        -0.201
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 1 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.398        -0.201        -0.461        -0.263        -0.461
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 1 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.263        -0.461        -0.263
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 1 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.398        -0.201        -0.461        -0.263        -0.461
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 1 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.263        -0.398        -0.201
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 1 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.398        -0.201        -0.461        -0.263        -0.398
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 1 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.201        -0.461        -0.263
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 1 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.398        -0.201        -0.461        -0.263        -0.398
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 1 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.201        -0.398        -0.201
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 2 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.398        -0.201        -0.398        -0.201        -0.461
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 2 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.263        -0.461        -0.263
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 2 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.398        -0.201        -0.398        -0.201        -0.461
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 2 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.263        -0.398        -0.201
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 2 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.398        -0.201        -0.398        -0.201        -0.398
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 2 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.201        -0.461        -0.263
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 2 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.398        -0.201        -0.398        -0.201        -0.398
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 2 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+               -0.201        -0.398        -0.201
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 1 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.602         0.799         0.602         0.799         0.602
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 1 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.799         0.602         0.799
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 1 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.602         0.799         0.602         0.799         0.602
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 1 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.799         0.664         0.862
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 1 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.602         0.799         0.602         0.799         0.664
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 1 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.862         0.602         0.799
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 1 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.602         0.799         0.602         0.799         0.664
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 1 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.862         0.664         0.862
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 2 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.602         0.799         0.664         0.862         0.602
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 2 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.799         0.602         0.799
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 2 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.602         0.799         0.664         0.862         0.602
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 2 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.799         0.664         0.862
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 2 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.602         0.799         0.664         0.862         0.664
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 2 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.862         0.602         0.799
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 2 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.602         0.799         0.664         0.862         0.664
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 2 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.862         0.664         0.862
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 1 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.664         0.862         0.602         0.799         0.602
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 1 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.799         0.602         0.799
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 1 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.664         0.862         0.602         0.799         0.602
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 1 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.799         0.664         0.862
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 1 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.664         0.862         0.602         0.799         0.664
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 1 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.862         0.602         0.799
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 1 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.664         0.862         0.602         0.799         0.664
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 1 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.862         0.664         0.862
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 2 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.664         0.862         0.664         0.862         0.602
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 2 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.799         0.602         0.799
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 2 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.664         0.862         0.664         0.862         0.602
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 2 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.799         0.664         0.862
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 2 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.664         0.862         0.664         0.862         0.664
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 2 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.862         0.602         0.799
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 2 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.664         0.862         0.664         0.862         0.664
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 2 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.862         0.664         0.862
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 1 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.602         0.799         0.602         0.799         0.602
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 1 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.799         0.602         0.799
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 1 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.602         0.799         0.602         0.799         0.602
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 1 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.799         0.664         0.862
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 1 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.602         0.799         0.602         0.799         0.664
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 1 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.862         0.602         0.799
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 1 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.602         0.799         0.602         0.799         0.664
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 1 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.862         0.664         0.862
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 2 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.602         0.799         0.664         0.862         0.602
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 2 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.799         0.602         0.799
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 2 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.602         0.799         0.664         0.862         0.602
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 2 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.799         0.664         0.862
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 2 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.602         0.799         0.664         0.862         0.664
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 2 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.862         0.602         0.799
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 2 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.602         0.799         0.664         0.862         0.664
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 2 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.862         0.664         0.862
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 1 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.664         0.862         0.602         0.799         0.602
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 1 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.799         0.602         0.799
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 1 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.664         0.862         0.602         0.799         0.602
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 1 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.799         0.664         0.862
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 1 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.664         0.862         0.602         0.799         0.664
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 1 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.862         0.602         0.799
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 1 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.664         0.862         0.602         0.799         0.664
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 1 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.862         0.664         0.862
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 2 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.664         0.862         0.664         0.862         0.602
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 2 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.799         0.602         0.799
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 2 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.664         0.862         0.664         0.862         0.602
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 2 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.799         0.664         0.862
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 2 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.664         0.862         0.664         0.862         0.664
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 2 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.862         0.602         0.799
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 2 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.664         0.862         0.664         0.862         0.664
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 2 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.862         0.664         0.862
+
+
+     STARTING VALUES FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              T#1           T#2           CB#1          CB#2          C1#1
+              ________      ________      ________      ________      ________
+                0.500         0.000         0.500         0.000         0.500
+
+
+           ALPHA(C)
+              C1#2          C2#1          C2#2          C3#1          C3#2
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           ALPHA(C)
+              C4#1          C4#2
+              ________      ________
+                0.000         0.000
+
+
+           BETA(CC) FOR CB#1
+              C3#1          C3#2
+              ________      ________
+ C4#1           0.500         0.500
+ C4#2           0.000         0.000
+
+
+           BETA(CC) FOR CB#2
+              C3#1          C3#2
+              ________      ________
+ C4#1           1.000         0.000
+ C4#2           0.000         0.000
+
+
+           BETA(CC) FOR CB#1
+              C2#1          C2#2
+              ________      ________
+ C3#1           0.500         0.500
+ C3#2           0.000         0.000
+
+
+           BETA(CC) FOR CB#2
+              C2#1          C2#2
+              ________      ________
+ C3#1           1.000         0.000
+ C3#2           0.000         0.000
+
+
+           BETA(CC) FOR CB#1
+              C1#1          C1#2
+              ________      ________
+ C2#1           0.500         0.500
+ C2#2           0.000         0.000
+
+
+           BETA(CC) FOR CB#2
+              C1#1          C1#2
+              ________      ________
+ C2#1           1.000         0.000
+ C2#2           0.000         0.000
+
+
+     STARTING VALUES FOR THE ADDITIONAL PARAMETERS
+
+
+           NEW/ADDITIONAL PARAMETERS
+              I1            I2            LT1           LT2           LO1
+              ________      ________      ________      ________      ________
+                0.500         0.500         0.500         0.500         0.500
+
+
+           NEW/ADDITIONAL PARAMETERS
+              LO2
+              ________
+                0.500
+
+
+TECHNICAL 15 OUTPUT
+
+
+     ESTIMATED CONDITIONAL PROBABILITIES FOR THE CLASS VARIABLES
+
+     P(T=1)=0.647
+     P(T=2)=0.353
+
+
+     P(CB=1|T=1)=0.643
+     P(CB=2|T=1)=0.357
+
+
+     P(CB=1|T=2)=0.643
+     P(CB=2|T=2)=0.357
+
+
+     P(C1=1|T=1,CB=1)=0.567
+     P(C1=2|T=1,CB=1)=0.433
+
+
+     P(C1=1|T=1,CB=2)=0.567
+     P(C1=2|T=1,CB=2)=0.433
+
+
+     P(C1=1|T=2,CB=1)=0.567
+     P(C1=2|T=2,CB=1)=0.433
+
+
+     P(C1=1|T=2,CB=2)=0.567
+     P(C1=2|T=2,CB=2)=0.433
+
+
+     P(C2=1|T=1,CB=1,C1=1)=0.701
+     P(C2=2|T=1,CB=1,C1=1)=0.299
+
+
+     P(C2=1|T=1,CB=1,C1=2)=0.452
+     P(C2=2|T=1,CB=1,C1=2)=0.548
+
+
+     P(C2=1|T=1,CB=2,C1=1)=1.000
+     P(C2=2|T=1,CB=2,C1=1)=0.000
+
+
+     P(C2=1|T=1,CB=2,C1=2)=0.000
+     P(C2=2|T=1,CB=2,C1=2)=1.000
+
+
+     P(C2=1|T=2,CB=1,C1=1)=0.701
+     P(C2=2|T=2,CB=1,C1=1)=0.299
+
+
+     P(C2=1|T=2,CB=1,C1=2)=0.452
+     P(C2=2|T=2,CB=1,C1=2)=0.548
+
+
+     P(C2=1|T=2,CB=2,C1=1)=1.000
+     P(C2=2|T=2,CB=2,C1=1)=0.000
+
+
+     P(C2=1|T=2,CB=2,C1=2)=0.000
+     P(C2=2|T=2,CB=2,C1=2)=1.000
+
+
+     P(C3=1|T=1,CB=1,C1=1,C2=1)=0.701
+     P(C3=2|T=1,CB=1,C1=1,C2=1)=0.299
+
+
+     P(C3=1|T=1,CB=1,C1=1,C2=2)=0.452
+     P(C3=2|T=1,CB=1,C1=1,C2=2)=0.548
+
+
+     P(C3=1|T=1,CB=1,C1=2,C2=1)=0.701
+     P(C3=2|T=1,CB=1,C1=2,C2=1)=0.299
+
+
+     P(C3=1|T=1,CB=1,C1=2,C2=2)=0.452
+     P(C3=2|T=1,CB=1,C1=2,C2=2)=0.548
+
+
+     P(C3=1|T=1,CB=2,C1=1,C2=1)=1.000
+     P(C3=2|T=1,CB=2,C1=1,C2=1)=0.000
+
+
+     P(C3=1|T=1,CB=2,C1=1,C2=2)=0.000
+     P(C3=2|T=1,CB=2,C1=1,C2=2)=1.000
+
+
+     P(C3=1|T=1,CB=2,C1=2,C2=1)=1.000
+     P(C3=2|T=1,CB=2,C1=2,C2=1)=0.000
+
+
+     P(C3=1|T=1,CB=2,C1=2,C2=2)=0.000
+     P(C3=2|T=1,CB=2,C1=2,C2=2)=1.000
+
+
+     P(C3=1|T=2,CB=1,C1=1,C2=1)=0.701
+     P(C3=2|T=2,CB=1,C1=1,C2=1)=0.299
+
+
+     P(C3=1|T=2,CB=1,C1=1,C2=2)=0.452
+     P(C3=2|T=2,CB=1,C1=1,C2=2)=0.548
+
+
+     P(C3=1|T=2,CB=1,C1=2,C2=1)=0.701
+     P(C3=2|T=2,CB=1,C1=2,C2=1)=0.299
+
+
+     P(C3=1|T=2,CB=1,C1=2,C2=2)=0.452
+     P(C3=2|T=2,CB=1,C1=2,C2=2)=0.548
+
+
+     P(C3=1|T=2,CB=2,C1=1,C2=1)=1.000
+     P(C3=2|T=2,CB=2,C1=1,C2=1)=0.000
+
+
+     P(C3=1|T=2,CB=2,C1=1,C2=2)=0.000
+     P(C3=2|T=2,CB=2,C1=1,C2=2)=1.000
+
+
+     P(C3=1|T=2,CB=2,C1=2,C2=1)=1.000
+     P(C3=2|T=2,CB=2,C1=2,C2=1)=0.000
+
+
+     P(C3=1|T=2,CB=2,C1=2,C2=2)=0.000
+     P(C3=2|T=2,CB=2,C1=2,C2=2)=1.000
+
+
+     P(C4=1|T=1,CB=1,C1=1,C2=1,C3=1)=0.701
+     P(C4=2|T=1,CB=1,C1=1,C2=1,C3=1)=0.299
+
+
+     P(C4=1|T=1,CB=1,C1=1,C2=1,C3=2)=0.452
+     P(C4=2|T=1,CB=1,C1=1,C2=1,C3=2)=0.548
+
+
+     P(C4=1|T=1,CB=1,C1=1,C2=2,C3=1)=0.701
+     P(C4=2|T=1,CB=1,C1=1,C2=2,C3=1)=0.299
+
+
+     P(C4=1|T=1,CB=1,C1=1,C2=2,C3=2)=0.452
+     P(C4=2|T=1,CB=1,C1=1,C2=2,C3=2)=0.548
+
+
+     P(C4=1|T=1,CB=1,C1=2,C2=1,C3=1)=0.701
+     P(C4=2|T=1,CB=1,C1=2,C2=1,C3=1)=0.299
+
+
+     P(C4=1|T=1,CB=1,C1=2,C2=1,C3=2)=0.452
+     P(C4=2|T=1,CB=1,C1=2,C2=1,C3=2)=0.548
+
+
+     P(C4=1|T=1,CB=1,C1=2,C2=2,C3=1)=0.701
+     P(C4=2|T=1,CB=1,C1=2,C2=2,C3=1)=0.299
+
+
+     P(C4=1|T=1,CB=1,C1=2,C2=2,C3=2)=0.452
+     P(C4=2|T=1,CB=1,C1=2,C2=2,C3=2)=0.548
+
+
+     P(C4=1|T=1,CB=2,C1=1,C2=1,C3=1)=1.000
+     P(C4=2|T=1,CB=2,C1=1,C2=1,C3=1)=0.000
+
+
+     P(C4=1|T=1,CB=2,C1=1,C2=1,C3=2)=0.000
+     P(C4=2|T=1,CB=2,C1=1,C2=1,C3=2)=1.000
+
+
+     P(C4=1|T=1,CB=2,C1=1,C2=2,C3=1)=1.000
+     P(C4=2|T=1,CB=2,C1=1,C2=2,C3=1)=0.000
+
+
+     P(C4=1|T=1,CB=2,C1=1,C2=2,C3=2)=0.000
+     P(C4=2|T=1,CB=2,C1=1,C2=2,C3=2)=1.000
+
+
+     P(C4=1|T=1,CB=2,C1=2,C2=1,C3=1)=1.000
+     P(C4=2|T=1,CB=2,C1=2,C2=1,C3=1)=0.000
+
+
+     P(C4=1|T=1,CB=2,C1=2,C2=1,C3=2)=0.000
+     P(C4=2|T=1,CB=2,C1=2,C2=1,C3=2)=1.000
+
+
+     P(C4=1|T=1,CB=2,C1=2,C2=2,C3=1)=1.000
+     P(C4=2|T=1,CB=2,C1=2,C2=2,C3=1)=0.000
+
+
+     P(C4=1|T=1,CB=2,C1=2,C2=2,C3=2)=0.000
+     P(C4=2|T=1,CB=2,C1=2,C2=2,C3=2)=1.000
+
+
+     P(C4=1|T=2,CB=1,C1=1,C2=1,C3=1)=0.701
+     P(C4=2|T=2,CB=1,C1=1,C2=1,C3=1)=0.299
+
+
+     P(C4=1|T=2,CB=1,C1=1,C2=1,C3=2)=0.452
+     P(C4=2|T=2,CB=1,C1=1,C2=1,C3=2)=0.548
+
+
+     P(C4=1|T=2,CB=1,C1=1,C2=2,C3=1)=0.701
+     P(C4=2|T=2,CB=1,C1=1,C2=2,C3=1)=0.299
+
+
+     P(C4=1|T=2,CB=1,C1=1,C2=2,C3=2)=0.452
+     P(C4=2|T=2,CB=1,C1=1,C2=2,C3=2)=0.548
+
+
+     P(C4=1|T=2,CB=1,C1=2,C2=1,C3=1)=0.701
+     P(C4=2|T=2,CB=1,C1=2,C2=1,C3=1)=0.299
+
+
+     P(C4=1|T=2,CB=1,C1=2,C2=1,C3=2)=0.452
+     P(C4=2|T=2,CB=1,C1=2,C2=1,C3=2)=0.548
+
+
+     P(C4=1|T=2,CB=1,C1=2,C2=2,C3=1)=0.701
+     P(C4=2|T=2,CB=1,C1=2,C2=2,C3=1)=0.299
+
+
+     P(C4=1|T=2,CB=1,C1=2,C2=2,C3=2)=0.452
+     P(C4=2|T=2,CB=1,C1=2,C2=2,C3=2)=0.548
+
+
+     P(C4=1|T=2,CB=2,C1=1,C2=1,C3=1)=1.000
+     P(C4=2|T=2,CB=2,C1=1,C2=1,C3=1)=0.000
+
+
+     P(C4=1|T=2,CB=2,C1=1,C2=1,C3=2)=0.000
+     P(C4=2|T=2,CB=2,C1=1,C2=1,C3=2)=1.000
+
+
+     P(C4=1|T=2,CB=2,C1=1,C2=2,C3=1)=1.000
+     P(C4=2|T=2,CB=2,C1=1,C2=2,C3=1)=0.000
+
+
+     P(C4=1|T=2,CB=2,C1=1,C2=2,C3=2)=0.000
+     P(C4=2|T=2,CB=2,C1=1,C2=2,C3=2)=1.000
+
+
+     P(C4=1|T=2,CB=2,C1=2,C2=1,C3=1)=1.000
+     P(C4=2|T=2,CB=2,C1=2,C2=1,C3=1)=0.000
+
+
+     P(C4=1|T=2,CB=2,C1=2,C2=1,C3=2)=0.000
+     P(C4=2|T=2,CB=2,C1=2,C2=1,C3=2)=1.000
+
+
+     P(C4=1|T=2,CB=2,C1=2,C2=2,C3=1)=1.000
+     P(C4=2|T=2,CB=2,C1=2,C2=2,C3=1)=0.000
+
+
+     P(C4=1|T=2,CB=2,C1=2,C2=2,C3=2)=0.000
+     P(C4=2|T=2,CB=2,C1=2,C2=2,C3=2)=1.000
+
+
+
+DIAGRAM INFORMATION
+
+  Mplus diagrams are currently not available for Mixture analysis.
+  No diagram output was produced.
+
+
+     Beginning Time:  14:55:16
+        Ending Time:  14:55:30
+       Elapsed Time:  00:00:14
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen

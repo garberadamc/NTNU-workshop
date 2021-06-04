@@ -1,0 +1,158 @@
+TITLE:
+Lanza-Collins 2008 Developmental Psychology
+   	 Dating Model 2 - N=2937, T=3, P=4, C=5
+DATA:
+FILE = "/Users/agarber/Desktop/RI-LTA_Muthen20/date_mplus/m1_date.dat";
+ 
+VARIABLE:
+NAMES = id gender male dates_98 dates_99 dates_00 par_98 par_99 par_00 u11 u21 u31
+     age_fd u12 u22 u32 u13 u23 u33 u14 u24 u34 safe_98 safe_99 safe_00; 
+ MISSING=.;
+ usev = u11 u13 u14
+       			 u21 u23 u24
+       			 u31 u33 u34;
+      
+      categorical = u11-u34;
+      missing = all(999);
+      classes = t(2) c1(5) c2(5) c3(5);
+ANALYSIS:
+type = mixture;
+      proc = 8;
+      starts = 320 80;
+MODEL:
+%Overall%
+
+      [c2#1 c3#1] (int1);
+      [c2#2 c3#2] (int2);
+      [c2#3 c3#3] (int3);
+      [c2#4 c3#4] (int4);
+
+      c2 on c1 (trans1-trans16);
+      c3 on c2 (trans1-trans16);
+
+  Model t.c1:
+  	%t#1.c1#1%
+  	[u11$1 u11$2  u13$1 u13$2 u14$1] (p111-p115);
+  	%t#1.c1#2%
+  	[u11$1 u11$2  u13$1 u13$2 u14$1] (p121-p125);
+  	%t#1.c1#3%
+  	[u11$1 u11$2  u13$1 u13$2 u14$1] (p131-p135);
+  	%t#1.c1#4%
+  	[u11$1 u11$2  u13$1 u13$2 u14$1] (p141-p145);
+  	%t#1.c1#5%
+  	[u11$1 u11$2  u13$1 u13$2 u14$1] (p151-p155);
+
+    %t#2.c1#1%
+  	[u11$1 u11$2  u13$1 u13$2 u14$1] (p211-p215);
+  	%t#2.c1#2%
+  	[u11$1 u11$2  u13$1 u13$2 u14$1] (p221-p225);
+  	%t#2.c1#3%
+  	[u11$1 u11$2  u13$1 u13$2 u14$1] (p231-p235);
+  	%t#2.c1#4%
+  	[u11$1 u11$2  u13$1 u13$2 u14$1] (p241-p245);
+  	%t#2.c1#5%
+  	[u11$1 u11$2  u13$1 u13$2 u14$1] (p251-p255);
+
+  Model t.c2:
+  	%t#1.c2#1%
+  	[u21$1 u21$2  u23$1 u23$2 u24$1] (p111-p115);
+  	%t#1.c2#2%
+  	[u21$1 u21$2  u23$1 u23$2 u24$1] (p121-p125);
+  	%t#1.c2#3%
+  	[u21$1 u21$2  u23$1 u23$2 u24$1] (p131-p135);
+  	%t#1.c2#4%
+  	[u21$1 u21$2  u23$1 u23$2 u24$1] (p141-p145);
+  	%t#1.c2#5%
+  	[u21$1 u21$2  u23$1 u23$2 u24$1] (p151-p155);
+
+    %t#2.c2#1%
+  	[u21$1 u21$2  u23$1 u23$2 u24$1] (p211-p215);
+  	%t#2.c2#2%
+  	[u21$1 u21$2  u23$1 u23$2 u24$1] (p221-p225);
+  	%t#2.c2#3%
+  	[u21$1 u21$2  u23$1 u23$2 u24$1] (p231-p235);
+  	%t#2.c2#4%
+  	[u21$1 u21$2  u23$1 u23$2 u24$1] (p241-p245);
+  	%t#2.c2#5%
+  	[u21$1 u21$2  u23$1 u23$2 u24$1] (p251-p255);
+
+  Model t.c3:
+  	%t#1.c3#1%
+  	[u31$1 u31$2  u33$1 u33$2 u34$1] (p111-p115);
+  	%t#1.c3#2%
+  	[u31$1 u31$2  u33$1 u33$2 u34$1] (p121-p125);
+  	%t#1.c3#3%
+  	[u31$1 u31$2  u33$1 u33$2 u34$1] (p131-p135);
+  	%t#1.c3#4%
+  	[u31$1 u31$2  u33$1 u33$2 u34$1] (p141-p145);
+  	%t#1.c3#5%
+  	[u31$1 u31$2  u33$1 u33$2 u34$1] (p151-p155);
+
+    %t#2.c3#1%
+  	[u31$1 u31$2  u33$1 u33$2 u34$1] (p211-p215);
+  	%t#2.c3#2%
+  	[u31$1 u31$2  u33$1 u33$2 u34$1] (p221-p225);
+  	%t#2.c3#3%
+  	[u31$1 u31$2  u33$1 u33$2 u34$1] (p231-p235);
+  	%t#2.c3#4%
+  	[u31$1 u31$2  u33$1 u33$2 u34$1] (p241-p245);
+  	%t#2.c3#5%
+  	[u31$1 u31$2  u33$1 u33$2 u34$1] (p251-p255);
+MODEL CONSTRAINT:
+new(a1-a3 b12-b15 b22-b25 b32-b35
+      t1-t3 tau11 tau21 tau12 tau22 tau13
+      tau23 tau14 tau24 tau15 tau25);
+! t class 1:
+      p111 = a1;                      ! c-class 1:
+      p112 = a1+exp(tau11);           ! 2nd tau for 3-cat item
+      p113 = a2;
+      p114 = a2+exp(tau21);           ! 2nd tau for 3-cat item
+      p115 = a3;
+      p121 = a1+b12;                  ! c-class 2:
+      p122 = a1+exp(tau12)+b12;
+      p123 = a2+b22;
+      p124 = a2+exp(tau22)+b22;
+      p125 = a3+b32;
+      p131 = a1+b13;                  ! c-class 3:
+      p132 = a1+exp(tau13)+b13;
+      p133 = a2+b23;
+      p134 = a2+exp(tau23)+b23;
+      p135 = a3+b33;
+      p141 = a1+b14;                  ! c-class 4:
+      p142 = a1+exp(tau14)+b14;
+      p143 = a2+b24;
+      p144 = a2+exp(tau24)+b24;
+      p145 = a3+b34;
+      p151 = a1+b15;                  ! c-class 5:
+      p152 = a1+exp(tau15)+b15;
+      p153 = a2+b25;
+      p154 = a2+exp(tau25)+b25;
+      p155 = a3+b35;
+! t class 2:
+      p211 = a1+t1;                   ! c-class 1:
+      p212 = a1+exp(tau11)+t1;        ! 2nd tau for 3-cat item
+      p213 = a2+t2;
+      p214 = a2+exp(tau21)+t2;        ! 2nd tau for 3-cat item
+      p215 = a3+t3;
+      p221 = a1+b12+t1;               ! c-class 2:
+      p222 = a1+exp(tau12)+b12+t1;
+      p223 = a2+b22+t2;
+      p224 = a2+exp(tau22)+b22+t2;
+      p225 = a3+b32+t3;
+      p231 = a1+b13+t1;               ! c-class 3:
+      p232 = a1+exp(tau13)+b13+t1;
+      p233 = a2+b23+t2;
+      p234 = a2+exp(tau23)+b23+t2;
+      p235 = a3+b33+t3;
+      p241 = a1+b14+t1;               ! c-class 4:
+      p242 = a1+exp(tau14)+b14+t1;
+      p243 = a2+b24+t2;
+      p244 = a2+exp(tau24)+b24+t2;
+      p245 = a3+b34+t3;
+      p251 = a1+b15+t1;               ! c-class 5:
+      p252 = a1+exp(tau15)+b15+t1;
+      p253 = a2+b25+t2;
+      p254 = a2+exp(tau25)+b25+t2;
+      p255 = a3+b35+t3;
+OUTPUT:
+tech1;

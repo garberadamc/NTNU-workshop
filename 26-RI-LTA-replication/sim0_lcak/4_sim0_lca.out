@@ -1,0 +1,56 @@
+Mplus VERSION 8.4 (Mac)
+MUTHEN & MUTHEN
+04/22/2020   1:38 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  model02_regular_lta
+  MONTECARLO:
+  NAMES = u11-u15;
+  GENERATE = u11-u15(1);
+  CATEGORICAL = u11-u15;
+  GENCLASSES = c1(3);
+  CLASSES = c1(4);
+  NOBSERVATIONS = 500;
+  	NREPS = 5;
+   SEED = 4222020;
+   repsave = all;
+   save = 4_sim0_rep*.dat;
+   RESULTS = sim0_results4.csv;
+  MODEL POPULATION:
+  %OVERALL%
+        [c1#1-c3#1*0];
+
+    MODEL POPULATION-c1:
+        %c1#1%
+        [u11$1*1] (p111); [u12$1*1] (p211); [u13$1*1] (p311);
+        [u14$1*1] (p411); [u15$1*1] (p511);
+      	%c1#2%
+      	[u11$1*-1] (p121); [u12$1*-1] (p221); [u13$1*-1] (p321);
+      	[u14$1*-1] (p421); [u15$1*-1] (p521);
+        %c1#3%
+      	[u11$1*-1] (p121); [u12$1*-1] (p221); [u13$1*-1] (p321);
+      	[u14$1*-1] (p421); [u15$1*-1] (p521);
+
+  ANALYSIS:
+  TYPE = MIXTURE;
+         ESTIMATOR = ML;
+      	 processors = 8;
+  NA:
+
+*** ERROR in ANALYSIS command
+  Unknown option:
+  NA:
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen

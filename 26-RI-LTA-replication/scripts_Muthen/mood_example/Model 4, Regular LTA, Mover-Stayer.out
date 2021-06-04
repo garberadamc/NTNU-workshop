@@ -1,0 +1,2495 @@
+Mplus DEVELOPMENT (Mpdev 11/12/2019, Build 1, Intel 19)
+MUTHEN & MUTHEN
+01/25/2020   4:01 PM
+
+INPUT INSTRUCTIONS
+
+  Title:
+      Eid 2003 data: T=4, N=494, P=2, C=2
+      Regular LTA, stationary
+
+  Data:
+      file = Eid-Langeheine-table1-mod2-NOlabels.csv;
+
+  Variable:
+      names = u11 u12 u21 u22 u31 u32 u41 u42 freq est sd;
+      usev = u11-u42;
+      freqweight = freq;
+      categorical = u11-u42;
+      classes = cb(2) c1(2) c2(2) c3(2) c4(2);
+
+  Analysis:
+      type = mixture;
+   !   algorithm = integration;
+   !   integration = 20;
+      proc = 8;
+      starts = 80 16;
+
+      parameterization = probability;
+
+   MODEL:
+      %OVERALL%
+
+  !    c1 on cb;
+
+  Model cb:
+      %cb#1% ! Stationary movers
+      c4 on c3 (pt1-pt2);
+      c3 on c2 (pt1-pt2);
+      c2 on c1 (pt1-pt2);
+
+      %cb#2% ! Stayers
+      c2#1 on c1#1@1; c2#1 on c1#2@0;
+      c3#1 on c2#1@1; c3#1 on c2#2@0;
+      c4#1 on c3#1@1; c4#1 on c3#2@0;
+
+
+
+   MODEL c1:
+      	%c1#1%
+      	[u11$1] (1);
+      	[u12$1] (2);
+
+      	%c1#2%
+      	[u11$1] (11);
+      	[u12$1] (12);
+      	
+    MODEL c2: 	
+      	%c2#1%
+      	[u21$1] (1);
+      	[u22$1] (2);
+
+      	%c2#2%
+      	[u21$1] (11);
+      	[u22$1] (12);
+      	
+
+    MODEL c3:
+        %c3#1%
+      	[u31$1] (1);
+      	[u32$1] (2);
+
+      	%c3#2%
+      	[u31$1] (11);
+      	[u32$1] (12);
+
+    MODEL c4:
+        %c4#1%
+      	[u41$1] (1);
+      	[u42$1] (2);
+
+      	%c4#2%
+      	[u41$1] (11);
+      	[u42$1] (12);
+
+  Output:
+      tech1 tech10 tech15;
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+
+Eid 2003 data: T=4, N=494, P=2, C=2
+Regular LTA, stationary
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         494
+Number of patterns                                             256
+
+Number of dependent variables                                    8
+Number of independent variables                                  0
+Number of continuous latent variables                            0
+Number of categorical latent variables                           5
+
+Observed dependent variables
+
+  Binary and ordered categorical (ordinal)
+   U11         U12         U21         U22         U31         U32
+   U41         U42
+
+Categorical latent variables
+   CB          C1          C2          C3          C4
+
+Variables with special functions
+
+  Weight variable       FREQ
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-03
+    Relative loglikelihood change                        0.100D-05
+    Derivative                                           0.100D-03
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-03
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-03
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Optimization algorithm                                         EMA
+Random Starts Specifications
+  Number of initial stage random starts                         80
+  Number of final stage optimizations                           16
+  Number of initial stage iterations                            10
+  Initial stage convergence criterion                    0.100D+01
+  Random starts scale                                    0.500D+01
+  Random seed for generating random starts                       0
+Parameterization                                       PROBABILITY
+Link                                                         LOGIT
+
+Input data file(s)
+  Eid-Langeheine-table1-mod2-NOlabels.csv
+Input data format  FREE
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    U11
+      Category 1    0.543          268.000
+      Category 2    0.457          226.000
+    U12
+      Category 1    0.540          267.000
+      Category 2    0.460          227.000
+    U21
+      Category 1    0.508          251.000
+      Category 2    0.492          243.000
+    U22
+      Category 1    0.569          281.000
+      Category 2    0.431          213.000
+    U31
+      Category 1    0.492          243.000
+      Category 2    0.508          251.000
+    U32
+      Category 1    0.561          277.000
+      Category 2    0.439          217.000
+    U41
+      Category 1    0.559          276.000
+      Category 2    0.441          218.000
+    U42
+      Category 1    0.626          309.000
+      Category 2    0.374          185.000
+
+
+RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
+
+Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
+
+           -2036.533  848163           47
+           -2036.533  915642           40
+           -2036.533  645664           39
+           -2036.533  207896           25
+           -2036.533  93468            3
+           -2036.533  957392           79
+           -2036.533  569131           26
+           -2036.533  136842           58
+           -2036.533  259507           53
+           -2036.533  354559           73
+           -2036.533  963053           43
+           -2036.533  76974            16
+           -2036.533  685657           69
+           -2036.533  405079           68
+           -2036.533  415931           10
+           -2036.533  27071            15
+
+
+
+THE BEST LOGLIKELIHOOD VALUE HAS BEEN REPLICATED.  RERUN WITH AT LEAST TWICE THE
+RANDOM STARTS TO CHECK THAT THE BEST LOGLIKELIHOOD IS STILL OBTAINED AND REPLICATED.
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                        8
+
+Loglikelihood
+
+          H0 Value                       -2036.533
+          H0 Scaling Correction Factor      1.2674
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                    4089.065
+          Bayesian (BIC)                  4122.686
+          Sample-Size Adjusted BIC        4097.293
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit for the Binary and Ordered Categorical
+(Ordinal) Outcomes**
+
+          Pearson Chi-Square
+
+          Value                            435.811
+          Degrees of Freedom                   246
+          P-Value                           0.0000
+
+          Likelihood Ratio Chi-Square
+
+          Value                            274.008
+          Degrees of Freedom                   246
+          P-Value                           0.1061
+
+** Of the 256 cells in the latent class indicator table, 1
+   were deleted in the calculation of chi-square due to extreme values.
+
+
+
+MODEL RESULTS USE THE LATENT CLASS VARIABLE ORDER
+
+   CB  C1  C2  C3  C4
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASS PATTERNS
+BASED ON THE ESTIMATED MODEL
+
+  Latent Class
+    Pattern
+
+    1  1  1  1  1         25.65170          0.05193
+    1  1  1  1  2         20.61867          0.04174
+    1  1  1  2  1         12.47958          0.02526
+    1  1  1  2  2         24.71225          0.05002
+    1  1  2  1  1         12.47958          0.02526
+    1  1  2  1  2         10.03101          0.02031
+    1  1  2  2  1         14.95724          0.03028
+    1  1  2  2  2         29.61856          0.05996
+    1  2  1  1  1         15.56138          0.03150
+    1  2  1  1  2         12.50813          0.02532
+    1  2  1  2  1          7.57063          0.01533
+    1  2  1  2  2         14.99147          0.03035
+    1  2  2  1  1         18.65089          0.03775
+    1  2  2  1  2         14.99147          0.03035
+    1  2  2  2  1         22.35379          0.04525
+    1  2  2  2  2         44.26530          0.08961
+    2  1  1  1  1         96.16916          0.19467
+    2  1  1  1  2          0.00000          0.00000
+    2  1  1  2  1          0.00000          0.00000
+    2  1  1  2  2          0.00000          0.00000
+    2  1  2  1  1          0.00000          0.00000
+    2  1  2  1  2          0.00000          0.00000
+    2  1  2  2  1          0.00000          0.00000
+    2  1  2  2  2          0.00000          0.00000
+    2  2  1  1  1          0.00000          0.00000
+    2  2  1  1  2          0.00000          0.00000
+    2  2  1  2  1          0.00000          0.00000
+    2  2  1  2  2          0.00000          0.00000
+    2  2  2  1  1          0.00000          0.00000
+    2  2  2  1  2          0.00000          0.00000
+    2  2  2  2  1          0.00000          0.00000
+    2  2  2  2  2         96.38919          0.19512
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR EACH LATENT CLASS VARIABLE
+BASED ON THE ESTIMATED MODEL
+
+  Latent Class
+    Variable    Class
+
+    CB             1       301.44165          0.61021
+                   2       192.55836          0.38979
+    C1             1       246.71776          0.49943
+                   2       247.28224          0.50057
+    C2             1       230.26297          0.46612
+                   2       263.73703          0.53388
+    C3             1       226.66199          0.45883
+                   2       267.33801          0.54117
+    C4             1       225.87395          0.45723
+                   2       268.12604          0.54277
+
+
+LATENT TRANSITION PROBABILITIES BASED ON THE ESTIMATED MODEL
+
+  CB Classes (Rows) by C1 Classes (Columns)
+
+            1        2
+
+   1     0.499    0.501
+   2     0.499    0.501
+
+  C1 Classes (Rows) by C2 Classes (Columns)
+
+            1        2
+
+   1     0.728    0.272
+   2     0.205    0.795
+
+  C2 Classes (Rows) by C3 Classes (Columns)
+
+            1        2
+
+   1     0.740    0.260
+   2     0.213    0.787
+
+  C3 Classes (Rows) by C4 Classes (Columns)
+
+            1        2
+
+   1     0.743    0.257
+   2     0.215    0.785
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASS PATTERNS
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+  Latent Class
+    Pattern
+
+    1  1  1  1  1         26.51164          0.05367
+    1  1  1  1  2         20.73213          0.04197
+    1  1  1  2  1          7.49662          0.01518
+    1  1  1  2  2         23.66174          0.04790
+    1  1  2  1  1         11.42400          0.02313
+    1  1  2  1  2         13.42489          0.02718
+    1  1  2  2  1          8.14019          0.01648
+    1  1  2  2  2         35.93385          0.07274
+    1  2  1  1  1         22.21299          0.04497
+    1  2  1  1  2         15.26080          0.03089
+    1  2  1  2  1          7.33493          0.01485
+    1  2  1  2  2         18.90988          0.03828
+    1  2  2  1  1         15.13077          0.03063
+    1  2  2  1  2         15.87317          0.03213
+    1  2  2  2  1         16.61060          0.03362
+    1  2  2  2  2         42.78434          0.08661
+    2  1  1  1  1         99.39310          0.20120
+    2  1  1  1  2          0.00000          0.00000
+    2  1  1  2  1          0.00000          0.00000
+    2  1  1  2  2          0.00000          0.00000
+    2  1  2  1  1          0.00000          0.00000
+    2  1  2  1  2          0.00000          0.00000
+    2  1  2  2  1          0.00000          0.00000
+    2  1  2  2  2          0.00000          0.00000
+    2  2  1  1  1          0.00000          0.00000
+    2  2  1  1  2          0.00000          0.00000
+    2  2  1  2  1          0.00000          0.00000
+    2  2  1  2  2          0.00000          0.00000
+    2  2  2  1  1          0.00000          0.00000
+    2  2  2  1  2          0.00000          0.00000
+    2  2  2  2  1          0.00000          0.00000
+    2  2  2  2  2         93.16436          0.18859
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR EACH LATENT CLASS VARIABLE
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+  Latent Class
+    Variable    Class
+
+    CB             1       301.44254          0.61021
+                   2       192.55745          0.38979
+    C1             1       246.71817          0.49943
+                   2       247.28183          0.50057
+    C2             1       241.51384          0.48889
+                   2       252.48616          0.51111
+    C3             1       239.96350          0.48576
+                   2       254.03651          0.51424
+    C4             1       214.25482          0.43371
+                   2       279.74518          0.56629
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASS PATTERNS
+BASED ON THEIR MOST LIKELY LATENT CLASS PATTERN
+
+Class Counts and Proportions
+
+  Latent Class
+    Pattern
+
+    1  1  1  1  1                0          0.00000
+    1  1  1  1  2               26          0.05263
+    1  1  1  2  1                7          0.01417
+    1  1  1  2  2               25          0.05061
+    1  1  2  1  1               15          0.03036
+    1  1  2  1  2               10          0.02024
+    1  1  2  2  1                6          0.01215
+    1  1  2  2  2               29          0.05870
+    1  2  1  1  1               26          0.05263
+    1  2  1  1  2               14          0.02834
+    1  2  1  2  1                4          0.00810
+    1  2  1  2  2               17          0.03441
+    1  2  2  1  1               14          0.02834
+    1  2  2  1  2                9          0.01822
+    1  2  2  2  1               13          0.02632
+    1  2  2  2  2               27          0.05466
+    2  1  1  1  1              127          0.25709
+    2  1  1  1  2                0          0.00000
+    2  1  1  2  1                0          0.00000
+    2  1  1  2  2                0          0.00000
+    2  1  2  1  1                0          0.00000
+    2  1  2  1  2                0          0.00000
+    2  1  2  2  1                0          0.00000
+    2  1  2  2  2                0          0.00000
+    2  2  1  1  1                0          0.00000
+    2  2  1  1  2                0          0.00000
+    2  2  1  2  1                0          0.00000
+    2  2  1  2  2                0          0.00000
+    2  2  2  1  1                0          0.00000
+    2  2  2  1  2                0          0.00000
+    2  2  2  2  1                0          0.00000
+    2  2  2  2  2              125          0.25304
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR EACH LATENT CLASS VARIABLE
+BASED ON THEIR MOST LIKELY LATENT CLASS PATTERN
+
+  Latent Class
+    Variable    Class
+
+    CB             1             242          0.48988
+                   2             252          0.51012
+    C1             1             245          0.49595
+                   2             249          0.50405
+    C2             1             246          0.49798
+                   2             248          0.50202
+    C3             1             241          0.48785
+                   2             253          0.51215
+    C4             1             212          0.42915
+                   2             282          0.57085
+
+
+CLASSIFICATION QUALITY
+
+     Entropy                         0.778
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Parameters for Class-specific Model Parts of C1
+
+Latent Class C1#1
+
+ Thresholds
+    U11$1             -2.170      0.229     -9.496      0.000
+    U12$1             -1.812      0.203     -8.935      0.000
+
+Latent Class C1#2
+
+ Thresholds
+    U11$1              2.324      0.247      9.398      0.000
+    U12$1              3.449      0.500      6.893      0.000
+
+Parameters for Class-specific Model Parts of C2
+
+Latent Class C2#1
+
+ Thresholds
+    U21$1             -2.170      0.229     -9.496      0.000
+    U22$1             -1.812      0.203     -8.935      0.000
+
+Latent Class C2#2
+
+ Thresholds
+    U21$1              2.324      0.247      9.398      0.000
+    U22$1              3.449      0.500      6.893      0.000
+
+Parameters for Class-specific Model Parts of C3
+
+Latent Class C3#1
+
+ Thresholds
+    U31$1             -2.170      0.229     -9.496      0.000
+    U32$1             -1.812      0.203     -8.935      0.000
+
+Latent Class C3#2
+
+ Thresholds
+    U31$1              2.324      0.247      9.398      0.000
+    U32$1              3.449      0.500      6.893      0.000
+
+Parameters for Class-specific Model Parts of C4
+
+Latent Class C4#1
+
+ Thresholds
+    U41$1             -2.170      0.229     -9.496      0.000
+    U42$1             -1.812      0.203     -8.935      0.000
+
+Latent Class C4#2
+
+ Thresholds
+    U41$1              2.324      0.247      9.398      0.000
+    U42$1              3.449      0.500      6.893      0.000
+
+Categorical Latent Variables
+
+ Means
+    CB#1               0.610      0.044     13.727      0.000
+    C1#1               0.499      0.028     17.600      0.000
+
+Latent Class CB#1
+
+ C4#1     ON
+    C3#1               0.554      0.050     11.160      0.000
+    C3#2               0.336      0.041      8.283      0.000
+
+ C3#1     ON
+    C2#1               0.554      0.050     11.160      0.000
+    C2#2               0.336      0.041      8.283      0.000
+
+ C2#1     ON
+    C1#1               0.554      0.050     11.160      0.000
+    C1#2               0.336      0.041      8.283      0.000
+
+Latent Class CB#2
+
+ C2#1     ON
+    C1#1               1.000      0.000    999.000    999.000
+    C1#2               0.000      0.000    999.000    999.000
+
+ C3#1     ON
+    C2#1               1.000      0.000    999.000    999.000
+    C2#2               0.000      0.000    999.000    999.000
+
+ C4#1     ON
+    C3#1               1.000      0.000    999.000    999.000
+    C3#2               0.000      0.000    999.000    999.000
+
+
+RESULTS IN PROBABILITY SCALE
+
+Results for Class-specific Model Parts of C1
+
+Latent Class C1#1
+
+ U11
+    Category 1         0.102      0.021      4.875      0.000
+    Category 2         0.898      0.021     42.706      0.000
+ U12
+    Category 1         0.140      0.024      5.735      0.000
+    Category 2         0.860      0.024     35.125      0.000
+
+Latent Class C1#2
+
+ U11
+    Category 1         0.911      0.020     45.365      0.000
+    Category 2         0.089      0.020      4.439      0.000
+ U12
+    Category 1         0.969      0.015     64.888      0.000
+    Category 2         0.031      0.015      2.062      0.039
+
+Results for Class-specific Model Parts of C2
+
+Latent Class C2#1
+
+ U21
+    Category 1         0.102      0.021      4.875      0.000
+    Category 2         0.898      0.021     42.706      0.000
+ U22
+    Category 1         0.140      0.024      5.735      0.000
+    Category 2         0.860      0.024     35.125      0.000
+
+Latent Class C2#2
+
+ U21
+    Category 1         0.911      0.020     45.365      0.000
+    Category 2         0.089      0.020      4.439      0.000
+ U22
+    Category 1         0.969      0.015     64.888      0.000
+    Category 2         0.031      0.015      2.062      0.039
+
+Results for Class-specific Model Parts of C3
+
+Latent Class C3#1
+
+ U31
+    Category 1         0.102      0.021      4.875      0.000
+    Category 2         0.898      0.021     42.706      0.000
+ U32
+    Category 1         0.140      0.024      5.735      0.000
+    Category 2         0.860      0.024     35.125      0.000
+
+Latent Class C3#2
+
+ U31
+    Category 1         0.911      0.020     45.365      0.000
+    Category 2         0.089      0.020      4.439      0.000
+ U32
+    Category 1         0.969      0.015     64.888      0.000
+    Category 2         0.031      0.015      2.062      0.039
+
+Results for Class-specific Model Parts of C4
+
+Latent Class C4#1
+
+ U41
+    Category 1         0.102      0.021      4.875      0.000
+    Category 2         0.898      0.021     42.706      0.000
+ U42
+    Category 1         0.140      0.024      5.735      0.000
+    Category 2         0.860      0.024     35.125      0.000
+
+Latent Class C4#2
+
+ U41
+    Category 1         0.911      0.020     45.365      0.000
+    Category 2         0.089      0.020      4.439      0.000
+ U42
+    Category 1         0.969      0.015     64.888      0.000
+    Category 2         0.031      0.015      2.062      0.039
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.324E-02
+       (ratio of smallest to largest eigenvalue)
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 1 1 1 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 1 1 1 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 1 1 2 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 1 1 2 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 1 2 1 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 1 2 1 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 1 2 2 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 1 2 2 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 2 1 1 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 2 1 1 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 2 1 2 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 2 1 2 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 2 2 1 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 2 2 1 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 2 2 2 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 1 2 2 2 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 1 1 1 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 1 1 1 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 1 1 2 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 1 1 2 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 1 2 1 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 1 2 1 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 1 2 2 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 1 2 2 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 2 1 1 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 2 1 1 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 2 1 2 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 2 1 2 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 2 2 1 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 2 2 1 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 2 2 2 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS PATTERN 2 2 2 2 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS INDICATOR MODEL PART
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             1             2             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             1             2             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             1             2             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             1             2             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             3             4             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             3             4             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             3             4             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             3             4             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             1             2             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             1             2             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             1             2             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             1             2             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             3             4             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             3             4             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             3             4             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             3             4             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             1             2             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             1             2             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             1             2             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             1             2             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             3             4             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             3             4             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             3             4             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    1             2             3             4             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             1             2             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             1             2             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             1             2             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             1             2             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             3             4             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             3             4             1
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    2             3             4
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             3             4             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             1             2
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                    3             4             3             4             3
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                    4             3             4
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              CB#1          CB#2          C1#1          C1#2          C2#1
+              ________      ________      ________      ________      ________
+                    5             0             6             0             0
+
+
+           ALPHA(C)
+              C2#2          C3#1          C3#2          C4#1          C4#2
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           BETA(CC) FOR CB#1
+              C3#1          C3#2
+              ________      ________
+ C4#1               7             8
+ C4#2               0             0
+
+
+           BETA(CC) FOR CB#2
+              C3#1          C3#2
+              ________      ________
+ C4#1               0             0
+ C4#2               0             0
+
+
+           BETA(CC) FOR CB#1
+              C2#1          C2#2
+              ________      ________
+ C3#1               7             8
+ C3#2               0             0
+
+
+           BETA(CC) FOR CB#2
+              C2#1          C2#2
+              ________      ________
+ C3#1               0             0
+ C3#2               0             0
+
+
+           BETA(CC) FOR CB#1
+              C1#1          C1#2
+              ________      ________
+ C2#1               7             8
+ C2#2               0             0
+
+
+           BETA(CC) FOR CB#2
+              C1#1          C1#2
+              ________      ________
+ C2#1               0             0
+ C2#2               0             0
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 1 1 1 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 1 1 1 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 1 1 2 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 1 1 2 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 1 2 1 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 1 2 1 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 1 2 2 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 1 2 2 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 2 1 1 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 2 1 1 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 2 1 2 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 2 1 2 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 2 2 1 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 2 2 1 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 2 2 2 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 1 2 2 2 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 1 1 1 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 1 1 1 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 1 1 2 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 1 1 2 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 1 2 1 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 1 2 1 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 1 2 2 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 1 2 2 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 2 1 1 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 2 1 1 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 2 1 2 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 2 1 2 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 2 2 1 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 2 2 1 2
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 2 2 2 1
+
+
+     STARTING VALUES FOR LATENT CLASS PATTERN 2 2 2 2 2
+
+
+     STARTING VALUES FOR LATENT CLASS INDICATOR MODEL PART
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.086         0.112        -0.086         0.112        -0.086
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.112        -0.086         0.112
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.086         0.112        -0.086         0.112        -0.086
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.112         0.289         0.487
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.086         0.112        -0.086         0.112         0.289
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.487        -0.086         0.112
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.086         0.112        -0.086         0.112         0.289
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 1 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.487         0.289         0.487
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.086         0.112         0.289         0.487        -0.086
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.112        -0.086         0.112
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.086         0.112         0.289         0.487        -0.086
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.112         0.289         0.487
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.086         0.112         0.289         0.487         0.289
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.487        -0.086         0.112
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.086         0.112         0.289         0.487         0.289
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 1 2 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.487         0.289         0.487
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.289         0.487        -0.086         0.112        -0.086
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.112        -0.086         0.112
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.289         0.487        -0.086         0.112        -0.086
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.112         0.289         0.487
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.289         0.487        -0.086         0.112         0.289
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.487        -0.086         0.112
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.289         0.487        -0.086         0.112         0.289
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 1 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.487         0.289         0.487
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.289         0.487         0.289         0.487        -0.086
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.112        -0.086         0.112
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.289         0.487         0.289         0.487        -0.086
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.112         0.289         0.487
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.289         0.487         0.289         0.487         0.289
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.487        -0.086         0.112
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.289         0.487         0.289         0.487         0.289
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 1 2 2 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.487         0.289         0.487
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.086         0.112        -0.086         0.112        -0.086
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.112        -0.086         0.112
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.086         0.112        -0.086         0.112        -0.086
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.112         0.289         0.487
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.086         0.112        -0.086         0.112         0.289
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.487        -0.086         0.112
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.086         0.112        -0.086         0.112         0.289
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 1 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.487         0.289         0.487
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.086         0.112         0.289         0.487        -0.086
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.112        -0.086         0.112
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.086         0.112         0.289         0.487        -0.086
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.112         0.289         0.487
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.086         0.112         0.289         0.487         0.289
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.487        -0.086         0.112
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+               -0.086         0.112         0.289         0.487         0.289
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 1 2 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.487         0.289         0.487
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.289         0.487        -0.086         0.112        -0.086
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.112        -0.086         0.112
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.289         0.487        -0.086         0.112        -0.086
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.112         0.289         0.487
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.289         0.487        -0.086         0.112         0.289
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.487        -0.086         0.112
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.289         0.487        -0.086         0.112         0.289
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 1 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.487         0.289         0.487
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 1 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.289         0.487         0.289         0.487        -0.086
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 1 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.112        -0.086         0.112
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 1 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.289         0.487         0.289         0.487        -0.086
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 1 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.112         0.289         0.487
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 2 1
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.289         0.487         0.289         0.487         0.289
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 2 1
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.487        -0.086         0.112
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 2 2
+              U11$1         U12$1         U21$1         U22$1         U31$1
+              ________      ________      ________      ________      ________
+                0.289         0.487         0.289         0.487         0.289
+
+
+           TAU(U) FOR LATENT CLASS PATTERN 2 2 2 2 2
+              U32$1         U41$1         U42$1
+              ________      ________      ________
+                0.487         0.289         0.487
+
+
+     STARTING VALUES FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              CB#1          CB#2          C1#1          C1#2          C2#1
+              ________      ________      ________      ________      ________
+                0.500         0.000         0.500         0.000         0.000
+
+
+           ALPHA(C)
+              C2#2          C3#1          C3#2          C4#1          C4#2
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           BETA(CC) FOR CB#1
+              C3#1          C3#2
+              ________      ________
+ C4#1           0.500         0.500
+ C4#2           0.000         0.000
+
+
+           BETA(CC) FOR CB#2
+              C3#1          C3#2
+              ________      ________
+ C4#1           1.000         0.000
+ C4#2           0.000         0.000
+
+
+           BETA(CC) FOR CB#1
+              C2#1          C2#2
+              ________      ________
+ C3#1           0.500         0.500
+ C3#2           0.000         0.000
+
+
+           BETA(CC) FOR CB#2
+              C2#1          C2#2
+              ________      ________
+ C3#1           1.000         0.000
+ C3#2           0.000         0.000
+
+
+           BETA(CC) FOR CB#1
+              C1#1          C1#2
+              ________      ________
+ C2#1           0.500         0.500
+ C2#2           0.000         0.000
+
+
+           BETA(CC) FOR CB#2
+              C1#1          C1#2
+              ________      ________
+ C2#1           1.000         0.000
+ C2#2           0.000         0.000
+
+
+TECHNICAL 10 OUTPUT
+
+
+     MODEL FIT INFORMATION FOR THE LATENT CLASS INDICATOR MODEL PART
+
+
+     RESPONSE PATTERNS
+
+     No.  Pattern     No.  Pattern     No.  Pattern     No.  Pattern
+       1  00000000      2  00000001      3  00000010      4  00000011
+       5  00000100      6  00000101      7  00000110      8  00000111
+       9  00001000     10  00001001     11  00001010     12  00001011
+      13  00001100     14  00001101     15  00001110     16  00001111
+      17  00010000     18  00010001     19  00010010     20  00010011
+      21  00010100     22  00010101     23  00010110     24  00010111
+      25  00011000     26  00011001     27  00011010     28  00011011
+      29  00011100     30  00011101     31  00011110     32  00011111
+      33  00100000     34  00100001     35  00100010     36  00100011
+      37  00100100     38  00100101     39  00100110     40  00100111
+      41  00101000     42  00101001     43  00101010     44  00101011
+      45  00101100     46  00101101     47  00101110     48  00101111
+      49  00110000     50  00110001     51  00110010     52  00110011
+      53  00110100     54  00110101     55  00110110     56  00110111
+      57  00111000     58  00111001     59  00111010     60  00111011
+      61  00111100     62  00111101     63  00111110     64  00111111
+      65  01000000     66  01000001     67  01000010     68  01000011
+      69  01000100     70  01000101     71  01000110     72  01000111
+      73  01001000     74  01001001     75  01001010     76  01001011
+      77  01001100     78  01001101     79  01001110     80  01001111
+      81  01010000     82  01010001     83  01010010     84  01010011
+      85  01010100     86  01010101     87  01010110     88  01010111
+      89  01011000     90  01011001     91  01011010     92  01011011
+      93  01011100     94  01011101     95  01011110     96  01011111
+      97  01100000     98  01100001     99  01100010    100  01100011
+     101  01100100    102  01100101    103  01100110    104  01100111
+     105  01101000    106  01101001    107  01101010    108  01101011
+     109  01101100    110  01101101    111  01101110    112  01101111
+     113  01110000    114  01110001    115  01110010    116  01110011
+     117  01110100    118  01110101    119  01110110    120  01110111
+     121  01111000    122  01111001    123  01111010    124  01111011
+     125  01111100    126  01111101    127  01111110    128  01111111
+     129  10000000    130  10000001    131  10000010    132  10000011
+     133  10000100    134  10000101    135  10000110    136  10000111
+     137  10001000    138  10001001    139  10001010    140  10001011
+     141  10001100    142  10001101    143  10001110    144  10001111
+     145  10010000    146  10010001    147  10010010    148  10010011
+     149  10010100    150  10010101    151  10010110    152  10010111
+     153  10011000    154  10011001    155  10011010    156  10011011
+     157  10011100    158  10011101    159  10011110    160  10011111
+     161  10100000    162  10100001    163  10100010    164  10100011
+     165  10100100    166  10100101    167  10100110    168  10100111
+     169  10101000    170  10101001    171  10101010    172  10101011
+     173  10101100    174  10101101    175  10101110    176  10101111
+     177  10110000    178  10110001    179  10110010    180  10110011
+     181  10110100    182  10110101    183  10110110    184  10110111
+     185  10111000    186  10111001    187  10111010    188  10111011
+     189  10111100    190  10111101    191  10111110    192  10111111
+     193  11000000    194  11000001    195  11000010    196  11000011
+     197  11000100    198  11000101    199  11000110    200  11000111
+     201  11001000    202  11001001    203  11001010    204  11001011
+     205  11001100    206  11001101    207  11001110    208  11001111
+     209  11010000    210  11010001    211  11010010    212  11010011
+     213  11010100    214  11010101    215  11010110    216  11010111
+     217  11011000    218  11011001    219  11011010    220  11011011
+     221  11011100    222  11011101    223  11011110    224  11011111
+     225  11100000    226  11100001    227  11100010    228  11100011
+     229  11100100    230  11100101    231  11100110    232  11100111
+     233  11101000    234  11101001    235  11101010    236  11101011
+     237  11101100    238  11101101    239  11101110    240  11101111
+     241  11110000    242  11110001    243  11110010    244  11110011
+     245  11110100    246  11110101    247  11110110    248  11110111
+     249  11111000    250  11111001    251  11111010    252  11111011
+     253  11111100    254  11111101    255  11111110    256  11111111
+
+
+
+     RESPONSE PATTERN FREQUENCIES AND CHI-SQUARE CONTRIBUTIONS
+
+    Response          Frequency     Standardized  Chi-square Contribution
+     Pattern    Observed  Estimated   Residual    Pearson   Loglikelihood  Deleted
+                                     (z-score)
+         1        96.00      86.26       1.15       1.10        20.54
+         2         3.00       4.13      -0.56       0.31        -1.92
+         3         6.00      10.41      -1.38       1.87        -6.62
+         4         9.00      12.50      -1.00       0.98        -5.91
+         5         1.00       3.69      -1.40       1.96        -2.61
+         6         0.00       0.28      -0.53       0.28         0.00
+         7         1.00       0.59       0.54       0.29         1.07
+         8         1.00       1.41      -0.34       0.12        -0.69
+         9        11.00       9.78       0.39       0.15         2.58
+        10         0.00       0.61      -0.78       0.61         0.00
+        11         1.00       1.38      -0.33       0.11        -0.65
+        12         0.00       2.66      -1.64       2.66         0.00
+        13         8.00       8.59      -0.20       0.04        -1.14
+        14         1.00       1.29      -0.25       0.06        -0.50
+        15         3.00       2.28       0.48       0.23         1.65
+        16         7.00       8.94      -0.66       0.42        -3.43
+        17         1.00       3.69      -1.41       1.96        -2.61
+        18         1.00       0.21       1.73       2.98         3.12
+        19         1.00       0.49       0.72       0.52         1.42
+        20         0.00       0.82      -0.91       0.82         0.00
+        21         0.00       0.23      -0.48       0.23         0.00
+        22         0.00       0.02      -0.16       0.02         0.00
+        23         0.00       0.05      -0.22       0.05         0.00
+        24         1.00       0.15       2.19       4.80         3.79
+        25         1.00       0.52       0.68       0.46         1.33
+        26         0.00       0.05      -0.21       0.05         0.00
+        27         1.00       0.09       3.00       9.00         4.78
+        28         1.00       0.26       1.47       2.15         2.72
+        29         2.00       0.97       1.05       1.10         2.90
+        30         0.00       0.15      -0.39       0.15         0.00
+        31         0.00       0.27      -0.52       0.27         0.00
+        32         1.00       1.10      -0.09       0.01        -0.18
+        33         5.00       9.79      -1.55       2.34        -6.72
+        34         1.00       0.52       0.68       0.46         1.33
+        35         2.00       1.25       0.67       0.45         1.88
+        36         1.00       1.83      -0.62       0.38        -1.21
+        37         2.00       0.52       2.07       4.28         5.43
+        38         0.00       0.05      -0.22       0.05         0.00
+        39         0.00       0.10      -0.31       0.10         0.00
+        40         0.00       0.29      -0.54       0.29         0.00
+        41         0.00       1.25      -1.12       1.25         0.00
+        42         0.00       0.10      -0.31       0.10         0.00
+        43         1.00       0.20       1.77       3.13         3.19
+        44         2.00       0.51       2.10       4.41         5.50
+        45         3.00       1.83       0.87       0.75         2.97
+        46         0.00       0.29      -0.54       0.29         0.00
+        47         0.00       0.51      -0.71       0.51         0.00
+        48         2.00       2.03      -0.02       0.00        -0.06
+        49        13.00       8.62       1.50       2.22        10.68
+        50         1.00       0.70       0.35       0.13         0.71
+        51         3.00       1.45       1.28       1.65         4.35
+        52         3.00       3.80      -0.41       0.17        -1.42
+        53         1.00       0.97       0.03       0.00         0.06
+        54         0.00       0.14      -0.37       0.14         0.00
+        55         0.00       0.25      -0.50       0.25         0.00
+        56         0.00       0.93      -0.97       0.93         0.00
+        57         1.00       1.83      -0.62       0.38        -1.21
+        58         0.00       0.23      -0.48       0.23         0.00
+        59         2.00       0.43       2.42       5.84         6.20
+        60         1.00       1.53      -0.43       0.18        -0.85
+        61         7.00       6.14       0.35       0.12         1.83
+        62         0.00       1.01      -1.00       1.01         0.00
+        63         4.00       1.76       1.70       2.87         6.59
+        64        14.00       7.17       2.57       6.50        18.73
+        65         4.00       4.58      -0.27       0.07        -1.08
+        66         1.00       0.28       1.35       1.83         2.53
+        67         0.00       0.64      -0.80       0.64         0.00
+        68         1.00       1.21      -0.19       0.04        -0.39
+        69         0.00       0.24      -0.49       0.24         0.00
+        70         0.00       0.02      -0.16       0.02         0.00
+        71         0.00       0.05      -0.22       0.05         0.00
+        72         1.00       0.15       2.23       4.97         3.84
+        73         1.00       0.58       0.55       0.30         1.09
+        74         2.00       0.05       8.80      77.40        14.82
+        75         0.00       0.10      -0.32       0.10         0.00
+        76         0.00       0.27      -0.52       0.27         0.00
+        77         4.00       0.84       3.46      11.95        12.51
+        78         0.00       0.13      -0.37       0.13         0.00
+        79         1.00       0.24       1.58       2.48         2.89
+        80         0.00       0.95      -0.98       0.95         0.00
+        81         0.00       0.33      -0.57       0.33         0.00
+        82         0.00       0.02      -0.16       0.02         0.00
+        83         0.00       0.05      -0.23       0.05         0.00
+        84         0.00       0.13      -0.36       0.13         0.00
+        85         0.00       0.03      -0.17       0.03         0.00
+        86         1.00       0.01      10.28     105.65         9.36      DELETED
+        87         0.00       0.01      -0.12       0.01         0.00
+        88         0.00       0.07      -0.27       0.07         0.00
+        89         0.00       0.06      -0.24       0.06         0.00
+        90         0.00       0.01      -0.12       0.01         0.00
+        91         0.00       0.02      -0.15       0.02         0.00
+        92         0.00       0.11      -0.33       0.11         0.00
+        93         2.00       0.17       4.48      20.07         9.92
+        94         0.00       0.07      -0.27       0.07         0.00
+        95         0.00       0.12      -0.34       0.12         0.00
+        96         1.00       0.61       0.49       0.24         0.98
+        97         0.00       0.71      -0.84       0.71         0.00
+        98         0.00       0.05      -0.22       0.05         0.00
+        99         0.00       0.11      -0.33       0.11         0.00
+       100         0.00       0.25      -0.50       0.25         0.00
+       101         0.00       0.05      -0.23       0.05         0.00
+       102         0.00       0.01      -0.12       0.01         0.00
+       103         0.00       0.02      -0.15       0.02         0.00
+       104         0.00       0.11      -0.34       0.11         0.00
+       105         0.00       0.11      -0.34       0.11         0.00
+       106         0.00       0.02      -0.15       0.02         0.00
+       107         0.00       0.04      -0.20       0.04         0.00
+       108         0.00       0.17      -0.42       0.17         0.00
+       109         1.00       0.28       1.35       1.83         2.53
+       110         1.00       0.11       2.63       6.92         4.35
+       111         0.00       0.18      -0.42       0.18         0.00
+       112         1.00       0.92       0.08       0.01         0.16
+       113         2.00       1.61       0.31       0.09         0.86
+       114         0.00       0.14      -0.38       0.14         0.00
+       115         0.00       0.29      -0.53       0.29         0.00
+       116         2.00       0.79       1.36       1.83         3.70
+       117         2.00       0.19       4.13      17.06         9.38
+       118         1.00       0.08       3.37      11.39         5.18
+       119         0.00       0.12      -0.34       0.12         0.00
+       120         0.00       0.61      -0.78       0.61         0.00
+       121         2.00       0.36       2.75       7.55         6.89
+       122         0.00       0.11      -0.34       0.11         0.00
+       123         0.00       0.18      -0.43       0.18         0.00
+       124         2.00       0.91       1.15       1.32         3.16
+       125         0.00       1.24      -1.12       1.24         0.00
+       126         0.00       0.62      -0.79       0.62         0.00
+       127         0.00       0.95      -0.98       0.95         0.00
+       128         8.00       5.14       1.27       1.60         7.09
+       129         5.00      11.05      -1.84       3.31        -7.93
+       130         0.00       0.62      -0.79       0.62         0.00
+       131         1.00       1.46      -0.38       0.15        -0.76
+       132         3.00       2.38       0.40       0.16         1.38
+       133         1.00       0.53       0.64       0.41         1.26
+       134         0.00       0.05      -0.22       0.05         0.00
+       135         0.00       0.10      -0.31       0.10         0.00
+       136         0.00       0.28      -0.53       0.28         0.00
+       137         1.00       1.34      -0.29       0.09        -0.59
+       138         0.00       0.10      -0.32       0.10         0.00
+       139         0.00       0.22      -0.46       0.22         0.00
+       140         0.00       0.53      -0.73       0.53         0.00
+       141         1.00       1.64      -0.50       0.25        -0.99
+       142         0.00       0.26      -0.51       0.26         0.00
+       143         0.00       0.46      -0.67       0.46         0.00
+       144         2.00       1.83       0.13       0.02         0.36
+       145         1.00       0.66       0.42       0.18         0.83
+       146         0.00       0.05      -0.22       0.05         0.00
+       147         0.00       0.10      -0.32       0.10         0.00
+       148         0.00       0.23      -0.48       0.23         0.00
+       149         0.00       0.05      -0.23       0.05         0.00
+       150         0.00       0.01      -0.12       0.01         0.00
+       151         0.00       0.02      -0.15       0.02         0.00
+       152         0.00       0.11      -0.34       0.11         0.00
+       153         0.00       0.11      -0.33       0.11         0.00
+       154         0.00       0.02      -0.15       0.02         0.00
+       155         0.00       0.04      -0.20       0.04         0.00
+       156         0.00       0.17      -0.41       0.17         0.00
+       157         0.00       0.29      -0.54       0.29         0.00
+       158         0.00       0.11      -0.34       0.11         0.00
+       159         0.00       0.18      -0.42       0.18         0.00
+       160         0.00       0.93      -0.97       0.93         0.00
+       161         2.00       1.52       0.39       0.15         1.10
+       162         0.00       0.10      -0.31       0.10         0.00
+       163         1.00       0.22       1.66       2.77         3.03
+       164         1.00       0.45       0.83       0.69         1.61
+       165         0.00       0.10      -0.32       0.10         0.00
+       166         0.00       0.02      -0.15       0.02         0.00
+       167         0.00       0.04      -0.20       0.04         0.00
+       168         0.00       0.18      -0.42       0.18         0.00
+       169         1.00       0.23       1.62       2.61         2.96
+       170         0.00       0.04      -0.20       0.04         0.00
+       171         0.00       0.07      -0.26       0.07         0.00
+       172         0.00       0.27      -0.52       0.27         0.00
+       173         1.00       0.50       0.71       0.51         1.40
+       174         0.00       0.18      -0.42       0.18         0.00
+       175         2.00       0.28       3.27      10.70         7.90
+       176         1.00       1.42      -0.35       0.12        -0.70
+       177         2.00       2.75      -0.45       0.20        -1.27
+       178         0.00       0.24      -0.49       0.24         0.00
+       179         0.00       0.48      -0.69       0.48         0.00
+       180         0.00       1.33      -1.15       1.33         0.00
+       181         0.00       0.32      -0.57       0.32         0.00
+       182         0.00       0.11      -0.34       0.11         0.00
+       183         0.00       0.18      -0.42       0.18         0.00
+       184         1.00       0.91       0.09       0.01         0.18
+       185         0.00       0.60      -0.78       0.60         0.00
+       186         1.00       0.17       1.98       3.90         3.49
+       187         1.00       0.28       1.36       1.85         2.55
+       188         1.00       1.37      -0.32       0.10        -0.63
+       189         1.00       2.09      -0.76       0.57        -1.47
+       190         0.00       0.94      -0.97       0.94         0.00
+       191         2.00       1.44       0.46       0.21         1.30
+       192         7.00       7.68      -0.25       0.06        -1.30
+       193        22.00      16.43       1.40       1.89        12.85
+       194         1.00       1.34      -0.29       0.09        -0.58
+       195         2.00       2.77      -0.46       0.21        -1.30
+       196         1.00       7.23      -2.33       5.37        -3.96
+       197         1.00       1.08      -0.08       0.01        -0.16
+       198         0.00       0.14      -0.37       0.14         0.00
+       199         1.00       0.25       1.50       2.24         2.77
+       200         1.00       0.90       0.10       0.01         0.21
+       201         4.00       2.41       1.03       1.06         4.07
+       202         0.00       0.26      -0.51       0.26         0.00
+       203         0.00       0.50      -0.71       0.50         0.00
+       204         1.00       1.66      -0.51       0.26        -1.02
+       205         5.00       5.00       0.00       0.00         0.01
+       206         0.00       0.83      -0.91       0.83         0.00
+       207         3.00       1.44       1.30       1.68         4.39
+       208         5.00       5.93      -0.38       0.15        -1.71
+       209         1.00       1.86      -0.63       0.40        -1.24
+       210         0.00       0.16      -0.40       0.16         0.00
+       211         1.00       0.33       1.18       1.39         2.24
+       212         0.00       0.90      -0.95       0.90         0.00
+       213         0.00       0.20      -0.44       0.20         0.00
+       214         2.00       0.08       7.02      49.33        13.13
+       215         0.00       0.12      -0.34       0.12         0.00
+       216         0.00       0.61      -0.78       0.61         0.00
+       217         3.00       0.38       4.28      18.35        12.47
+       218         0.00       0.12      -0.34       0.12         0.00
+       219         0.00       0.18      -0.43       0.18         0.00
+       220         1.00       0.91       0.09       0.01         0.19
+       221         1.00       1.21      -0.19       0.04        -0.37
+       222         1.00       0.62       0.49       0.24         0.97
+       223         0.00       0.94      -0.97       0.94         0.00
+       224         2.00       5.10      -1.38       1.88        -3.74
+       225         8.00       3.51       2.41       5.76        13.20
+       226         0.00       0.30      -0.55       0.30         0.00
+       227         0.00       0.61      -0.78       0.61         0.00
+       228         2.00       1.66       0.26       0.07         0.74
+       229         0.00       0.33      -0.58       0.33         0.00
+       230         0.00       0.11      -0.34       0.11         0.00
+       231         0.00       0.18      -0.42       0.18         0.00
+       232         0.00       0.91      -0.96       0.91         0.00
+       233         2.00       0.66       1.65       2.72         4.43
+       234         0.00       0.18      -0.42       0.18         0.00
+       235         2.00       0.29       3.19      10.20         7.76
+       236         1.00       1.38      -0.33       0.11        -0.65
+       237         2.00       1.98       0.02       0.00         0.05
+       238         0.00       0.92      -0.96       0.92         0.00
+       239         1.00       1.41      -0.35       0.12        -0.69
+       240         8.00       7.56       0.16       0.03         0.90
+       241         7.00      11.81      -1.42       1.96        -7.32
+       242         1.00       1.05      -0.04       0.00        -0.09
+       243         2.00       2.11      -0.07       0.01        -0.21
+       244         2.00       5.93      -1.62       2.61        -4.35
+       245         1.00       1.42      -0.35       0.12        -0.70
+       246         1.00       0.62       0.48       0.23         0.94
+       247         0.00       0.96      -0.98       0.96         0.00
+       248         0.00       5.10      -2.27       5.10         0.00
+       249         4.00       2.64       0.84       0.70         3.32
+       250         0.00       0.94      -0.97       0.94         0.00
+       251         2.00       1.48       0.43       0.18         1.21
+       252         1.00       7.56      -2.40       5.69        -4.05
+       253         6.00       9.23      -1.07       1.13        -5.17
+       254         3.00       5.20      -0.97       0.93        -3.30
+       255         9.00       7.88       0.40       0.16         2.39
+       256        62.00      43.25       2.98       8.13        44.66
+
+     THE TOTAL PEARSON CHI-SQUARE CONTRIBUTION FROM EMPTY CELLS IS         0.00
+
+
+     UNIVARIATE MODEL FIT INFORMATION
+
+                               Estimated Probabilities
+                                                  Standardized
+     Variable              H1           H0          Residual
+                                                   (z-score)
+     U11
+       Category 1        0.543        0.507           1.573
+       Category 2        0.457        0.493          -1.573
+       Univariate Pearson Chi-Square                  2.474
+       Univariate Log-Likelihood Chi-Square           2.478
+     U12
+       Category 1        0.540        0.555          -0.660
+       Category 2        0.460        0.445           0.660
+       Univariate Pearson Chi-Square                  0.436
+       Univariate Log-Likelihood Chi-Square           0.435
+     U21
+       Category 1        0.508        0.534          -1.157
+       Category 2        0.492        0.466           1.157
+       Univariate Pearson Chi-Square                  1.338
+       Univariate Log-Likelihood Chi-Square           1.335
+     U22
+       Category 1        0.569        0.583          -0.633
+       Category 2        0.431        0.417           0.633
+       Univariate Pearson Chi-Square                  0.400
+       Univariate Log-Likelihood Chi-Square           0.399
+     U31
+       Category 1        0.492        0.540          -2.143
+       Category 2        0.508        0.460           2.143
+       Univariate Pearson Chi-Square                  4.591
+       Univariate Log-Likelihood Chi-Square           4.574
+     U32
+       Category 1        0.561        0.589          -1.273
+       Category 2        0.439        0.411           1.273
+       Univariate Pearson Chi-Square                  1.620
+       Univariate Log-Likelihood Chi-Square           1.609
+     U41
+       Category 1        0.559        0.541           0.779
+       Category 2        0.441        0.459          -0.779
+       Univariate Pearson Chi-Square                  0.607
+       Univariate Log-Likelihood Chi-Square           0.608
+     U42
+       Category 1        0.626        0.590           1.595
+       Category 2        0.374        0.410          -1.595
+       Univariate Pearson Chi-Square                  2.543
+       Univariate Log-Likelihood Chi-Square           2.567
+
+       Overall Univariate Pearson Chi-Square                        14.008
+       Overall Univariate Log-Likelihood Chi-Square                 14.007
+
+
+     BIVARIATE MODEL FIT INFORMATION
+
+                                              Estimated Probabilities
+                                                                 Standardized
+     Variable       Variable              H1           H0          Residual
+                                                                  (z-score)
+     U11            U12
+       Category 1     Category 1        0.460        0.449           0.466
+       Category 1     Category 2        0.083        0.058           2.373
+       Category 2     Category 1        0.081        0.106          -1.817
+       Category 2     Category 2        0.377        0.387          -0.465
+       Bivariate Pearson Chi-Square                                  8.509
+       Bivariate Log-Likelihood Chi-Square                           8.145
+     U11            U21
+       Category 1     Category 1        0.358        0.356           0.091
+       Category 1     Category 2        0.184        0.151           2.076
+       Category 2     Category 1        0.150        0.178          -1.623
+       Category 2     Category 2        0.308        0.315          -0.357
+       Bivariate Pearson Chi-Square                                  5.919
+       Bivariate Log-Likelihood Chi-Square                           5.799
+     U11            U22
+       Category 1     Category 1        0.374        0.383          -0.400
+       Category 1     Category 2        0.168        0.124           2.978
+       Category 2     Category 1        0.194        0.200          -0.294
+       Category 2     Category 2        0.263        0.293          -1.470
+       Bivariate Pearson Chi-Square                                  9.463
+       Bivariate Log-Likelihood Chi-Square                           8.733
+     U11            U31
+       Category 1     Category 1        0.340        0.342          -0.103
+       Category 1     Category 2        0.202        0.165           2.251
+       Category 2     Category 1        0.152        0.198          -2.559
+       Category 2     Category 2        0.306        0.295           0.510
+       Bivariate Pearson Chi-Square                                  9.676
+       Bivariate Log-Likelihood Chi-Square                           9.845
+     U11            U32
+       Category 1     Category 1        0.374        0.369           0.260
+       Category 1     Category 2        0.168        0.138           1.914
+       Category 2     Category 1        0.186        0.220          -1.815
+       Category 2     Category 2        0.271        0.273          -0.078
+       Bivariate Pearson Chi-Square                                  5.773
+       Bivariate Log-Likelihood Chi-Square                           5.711
+     U11            U41
+       Category 1     Category 1        0.370        0.339           1.466
+       Category 1     Category 2        0.172        0.168           0.246
+       Category 2     Category 1        0.188        0.202          -0.762
+       Category 2     Category 2        0.269        0.291          -1.058
+       Bivariate Pearson Chi-Square                                  2.728
+       Bivariate Log-Likelihood Chi-Square                           2.718
+     U11            U42
+       Category 1     Category 1        0.397        0.366           1.434
+       Category 1     Category 2        0.146        0.141           0.275
+       Category 2     Category 1        0.229        0.225           0.224
+       Category 2     Category 2        0.229        0.268          -1.986
+       Bivariate Pearson Chi-Square                                  4.293
+       Bivariate Log-Likelihood Chi-Square                           4.410
+     U12            U21
+       Category 1     Category 1        0.350        0.384          -1.554
+       Category 1     Category 2        0.190        0.171           1.135
+       Category 2     Category 1        0.158        0.150           0.501
+       Category 2     Category 2        0.302        0.295           0.328
+       Bivariate Pearson Chi-Square                                  2.843
+       Bivariate Log-Likelihood Chi-Square                           2.847
+     U12            U22
+       Category 1     Category 1        0.385        0.414          -1.304
+       Category 1     Category 2        0.156        0.142           0.901
+       Category 2     Category 1        0.184        0.169           0.881
+       Category 2     Category 2        0.275        0.275          -0.005
+       Bivariate Pearson Chi-Square                                  2.338
+       Bivariate Log-Likelihood Chi-Square                           2.322
+     U12            U31
+       Category 1     Category 1        0.346        0.370          -1.098
+       Category 1     Category 2        0.194        0.185           0.519
+       Category 2     Category 1        0.146        0.170          -1.432
+       Category 2     Category 2        0.314        0.275           1.940
+       Bivariate Pearson Chi-Square                                  5.411
+       Bivariate Log-Likelihood Chi-Square                           5.391
+     U12            U32
+       Category 1     Category 1        0.383        0.399          -0.743
+       Category 1     Category 2        0.158        0.156           0.098
+       Category 2     Category 1        0.178        0.190          -0.669
+       Category 2     Category 2        0.281        0.255           1.356
+       Bivariate Pearson Chi-Square                                  2.072
+       Bivariate Log-Likelihood Chi-Square                           2.039
+     U12            U41
+       Category 1     Category 1        0.356        0.367          -0.490
+       Category 1     Category 2        0.184        0.188          -0.236
+       Category 2     Category 1        0.202        0.174           1.645
+       Category 2     Category 2        0.257        0.270          -0.666
+       Bivariate Pearson Chi-Square                                  2.755
+       Bivariate Log-Likelihood Chi-Square                           2.651
+     U12            U42
+       Category 1     Category 1        0.405        0.396           0.413
+       Category 1     Category 2        0.136        0.159          -1.448
+       Category 2     Category 1        0.221        0.194           1.471
+       Category 2     Category 2        0.239        0.250          -0.586
+       Bivariate Pearson Chi-Square                                  3.866
+       Bivariate Log-Likelihood Chi-Square                           3.891
+     U21            U22
+       Category 1     Category 1        0.453        0.478          -1.094
+       Category 1     Category 2        0.055        0.056          -0.133
+       Category 2     Category 1        0.115        0.105           0.765
+       Category 2     Category 2        0.377        0.361           0.713
+       Bivariate Pearson Chi-Square                                  1.490
+       Bivariate Log-Likelihood Chi-Square                           1.480
+     U21            U31
+       Category 1     Category 1        0.350        0.374          -1.101
+       Category 1     Category 2        0.158        0.160          -0.121
+       Category 2     Category 1        0.142        0.166          -1.439
+       Category 2     Category 2        0.350        0.300           2.427
+       Bivariate Pearson Chi-Square                                  6.620
+       Bivariate Log-Likelihood Chi-Square                           6.515
+     U21            U32
+       Category 1     Category 1        0.383        0.402          -0.901
+       Category 1     Category 2        0.126        0.132          -0.399
+       Category 2     Category 1        0.178        0.186          -0.473
+       Category 2     Category 2        0.314        0.280           1.696
+       Bivariate Pearson Chi-Square                                  2.878
+       Bivariate Log-Likelihood Chi-Square                           2.812
+     U21            U41
+       Category 1     Category 1        0.385        0.358           1.232
+       Category 1     Category 2        0.123        0.176          -3.066
+       Category 2     Category 1        0.174        0.183          -0.523
+       Category 2     Category 2        0.318        0.283           1.731
+       Bivariate Pearson Chi-Square                                 11.092
+       Bivariate Log-Likelihood Chi-Square                          11.900
+     U21            U42
+       Category 1     Category 1        0.403        0.386           0.771
+       Category 1     Category 2        0.105        0.148          -2.681
+       Category 2     Category 1        0.223        0.204           1.014
+       Category 2     Category 2        0.269        0.262           0.383
+       Bivariate Pearson Chi-Square                                  7.415
+       Bivariate Log-Likelihood Chi-Square                           8.079
+     U22            U31
+       Category 1     Category 1        0.381        0.403          -1.002
+       Category 1     Category 2        0.188        0.180           0.468
+       Category 2     Category 1        0.111        0.137          -1.675
+       Category 2     Category 2        0.320        0.280           1.978
+       Bivariate Pearson Chi-Square                                  6.017
+       Bivariate Log-Likelihood Chi-Square                           6.069
+     U22            U32
+       Category 1     Category 1        0.421        0.433          -0.556
+       Category 1     Category 2        0.148        0.149          -0.103
+       Category 2     Category 1        0.140        0.155          -0.968
+       Category 2     Category 2        0.291        0.262           1.508
+       Bivariate Pearson Chi-Square                                  2.654
+       Bivariate Log-Likelihood Chi-Square                           2.624
+     U22            U41
+       Category 1     Category 1        0.409        0.386           1.037
+       Category 1     Category 2        0.160        0.197          -2.055
+       Category 2     Category 1        0.150        0.155          -0.322
+       Category 2     Category 2        0.281        0.262           0.974
+       Bivariate Pearson Chi-Square                                  4.839
+       Bivariate Log-Likelihood Chi-Square                           5.044
+     U22            U42
+       Category 1     Category 1        0.445        0.417           1.299
+       Category 1     Category 2        0.123        0.166          -2.557
+       Category 2     Category 1        0.180        0.174           0.380
+       Category 2     Category 2        0.251        0.243           0.391
+       Bivariate Pearson Chi-Square                                  6.670
+       Bivariate Log-Likelihood Chi-Square                           7.185
+     U31            U32
+       Category 1     Category 1        0.449        0.484          -1.555
+       Category 1     Category 2        0.043        0.056          -1.269
+       Category 2     Category 1        0.111        0.105           0.493
+       Category 2     Category 2        0.397        0.356           1.916
+       Bivariate Pearson Chi-Square                                  5.351
+       Bivariate Log-Likelihood Chi-Square                           5.427
+     U31            U41
+       Category 1     Category 1        0.389        0.378           0.486
+       Category 1     Category 2        0.103        0.162          -3.539
+       Category 2     Category 1        0.170        0.163           0.413
+       Category 2     Category 2        0.338        0.297           2.003
+       Bivariate Pearson Chi-Square                                 13.605
+       Bivariate Log-Likelihood Chi-Square                          15.043
+     U31            U42
+       Category 1     Category 1        0.403        0.407          -0.174
+       Category 1     Category 2        0.089        0.133          -2.890
+       Category 2     Category 1        0.223        0.184           2.247
+       Category 2     Category 2        0.285        0.277           0.443
+       Bivariate Pearson Chi-Square                                 11.522
+       Bivariate Log-Likelihood Chi-Square                          12.223
+     U32            U41
+       Category 1     Category 1        0.429        0.407           1.014
+       Category 1     Category 2        0.132        0.182          -2.913
+       Category 2     Category 1        0.130        0.135          -0.323
+       Category 2     Category 2        0.310        0.277           1.646
+       Bivariate Pearson Chi-Square                                  9.601
+       Bivariate Log-Likelihood Chi-Square                          10.268
+     U32            U42
+       Category 1     Category 1        0.464        0.438           1.154
+       Category 1     Category 2        0.097        0.151          -3.347
+       Category 2     Category 1        0.162        0.152           0.589
+       Category 2     Category 2        0.277        0.259           0.947
+       Bivariate Pearson Chi-Square                                 11.217
+       Bivariate Log-Likelihood Chi-Square                          12.572
+     U41            U42
+       Category 1     Category 1        0.512        0.486           1.174
+       Category 1     Category 2        0.047        0.055          -0.868
+       Category 2     Category 1        0.113        0.104           0.645
+       Category 2     Category 2        0.328        0.354          -1.224
+       Bivariate Pearson Chi-Square                                  2.761
+       Bivariate Log-Likelihood Chi-Square                           2.804
+
+       Overall Bivariate Pearson Chi-Square                        169.380
+       Overall Bivariate Log-Likelihood Chi-Square                 174.547
+
+
+TECHNICAL 15 OUTPUT
+
+
+     ESTIMATED CONDITIONAL PROBABILITIES FOR THE CLASS VARIABLES
+
+     P(CB=1)=0.610
+     P(CB=2)=0.390
+
+
+     P(C1=1|CB=1)=0.499
+     P(C1=2|CB=1)=0.501
+
+
+     P(C1=1|CB=2)=0.499
+     P(C1=2|CB=2)=0.501
+
+
+     P(C2=1|CB=1,C1=1)=0.554
+     P(C2=2|CB=1,C1=1)=0.446
+
+
+     P(C2=1|CB=1,C1=2)=0.336
+     P(C2=2|CB=1,C1=2)=0.664
+
+
+     P(C2=1|CB=2,C1=1)=1.000
+     P(C2=2|CB=2,C1=1)=0.000
+
+
+     P(C2=1|CB=2,C1=2)=0.000
+     P(C2=2|CB=2,C1=2)=1.000
+
+
+     P(C3=1|CB=1,C1=1,C2=1)=0.554
+     P(C3=2|CB=1,C1=1,C2=1)=0.446
+
+
+     P(C3=1|CB=1,C1=1,C2=2)=0.336
+     P(C3=2|CB=1,C1=1,C2=2)=0.664
+
+
+     P(C3=1|CB=1,C1=2,C2=1)=0.554
+     P(C3=2|CB=1,C1=2,C2=1)=0.446
+
+
+     P(C3=1|CB=1,C1=2,C2=2)=0.336
+     P(C3=2|CB=1,C1=2,C2=2)=0.664
+
+
+     P(C3=1|CB=2,C1=1,C2=1)=1.000
+     P(C3=2|CB=2,C1=1,C2=1)=0.000
+
+
+     P(C3=1|CB=2,C1=1,C2=2)=0.000
+     P(C3=2|CB=2,C1=1,C2=2)=1.000
+
+
+     P(C3=1|CB=2,C1=2,C2=1)=1.000
+     P(C3=2|CB=2,C1=2,C2=1)=0.000
+
+
+     P(C3=1|CB=2,C1=2,C2=2)=0.000
+     P(C3=2|CB=2,C1=2,C2=2)=1.000
+
+
+     P(C4=1|CB=1,C1=1,C2=1,C3=1)=0.554
+     P(C4=2|CB=1,C1=1,C2=1,C3=1)=0.446
+
+
+     P(C4=1|CB=1,C1=1,C2=1,C3=2)=0.336
+     P(C4=2|CB=1,C1=1,C2=1,C3=2)=0.664
+
+
+     P(C4=1|CB=1,C1=1,C2=2,C3=1)=0.554
+     P(C4=2|CB=1,C1=1,C2=2,C3=1)=0.446
+
+
+     P(C4=1|CB=1,C1=1,C2=2,C3=2)=0.336
+     P(C4=2|CB=1,C1=1,C2=2,C3=2)=0.664
+
+
+     P(C4=1|CB=1,C1=2,C2=1,C3=1)=0.554
+     P(C4=2|CB=1,C1=2,C2=1,C3=1)=0.446
+
+
+     P(C4=1|CB=1,C1=2,C2=1,C3=2)=0.336
+     P(C4=2|CB=1,C1=2,C2=1,C3=2)=0.664
+
+
+     P(C4=1|CB=1,C1=2,C2=2,C3=1)=0.554
+     P(C4=2|CB=1,C1=2,C2=2,C3=1)=0.446
+
+
+     P(C4=1|CB=1,C1=2,C2=2,C3=2)=0.336
+     P(C4=2|CB=1,C1=2,C2=2,C3=2)=0.664
+
+
+     P(C4=1|CB=2,C1=1,C2=1,C3=1)=1.000
+     P(C4=2|CB=2,C1=1,C2=1,C3=1)=0.000
+
+
+     P(C4=1|CB=2,C1=1,C2=1,C3=2)=0.000
+     P(C4=2|CB=2,C1=1,C2=1,C3=2)=1.000
+
+
+     P(C4=1|CB=2,C1=1,C2=2,C3=1)=1.000
+     P(C4=2|CB=2,C1=1,C2=2,C3=1)=0.000
+
+
+     P(C4=1|CB=2,C1=1,C2=2,C3=2)=0.000
+     P(C4=2|CB=2,C1=1,C2=2,C3=2)=1.000
+
+
+     P(C4=1|CB=2,C1=2,C2=1,C3=1)=1.000
+     P(C4=2|CB=2,C1=2,C2=1,C3=1)=0.000
+
+
+     P(C4=1|CB=2,C1=2,C2=1,C3=2)=0.000
+     P(C4=2|CB=2,C1=2,C2=1,C3=2)=1.000
+
+
+     P(C4=1|CB=2,C1=2,C2=2,C3=1)=1.000
+     P(C4=2|CB=2,C1=2,C2=2,C3=1)=0.000
+
+
+     P(C4=1|CB=2,C1=2,C2=2,C3=2)=0.000
+     P(C4=2|CB=2,C1=2,C2=2,C3=2)=1.000
+
+
+
+DIAGRAM INFORMATION
+
+  Mplus diagrams are currently not available for Mixture analysis.
+  No diagram output was produced.
+
+
+     Beginning Time:  16:01:48
+        Ending Time:  16:01:49
+       Elapsed Time:  00:00:01
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen

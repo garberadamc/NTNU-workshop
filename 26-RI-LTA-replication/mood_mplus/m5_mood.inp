@@ -1,0 +1,85 @@
+TITLE:
+Eid 2003 data: T=4, N=494, P=2, C=2
+      Model 5 - RI-LTA, binary RI, Mover-Stayer
+DATA:
+FILE = "/Users/agarber/Desktop/RI-LTA_Muthen20/mood_mplus/m1_mood.dat";
+ 
+VARIABLE:
+NAMES = u11 u12 u21 u22 u31 u32 u41 u42 freq est sd; 
+ MISSING=.;
+ usev = u11-u42;
+      categorical = u11-u42;
+      classes = t(2) cb(2) c1(2) c2(2) c3(2) c4(2);
+      freqweight = freq;
+ANALYSIS:
+type = mixture;
+      proc = 8;
+      starts = 320 80;
+      parameterization = probability;
+MODEL:
+%OVERALL%
+
+    MODEL cb:
+        %cb#1% ! Stationary movers
+        c4 on c3 (pt1-pt2);
+        c3 on c2 (pt1-pt2);
+        c2 on c1 (pt1-pt2);
+        
+        %cb#2% ! Stayers
+        c2#1 on c1#1@1; c2#1 on c1#2@0;
+        c3#1 on c2#1@1; c3#1 on c2#2@0;
+        c4#1 on c3#1@1; c4#1 on c3#2@0;
+
+  MODEL t.c1:
+      %t#1.c1#1%
+      [u11$1] (p111); [u12$1] (p211);
+      %t#1.c1#2%
+      [u11$1] (p112); [u12$1] (p212);
+      %t#2.c1#1%
+      [u11$1] (p121); [u12$1] (p221);
+      %t#2.c1#2%
+      [u11$1] (p122); [u12$1] (p222);
+      	
+  MODEL t.c2:
+      %t#1.c2#1%
+      [u21$1] (p111); [u22$1] (p211);
+      %t#1.c2#2%
+      [u21$1] (p112); [u22$1] (p212);
+      %t#2.c2#1%
+      [u21$1] (p121); [u22$1] (p221);
+      %t#2.c2#2%
+      [u21$1] (p122); [u22$1] (p222);
+      	
+   MODEL t.c3:
+      %t#1.c3#1%
+      [u31$1] (p111); [u32$1] (p211);
+      %t#1.c3#2%
+      [u31$1] (p112); [u32$1] (p212);
+      %t#2.c3#1%
+      [u31$1] (p121); [u32$1] (p221);
+      %t#2.c3#2%
+      [u31$1] (p122); [u32$1] (p222);
+
+  MODEL t.c4:
+      %t#1.c4#1%
+      [u41$1] (p111); [u42$1] (p211);
+      %t#1.c4#2%
+      [u41$1] (p112); [u42$1] (p212);
+      %t#2.c4#1%
+      [u41$1] (p121); [u42$1] (p221);
+      %t#2.c4#2%
+      [u41$1] (p122); [u42$1] (p222); 
+MODEL CONSTRAINT:
+! each item has intercept, loading on trait, loading on occasion
+      ! so no trait-occasion interaction
+          New(i1 i2 lt1 lt2 lo1 lo2);
+          p111 = i1;
+          p112 = i1 + lo1;
+          p121 = i1 + lt1;
+          p122 = i1 + lo1 + lt1;
+          p211 = i2;
+          p212 = i2 + lo2;
+          p221 = i2 + lt2;
+          p222 = i2 + lo2 + lt2;
+OUTPUT:
+tech1 tech10 tech15;

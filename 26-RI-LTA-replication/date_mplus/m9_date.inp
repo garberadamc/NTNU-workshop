@@ -1,0 +1,81 @@
+TITLE:
+ Dating Model 9, Regular LTA, non-invariance
+     Lanza-Collins 2008 Developmental Psychology
+DATA:
+FILE = "/Users/agarber/Desktop/RI-LTA_Muthen20/date_mplus/date.dat";
+ 
+VARIABLE:
+NAMES = id gender male dates_98 dates_99 dates_00 par_98 par_99 par_00 u11 u21 u31
+     age_fd u12 u22 u32 u13 u23 u33 u14 u24 u34 safe_98 safe_99 safe_00; 
+ MISSING=.;
+ usev = u11 u13 u14
+  		        u21 u23 u24
+  		        u31 u33 u34
+  		        male;        !!! grouping covariate !!!
+
+  	categorical = u11-u34;
+  	missing = all(999);
+
+  	classes = c1(5) c2(5) c3(5);
+ANALYSIS:
+type = mixture;
+  	 starts =  400 100;
+  	 processors = 8;
+ algorithm = integration;
+       stscale = 1;
+MODEL:
+ %Overall%
+       c1 on male;
+
+      c2#1 on male (int1); c3#1 on male (int1);
+      c2#2 on male (int2); c3#2 on male (int2);
+      c2#3 on male (int3); c3#3 on male (int3);
+      c2#4 on male (int4); c3#4 on male (int4);
+
+      c2 on c1 (trans1-trans16);
+      c3 on c2 (trans1-trans16);
+
+      f by u11-u14* (lam1-lam3)  !!! continuous random intercept !!!
+  	  u21-u24* (lam1-lam3)
+  	  u31-u34* (lam1-lam3);
+  	  f@1; [f@0];
+  	
+      u11-u34 on male@0;
+
+  Model c1:
+  	%c1#1%
+  	[u11$1 u11$2 u13$1 u13$2 u14$1] (p11-p15);
+  	%c1#2%
+  	[u11$1 u11$2 u13$1 u13$2 u14$1] (p21-p25);
+  	%c1#3%
+  	[u11$1 u11$2 u13$1 u13$2 u14$1] (p31-p35);
+  	%c1#4%
+  	[u11$1 u11$2 u13$1 u13$2 u14$1] (p41-p45);
+  	%c1#5%
+  	[u11$1 u11$2 u13$1 u13$2 u14$1] (p51-p55);
+
+  Model c2:
+  	%c2#1%
+  	[u21$1 u21$2 u23$1 u23$2 u24$1] (p11-p15);
+  	%c2#2%
+  	[u21$1 u21$2 u23$1 u23$2 u24$1] (p21-p25);
+  	%c2#3%
+  	[u21$1 u21$2 u23$1 u23$2 u24$1] (p31-p35);
+  	%c2#4%
+  	[u21$1 u21$2 u23$1 u23$2 u24$1] (p41-p45);
+  	%c2#5%
+  	[u21$1 u21$2 u23$1 u23$2 u24$1] (p51-p55);
+
+  Model c3:
+  	%c3#1%
+  	[u31$1 u31$2 u33$1 u33$2 u34$1] (p11-p15);
+  	%c3#2%
+  	[u31$1 u31$2 u33$1 u33$2 u34$1] (p21-p25);
+  	%c3#3%
+  	[u31$1 u31$2 u33$1 u33$2 u34$1] (p31-p35);
+  	%c3#4%
+  	[u31$1 u31$2 u33$1 u33$2 u34$1] (p41-p45);
+  	%c3#5%
+  	[u31$1 u31$2 u33$1 u33$2 u34$1] (p51-p55);
+OUTPUT:
+ tech15;

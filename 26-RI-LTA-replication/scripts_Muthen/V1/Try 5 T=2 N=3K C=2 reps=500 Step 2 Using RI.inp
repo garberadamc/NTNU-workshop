@@ -1,0 +1,154 @@
+TITLE:	
+  	this is an example of LTA with a
+  		2-class random intercept
+Data:
+    file = 3kreplist.dat;
+    type = Montecarlo;
+
+Variable:
+  	NAMES = u11-u15 u21-u25 tk c1k c2k;
+  	usev = u11-u25;
+  	CATEGORICAL = u11-u15 u21-u25;
+  	CLASSES = t(2) c1(2) c2(2);
+  
+ANALYSIS:
+  	TYPE = MIXTURE;
+	algorithm = integration;
+	processors = 8;
+	 
+  
+
+MODEL:  
+  	%OVERALL%
+
+   [c1#1-c2#1*0] (par1-par2);
+
+  	c2#1 on c1#1*0.5 (par11);
+
+
+  !  [x@0]; x@1;
+
+  !  c1#1 on x*1;
+  !  c2#1 on x*1;
+  !  c3#1 on x*1;
+
+!	f by u11-u15*1 (p1-p5)
+!        u21-u25*1 (p1-p5)
+        ;
+!	f@1;
+!    [f@0];
+
+  !  [w@0]; w@1;
+  !  f on w*1;
+
+ !   csharp by;
+!   csharp by c1#1@1 c2#1@1 c3#1@1;
+!    csharp*0.5; [csharp@0]; csharp with f@0;
+!    csharp on w*1;
+
+	[t#1*1];
+	
+   
+ MODEL t.c1:
+! item, c-class, t-class
+  		%t#1.c1#1% 
+  	[u11$1*1] (p111);
+  	[u12$1*1] (p211);
+  	[u13$1*1] (p311);
+  	[u14$1*1] (p411);
+    [u15$1*1] (p511);
+ 
+  	%t#1.c1#2%
+  	[u11$1*-1] (p121);
+  	[u12$1*-1] (p221);
+  	[u13$1*-1] (p321);
+  	[u14$1*-1] (p421);
+    [u15$1*-1] (p521);
+
+    %t#2.c1#1% 
+  	[u11$1*-.5] (p112);
+  	[u12$1*-.5] (p212);
+  	[u13$1*-.5] (p312);
+  	[u14$1*-.5] (p412);
+    [u15$1*-.5] (p512);
+ 
+  	%t#2.c1#2%
+  	[u11$1*-2.5] (p122);
+  	[u12$1*-2.5] (p222);
+  	[u13$1*-2.5] (p322);
+  	[u14$1*-2.5] (p422);
+    [u15$1*-2.5] (p522);
+
+
+MODEL t.c2: 	
+  	%t#1.c2#1% 
+  	[u21$1*1] (p111);
+  	[u22$1*1] (p211);
+  	[u23$1*1] (p311);
+  	[u24$1*1] (p411);
+    [u25$1*1] (p511);
+ 
+  	%t#1.c2#2%
+  	[u21$1*-1] (p121);
+  	[u22$1*-1] (p221);
+  	[u23$1*-1] (p321);
+  	[u24$1*-1] (p421);
+    [u25$1*-1] (p521);
+
+    %t#2.c2#1% 
+  	[u21$1*-.5] (p112);
+  	[u22$1*-.5] (p212);
+  	[u23$1*-.5] (p312);
+  	[u24$1*-.5] (p412);
+    [u25$1*-.5] (p512);
+ 
+  	%t#2.c2#2%
+  	[u21$1*-2.5] (p122);
+  	[u22$1*-2.5] (p222);
+  	[u23$1*-2.5] (p322);
+  	[u24$1*-2.5] (p422);
+    [u25$1*-2.5] (p522);
+
+Model Constraint:
+    
+      New(i1-i5*1 c1-c5*-2 t*-1.5
+      trans11*0.622 trans12*0.378 
+      trans21*0.5 trans22*0.5
+      prob11*0.5 prob12*0.5
+      prob21*0.561 prob22*0.439);
+      p111 = i1;
+      p211 = i2;
+      p311 = i3;
+      p411 = i4;
+      p511 = i5;
+
+      p121 = i1 + c1;
+      p221 = i2 + c2;
+      p321 = i3 + c3;
+      p421 = i4 + c4;
+      p521 = i5 + c5;
+
+      p112 = i1 + t;
+      p212 = i2 + t;
+      p312 = i3 + t;
+      p412 = i4 + t;
+      p512 = i5 + t;
+
+      p122 = i1 + c1 + t;
+      p222 = i2 + c2 + t;
+      p322 = i3 + c3 + t;
+      p422 = i4 + c4 + t;
+      p522 = i5 + c5 + t;
+
+      trans11 = 1/(1+exp(-(par2+par11)));
+      trans12 = 1-trans11;
+      trans21 = 1/(1+exp(-par2));
+      trans22 = 1- trans21;
+      !marginal probabilities at T1 and T2:
+      prob11 = 1/(1+exp(-par1));
+      prob12 = 1 - prob11;
+      prob21 = prob11*trans11+prob12*trans21;
+      prob22 = 1- prob21;
+
+
+Output: tech9;

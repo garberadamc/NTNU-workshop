@@ -1,0 +1,61 @@
+TITLE:
+ Eid 2003 data: T=4, N=494, P=2, C=2
+      Model 3 - RI Continuous
+DATA:
+FILE = "/Users/agarber/Desktop/RI-LTA_Muthen20/mood_mplus/m1_mood.dat";
+ 
+VARIABLE:
+NAMES = u11 u12 u21 u22 u31 u32 u41 u42 freq; 
+ MISSING=.;
+ usev = u11-u42;
+      freqweight = freq;
+      categorical = u11-u42;
+      classes = c1(2) c2(2) c3(2) c4(2);
+ANALYSIS:
+type = mixture;
+      proc = 8;
+      starts = 400 100;
+ algorithm = integration;
+      integration = 30;
+MODEL:
+ %OVERALL%
+
+   ! Stationarity imposed:
+    [c2#1 - c4#1] (p0);
+    
+    c4#1 on c3#1 (pt);
+    c3#1 on c2#1 (pt);
+    c2#1 on c1#1 (pt);
+    
+    f by u11-u12* (p1-p2)
+         u21-u22* (p1-p2)
+         u31-u32* (p1-p2)
+         u41-u42* (p1-p2);
+    f@1; [f@0];
+
+    MODEL c1:
+      	%c1#1%
+      	[u11$1] (1);   [u12$1] (2);
+      	%c1#2%
+      	[u11$1] (11);  [u12$1] (12);
+      	
+    MODEL c2: 	
+      	%c2#1%
+      	[u21$1] (1);  [u22$1] (2);
+      	%c2#2%
+      	[u21$1] (11); [u22$1] (12);
+      	
+    MODEL c3:
+        %c3#1%
+      	[u31$1] (1);  [u32$1] (2);
+      	%c3#2%
+      	[u31$1] (11); [u32$1] (12);
+
+    MODEL c4:
+        %c4#1%
+      	[u41$1] (1);  [u42$1] (2);
+      	%c4#2%
+      	[u41$1] (11); [u42$1] (12); 
+OUTPUT:
+tech1 tech15;
+ tech8;
