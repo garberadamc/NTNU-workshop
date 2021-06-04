@@ -4,7 +4,7 @@ A course taught by Adam Garber for the Norwegian University of Science and Techn
 
 ***
 
-personal website - adam-garber.com
+personal website - https://www.adam-garber.com/
 
 course materials - https://garberadamc.github.io/project-site/
 
